@@ -23,7 +23,6 @@ import { ChartsDemo } from './components/ChartsDemo';
 import { MiscDemo } from './components/MiscDemo';
 import { EmptyPage } from './components/EmptyPage';
 import { Documentation } from './components/Documentation';
-import { UtilsDemo } from './components/UtilsDemo';
 import { ScrollPanel } from 'primereact/components/scrollpanel/ScrollPanel';
 import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
 
@@ -373,7 +372,6 @@ class App extends Component {
                         <Route path="/charts" component={ChartsDemo} />
                         <Route path="/misc" component={MiscDemo} />
                         <Route path="/empty" component={EmptyPage} />
-                        <Route path="/utils" component={UtilsDemo} />
                         <Route path="/documentation" component={Documentation} />
                     </div>
 
