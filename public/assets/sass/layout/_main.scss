@@ -1146,6 +1146,10 @@ body {
                                     color: $primaryTextColor;
                                 }
                             }
+
+                            >ul {
+                                max-height: 1000px;
+                            }
                         }
                     }
 
