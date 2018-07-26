@@ -120,7 +120,7 @@ export class ChartsDemo extends Component {
         return(
             <div className="ui-g ui-fluid">
                 <div className="ui-g-12 ui-lg-6">
-                    <div className="card">
+                    <div className="card no-margin">
                         <h1 className="centerText">Linear Chart</h1>
                         <Chart type="line" data={lineData}/>
                     </div>
@@ -136,7 +136,7 @@ export class ChartsDemo extends Component {
                     </div>
                 </div>
                 <div className="ui-g-12 ui-lg-6">
-                    <div className="card">
+                    <div className="card no-margin">
                         <h1 className="centerText">Bar Chart</h1>
                         <Chart type="bar" data={barData}/>
                     </div>

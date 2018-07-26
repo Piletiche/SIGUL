@@ -328,7 +328,7 @@ export class MenusDemo extends Component {
         return(
             <div className="ui-g ui-fluid">
                 <div className="ui-g-12">
-                    <div className="card card-w-title">
+                    <div className="card no-margin">
                         <h1>Breadcrumb</h1>
                         <BreadCrumb model={breadcrumdItems} home={home}/>
                     </div>
@@ -361,7 +361,7 @@ export class MenusDemo extends Component {
 
                 <div className="ui-g-12 ui-lg-6">
                     {/* Right Colum */}
-                    <div className="card card-w-title">
+                    <div className="card no-margin">
                         <h1 style={{marginTop:'40px'}}>ContextMenu</h1>
                         Right click!
                         <ContextMenu global={true} model={this.state.tieredItems} style={{width:'12.5em'}}/>

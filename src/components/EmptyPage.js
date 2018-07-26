@@ -10,7 +10,7 @@ export class EmptyPage extends Component {
     render() {
         return <div className="ui-g">
             <div className="ui-g-12">
-                <div className="card">
+                <div className="card no-margin">
                     <h1>Empty Page</h1>
                     <p>Use this page to start from scratch and place your custom content.</p>
                 </div>

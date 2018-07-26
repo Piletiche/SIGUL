@@ -40,7 +40,7 @@ export class OverlaysDemo extends Component {
             <div className="ui-g ui-fluid">
                 <div className="ui-g-12 ui-lg-6">
                     {/* Left Side */}
-                    <div className="card">
+                    <div className="card no-margin">
                         <h1>Overlay Panel</h1>
                         <div className="ui-g">
                             <div className="ui-g-6">
@@ -76,7 +76,7 @@ export class OverlaysDemo extends Component {
                 </div>
                 <div className="ui-g-12 ui-lg-6">
                     {/* Right Side */}
-                    <div className="card">
+                    <div className="card no-margin">
                         <h1>LightBox</h1>
                         <Lightbox images={images}/>
                     </div>

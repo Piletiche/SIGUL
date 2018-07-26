@@ -209,7 +209,7 @@ export class DataDemo extends Component {
         return (
             <div className="ui-g">
                 <div className="ui-g-12">
-                    <div className="card card-w-title">
+                    <div className="card no-margin">
                         <h1>DataTable</h1>
                         <DataTable value={this.state.dataTableValue} selectionMode="single" header="List of Cars" paginator={true} rows={10}
                         responsive={true} selection={this.state.dataTableSelectValue} onSelectionChange={(e) => this.setState({dataTableSelectValue: e.data})}>

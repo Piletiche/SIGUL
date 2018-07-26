@@ -333,7 +333,15 @@ export class SampleDemo extends Component {
         return <div className="ui-fluid">
             <div className="ui-g">
                 <div className="ui-g-12">
-                    <div className="card card-w-title">
+                    <div className="ui-messages ui-widget ui-corner-all ui-messages-success" style={{margin: '0 0 1em 0', display: 'block', padding:'1em'}}>
+                        <span className="ui-messages-icon fa fa-fw fa-2x fa-check"></span>
+                        <ul>
+                            <li>
+                                <span className="ui-messages-summary" style={{fontSize:'16px'}}>Apollo provides a theme for all 70+ PrimeReact Components. This page contains samples of the commonly used components for demo purposes.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="card no-margin">
                         <h1>Form Elements</h1>
                         <div className="ui-g form-group">
                             <div className="ui-g-12 ui-md-2">

@@ -11,7 +11,9 @@ export class PanelsDemo extends Component {
 
     constructor() {
         super();
-        this.state = {};
+        this.state = {
+            activeIndex: 0
+        };
 
     }
 
@@ -24,9 +26,9 @@ export class PanelsDemo extends Component {
         return(
             <div className="ui-g">
                 <div className="ui-g-12">
-                    <div className="card card-w-title">
+                    <div className="card no-margin">
                         <h1>AccordionPanel</h1>
-                        <Accordion>
+                        <Accordion activeIndex={this.state.activeIndex} onTabChange={(e) => this.setState({activeIndex: e.index})}>
                             <AccordionTab header="Godfather I">
                                 The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughters wedding.
                                 His beloved son Michael has just come home from the war, but does not intend to become part of his fathers business.

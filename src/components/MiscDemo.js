@@ -39,7 +39,7 @@ export class MiscDemo extends Component {
 
         return  <div className="ui-g">
                     <div className="ui-g-12">
-                        <div className="card">
+                        <div className="card no-margin">
                             <h1>Upload</h1>
                             <Growl value={this.state.messages}/>
                     

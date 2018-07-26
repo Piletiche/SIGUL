@@ -200,7 +200,7 @@ export class FormsDemo extends Component {
         return <div className="ui-g ui-fluid">
             <div className="ui-g-12 ui-lg-6">
                 {/* Left Side */}
-                <div className="card card-w-title">
+                <div className="card no-margin">
                     <h1>InputText</h1>
                     <div className="ui-g form-group">
                         <div className="ui-g-12 ui-md-4">
@@ -284,7 +284,7 @@ export class FormsDemo extends Component {
             </div>
             <div className="ui-g-12 ui-lg-6">
                 {/* Right Side */}
-                <div className="card card-w-title">
+                <div className="card no-margin">
                     <h1>Checkboxes</h1>
                     <div className="ui-g">
                         <div className="ui-g-12 ui-md-4">

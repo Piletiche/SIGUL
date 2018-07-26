@@ -43,7 +43,7 @@ export class MessagesDemo extends Component {
         return(
             <div className="ui-g">
                 <div className="ui-g-12">
-                    <div className="card">
+                    <div className="card no-margin">
                         <h1>Messages and Growl</h1>
                         <Messages ref={(el) => this.messages = el} />
                         <Growl ref={(el) => this.growl = el} />

@@ -12,7 +12,7 @@ export class Documentation extends Component {
         return (
             <div className="ui-g">
                 <div className="ui-g-12">
-                    <div className="card docs">
+                    <div className="card docs no-margin">
                         <h1>Current Version</h1>
                         <p>React 16.2.0 and PrimeReact 1.6.2</p>
 
