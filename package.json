@@ -1,0 +1,31 @@
+{
+  "name": "apollo",
+  "version": "0.1.0",
+  "homepage": "/apollo-react",
+  "private": true,
+  "devDependencies": {
+    "react-scripts": "1.0.11"
+  },
+  "dependencies": {
+    "axios": "^0.15.3",
+    "babel-polyfill": "^6.26.0",
+    "chart.js": "^2.4.0",
+    "classnames": "^2.2.5",
+    "font-awesome": "^4.7.0",
+    "fullcalendar": "^4.0.0-alpha",
+    "moment": "^2.17.1",
+    "primereact": "2.0.0-beta.1",
+    "primeicons": "1.0.0-beta.9",
+    "quill": "^1.3.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-transition-group": "^2.2.1",
+    "react-router-dom": "^4.2.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
