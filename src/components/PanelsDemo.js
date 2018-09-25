@@ -77,7 +77,7 @@ export class PanelsDemo extends Component {
                             <div className="p-toolbar-group-left">
                                 <Button label="New" icon="pi pi-plus" style={{marginRight:'.25em'}} />
                                 <Button label="Upload" icon="pi pi-upload" className="p-button-success" />
-                                <i className="pi pi-bars p-toolbar-separator" style={{marginRight:'.25em'}} />
+                                <i className="pi pi-bars p-toolbar-separator"/>
                                 <Button label="Save" icon="pi pi-check" className="p-button-warning" />
                             </div>
                             <div className="p-toolbar-group-right">

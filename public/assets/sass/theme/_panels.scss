@@ -1,9 +1,12 @@
 body {
     .p-panel {
+        @include content();
+        @include corner-all();
         padding: 0;
         border-color: 1px solid $contentBorderColor;
 
         .p-panel-titlebar {
+            @include header();
             border: 0 none;
             border-bottom: 1px solid $headerBorderColor;
             padding: $headerPadding;
@@ -45,9 +48,12 @@ body {
     }
 
     .p-fieldset {
+        @include content();
+        @include corner-all();
         padding: 0 0 .5em 0;
 
         .p-fieldset-legend {
+            @include corner-all();
             color: $headerTextColor;
             background-color: $headerBgColor;
             margin-left: 10px;
@@ -91,6 +97,7 @@ body {
 
     .p-accordion {
         .p-accordion-header {
+            @include corner-all();
             background-color: $contentBgColor;
             color: $textColor;
             font-size: $fontSize;
@@ -154,6 +161,7 @@ body {
         }
 
         .p-accordion-content {
+            @include content();
             padding: $contentPadding;
         }
     }
@@ -174,6 +182,7 @@ body {
                 @include border-radius(0);
 
                 li {
+                    @include corner-top();
                     position: static;
                     box-sizing: border-box;
                     background-color: $headerBgColor;
@@ -257,8 +266,15 @@ body {
     }
 
     .p-toolbar {
+        @include header();
+        @include corner-all();
         background-color: $headerBgColor;
         border-color: $headerBorderColor;
         padding: $headerPadding;
+
+        .p-toolbar-separator {
+            vertical-align: middle;
+            margin: 0 .5em;
+        }
     }
 }
