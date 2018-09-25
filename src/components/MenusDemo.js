@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {BreadCrumb} from 'primereact/breadcrumb';
 import {Steps} from 'primereact/steps';
-import {Menubar} from 'primereact/components/menubar/Menubar';
+import {Menubar} from 'primereact/menubar';
 import {Button} from 'primereact/button';
 import {Menu} from 'primereact/menu';
 import {TieredMenu} from 'primereact/tieredmenu';
@@ -16,277 +16,409 @@ export class MenusDemo extends Component {
     constructor() {
         super();
         this.state = {
-            tieredItems : [
+            breadcrumdItems: [
+                {label:'Categories'},
+                {label:'Sports'},
+                {label:'Football'},
+                {label:'Countries'},
+                {label:'Spain'},
+                {label:'F.C. Barcelona'},
+                {label:'Squad'},
+                {label:'Lionel Messi', url: 'https://en.wikipedia.org/wiki/Lionel_Messi'}
+            ],
+            home: {
+                icon: 'pi pi-home', url: 'https://www.primefaces.org/primereact'
+            },
+            stepsItems: [
                 {
-                    label: 'File',
-                    icon: 'fa fa-file-o',
-                    items: [{
-                        label: 'New',
-                        icon: 'fa fa-plus',
-                        items: [
-                            {label: 'Project'},
-                            {label: 'Other'},
-                        ]
-                    },
-                        {label: 'Open'},
-                        {label: 'Quit'}
-                    ]
+                    label: 'Personal'
                 },
                 {
-                    label: 'Edit',
-                    icon: 'fa fa-edit',
-                    items: [
-                        {label: 'Undo', icon: 'fa fa-mail-forward'},
-                        {label: 'Redo', icon: 'fa fa-mail-reply'}
-                    ]
+                    label: 'Seat'
                 },
                 {
-                    label: 'Help',
-                    icon: 'fa fa-question',
-                    items: [
-                        {
-                            label: 'Contents'
-                        },
-                        {
-                            label: 'Search',
-                            icon: 'fa fa-search',
-                            items: [
-                                {
-                                    label: 'Text',
-                                    items: [
-                                        {
-                                            label: 'Workspace'
-                                        }
-                                    ]
-                                },
-                                {
-                                    label: 'File'
-                                }
-                            ]}
-                    ]
+                    label: 'Payment'
                 },
                 {
-                    label: 'Actions',
-                    icon: 'fa fa-gear',
-                    items: [
-                        {
-                            label: 'Edit',
-                            icon: 'fa fa-refresh',
-                            items: [
-                                {label: 'Save', icon: 'fa fa-save'},
-                                {label: 'Update', icon: 'fa fa-save'},
-                            ]
-                        },
-                        {
-                            label: 'Other',
-                            icon: 'fa fa-phone',
-                            items: [
-                                {label: 'Delete', icon: 'fa fa-minus'}
-                            ]
-                        }
-                    ]
-                },
-                {
-                    label: 'Quit', icon: 'fa fa-minus'
+                    label: 'Confirmation'
                 }
             ],
-            items : [
+            tieredItems: [
                 {
-                    label: 'File',
-                    items: [
-                        {label: 'New', icon: 'fa fa-plus'},
-                        {label: 'Open', icon: 'fa fa-download'}
+                    label:'File',
+                    icon:'pi pi-fw pi-file',
+                    items:[
+                       {
+                          label:'New',
+                          icon:'pi pi-fw pi-plus',
+                          items:[
+                             {
+                                label:'Bookmark',
+                                icon:'pi pi-fw pi-bookmark'
+                             },
+                             {
+                                label:'Video',
+                                icon:'pi pi-fw pi-video'
+                             },
+              
+                          ]
+                       },
+                       {
+                          label:'Delete',
+                          icon:'pi pi-fw pi-trash'
+                       },
+                       {
+                          separator:true
+                       },
+                       {
+                          label:'Export',
+                          icon:'pi pi-fw pi-external-link'
+                       }
                     ]
-                },
+                 },
+                 {
+                    label:'Edit',
+                    icon:'pi pi-fw pi-pencil',
+                    items:[
+                       {
+                          label:'Left',
+                          icon:'pi pi-fw pi-align-left'
+                       },
+                       {
+                          label:'Right',
+                          icon:'pi pi-fw pi-align-right'
+                       },
+                       {
+                          label:'Center',
+                          icon:'pi pi-fw pi-align-center'
+                       },
+                       {
+                          label:'Justify',
+                          icon:'pi pi-fw pi-align-justify'
+                       },
+              
+                    ]
+                 },
+                 {
+                    label:'Users',
+                    icon:'pi pi-fw pi-user',
+                    items:[
+                       {
+                          label:'New',
+                          icon:'pi pi-fw pi-user-plus',
+              
+                       },
+                       {
+                          label:'Delete',
+                          icon:'pi pi-fw pi-user-minus',
+              
+                       },
+                       {
+                          label:'Search',
+                          icon:'pi pi-fw pi-users',
+                          items:[
+                             {
+                                label:'Filter',
+                                icon:'pi pi-fw pi-filter',
+                                items:[
+                                   {
+                                      label:'Print',
+                                      icon:'pi pi-fw pi-print'
+                                   }
+                                ]
+                             },
+                             {
+                                icon:'pi pi-fw pi-bars',
+                                label:'List'
+                             }
+                          ]
+                       }
+                    ]
+                 },
+                 {
+                    label:'Events',
+                    icon:'pi pi-fw pi-calendar',
+                    items:[
+                       {
+                          label:'Edit',
+                          icon:'pi pi-fw pi-pencil',
+                          items:[
+                             {
+                                label:'Save',
+                                icon:'pi pi-fw pi-calendar-plus'
+                             },
+                             {
+                                label:'Delete',
+                                icon:'pi pi-fw pi-calendar-minus'
+                             }
+                          ]
+                       },
+                       {
+                          label:'Archieve',
+                          icon:'pi pi-fw pi-calendar-times',
+                          items:[
+                             {
+                                label:'Remove',
+                                icon:'pi pi-fw pi-calendar-minus'
+                             }
+                          ]
+                       }
+                    ]
+                 },
+                 {
+                    label:'Quit',
+                    icon:'pi pi-fw pi-power-off'
+                 }
+            ],
+            items: [
                 {
-                    label: 'Edit',
-                    items: [
-                        {label: 'Undo', icon: 'fa fa-refresh'},
-                        {label: 'Redo', icon: 'fa fa-repeat'}
-                    ]
-                }],
-            panelMenuItems : [
+                    label: 'Options',
+                    items: [{label: 'New', icon: 'pi pi-fw pi-plus',command:() => window.location.hash="/fileupload"},
+                            {label: 'Delete', icon: 'pi pi-fw pi-trash', url: 'http://primetek.com.tr'}]
+                }, 
                 {
-                    label: 'File',
-                    icon: 'fa fa-file-o',
-                    items: [{
-                        label: 'New',
-                        icon: 'fa fa-plus',
-                        items: [
-                            {label: 'Project'},
-                            {label: 'Other'},
-                        ]
-                    },
-                        {label: 'Open'},
-                        {label: 'Quit'}
-                    ]
-                },
-                {
-                    label: 'Edit',
-                    icon: 'fa fa-edit',
-                    items: [
-                        {label: 'Undo', icon: 'fa fa-mail-forward'},
-                        {label: 'Redo', icon: 'fa fa-mail-reply'}
-                    ]
-                },
-                {
-                    label: 'Help',
-                    icon: 'fa fa-question',
-                    items: [
-                        {
-                            label: 'Contents'
-                        },
-                        {
-                            label: 'Search',
-                            icon: 'fa fa-search',
-                            items: [
-                                {
-                                    label: 'Text',
-                                    items: [
-                                        {
-                                            label: 'Workspace'
-                                        }
-                                    ]
-                                },
-                                {
-                                    label: 'File'
-                                }
-                            ]}
-                    ]
-                },
-                {
-                    label: 'Actions',
-                    icon: 'fa fa-gear',
-                    items: [
-                        {
-                            label: 'Edit',
-                            icon: 'fa fa-refresh',
-                            items: [
-                                {label: 'Save', icon: 'fa fa-save'},
-                                {label: 'Update', icon: 'fa fa-save'},
-                            ]
-                        },
-                        {
-                            label: 'Other',
-                            icon: 'fa fa-phone',
-                            items: [
-                                {label: 'Delete', icon: 'fa fa-minus'}
-                            ]
-                        }
-                    ]
+                    label: 'Account',
+                    items: [{label: 'Options', icon: 'pi pi-fw pi-cog',command:() => window.location.hash="/"},
+                            {label: 'Sign Out', icon: 'pi pi-fw pi-power-off'} ]
                 }
             ],
-            tabMenuItems : [
-                {label: 'Stats', icon: 'fa fa-bar-chart'},
-                {label: 'Calendar', icon: 'fa fa-calendar'},
-                {label: 'Documentation', icon: 'fa fa-book'},
-                {label: 'Support', icon: 'fa fa-support'},
-                {label: 'Social', icon: 'fa fa-twitter'}
+            panelMenuItems: [
+                {
+                    label:'Documents',
+                    icon:'pi pi-fw pi-file',
+                    items:[
+                       {
+                          label:'New',
+                          icon:'pi pi-fw pi-plus',
+                          items:[
+                             {
+                                label:'Bookmark',
+                                icon:'pi pi-fw pi-bookmark'
+                             },
+                             {
+                                label:'Video',
+                                icon:'pi pi-fw pi-video'
+                             },
+              
+                          ]
+                       },
+                       {
+                          label:'Delete',
+                          icon:'pi pi-fw pi-trash'
+                       },
+                       {
+                          separator:true
+                       },
+                       {
+                          label:'Export',
+                          icon:'pi pi-fw pi-external-link'
+                       }
+                    ]
+                 },
+                 {
+                    label:'Manage',
+                    icon:'pi pi-fw pi-pencil',
+                    items:[
+                       {
+                          label:'Left',
+                          icon:'pi pi-fw pi-align-left'
+                       },
+                       {
+                          label:'Right',
+                          icon:'pi pi-fw pi-align-right'
+                       },
+                       {
+                          label:'Center',
+                          icon:'pi pi-fw pi-align-center'
+                       },
+                       {
+                          label:'Justify',
+                          icon:'pi pi-fw pi-align-justify'
+                       },
+              
+                    ]
+                 },
+                 {
+                    label:'Accounts',
+                    icon:'pi pi-fw pi-user',
+                    items:[
+                       {
+                          label:'New',
+                          icon:'pi pi-fw pi-user-plus',
+              
+                       },
+                       {
+                          label:'Delete',
+                          icon:'pi pi-fw pi-user-minus',
+              
+                       },
+                       {
+                          label:'Search',
+                          icon:'pi pi-fw pi-users',
+                          items:[
+                             {
+                                label:'Filter',
+                                icon:'pi pi-fw pi-filter',
+                                items:[
+                                   {
+                                      label:'Print',
+                                      icon:'pi pi-fw pi-print'
+                                   }
+                                ]
+                             },
+                             {
+                                icon:'pi pi-fw pi-bars',
+                                label:'List'
+                             }
+                          ]
+                       }
+                    ]
+                 },
+                 {
+                    label:'Calendar',
+                    icon:'pi pi-fw pi-calendar',
+                    items:[
+                       {
+                          label:'Edit',
+                          icon:'pi pi-fw pi-pencil',
+                          items:[
+                             {
+                                label:'Save',
+                                icon:'pi pi-fw pi-calendar-plus'
+                             },
+                             {
+                                label:'Delete',
+                                icon:'pi pi-fw pi-calendar-minus'
+                             }
+                          ]
+                       },
+                       {
+                          label:'Archieve',
+                          icon:'pi pi-fw pi-calendar-times',
+                          items:[
+                             {
+                                label:'Remove',
+                                icon:'pi pi-fw pi-calendar-minus'
+                             }
+                          ]
+                       }
+                    ]
+                 }
             ],
-            megaMenuItems : [
+            tabMenuItems: [
+                {label: 'Home', icon: 'pi pi-fw pi-home'},
+                {label: 'Calendar', icon: 'pi pi-fw pi-calendar'},
+                {label: 'Edit', icon: 'pi pi-fw pi-pencil'},
+                {label: 'Documentation', icon: 'pi pi-fw pi-file'},
+                {label: 'Settings', icon: 'pi pi-fw pi-cog'}
+            ],
+            megaMenuItems: [
                 {
-                    label: 'TV', icon: 'fa fa-check',
+                    label: 'Videos', icon: 'pi pi-fw pi-video',
                     items: [
                         [
                             {
-                                label: 'TV 1',
-                                items: [{label: 'TV 1.1'},{label: 'TV 1.2'}]
+                                label: 'Video 1',
+                                items: [{label: 'Video 1.1'}, {label: 'Video 1.2'}]
                             },
                             {
-                                label: 'TV 2',
-                                items: [{label: 'TV 2.1'},{label: 'TV 2.2'}]
+                                label: 'Video 2',
+                                items: [{label: 'Video 2.1'}, {label: 'Video 2.2'}]
                             }
                         ],
                         [
                             {
-                                label: 'TV 3',
-                                items: [{label: 'TV 3.1'},{label: 'TV 3.2'}]
+                                label: 'Video 3',
+                                items: [{label: 'Video 3.1'}, {label: 'Video 3.2'}]
                             },
                             {
-                                label: 'TV 4',
-                                items: [{label: 'TV 4.1'},{label: 'TV 4.2'}]
+                                label: 'Video 4',
+                                items: [{label: 'Video 4.1'}, {label: 'Video 4.2'}]
                             }
                         ]
                     ]
                 },
                 {
-                    label: 'Sports', icon: 'fa fa-soccer-ball-o',
+                    label: 'Users', icon: 'pi pi-fw pi-users',
                     items: [
                         [
                             {
-                                label: 'Sports 1',
-                                items: [{label: 'Sports 1.1'},{label: 'Sports 1.2'}]
+                                label: 'User 1',
+                                items: [{label: 'User 1.1'}, {label: 'User 1.2'}]
                             },
                             {
-                                label: 'Sports 2',
-                                items: [{label: 'Sports 2.1'},{label: 'Sports 2.2'}]
+                                label: 'User 2',
+                                items: [{label: 'User 2.1'}, {label: 'User 2.2'}]
                             },
-
                         ],
                         [
                             {
-                                label: 'Sports 3',
-                                items: [{label: 'Sports 3.1'},{label: 'Sports 3.2'}]
+                                label: 'User 3',
+                                items: [{label: 'User 3.1'}, {label: 'User 3.2'}]
                             },
                             {
-                                label: 'Sports 4',
-                                items: [{label: 'Sports 4.1'},{label: 'Sports 4.2'}]
+                                label: 'User 4',
+                                items: [{label: 'User 4.1'}, {label: 'User 4.2'}]
                             }
                         ],
                         [
                             {
-                                label: 'Sports 5',
-                                items: [{label: 'Sports 5.1'},{label: 'Sports 5.2'}]
+                                label: 'User 5',
+                                items: [{label: 'User 5.1'}, {label: 'User 5.2'}]
                             },
                             {
-                                label: 'Sports 6',
-                                items: [{label: 'Sports 6.1'},{label: 'Sports 6.2'}]
+                                label: 'User 6',
+                                items: [{label: 'User 6.1'}, {label: 'User 6.2'}]
                             }
                         ]
                     ]
                 },
                 {
-                    label: 'Entertainment', icon: 'fa fa-child',
+                    label: 'Events', icon: 'pi pi-fw pi-calendar',
                     items: [
                         [
                             {
-                                label: 'Entertainment 1',
-                                items: [{label: 'Entertainment 1.1'},{label: 'Entertainment 1.2'}]
+                                label: 'Event 1',
+                                items: [{label: 'Event 1.1'}, {label: 'Event 1.2'}]
                             },
                             {
-                                label: 'Entertainment 2',
-                                items: [{label: 'Entertainment 2.1'},{label: 'Entertainment 2.2'}]
+                                label: 'Event 2',
+                                items: [{label: 'Event 2.1'}, {label: 'Event 2.2'}]
                             }
                         ],
                         [
                             {
-                                label: 'Entertainment 3',
-                                items: [{label: 'Entertainment 3.1'},{label: 'Entertainment 3.2'}]
+                                label: 'Event 3',
+                                items: [{label: 'Event 3.1'}, {label: 'Event 3.2'}]
                             },
                             {
-                                label: 'Entertainment 4',
-                                items: [{label: 'Entertainment 4.1'},{label: 'Entertainment 4.2'}]
+                                label: 'Event 4',
+                                items: [{label: 'Event 4.1'}, {label: 'Event 4.2'}]
                             }
                         ]
                     ]
                 },
                 {
-                    label: 'Technology', icon: 'fa fa-gears',
+                    label: 'Settings', icon: 'pi pi-fw pi-cog',
                     items: [
                         [
                             {
-                                label: 'Technology 1',
-                                items: [{label: 'Technology 1.1'},{label: 'Technology 1.2'}]
+                                label: 'Setting 1',
+                                items: [{label: 'Setting 1.1'}, {label: 'Setting 1.2'}]
                             },
                             {
-                                label: 'Technology 2',
-                                items: [{label: 'Technology 2.1'},{label: 'Technology 2.2'}]
+                                label: 'Setting 2',
+                                items: [{label: 'Setting 2.1'}, {label: 'Setting 2.2'}]
                             },
+                            {
+                                label: 'Setting 3',
+                                items: [{label: 'Setting 3.1'}, {label: 'Setting 3.2'}]
+                            }
                         ],
                         [
                             {
                                 label: 'Technology 4',
-                                items: [{label: 'Technology 3.1'},{label: 'Technology 3.2'}]
+                                items: [{label: 'Setting 4.1'}, {label: 'Setting 4.2'}]
                             }
                         ]
                     ]
@@ -296,102 +428,71 @@ export class MenusDemo extends Component {
     }
 
     render() {
-
-        let breadcrumdItems = [
-            {label:'Categories'},
-            {label:'Sports'},
-            {label:'Football'},
-            {label:'Countries'},
-            {label:'Spain'},
-            {label:'F.C. Barcelona'},
-            {label:'Squad'},
-            {label:'Lionel Messi', url: 'https://en.wikipedia.org/wiki/Lionel_Messi'}
-        ];
-
-        let home = {icon: 'pi pi-home', url: 'https://www.primefaces.org/primereact'}
-
-        let stepsItems = [
-            {
-                label: 'Personal'
-            },
-            {
-                label: 'Seat'
-            },
-            {
-                label: 'Payment'
-            },
-            {
-                label: 'Confirmation'
-            }
-        ];
-
-        return(
-            <div className="ui-g ui-fluid">
-                <div className="ui-g-12">
-                    <div className="card no-margin">
+        return (
+            <div className="p-grid p-fluid">
+                <div className="p-col-12">
+                    <div className="card card-w-title">
                         <h1>Breadcrumb</h1>
-                        <BreadCrumb model={breadcrumdItems} home={home}/>
+                        <BreadCrumb model={this.state.breadcrumdItems} home={this.state.home} />
                     </div>
         
                     <div className="card card-w-title">
                         <h1>Steps</h1>
-                        <Steps model={stepsItems}/>
+                        <Steps model={this.state.stepsItems} />
                     </div>
                 
                     <div className="card card-w-title">
                         <h1>MenuBar</h1>
-                        <Menubar model={this.state.tieredItems}/>
+                        <Menubar model={this.state.tieredItems} />
                     </div>
                 </div>
 
-                <div className="ui-g-12 ui-lg-6">
-                    {/* Left Colum */}
+                <div className="p-col-12 p-lg-6">
                     <div className="card card-w-title">
                         <h1>Plain Menu</h1>
-                        <Menu model={this.state.items}/>
-                        <Menu model={this.state.items} ref={(el)=>this.menu=el} popup={true} style={{width:250}}/>
-                        <Button icon="fa fa-external-link" label="Show" onClick={(event)=>this.menu.toggle(event)} style={{marginTop:'20px', width:'auto'}}/>
+                        <Menu model={this.state.items} />
+                        <Menu model={this.state.items} ref={(el)=>this.menu=el} popup={true} style={{width:250}} />
+                        <Button icon="pi pi-external-link" label="Show" onClick={(event)=>this.menu.toggle(event)} style={{marginTop:'20px', width:'auto'}} />
                     </div>
 
                     <div className="card card-w-title">
                         <h1>TieredMenu</h1>
-                        <TieredMenu model={this.state.tieredItems} style={{width:'250px',marginBottom:'20px'}}/>
+                        <TieredMenu model={this.state.tieredItems} style={{width:'250px', marginBottom:'20px'}} />
                     </div>
                 </div>
 
-                <div className="ui-g-12 ui-lg-6">
-                    {/* Right Colum */}
-                    <div className="card no-margin">
+                <div className="p-col-12 p-lg-6">
+                    <div className="card card-w-title">
                         <h1 style={{marginTop:'40px'}}>ContextMenu</h1>
                         Right click!
-                        <ContextMenu global={true} model={this.state.tieredItems} style={{width:'12.5em'}}/>
+                        <ContextMenu global={true} model={this.state.tieredItems} style={{width:'12.5em'}} />
                     </div>
         
                     <div className="card">
                         <h1>SlideMenu</h1>
-                        <SlideMenu model={this.state.items} style={{width:'260px'}} menuWidth={260}/>
+                        <SlideMenu model={this.state.items} style={{width:'260px'}} menuWidth={260} />
                     </div>
 
                     <div className="card">
                         <h1>PanelMenu</h1>
-                        <PanelMenu model={this.state.panelMenuItems}/>
+                        <PanelMenu model={this.state.panelMenuItems} />
                     </div>
                 </div>
 
-                <div className="ui-g-12 ui-g-6">
-                    <div className="card">
-                        <h1>TabMenu</h1>
-                        <TabMenu model={this.state.tabMenuItems}/>
-                    </div>
-                </div>
-    
-                <div className="ui-g-12 ui-g-6">
+                <div className="p-col-12 p-col-6">
                     <div className="card">
                         <h1>MegaMenu - Horizontal</h1>
-                        <MegaMenu model={this.state.megaMenuItems}/>
+                        <MegaMenu model={this.state.megaMenuItems} />
 
                         <h1>MegaMenu - Vertical</h1>
-                        <MegaMenu model={this.state.megaMenuItems} orientation="vertical" style={{width:'200px'}}/>
+                        <MegaMenu model={this.state.megaMenuItems} orientation="vertical" style={{width:'200px'}} />
+                    </div>
+                </div>
+
+                <div className="p-col-12 p-col-6">
+                    <div className="card">
+                        <h1>TabMenu</h1>
+                        <TabMenu model={this.state.tabMenuItems} />
                     </div>
                 </div>
             </div>

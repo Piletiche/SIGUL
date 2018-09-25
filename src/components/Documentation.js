@@ -10,8 +10,8 @@ export class Documentation extends Component {
 
     render() {
         return (
-            <div className="ui-g">
-                <div className="ui-g-12">
+            <div className="p-grid">
+                <div className="p-col-12">
                     <div className="card docs no-margin">
                         <h1>Current Version</h1>
                         <p>React 16.2.0 and PrimeReact 1.6.2</p>
@@ -687,7 +687,7 @@ label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
                             both cases.</p>
 
                         <h1>Grid CSS</h1>
-                        <p>Avalon uses PrimeReact Grid CSS (ui-g-*) throughout the samples, although any grid library can be used we suggest using Grid CSS as your layout framework as it is well tested and supported by PrimeReact. Grid CSS is
+                        <p>Avalon uses PrimeReact Grid CSS (p-col-*) throughout the samples, although any grid library can be used we suggest using Grid CSS as your layout framework as it is well tested and supported by PrimeReact. Grid CSS is
                             available inside primereact.min.css.</p>
 
                         <h1>Customizing Styles</h1>

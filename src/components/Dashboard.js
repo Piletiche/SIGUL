@@ -157,8 +157,8 @@ export class Dashboard extends Component {
             }
         ];
 
-        return <div className="ui-g dashboard">
-            <div className="ui-g-12 ui-md-3">
+        return <div className="p-grid dashboard">
+            <div className="p-col-12 p-md-3">
                 <div className="overview-box overview-box-1"><h1>SALES</h1>
                     <div className="overview-value">$25,620</div>
                     <div className="overview-ratio">
@@ -173,7 +173,7 @@ export class Dashboard extends Component {
                 </div>
             </div>
 
-            <div className="ui-g-12 ui-md-3">
+            <div className="p-col-12 p-md-3">
                 <div className="overview-box overview-box-2">
                     <h1>VIEWS</h1>
                     <div className="overview-value">9521</div>
@@ -189,7 +189,7 @@ export class Dashboard extends Component {
                 </div>
             </div>
 
-            <div className="ui-g-12 ui-md-3">
+            <div className="p-col-12 p-md-3">
                 <div className="overview-box overview-box-3">
                     <h1>USERS</h1>
                     <div className="overview-value">452</div>
@@ -205,7 +205,7 @@ export class Dashboard extends Component {
                 </div>
             </div>
 
-            <div className="ui-g-12 ui-md-3">
+            <div className="p-col-12 p-md-3">
                 <div className="overview-box overview-box-4">
                     <h1>SOCIAL</h1>
                     <div className="overview-value">65922</div>
@@ -221,31 +221,31 @@ export class Dashboard extends Component {
                 </div>
             </div>
 
-            <div className="ui-g-12">
+            <div className="p-col-12">
                 <Panel header="Status" className="circle-panel">
-                    <div className="ui-g">
-                        <div className="ui-g-12 ui-lg-3 ui-md-6">
+                    <div className="p-grid">
+                        <div className="p-col-12 p-lg-3 p-md-6">
                             <div className="status-title" style={{color:'#6ebc3b'}}>Users</div>
                             <div className="circle1">
                                 <i className="fa fa-user"></i>
                                 <span>95</span>
                             </div>
                         </div>
-                        <div className="ui-g-12 ui-lg-3 ui-md-6">
+                        <div className="p-col-12 p-lg-3 p-md-6">
                             <div className="status-title" style={{color:'#f6a821'}}>Mobile</div>
                             <div className="circle2">
                                 <i className="fa fa-mobile"></i>
                                 <span>95</span>
                             </div>
                         </div>
-                        <div className="ui-g-12 ui-lg-3 ui-md-6">
+                        <div className="p-col-12 p-lg-3 p-md-6">
                             <div className="status-title" style={{color:'#039ade'}}>Pageviews</div>
                             <div className="circle3">
                                 <i className="fa fa-eye"></i>
                                 <span>95</span>
                             </div>
                         </div>
-                        <div className="ui-g-12 ui-lg-3 ui-md-6">
+                        <div className="p-col-12 p-lg-3 p-md-6">
                             <div className="status-title" style={{color:'#d66351'}}>Sales</div>
                             <div className="circle4">
                                 <i className="fa fa-dollar"></i>
@@ -256,7 +256,7 @@ export class Dashboard extends Component {
                 </Panel>
             </div>
 
-            <div className="ui-g-12 ui-md-6 ui-lg-4 task-list">
+            <div className="p-col-12 p-md-6 p-lg-4 task-list">
                 <Panel header="Tasks" style={{minHeight: '415px'}}>
                     <ul>
                         <li>
@@ -303,32 +303,32 @@ export class Dashboard extends Component {
                 </Panel>
             </div>
 
-            <div className="ui-g-12 ui-md-6 ui-lg-4 ui-fluid contact-form">
+            <div className="p-col-12 p-md-6 p-lg-4 p-fluid contact-form">
                 <Panel header="Contact Us" style={{minHeight: '415px'}}>
-                    <div className="ui-g">
-                        <div className="ui-g-12">
+                    <div className="p-grid">
+                        <div className="p-col-12">
                             <Dropdown value={this.state.city} options={cities} placeholder="Select a City" onChange={this.onCityChange} autoWidth={false} />
                         </div>
-                        <div className="ui-g-12">
+                        <div className="p-col-12">
                             <InputText type="text" placeholder="Name" />
                         </div>
-                        <div className="ui-g-12">
+                        <div className="p-col-12">
                             <InputText type="text" placeholder="Age" />
                         </div>
-                        <div className="ui-g-12">
+                        <div className="p-col-12">
                             <InputText type="text" placeholder="Email" />
                         </div>
-                        <div className="ui-g-12">
+                        <div className="p-col-12">
                             <InputTextarea type="text" placeholder="Message" />
                         </div>
-                        <div className="ui-g-12">
+                        <div className="p-col-12">
                             <Button type="button" label="Send" icon="fa fa-send"></Button>
                         </div>
                     </div>
                 </Panel>
             </div>
 
-            <div className="ui-g-12 ui-lg-4 contacts">
+            <div className="p-col-12 p-lg-4 contacts">
                 <Panel header="CONTACTS" style={{minHeight: '360px'}}>
                     <ul>
                         <li className="clearfix">
@@ -390,7 +390,7 @@ export class Dashboard extends Component {
                 </Panel>
             </div>
 
-            <div className="ui-g-12 ui-lg-8 chat">
+            <div className="p-col-12 p-lg-8 chat">
                 <Panel header="Chat" className="no-pad">
                     <ul>
                         <li className="clearfix message-from">
@@ -426,7 +426,7 @@ export class Dashboard extends Component {
                             <i className="fa fa-paperclip"></i>
                         </div>
                         <div className="message-input">
-                            <input type="text" placeholder="Write a message" className="ui-inputtext" />
+                            <input type="text" placeholder="Write a message" className="p-inputtext" />
                         </div>
                     </div>
                 </Panel>
@@ -445,14 +445,14 @@ export class Dashboard extends Component {
                 </div>
             </div>
 
-            <div className="ui-g-12 ui-lg-4">
-                <div className="card timeline ui-fluid">
-                    <div className="ui-g">
-                        <div className="ui-g-3">
+            <div className="p-col-12 p-lg-4">
+                <div className="card timeline p-fluid">
+                    <div className="p-grid">
+                        <div className="p-col-3">
                             <span className="event-time">just now</span>
                             <i className="fa fa-map-signs" style={{color:'#3984b8'}}></i>
                         </div>
-                        <div className="ui-g-9">
+                        <div className="p-col-9">
                             <span className="event-owner" style={{color:'#3984b8'}}>Katherine May</span>
                             <span className="event-text">Lorem ipsun dolor amet</span>
                             <div className="event-content">
@@ -460,20 +460,20 @@ export class Dashboard extends Component {
                             </div>
                         </div>
 
-                        <div className="ui-g-3">
+                        <div className="p-col-3">
                             <span className="event-time">12h ago</span>
                             <i className="fa fa-star" style={{color:'#f6ac2b'}}></i>
                         </div>
-                        <div className="ui-g-9">
+                        <div className="p-col-9">
                             <span className="event-owner" style={{color:'#f6ac2b'}}>Brandon Santos</span>
                             <span className="event-text">Ab nobis, magnam sunt eum. Laudantium, repudiandae, similique!.</span>
                         </div>
 
-                        <div className="ui-g-3">
+                        <div className="p-col-3">
                             <span className="event-time">15h ago</span>
                             <i className="fa fa-comment" style={{color:'#7e8dcd'}}></i>
                         </div>
-                        <div className="ui-g-9">
+                        <div className="p-col-9">
                             <span className="event-owner" style={{color:'#7e8dcd'}}>Stephan Ward</span>
                             <span className="event-text">Omnis veniam quibusdam ratione est repellat qui nam quisquam ab mollitia dolores ullam voluptates, similique, dignissimos.</span>
                             <div className="event-content">
@@ -481,11 +481,11 @@ export class Dashboard extends Component {
                             </div>
                         </div>
 
-                        <div className="ui-g-3">
+                        <div className="p-col-3">
                             <span className="event-time">2d ago</span>
                             <i className="fa fa-map" style={{color:'#e175a0'}}></i>
                         </div>
-                        <div className="ui-g-9">
+                        <div className="p-col-9">
                             <span className="event-owner" style={{color:'#e175a0'}}>Jason Smith</span>
                             <span className="event-text">Laudantium, repudiandae, similique!</span>
                             <div className="event-content">
@@ -493,38 +493,38 @@ export class Dashboard extends Component {
                             </div>
                         </div>
 
-                        <div className="ui-g-3">
+                        <div className="p-col-3">
                             <span className="event-time">1w ago</span>
                             <i className="fa fa-heart" style={{color:'#39b8b6'}}></i>
                         </div>
-                        <div className="ui-g-9">
+                        <div className="p-col-9">
                             <span className="event-owner">Kevin Cox</span>
                             <span className="event-text">Quibusdam ratione est repellat qui nam quisquam veniam quibusdam ratione.</span>
                         </div>
 
-                        <div className="ui-g-3">
+                        <div className="p-col-3">
                             <span className="event-time">2w ago</span>
                             <i className="fa fa-history" style={{color:'#3eb839'}}></i>
                         </div>
-                        <div className="ui-g-9">
+                        <div className="p-col-9">
                             <span className="event-owner" style={{color:'#3eb839'}}>Walter White</span>
                             <span className="event-text">I am the one who knocks!</span>
                         </div>
 
-                        <div className="ui-g-12">
+                        <div className="p-col-12">
                             <Button type="button" label="Refresh" icon="fa fa-refresh" className="rounded-btn raised-btn"></Button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="ui-g-12 ui-md-6">
+            <div className="p-col-12 p-md-6">
                 <Panel header="Core 1 Data">
                     <Chart type="line" data={chartData}/>
                 </Panel>
             </div>
 
-            <div className="ui-g-12 ui-md-6">
+            <div className="p-col-12 p-md-6">
                 <Panel header="Disk Spaces" className="disk-spaces">
                     <span>4.2 TB Used</span>
                     <ProgressBar value={75} showValue={false}></ProgressBar>
@@ -537,7 +537,7 @@ export class Dashboard extends Component {
                 </Panel>
             </div>
 
-            <div className="ui-g-12 ui-lg-4">
+            <div className="p-col-12 p-lg-4">
                 <div className="user-card card">
                     <div className="user-card-header">
                         <Menu model={menuItems} popup={true} ref={el => this.menu = el} appendTo={document.body}/>
@@ -603,7 +603,7 @@ export class Dashboard extends Component {
                 </div>
             </div>
 
-            <div className="ui-g-12 ui-md-8">
+            <div className="p-col-12 p-md-8">
                 <Panel header="Calendar" style={{height: '100%'}}>
                     <Schedule events={events} header={scheduleHeader} defaultDate="2017-02-01" eventLimit={4}></Schedule>
                 </Panel>

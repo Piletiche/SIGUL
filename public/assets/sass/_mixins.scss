@@ -202,3 +202,35 @@
   font-weight: bold;
   font-size: 30px;
 }
+
+@mixin content() {
+    background-color: $contentBgColor;
+    border: 1px solid $contentBorderColor;
+}
+
+@mixin header() {
+    background: $headerBgColor;
+    color: $headerTextColor;
+    border: 1px solid $headerBorderColor;
+    font-weight: 700;
+}
+
+@mixin corner-all() {
+    @include border-radius($borderRadius);
+}
+
+@mixin corner-top() {
+    @include border-radius-top($borderRadius);
+}
+
+@mixin corner-bottom() {
+    @include border-radius-bottom($borderRadius);
+}
+
+@mixin corner-left() {
+    @include border-radius-left($borderRadius);
+}
+
+@mixin corner-right() {
+    @include border-radius-right($borderRadius);
+}

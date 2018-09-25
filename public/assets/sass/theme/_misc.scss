@@ -1,22 +1,22 @@
 body {
-    .ui-progressbar {
+    .p-progressbar {
         border: 0 none;
         background-color: $dividerColor;
 
-        .ui-progressbar-value {
+        .p-progressbar-value {
             border: 0 none;
             background: lighten($primaryColor,10%);
             margin: 0;
             @include border-radius(0);
         }
 
-        .ui-progressbar-label {
+        .p-progressbar-label {
             margin-top: -1px;
         }
     }
 
-    .ui-galleria {
-        .ui-galleria-nav-prev {
+    .p-galleria {
+        .p-galleria-nav-prev {
             @include icon_override("\f053");
             font-size: 18px;
             margin-bottom: -5px;
@@ -27,7 +27,7 @@ body {
             }
         }
 
-        .ui-galleria-nav-next {
+        .p-galleria-nav-next {
             @include icon_override("\f054");
             font-size: 18px;
             margin-bottom: -5px;
@@ -39,7 +39,7 @@ body {
         }
     }
 
-    .ui-terminal {
+    .p-terminal {
         input {
             font-family: $fontFamily;
             font-size: $fontSize;

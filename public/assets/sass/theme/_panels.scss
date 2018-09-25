@@ -1,20 +1,20 @@
 body {
-    .ui-panel {
+    .p-panel {
         padding: 0;
         border-color: 1px solid $contentBorderColor;
 
-        .ui-panel-titlebar {
+        .p-panel-titlebar {
             border: 0 none;
             border-bottom: 1px solid $headerBorderColor;
             padding: $headerPadding;
             @include border-radius-top($borderRadius);
             @include border-radius-bottom(0px);
 
-            .ui-panel-title {
+            .p-panel-title {
                 vertical-align: middle;
             }
 
-            .ui-panel-titlebar-icon {
+            .p-panel-titlebar-icon {
                 margin: 0;
                 position: relative;
                 font-size: $fontSize + 3;
@@ -24,37 +24,37 @@ body {
             }
         }
 
-        .ui-panel-content {
+        .p-panel-content {
             height: 100%;
             box-sizing: border-box;
             padding: $contentPadding;
         }
 
-        .ui-panel-footer {
+        .p-panel-footer {
             padding: $headerPadding;
             border: 0 none;
             border-top: 1px solid $contentBorderColor;
             margin: 0;
         }
 
-        &.ui-panel-collapsed-h {
-            .ui-panel-titlebar {
+        &.p-panel-collapsed-h {
+            .p-panel-titlebar {
                 padding-left: 40px;
             }
         }
     }
 
-    .ui-fieldset {
+    .p-fieldset {
         padding: 0 0 .5em 0;
 
-        .ui-fieldset-legend {
+        .p-fieldset-legend {
             color: $headerTextColor;
             background-color: $headerBgColor;
             margin-left: 10px;
             border: 1px solid $headerBorderColor;
             @include transition(background-color $transitionDuration);
 
-            .ui-fieldset-toggler {
+            .p-fieldset-toggler {
                 float: none;
                 display: inline-block;
                 vertical-align: middle;
@@ -66,12 +66,12 @@ body {
             }
         }
 
-        .ui-fieldset-legend-text{
+        .p-fieldset-legend-text{
           color: $headerIconColor;
         }
 
-        &.ui-fieldset-toggleable {
-            .ui-fieldset-legend {
+        &.p-fieldset-toggleable {
+            .p-fieldset-legend {
                 &:hover {
                     background-color: $headerHoverBgColor;
                     color: $headerHoverTextColor;
@@ -84,13 +84,13 @@ body {
             }
         }
 
-        .ui-fieldset-content {
+        .p-fieldset-content {
             padding: $contentPadding;
         }
     }
 
-    .ui-accordion {
-        .ui-accordion-header {
+    .p-accordion {
+        .p-accordion-header {
             background-color: $contentBgColor;
             color: $textColor;
             font-size: $fontSize;
@@ -98,7 +98,7 @@ body {
             @include transition(background-color $transitionDuration);
             margin-bottom: 0;
 
-            &:not(.ui-state-active):not(.ui-state-disabled):hover {
+            &:not(.p-highlight):not(.p-disabled):hover {
                 background-color: $headerHoverBgColor;
 
                 a {
@@ -106,7 +106,7 @@ body {
                 }
             }
 
-            &:not(.ui-state-disabled).ui-state-active {
+            &:not(.p-disabled).p-highlight {
                 background-color: $primaryColor;
                 color: $primaryTextColor;
                 border-bottom-left-radius: 0;
@@ -153,19 +153,19 @@ body {
             }
         }
 
-        .ui-accordion-content {
+        .p-accordion-content {
             padding: $contentPadding;
         }
     }
 
-    .ui-tabview {
+    .p-tabview {
         padding: 0;
 
-        &.ui-tabview-top,&.ui-tabview-bottom,&.ui-tabview-left,&.ui-tabview-right {
+        &.p-tabview-top,&.p-tabview-bottom,&.p-tabview-left,&.p-tabview-right {
             border: 0 none;
             background: transparent;
 
-            .ui-tabview-nav {
+            .p-tabview-nav {
                 margin-bottom: -1px;
                 padding: 0;
                 border: 0 none;
@@ -183,11 +183,11 @@ body {
                         padding: $tabHeaderPadding;
                         color: $headerTextColor;
 
-                        .ui-tabview-left-icon {
+                        .p-tabview-left-icon {
                             margin-right: .25em;
                         }
 
-                        .ui-tabview-right-icon {
+                        .p-tabview-right-icon {
                             margin-left: .25em;
                         }
 
@@ -196,12 +196,12 @@ body {
                         }
                     }
 
-                    .ui-tabview-close {
+                    .p-tabview-close {
                         margin-top: 10px;
                         color: $headerTextColor;
                     }
 
-                    &:not(.ui-state-active):not(.ui-state-disabled):hover {
+                    &:not(.p-highlight):not(.p-disabled):hover {
                         background-color: $headerHoverBgColor;
 
                         .pi-times {
@@ -211,12 +211,12 @@ body {
                             color: $headerHoverTextColor;
                         }
 
-                        .ui-tabview-close {
+                        .p-tabview-close {
                             color: $headerIconHoverColor;
                         }
                     }
 
-                    &.ui-state-active {
+                    &.p-highlight {
                         background-color: $primaryColor;
                         color: $primaryTextColor;
 
@@ -224,39 +224,39 @@ body {
                             color: $primaryTextColor;
                         }
 
-                        .ui-tabview-close {
+                        .p-tabview-close {
                             color: $primaryTextColor;
                         }
                     }
 
-                    .ui-tabview-close {
+                    .p-tabview-close {
                         color: $headerIconColor;
                     }
                 }
             }
         }
 
-        &.ui-tabview-left,&.ui-tabview-right {
-            .ui-tabview-nav {
+        &.p-tabview-left,&.p-tabview-right {
+            .p-tabview-nav {
                 li, li a {
                     width: 100%;
                 }
             }
 
-            .ui-tabview-panel {
+            .p-tabview-panel {
                 border-top: 1px solid $contentBorderColor;
                 border-left: 0 none;
                 border-right: 0 none;
             }
         }
 
-        .ui-tabview-panel {
+        .p-tabview-panel {
             padding: $contentPadding;
             border: 1px solid $contentBorderColor;
         }
     }
 
-    .ui-toolbar {
+    .p-toolbar {
         background-color: $headerBgColor;
         border-color: $headerBorderColor;
         padding: $headerPadding;

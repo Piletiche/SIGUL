@@ -5,11 +5,6 @@ import { AppBreadcrumb } from './AppBreadcrumb';
 import { AppFooter } from './AppFooter';
 import { AppMenu } from './AppMenu';
 import { withRouter } from 'react-router';
-import 'primereact/resources/primereact.min.css';
-import 'fullcalendar/dist/fullcalendar.css';
-import 'font-awesome/css/font-awesome.css';
-import 'primeicons/primeicons.css';
-import './App.css';
 import { Route } from 'react-router-dom';
 import { Dashboard } from './components/Dashboard';
 import { FormsDemo } from './components/FormsDemo';
@@ -25,6 +20,12 @@ import { EmptyPage } from './components/EmptyPage';
 import { Documentation } from './components/Documentation';
 import { ScrollPanel } from 'primereact/components/scrollpanel/ScrollPanel';
 import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
+import 'primereact/resources/primereact.min.css';
+import 'fullcalendar/dist/fullcalendar.css';
+import 'font-awesome/css/font-awesome.css';
+import 'primeicons/primeicons.css';
+import 'primeflex/primeflex.css';
+import './App.css';
 
 class App extends Component {
 

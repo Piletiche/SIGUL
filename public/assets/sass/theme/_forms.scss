@@ -1,5 +1,5 @@
 body {
-    .ui-inputtext {
+    .p-inputtext {
         color: $textColor;
         font-size: $fontSize;
         background: $inputBgColor;
@@ -11,16 +11,17 @@ body {
         -moz-appearance: none;
         appearance: none;
 
-        &:enabled:hover:not(.ui-state-error) {
+        &:enabled:hover:not(.p-error) {
             border-color: $inputHoverBorderColor;
         }
 
-        &:enabled:focus:not(.ui-state-error) {
+        &:enabled:focus:not(.p-error) {
             @include focused-input();
         }
     }
 
-    .ui-button {
+    .p-button {
+        @include corner-all();
         vertical-align: middle;
         color: $primaryTextColor;
         background-color: $primaryColor;
@@ -32,37 +33,37 @@ body {
             background-color: darken($primaryColor,5%);
         }
 
-        &:enabled:not(.ui-button-secondary):focus {
+        &:enabled:focus {
             outline: 0 none;
-            background-color: darken($primaryColor,5%);
+            background-color: lighten($primaryColor,5%);
             color: $primaryTextColor;
         }
 
         &:enabled:active  {
-            background-color: darken($primaryColor,10%);
+            background-color: darken($primaryColor,12%);
             color: $primaryTextColor;
         }
 
-        &.ui-button-text-only {
-            .ui-button-text {
+        &.p-button-text-only {
+            .p-button-text {
                 padding: .385em .6em;
             }
         }
 
-        &.ui-button-text-icon-left {
-            .ui-button-text {
+        &.p-button-text-icon-left {
+            .p-button-text {
                 padding: .385em .6em .385em 2em;
             }
         }
 
-        &.ui-button-text-icon-right {
-            .ui-button-text {
+        &.p-button-text-icon-right {
+            .p-button-text {
                 padding: .385em 2em .385em .6em;
             }
         }
 
-        &.ui-button-icon-only {
-            .ui-button-text {
+        &.p-button-icon-only {
+            .p-button-text {
                 padding: .385em;
             }
         }
@@ -71,15 +72,15 @@ body {
             background-color: $blue;
 
             &:enabled:hover {
-                background-color: darken($blue,5%);
+                background-color: darken($blue,6%);
             }
 
             &:enabled:focus {
-                background-color: darken($blue,5%);
+                background-color: lighten($blue,6%);
             }
 
             &:enabled:active {
-                background-color: darken($blue,10%);
+                background-color: darken($blue,11%);
             }
         }
 
@@ -91,7 +92,7 @@ body {
             }
 
             &:enabled:focus {
-                background-color: darken($purple,5%);
+                background-color: lighten($purple,7%);
             }
 
             &:enabled:active {
@@ -103,11 +104,11 @@ body {
             background-color: $orange;
 
             &:enabled:hover {
-                background-color: darken($orange,5%);
+                background-color: darken($orange,6%);
             }
 
             &:enabled:focus {
-                background-color: darken($orange,5%);
+                background-color: lighten($orange,5%);
             }
 
             &:enabled:active {
@@ -123,7 +124,7 @@ body {
             }
 
             &:enabled:focus {
-                background-color: darken($pink,5%);
+                background-color: lighten($pink,5%);
             }
 
             &:enabled:active {
@@ -139,7 +140,7 @@ body {
             }
 
             &:enabled:focus {
-                background-color: darken($green,5%);
+                background-color: lighten($green,5%);
             }
 
             &:enabled:active {
@@ -155,11 +156,11 @@ body {
             }
 
             &:enabled:focus {
-                background-color: darken($red,5%);
+                background-color: lighten($red,5%);
             }
 
             &:enabled:active {
-                background-color: darken($red,10%);
+                background-color: darken($red,11%);
             }
         }
 
@@ -168,15 +169,15 @@ body {
             color: $textColor;
 
             &:enabled:hover {
-                background-color: darken($yellow,5%);
+                background-color: darken($yellow,4%);
             }
 
             &:enabled:focus {
-                background-color: darken($yellow,5%);
+                background-color: lighten($yellow,4%);
             }
 
-            &:active {
-                background-color: darken($yellow,10%);
+            &:enabled:active {
+                background-color: darken($yellow,8%);
             }
         }
 
@@ -188,7 +189,7 @@ body {
             }
 
             &:enabled:focus {
-                background-color: darken($cyan,5%);
+                background-color: lighten($cyan,5%);
             }
 
             &:enabled:active {
@@ -200,40 +201,63 @@ body {
             background-color: $indigo;
 
             &:enabled:hover {
-                background-color: darken($indigo,5%);
+                background-color: darken($indigo,6%);
             }
 
             &:enabled:focus {
-                background-color: darken($indigo,5%);
+                background-color: lighten($indigo,6%);
             }
 
             &:enabled:active {
-                background-color: darken($indigo,10%);
+                background-color: darken($indigo,12%);
             }
         }
     }
 
 
-    .ui-button.ui-state-default.ui-button-secondary, .ui-buttonset.ui-button-secondary > .ui-button.ui-state-default  {
+    .p-button.p-button-secondary, .p-buttonset.p-button-secondary > .p-button  {
+        background-color: $secondary;
+        border-color: $secondary;
+        color: $textColor;
+
+        &:enabled:hover {
+            border-color: darken($secondary,5%);
+            background-color: darken($secondary,5%);
+            color: $textColor;
+        }
+
         &:enabled:focus {
+            border-color: $secondary;
             outline: 0 none;
+            background-color: lighten($secondary,2%);
+            color: $textColor;
+        }
+
+        &:enabled:active {
+            border-color: darken($secondary,10%);
+            background-color: darken($secondary,10%);
+            color: $textColor;
         }
     }
 
-    .ui-button.ui-state-default.ui-button-info, .ui-buttonset.ui-button-info > .ui-button.ui-state-default  {
-         background-color: $blue;
+    .p-button.p-button-info, .p-buttonset.p-button-info > .p-button  {
+        background-color: $blue;
 
-         &:enabled:hover {
-             background-color: darken($blue,5%);
-         }
+        &:enabled:hover {
+            background-color: darken($blue,6%);
+        }
 
-         &:enabled:focus {
-             outline: 0 none;
-             background-color: darken($blue,5%);
-         }
+        &:enabled:focus {
+            outline: 0 none;
+            background-color: lighten($blue,6%);
+        }
+
+        &:enabled:active {
+            background-color: darken($blue,11%);
+        }
      }
 
-    .ui-button.ui-state-default.ui-button-success, .ui-buttonset.ui-button-success > .ui-button.ui-state-default  {
+    .p-button.p-button-success, .p-buttonset.p-button-success > .p-button  {
         background-color: $green;
 
         &:enabled:hover {
@@ -242,24 +266,32 @@ body {
 
         &:enabled:focus {
             outline: 0 none;
-            background-color: darken($green,5%);
+            background-color: lighten($green,5%);
+        }
+
+        &:enabled:active {
+            background-color: darken($green,10%);
         }
     }
 
-    .ui-button.ui-state-default.ui-button-warning, .ui-buttonset.ui-button-warning > .ui-button.ui-state-default  {
+    .p-button.p-button-warning, .p-buttonset.p-button-warning > .p-button  {
         background-color: $orange;
 
         &:enabled:hover {
-            background-color: darken($orange,5%);
+            background-color: darken($orange,6%);
         }
 
         &:enabled:focus {
             outline: 0 none;
-            background-color: darken($orange,5%);
+            background-color: lighten($orange,5%);
+        }
+
+        &:enabled:active {
+            background-color: darken($orange,10%);
         }
     }
 
-    .ui-button.ui-state-default.ui-button-danger, .ui-buttonset.ui-button-danger > .ui-button.ui-state-default  {
+    .p-button.p-button-danger, .p-buttonset.p-button-danger > .p-button  {
         background-color: $red;
 
         &:enabled:hover {
@@ -268,24 +300,36 @@ body {
 
         &:enabled:focus {
             outline: 0 none;
-            background-color: darken($red,5%);
+            background-color: lighten($red,5%);
+        }
+
+        &:enabled:active {
+            background-color: darken($red,11%);
         }
     }
 
-    .ui-fluid {
-        .ui-button-icon-only {
+    .p-fluid {
+        .p-button-icon-only {
             width: auto;
         }
+
+        .p-spinner {
+            .p-spinner-button {
+                .p-spinner-button-icon {
+                    left: 50%;
+                }
+            }
+        }
     }
 
-    .ui-chkbox {
+    .p-checkbox {
         display: inline-block;
         vertical-align: middle;
         margin: 0;
         width: auto;
         height: auto;
 
-        .ui-chkbox-box {
+        .p-checkbox-box {
             border: 1px solid $inputBorderColor;
             background-color: $inputBgColor;
             width: 20px;
@@ -293,20 +337,20 @@ body {
             text-align: center;
             @include transition(background-color $transitionDuration, border-color $transitionDuration, box-shadow $transitionDuration);
 
-            &:not(.ui-state-disabled):not(.ui-state-active):hover {
+            &:not(.p-disabled):not(.p-highlight):hover {
                 border: 1px solid $inputHoverBorderColor;
             }
-            &.ui-state-focus {
+            &.p-focus {
               color: $primaryColor;
               @include focused-input();
             }
-            &.ui-state-active {
+            &.p-highlight {
                 border: 1px solid $primaryColor;
                 background-color: $primaryColor;
                 color: $primaryTextColor;
             }
 
-            .ui-chkbox-icon {
+            .p-checkbox-icon {
                 font-size: $fontSize + 2;
                 display: inline-block;
                 margin-top: 1px;
@@ -315,18 +359,18 @@ body {
         }
     }
 
-    .ui-chkbox+label {
+    .p-checkbox+label {
         margin: 0 0 0 .5em;
     }
 
-    .ui-radiobutton {
+    .p-radiobutton {
         display: inline-block;
         vertical-align: middle;
         margin: 0;
         width: auto;
         height: auto;
 
-        .ui-radiobutton-box {
+        .p-radiobutton-box {
             border: 1px solid $inputBorderColor;
             background-color: $inputBgColor;
             width: 18px;
@@ -335,27 +379,27 @@ body {
             @include transition(border-color $transitionDuration,box-shadow $transitionDuration);
             @include border-radius(50%);
 
-            &:not(.ui-state-disabled):not(.ui-state-active):hover {
+            &:not(.p-disabled):not(.p-highlight):hover {
                 border: 1px solid $inputHoverBorderColor;
             }
 
-            &.ui-state-active {
+            &.p-highlight {
                 border: 1px solid $primaryColor;
 
-                .ui-radiobutton-icon {
+                .p-radiobutton-icon {
                     background-color: $primaryColor;
                 }
             }
 
-            &.ui-state-focus {
+            &.p-focus {
                 @include focused-input();
 
-                .ui-radiobutton-icon.ui-icon-bullet {
+                .p-radiobutton-icon.p-icon-bullet {
                   background-color: $primaryColor;
                 }
             }
 
-            .ui-radiobutton-icon {
+            .p-radiobutton-icon {
                 @include transition(background-color $transitionDuration);
                 @include border-radius(50%);
                 background: transparent;
@@ -374,13 +418,12 @@ body {
         }
     }
 
-    .ui-radiobutton+label {
+    .p-radiobutton+label {
         margin: 0 0 0 .5em;
     }
 
-    .ui-inputswitch {
-
-        .ui-inputswitch-slider {
+    .p-inputswitch {
+        .p-inputswitch-slider {
             background-color: $inputBgColor;
             border: 1px solid $inputBorderColor;
             height: 14px;
@@ -394,8 +437,8 @@ body {
             }
         }
 
-        &.ui-inputswitch-checked {
-            .ui-inputswitch-slider {
+        &.p-inputswitch-checked {
+            .p-inputswitch-slider {
                 background-color: lighten($primaryColor, 15%);
                 border: 1px solid lighten($primaryColor, 15%);
 
@@ -409,32 +452,32 @@ body {
         }
     }
 
-    .ui-autocomplete {
-        .ui-autocomplete-input {
+    .p-autocomplete {
+        .p-autocomplete-input {
             width: 100%;
 
-            &.ui-corner-all {
+            &.p-corner-all {
                 @include border-radius-right($borderRadius);
             }
         }
 
-        &.ui-autocomplete-dd {
-            .ui-autocomplete-input {
+        &.p-autocomplete-dd {
+            .p-autocomplete-input {
                 padding-right: 2em;
                 border-right: 1px solid $inputBorderColor;
             }
 
-            &.ui-autocomplete-multiple {
-                 .ui-autocomplete-multiple-container {
+            &.p-autocomplete-multiple {
+                 .p-autocomplete-multiple-container {
                      padding-right: 2em;
-                    &.ui-corner-all {
+                    &.p-corner-all {
                         @include border-radius-right($borderRadius);
                     }
                  }
             }
         }
 
-        .ui-autocomplete-dropdown {
+        .p-autocomplete-dropdown {
             width: 2em;
             line-height: 2em;
             text-align: center;
@@ -447,7 +490,7 @@ body {
             color: $textSecondaryColor;
             @include transition(color $transitionDuration);
 
-            .ui-button-icon-left {
+            .p-button-icon-left {
                 line-height: inherit;
                 @include icon_override("\f078");
             }
@@ -468,19 +511,20 @@ body {
             }
         }
 
-        &.ui-autocomplete-multiple {
-            .ui-autocomplete-multiple-container {
+        &.p-autocomplete-multiple {
+            .p-autocomplete-multiple-container {
+                @include corner-all();
                 padding: $inputPadding;
 
-                &:not(.ui-state-disabled):hover {
+                &:not(.p-disabled):hover {
                     border-color: $inputHoverBorderColor;
                 }
 
-                &:not(.ui-state-disabled).ui-state-focus {
+                &:not(.p-disabled).p-focus {
                     border-color: $primaryColor;
                 }
 
-                .ui-autocomplete-input-token {
+                .p-autocomplete-input-token {
                     padding: 0 .25em 0 0;
                     vertical-align: top;
 
@@ -492,7 +536,8 @@ body {
                     }
                 }
 
-                .ui-autocomplete-token {
+                .p-autocomplete-token {
+                    @include corner-all();
                     font-size: $fontSize - 2;
                     vertical-align: top;
                 }
@@ -500,25 +545,27 @@ body {
         }
     }
 
-    .ui-autocomplete-panel {
+    .p-autocomplete-panel {
+        @include content();
+        @include corner-all();
         border: grey;
         @include overlay-shadow();
 
-        .ui-autocomplete-items {
+        .p-autocomplete-items {
             padding: 0;
 
-            .ui-autocomplete-list-item {
+            .p-autocomplete-list-item {
                 margin: 0;
                 padding: $listItemPadding;
                 @include border-radius(0);
 
-                &:not(.ui-state-highlight):hover {
+                &:not(.p-highlight):hover {
                     background-color: $primaryColor;
                     color: $primaryTextColor;
                 }
             }
 
-            .ui-autocomplete-group {
+            .p-autocomplete-group {
                 padding: $listItemPadding;
                 background-color: $dividerColor;
                 color: $textColor;
@@ -526,37 +573,37 @@ body {
         }
     }
 
-    .ui-fluid {
-        .ui-autocomplete {
-            &.ui-autocomplete-multiple.ui-autocomplete-dd {
-                .ui-autocomplete-multiple-container {
+    .p-fluid {
+        .p-autocomplete {
+            &.p-autocomplete-multiple.p-autocomplete-dd {
+                .p-autocomplete-multiple-container {
                     width: 100%;
                 }
             }
 
-            &.ui-autocomplete-dd {
-                .ui-inputtext {
+            &.p-autocomplete-dd {
+                .p-inputtext {
                     width: 100%;
                 }
             }
         }
     }
 
-    .ui-chips {
-        > ul.ui-inputtext {
+    .p-chips {
+        > ul.p-inputtext {
             padding: .25em;
             display: inline-block;
 
-            &:not(.ui-state-disabled):hover {
+            &:not(.p-disabled):hover {
                 border: 1px solid $inputHoverBorderColor;
             }
 
-            &:not(.ui-state-disabled).ui-state-focus {
+            &:not(.p-disabled).p-focus {
                 border: 1px solid $primaryColor;
                 @include border-shadow();
             }
 
-            .ui-chips-input-token {
+            .p-chips-input-token {
                 input {
                     font-size: $fontSize;
                     padding: 0;
@@ -573,37 +620,40 @@ body {
                 }
             }
 
-            .ui-chips-token {
+            .p-chips-token {
+                @include corner-all();
                 font-size: 1em;
             }
         }
     }
 
-    .ui-dropdown {
+    .p-dropdown {
+        @include corner-all();
         @include transition(box-shadow $transitionDuration, border-color $transitionDuration);
         border: 1px solid $inputBorderColor;
 
-        &:not(.ui-state-disabled):hover {
+        &:not(.p-disabled):hover {
             border: 1px solid $inputHoverBorderColor;
         }
 
-        .ui-dropdown-label:focus,
-        .ui-dropdown-label:hover {
+        .p-dropdown-label:focus,
+        .p-dropdown-label:hover {
             border: 0 none;
         }
 
-        input.ui-dropdown-label:focus,
-        input.ui-dropdown-label:hover {
-            &.ui-inputtext {
+        input.p-dropdown-label:focus,
+        input.p-dropdown-label:hover {
+            &.p-inputtext {
                 border: 0 none;
             }
         }
 
-        .ui-dropdown-trigger {
+        .p-dropdown-trigger {
             width: 2em;
             line-height: 2em;
             text-align: center;
             padding: 0;
+            @include corner-right();
 
             .pi-caret-down {
                 color: $textSecondaryColor;
@@ -613,11 +663,11 @@ body {
             }
         }
 
-        &:not(.ui-state-disabled).ui-state-focus {
+        &:not(.p-disabled).p-focus {
             border: 1px solid $primaryColor;
             @include border-shadow();
 
-            .ui-dropdown-trigger {
+            .p-dropdown-trigger {
                 .pi-caret-down {
                     color: $primaryColor;
                 }
@@ -625,14 +675,16 @@ body {
         }
     }
 
-    .ui-dropdown-panel {
-        border: 0 none;
+    .p-dropdown-panel {
+        @include content();
+        @include corner-all();
         @include overlay-shadow();
+        border: 0 none;
 
-        .ui-dropdown-filter-container {
+        .p-dropdown-filter-container {
             padding: $headerPadding;
 
-            .ui-dropdown-filter {
+            .p-dropdown-filter {
                 width: 100%;
                 box-sizing: border-box;
                 padding-right: 1.429em;
@@ -644,15 +696,15 @@ body {
             }
         }
 
-        .ui-dropdown-items {
+        .p-dropdown-items {
             padding: 0;
 
-            .ui-dropdown-item {
+            .p-dropdown-item {
                 margin: 0;
                 padding: $listItemPadding;
                 @include border-radius(0);
 
-                &:not(.ui-state-highlight):hover {
+                &:not(.p-highlight):hover {
                     @include list-item-hover();
                 }
 
@@ -661,7 +713,7 @@ body {
                 }
             }
 
-            .ui-selectonemenu-item-group {
+            .p-selectonemenu-item-group {
                 @include border-radius(0);
                 padding: $listItemPadding;
                 background-color: $dividerColor;
@@ -669,23 +721,25 @@ body {
         }
     }
 
-    .ui-multiselect {
+    .p-multiselect {
+        @include corner-all();
         background: $inputBgColor;
         border: 1px solid $inputBorderColor;
         @include transition(border-color $transitionDuration, box-shadow $transitionDuration);
 
-        .ui-multiselect-label {
+        .p-multiselect-label {
             color: $textColor;
             padding: $inputPadding;
             padding-right: 2.3em;
         }
 
-        .ui-multiselect-trigger {
+        .p-multiselect-trigger {
             width: 2em;
             line-height: 2em;
             box-sizing: border-box;
             padding: 0;
             text-align: center;
+            @include corner-right();
             @include box-sizing(border-box);
 
             .pi {
@@ -695,15 +749,15 @@ body {
             }
         }
 
-        &:not(.ui-state-disabled):hover {
+        &:not(.p-disabled):hover {
             border: 1px solid $inputHoverBorderColor;
         }
 
-        &:not(.ui-state-disabled).ui-state-focus {
+        &:not(.p-disabled).p-focus {
             border: 1px solid $primaryColor;
             @include border-shadow();
 
-            .ui-multiselect-trigger {
+            .p-multiselect-trigger {
                 .pi {
                     color: $primaryColor;
                 }
@@ -711,25 +765,29 @@ body {
         }
     }
 
-    .ui-multiselect-panel {
+    .p-multiselect-panel {
         padding: 0;
         min-width: 12em;
         border: grey;
         @include overlay-shadow();
+        @include content();
+        @include corner-all();
 
-        .ui-multiselect-header {
+        .p-multiselect-header {
+            @include header();
+            @include corner-all();
             padding: $headerPadding;
             border: 0 none;
             border-bottom: 1px solid $headerBorderColor;
 
-            .ui-multiselect-filter-container {
+            .p-multiselect-filter-container {
                 float: none;
                 width: 70%;
                 display: inline-block;
                 vertical-align: middle;
                 margin-left: 0;
 
-                .ui-inputtext {
+                .p-inputtext {
                     padding: 1px;
                     width: 100%;
                     box-sizing: border-box;
@@ -741,13 +799,13 @@ body {
                 }
             }
 
-            .ui-chkbox {
+            .p-checkbox {
                 margin-right: 8px;
                 float: none;
                 vertical-align: middle;
             }
 
-            .ui-multiselect-close {
+            .p-multiselect-close {
                 color: $headerTextColor;
                 font-size: $fontSize + 4;
                 margin: 0;
@@ -767,11 +825,11 @@ body {
             }
         }
 
-        .ui-multiselect-items {
-            .ui-multiselect-item {
+        .p-multiselect-items {
+            .p-multiselect-item {
                 padding: $listItemPadding;
 
-                .ui-chkbox {
+                .p-checkbox {
                     position: static;
                     margin-top: 0;
                     display: inline-block;
@@ -785,35 +843,36 @@ body {
                     vertical-align: middle;
                 }
 
-                &:not(.ui-state-highlight):hover {
+                &:not(.p-highlight):not(.p-disabled):hover {
                     @include list-item-hover();
                 }
             }
         }
     }
 
-    .ui-listbox {
+    .p-listbox {
         padding: 0;
         min-width: 12em;
 
-        .ui-chkbox {
+        .p-checkbox {
             margin-right: .2em;
 
-            .ui-chkbox-box {
-                &.ui-state-active {
+            .p-checkbox-box {
+                &.p-highlight {
                   border: 1px solid $headerIconColor;
                 }
             }
         }
 
-        .ui-listbox-header {
+        .p-listbox-header {
+            @include header();
             padding: $headerPadding;
             border: 0 none;
             border-bottom: 1px solid $headerBorderColor;
             margin: 0;
             @include border-radius(0);
 
-            .ui-listbox-filter-container {
+            .p-listbox-filter-container {
                 input {
                     width: 100%;
                     padding-left: 1.5em;
@@ -827,12 +886,12 @@ body {
             }
         }
 
-        .ui-listbox-item {
+        .p-listbox-item {
             margin: 0;
             padding: $listItemPadding;
             @include border-radius(0);
 
-            &.ui-state-highlight {
+            &.p-highlight {
                 @include highlight();
             }
 
@@ -841,25 +900,25 @@ body {
             }
         }
 
-        &:not(.ui-state-disabled) {
-            .ui-listbox-item {
-                &:not(.ui-state-highlight):hover {
+        &:not(.p-disabled) {
+            .p-listbox-item {
+                &:not(.p-highlight):hover {
                     @include list-item-hover();
                 }
             }
         }
 
-        &.ui-state-disabled {
-            .ui-chkbox-box {
-                &:not(.ui-state-disabled):not(.ui-state-active):hover {
+        &.p-disabled {
+            .p-checkbox-box {
+                &:not(.p-disabled):not(.p-highlight):hover {
                     border: 1px solid $inputBorderColor;
                 }
             }
         }
     }
 
-    .ui-editor-container {
-        .ui-editor-toolbar {
+    .p-editor-container {
+        .p-editor-toolbar {
             background-color: #f9f9f9;
         }
 
@@ -870,7 +929,7 @@ body {
         }
     }
 
-    .ui-rating {
+    .p-rating {
         a {
             color: $textColor;
             text-align: center;
@@ -893,7 +952,7 @@ body {
                 color: $pink;
             }
         }
-        &:not(.ui-state-disabled) {
+        &:not(.p-disabled) {
             a {
                 &:hover {
                     color: $primaryColor;
@@ -910,35 +969,35 @@ body {
         }
     }
 
-    .ui-spinner {
+    .p-spinner {
         input {
             padding-right: 1.8em;
         }
 
-        .ui-spinner-button {
-            &.ui-button {
+        .p-spinner-button {
+            &.p-button {
                 z-index: auto;
                 background-color: transparent;
                 color: $textSecondaryColor;
 
-                &:not(.ui-state-disabled):hover {
+                &:not(.p-disabled):hover {
                     color: $textColor;
                 }
 
-                &:not(.ui-state-disabled):focus {
+                &:not(.p-disabled):focus {
                     color: $textColor;
                 }
 
-                &:not(.ui-state-disabled):active {
+                &:not(.p-disabled):active {
                     color: $textSecondaryColor;
                 }
 
-                &.ui-spinner-up {
+                &.p-spinner-up {
                     top: 1px;
                     right: 1px;
                 }
 
-                &.ui-spinner-down {
+                &.p-spinner-down {
                     bottom: 1px;
                     right: 1px;
                 }
@@ -946,82 +1005,85 @@ body {
         }
     }
 
-    .ui-slider {
+    .p-slider {
+        @include content();
+        @include corner-all();
         background-color: $dividerColor;
         border-color: $dividerColor;
 
-        &.ui-slider-horizontal {
-            .ui-slider-handle {
+        &.p-slider-horizontal {
+            .p-slider-handle {
                 top: -.25em;
             }
         }
 
-        &.ui-slider-vertical {
-            .ui-slider-handle {
+        &.p-slider-vertical {
+            .p-slider-handle {
                 left: -.25em;
             }
         }
 
-        .ui-slider-handle {
+        .p-slider-handle {
             background-color: $primaryColor;
             border-radius: 100%;
             @include transition(background-color $transitionDuration);
         }
 
-        .ui-slider-range {
+        .p-slider-range {
+            @include corner-all();
             background-color: lighten($primaryColor,15%);
         }
 
-        &:not(.ui-state-disabled) {
-            .ui-slider-handle:hover {
+        &:not(.p-disabled) {
+            .p-slider-handle:hover {
                 background-color: darken($primaryColor,5%);
             }
         }
     }
 
-    .ui-togglebutton {
+    .p-togglebutton {
         background-color: $toggleButtonBgColor;
         color: $textColor;
         @include transition(border-color $transitionDuration, background-color $transitionDuration);
 
-        &:not(.ui-state-disabled):not(.ui-state-active):hover {
+        &:not(.p-disabled):not(.p-highlight):hover {
             background-color: $toggleButtonBgColor;
             border-color: $primaryColor;
         }
 
-        &:not(.ui-state-disabled):not(.ui-state-active).ui-state-focus {
+        &:not(.p-disabled):not(.p-highlight).p-focus {
           background-color: $toggleButtonBgColor;
           border-color: $primaryColor;
         }
 
-        &.ui-state-active, &.ui-state-focus {
+        &.p-highlight, &.p-focus {
             background-color: $primaryColor;
             color: $primaryTextColor;
             @include border-shadow();
         }
     }
 
-    .ui-selectbutton {
-        .ui-button {
+    .p-selectbutton {
+        .p-button {
             background-color: $toggleButtonBgColor;
             color: $textColor;
             border: 1px solid transparent;
             @include border-radius(0px);
 
-            &:not(.ui-state-disabled):not(.ui-state-active):hover {
+            &:not(.p-disabled):not(.p-highlight):hover {
                 background-color: $toggleButtonBgColor;
                 border-color: $primaryColor;
             }
 
-            &:not(.ui-state-disabled):not(.ui-state-active).ui-state-focus {
+            &:not(.p-disabled):not(.p-highlight).p-focus {
                 background-color: $toggleButtonBgColor;
                 border-color: $primaryColor;
             }
 
-            &.ui-state-active {
+            &.p-highlight {
               @include highlight();
 
-                &.ui-state-focus {
+                &.p-focus {
                   background-color: $primaryColor;
                   @include focused-input();
                 }
@@ -1038,27 +1100,35 @@ body {
     }
 
     @media (max-width: 640px) {
-        .ui-buttonset {
-            .ui-button {
+        .p-buttonset {
+            .p-button {
                 margin-bottom: 1px;
                 @include border-radius($borderRadius);
             }
         }
     }
 
-    .ui-splitbutton.ui-buttonset {
-        .ui-button {
+    .p-splitbutton.p-buttonset {
+        .p-button {
             border: 1px solid transparent;
             vertical-align: middle;
+
+            &:first-child {
+                @include border-radius-right(0);
+            }
+
+            &.p-splitbutton-menubutton {
+                @include border-radius-left(0);
+            }
         }
 
-        .ui-menu {
+        .p-menu {
             width: 100%;
             min-width: 12.5em;
         }
 
         &.blue-btn {
-            .ui-button {
+            .p-button {
                 background-color: $blue;
 
                 &:hover {
@@ -1076,7 +1146,7 @@ body {
         }
 
         &.purple-btn {
-            .ui-button {
+            .p-button {
                 background-color: $purple;
 
                 &:hover {
@@ -1094,7 +1164,7 @@ body {
         }
 
         &.orange-btn {
-            .ui-button {
+            .p-button {
                 background-color: $orange;
 
                 &:hover {
@@ -1112,7 +1182,7 @@ body {
         }
 
         &.pink-btn {
-            .ui-button {
+            .p-button {
                 background-color: $pink;
 
                 &:hover {
@@ -1130,7 +1200,7 @@ body {
         }
 
         &.green-btn {
-            .ui-button {
+            .p-button {
                 background-color: $green;
 
                 &:hover {
@@ -1148,7 +1218,7 @@ body {
         }
 
         &.red-btn {
-            .ui-button {
+            .p-button {
                 background-color: $red;
 
                 &:hover {
@@ -1166,7 +1236,7 @@ body {
         }
 
         &.yellow-btn {
-            .ui-button {
+            .p-button {
                 background-color: $yellow;
                 color: $textColor;
 
@@ -1185,18 +1255,24 @@ body {
         }
     }
 
-    .ui-datepicker {
+    .p-datepicker {
+        @include content();
+        @include corner-all();
         padding: 0;
         width: 20em;
 
-        &:not(.ui-datepicker-inline) {
+        &.p-shadow {
+            box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
+        }
+
+        &:not(.p-datepicker-inline) {
             border: $inputBorderColor;
         }
 
-        &:not(.ui-state-disabled) {
-            .ui-datepicker-header {
-                .ui-datepicker-prev,
-                .ui-datepicker-next {
+        &:not(.p-disabled) {
+            .p-datepicker-header {
+                .p-datepicker-prev,
+                .p-datepicker-next {
                     &:hover {
                         color: lighten($primaryColor,15%);
                     }
@@ -1209,22 +1285,30 @@ body {
             }
 
             table {
-                td:not(.ui-state-disabled) {
-                    a:not(.ui-state-active):not(.ui-state-highlight):hover {
+                td:not(.p-disabled) {
+                    a:not(.p-highlight):not(.p-highlight):hover {
                        @include list-item-hover();
                     }
                 }
             }
+
+            .p-monthpicker {
+                a.p-monthpicker-month:not(.p-highlight):hover {
+                    @include list-item-hover();
+                }
+            }
         }
 
-        .ui-datepicker-header {
+        .p-datepicker-header {
+            @include header();
+            @include corner-all();
             padding: $headerPadding;
             border-top: 0;
             border-left: 0;
             border-right: 0;
             @include border-radius(0);
 
-            .ui-datepicker-prev {
+            .p-datepicker-prev {
                 cursor: pointer;
                 top:0.857em;
                 color: $headerIconColor;
@@ -1235,7 +1319,7 @@ body {
                 }
             }
 
-            .ui-datepicker-next {
+            .p-datepicker-next {
                 cursor: pointer;
                 top:0.857em;
                 color: $headerIconColor;
@@ -1253,7 +1337,7 @@ body {
             td {
                 padding: 2px;
 
-                a {
+                a,span {
                     text-align: center;
                     color: $textColor;
                     padding: .5em;
@@ -1263,18 +1347,13 @@ body {
                         @include list-item-hover();
                     }
 
-                    &.ui-state-active {
+                    &.p-highlight {
                         color: $primaryTextColor;
                         background-color: $primaryColor;
                     }
-
-                    &.ui-state-highlight {
-                      color: $primaryTextColor;
-                      background-color: $primaryColor;
-                    }
                 }
 
-                &.ui-datepicker-today {
+                &.p-datepicker-today {
                     a {
                         background-color: $dividerColor;
                         color: $textColor;
@@ -1283,7 +1362,7 @@ body {
             }
         }
 
-        .ui-timepicker {
+        .p-timepicker {
             border: 0 none;
             border-top: 1px solid $headerBorderColor;
 
@@ -1295,77 +1374,114 @@ body {
                 }
             }
         }
+
+        .p-monthpicker {
+            .p-monthpicker-month {
+                color: $textColor;
+
+                &.p-highlight {
+                    color: $primaryTextColor;
+                    background-color: $primaryColor;
+                }
+            }
+        }
+
+        &.p-datepicker-multiple-month {
+            width: auto;
+            .p-datepicker-group {
+                border-right: 1px solid $dividerColor;
+                padding-top: 0;
+                padding-bottom: 0;
+
+                .p-datepicker-calendar-container {
+                    tbody {
+                        padding-right: .25em;
+                        padding-left: .25em;
+                    }
+                }
+
+                &:first-child {
+                    padding-left: 0;
+                }
+
+                &:last-child {
+                    padding-right: 0;
+                    border-right: 0 none;
+                }
+            }
+        }
     }
 
-    .ui-calendar {
-        .ui-datepicker {
+    .p-calendar {
+        .p-datepicker {
             min-width: inherit;
         }
     }
 
-    .ui-calendar.ui-calendar-w-btn {
-        .ui-inputtext {
+    .p-calendar.p-calendar-w-btn {
+        .p-inputtext {
             @include border-radius-right(0);
             border-right: 0 none;
 
-            &:enabled:hover:not(.ui-state-error),
-            &:enabled:focus:not(.ui-state-error) {
+            &:enabled:hover:not(.p-error),
+            &:enabled:focus:not(.p-error) {
                 border-right: 0 none;
             }
         }
-        .ui-datepicker-trigger.ui-button {
+        .p-datepicker-trigger.p-button {
             width: 2em;
             @include border-radius-left(0);
         }
     }
 
-    .ui-inplace {
-        .ui-inplace-display {
+    .p-inplace {
+        .p-inplace-display {
             padding: $inputPadding;
             @include border-radius($borderRadius);
 
-            &:not(.ui-state-disabled):hover {
+            &:not(.p-disabled):hover {
                 @include list-item-hover();
             }
         }
     }
 
-    .ui-fileupload {
-        .ui-fileupload-buttonbar {
+    .p-fileupload {
+        .p-fileupload-buttonbar {
             padding: $headerPadding;
             border-bottom: 0 none;
 
-            .ui-button {
+            .p-button {
                 margin-right: 8px;
 
-                &.ui-fileupload-upload {
-                    .ui-icon {
+                &.p-fileupload-upload {
+                    .p-icon {
                         @include icon_override("\f093");
                     }
                 }
             }
         }
 
-        .ui-progressbar {
+        .p-progressbar {
             top: 0;
         }
     }
 
-    .ui-fileupload-choose:not(.ui-state-disabled):hover,
-    .ui-fileupload-choose.ui-state-focus {
+    .p-fileupload-choose:not(.p-disabled):hover,
+    .p-fileupload-choose.p-focus {
         background-color: darken($primaryColor, 5%);
     }
 
-    .ui-fileupload-choose:not(.ui-state-disabled):active {
+    .p-fileupload-choose:not(.p-disabled):active {
         background-color: darken($primaryColor, 10%);
     }
 
-    .ui-password-panel {
+    .p-password-panel {
+        @include corner-all();
         @include overlay-shadow();
     }
 
-    .ui-inputgroup {
-        .ui-inputgroup-addon {
+    .p-inputgroup {
+        .p-inputgroup-addon {
             border-color: $inputBorderColor;
             background-color: $inputGroupAddonBgColor;
             min-width: 2.5em;
@@ -1379,12 +1495,12 @@ body {
               @include border-radius-right($borderRadius);
             }
 
-            &.ui-inputgroup-addon-checkbox, &.ui-inputgroup-addon-radiobutton {
+            &.p-inputgroup-addon-checkbox, &.p-inputgroup-addon-radiobutton {
               padding: 0.4em 0.857em;
             }
         }
 
-        .ui-button {
+        .p-button {
             &:first-child {
               @include border-radius-left($borderRadius);
             }
@@ -1399,4 +1515,22 @@ body {
     :-moz-placeholder           {color:$textSecondaryColor}
     ::-moz-placeholder          {color:$textSecondaryColor}
     :-ms-input-placeholder      {color:$textSecondaryColor}
+
+
+    /* Validations */
+    .p-inputtext.p-error,
+    .p-dropdown.p-error,
+    .p-autocomplete.p-error > .p-inputtext,
+    .p-calendar.p-error > .p-inputtext,
+    .p-chips.p-error > .p-inputtext,
+    .p-checkbox.p-error > .p-checkbox-box,
+    .p-radiobutton.p-error > .p-radiobutton-box,
+    .p-inputswitch.p-error,
+    .p-listbox.p-error,
+    .p-multiselect.p-error,
+    .p-spinner.p-error > .p-inputtext,
+    .p-selectbutton.p-error > .p-button,
+    .p-togglebutton.p-error > .p-button {
+        border: 1px solid red;
+    }
 }

@@ -2,35 +2,22 @@ body {
     .card {
         background-color: $contentBgColor;
     }
-    .ui-widget,
-    .ui-widget .ui-widget {
+    .p-component {
         font-family: $fontFamily;
         text-decoration: none;
     }
 
-    .ui-widget-content {
-        background-color: $contentBgColor;
-        border: 1px solid $contentBorderColor;
-    }
-
-    .ui-widget-header {
-        background: $headerBgColor;
-        color: $headerTextColor;
-        border: 1px solid $headerBorderColor;
-        font-weight: 700;
-    }
-
-    .ui-state-active, .ui-state-highlight {
+    .p-highlight {
         background-color: $primaryColor;
         color: $primaryTextColor;
     }
 
-    .ui-state-error, .ui-state-default.ui-state-error {
+    .p-error {
         border: solid 1px red;
     }
 
-    .ui-state-disabled,
-    .ui-widget:disabled {
+    .p-disabled,
+    .p-component:disabled {
         opacity: .35;
         filter: Alpha(Opacity= 35);
         background-image: none;
@@ -41,27 +28,7 @@ body {
         }
     }
 
-    .ui-corner-all {
-        @include border-radius($borderRadius);
-    }
-
-    .ui-corner-top {
-        @include border-radius-top($borderRadius);
-    }
-
-    .ui-corner-bottom {
-        @include border-radius-bottom($borderRadius);
-    }
-
-    .ui-corner-left {
-        @include border-radius-left($borderRadius);
-    }
-
-    .ui-corner-right {
-        @include border-radius-right($borderRadius);
-    }
-
-    .ui-widget-overlay {
+    .p-overlay {
         background-color: $textColor;
         @include opacity(.7);
     }

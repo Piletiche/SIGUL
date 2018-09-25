@@ -1,9 +1,9 @@
 body {
-    .ui-overlaypanel {
+    .p-overlaypanel {
         @include overlay-shadow();
         border: grey;
         
-        .ui-overlaypanel-close {
+        .p-overlaypanel-close {
             background-color: $primaryColor;
             color: $primaryTextColor;
             text-align: center;
@@ -26,20 +26,20 @@ body {
         }
     }
     
-    .ui-dialog {
+    .p-dialog {
         @include overlay-shadow();
         border: grey;
         
-        .ui-dialog-titlebar {
+        .p-dialog-titlebar {
             padding: 1em;
             
-            .ui-dialog-title {
+            .p-dialog-title {
                 margin: 0;
                 float: none;
                 vertical-align: middle;
             }
             
-            .ui-dialog-titlebar-icon {
+            .p-dialog-titlebar-icon {
                 color: $headerIconColor;
                 border: 0 none;
                 @include transition(color $transitionDuration);
@@ -53,11 +53,11 @@ body {
             }
         }
         
-        .ui-dialog-content {
+        .p-dialog-content {
             padding: 1em;
         }
         
-        .ui-dialog-footer {
+        .p-dialog-footer {
             padding: $headerPadding;
             text-align: right;
             border-width: 1px 0 0 0;
@@ -67,8 +67,8 @@ body {
             }
         }
                 
-        &.ui-confirm-dialog {
-            .ui-dialog-content {
+        &.p-confirm-dialog {
+            .p-dialog-content {
                 padding: 1.5em;
                 
                 > span {
@@ -78,7 +78,7 @@ body {
                     line-height: $fontSize;
                     margin: 0;
                     
-                    &.ui-icon {
+                    &.p-icon {
                         margin-right: .35em;
                         font-size: $fontSize + 2;
                     }
@@ -87,64 +87,64 @@ body {
         }
     }
         
-    .ui-tooltip {
-        .ui-tooltip-text {
+    .p-tooltip {
+        .p-tooltip-text {
             @include overlay-shadow();
         }
         
-        &.ui-state-error {
+        &.p-error {
             border: 0 none;
         }
         
-        .ui-tooltip {        
-            .ui-tooltip-text {
+        .p-tooltip {
+            .p-tooltip-text {
                 background-color: grey;
                 color: grey;
                 @include overlay-shadow();
             }
             
-            &.ui-state-error {
+            &.p-error {
                 border: 0 none;
             }
             
-            &.ui-tooltip-right {
-                .ui-tooltip-arrow {
+            &.p-tooltip-right {
+                .p-tooltip-arrow {
                     border-right-color: grey;
                 }
             }
             
-            &.ui-tooltip-left {
-                .ui-tooltip-arrow {
+            &.p-tooltip-left {
+                .p-tooltip-arrow {
                     border-left-color: grey;
                 }
             }
             
-            &.ui-tooltip-top {
-                .ui-tooltip-arrow {
+            &.p-tooltip-top {
+                .p-tooltip-arrow {
                     border-top-color: grey;
                 }
             }
             
-            &.ui-tooltip-bottom {
-                .ui-tooltip-arrow {
+            &.p-tooltip-bottom {
+                .p-tooltip-arrow {
                     border-bottom-color: grey;
                 }
             }
         }
     }
     
-    .ui-lightbox {
+    .p-lightbox {
         @include overlay-shadow();
         
-        .ui-lightbox-caption {
+        .p-lightbox-caption {
             padding: $headerPadding;
             
-            .ui-lightbox-caption-text {
+            .p-lightbox-caption-text {
                 color: $headerTextColor;
                 margin: 0;
             }
             
-            .ui-lightbox-close {
+            .p-lightbox-close {
                 padding: 0;
                 color: $headerTextColor;
                 @include transition(color $transitionDuration);
@@ -155,10 +155,10 @@ body {
             }
         }
         
-        .ui-lightbox-content-wrapper {
+        .p-lightbox-content-wrapper {
             overflow: hidden;
                       
-            .ui-lightbox-nav-left {
+            .p-lightbox-nav-left {
                 @include icon_override("\f053");
                 @include transition(all $transitionDuration);
                 font-size: 24px;
@@ -173,7 +173,7 @@ body {
                 }
             }
             
-            .ui-lightbox-nav-right {
+            .p-lightbox-nav-right {
                 @include icon_override("\f054");
                 @include transition(all $transitionDuration);
                 font-size: 24px;
@@ -188,7 +188,7 @@ body {
                 }
             }
             
-            .ui-lightbox-content.ui-lightbox-loading ~ a {
+            .p-lightbox-content.p-lightbox-loading ~ a {
                 display: none;
             }
         }
