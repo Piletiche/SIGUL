@@ -1,5 +1,6 @@
 body {
     .p-paginator {
+        @include header();
         padding: $headerPadding;
 
         .p-paginator-first,.p-paginator-prev,.p-paginator-next,.p-paginator-last {
@@ -9,6 +10,7 @@ body {
             padding: 0;
             display: inline-block;
             vertical-align: middle;
+            @include corner-all();
             @include border-box();
             @include transition(background-color $transitionDuration);
 
@@ -75,6 +77,7 @@ body {
                 vertical-align: middle;
                 display: inline-block;
                 @include border-box();
+                @include corner-all();
                 @include transition(background-color $transitionDuration);
 
                 &.p-highlight {
@@ -93,178 +96,159 @@ body {
             }
         }
     }
-
     .p-datatable {
         .p-datatable-header, .p-datatable-footer {
+            @include header();
             padding: $headerPadding;
         }
 
         .p-datatable-header {
-            .p-multiselect-item {
-                color: $textColor;
-            }
+            @include border-radius-top($borderRadius);
+            border-bottom: 0 none;
+        }
+
+        .p-datatable-footer {
+            @include border-radius-bottom($borderRadius);
+            border-top: 0 none;
         }
 
         .p-paginator {
             padding: $headerPadding;
         }
+        .p-datatable-thead > tr > th {
+            padding: $headerPadding;
+            border: 1px solid $datatableCellBorderColor;
+            background-color: $headerBgColor;
+            text-align: center;
+        }
 
-        .p-datatable-thead {
-            > tr {
-                > th {
-                    background-color: $headerBgColor;
-                    padding: $headerPadding;
-                    border-color: $datatableCellBorderColor;
-                    color: $headerTextColor;
-                    font-weight: 700;
+        .p-datatable-tfoot > tr > td {
+            padding: $headerPadding;
+            border: 1px solid $datatableCellBorderColor;
+            background-color: $primaryColor;
+            text-align: center;
+        }
 
-                    .p-dropdown-item,
-                    .p-multiselect-item {
-                        color: $textColor;
+        .p-sortable-column {
+            a, a:hover {
+                color: $textSecondaryColor;
+                margin-left: .125em;
+            }
 
-                        &.p-highlight {
-                            color: $primaryTextColor;
-                        }
-                    }
+            &:not(.p-highlight):hover {
+                @include list-item-hover();
 
-                    &.p-selection-column {
-                        padding: 0.5em 0.6em;
-                    }
+                a, a:hover {
+                    background-color: darken($primaryColor, 15%);
+                    color: $primaryTextColor;
+                }
+            }
 
-                    &.p-sortable-column:not(.p-highlight):hover {
-                      @include list-item-hover();
-                    }
+            &.p-highlight {
+                @include highlight();
 
-                    &.p-highlight {
-                        @include highlight();
-                    }
+                a, a:hover {
+                    @include highlight();
+                }
+            }
+        }
+        .p-editable-column {
+            input {
+                font-size: $fontSize;
+                font-family: $fontFamily;
 
-                    .p-column-title {
-                        font-weight: 700;
-                    }
+                &:focus {
+                    @include focused-input();
+                    outline-offset: 2px;
                 }
             }
         }
 
-        .p-datatable-tfoot {
+        .p-datatable-tbody {
+            @include content();
             > tr {
+                border-color: $datatableCellBorderColor;
+
                 > td {
+                    border: 1px solid $datatableCellBorderColor;
+                    padding: $contentPadding;
+
+                    .p-row-toggler {
+                        cursor: pointer;
+                        color: $textSecondaryColor;
+                        @include transition(color $transitionDuration);
+
+                        &:hover {
+                            color: $textColor;
+                        }
+                    }
+                }
+
+                &.p-highlight {
                     background-color: $primaryColor;
-                    padding: $headerPadding;
-                    border-color: $datatableCellBorderColor;
+                    color: $primaryTextColor;
+                }
+
+                &.p-datatable-dragpoint-bottom > td {
+                    box-shadow: inset 0 -2px 0 0 $primaryColor;
+                }
+            }
+
+            > tr.p-datatable-even {
+                background-color: $datableEvenRowBgColor;
+
+                &.p-highlight {
+                    background-color: $primaryColor;
                     color: $primaryTextColor;
                 }
             }
         }
 
-        .p-datatable-data {
-            tr {
-                background-color: $contentBgColor;
-                border-color: $datatableCellBorderColor;
-
-                &.p-rowgroup-header {
-
-                    .pi:hover {
-                        color: lighten($primaryColor, 5%);
-                    }
-                }
-
-                &.p-widget-header {
-                    td {
-                        border-color: $datatableCellBorderColor;
-                    }
-                }
-
-                &.p-datatable-even {
-                    background-color: $datableEvenRowBgColor;
-
-                    &.p-highlight {
-                      background-color: $primaryColor;
-                      color: $primaryTextColor;
-                    }
-                }
-
-                &.p-datatable-odd {
-                    background-color: $contentBgColor;
-
-                    &.p-highlight {
-                      background-color: $primaryColor;
-                      color: $primaryTextColor;
-                    }
-                }
-
-                &.p-highlight {
-                  background-color: $primaryColor;
-                  color: $primaryTextColor;
-                }
-
-                td {
-                    padding: $contentPadding;
-
-                    &.p-selection-column {
-                        padding: 0.5em 0.6em;
-                    }
-
-                    .p-row-toggler {
-                        color: $textColor;
-                        @include transition(color $transitionDuration);
-
-                        &.pi-chevron-circle-right {
-                            @include icon_override("\f054");
-                        }
-
-                        &.pi-chevron-circle-down {
-                            @include icon_override("\f078");
-                        }
-
-                        &:hover {
-                            color: $primaryColor;
-                        }
-                    }
-                }
-
-                &.p-widget-header {
-                    border: 1px solid $contentBorderColor;
-
-                    a {
-                        color: $headerTextColor;
-                        @include transition(color $transitionDuration);
-
-                        &:hover {
-                            color: $primaryColor;
-                        }
-                    }
-                }
-            }
-
-            &.p-datatable-hoverable-rows {
-                > tr.p-widget-content:not(.p-highlight):hover {
-                    cursor: pointer;
-                    @include list-item-hover();
-                }
+        &.p-datatable-hoverable-rows {
+            .p-datatable-tbody > tr:not(.p-highlight):hover {
+                cursor: pointer;
+                @include list-item-hover();
             }
         }
 
-        .p-datatable-scrollable-header,
-        .p-datatable-scrollable-footer {
-            background-color: $headerBgColor;
+        .p-column-resizer-helper {
+            @include header();
+        }
 
-            .p-datatable-scrollable-header-box {
-                td {
-                    color: $textColor;
-                }
-            }
+        .p-datatable-scrollable-footer {
+            @include header();
         }
     }
 
     .p-dataview {
-
-        .p-dataview-content {
-            border-bottom: none;
-        }
-
         .p-paginator {
             padding: $headerPadding;
+        }
+        .p-dataview-header {
+            background-color: $headerBgColor;
+            color: $textColor;
+            padding: $headerPadding;
+            border: 1px solid $contentBorderColor;
+            @include border-radius-top($borderRadius);
+            border-bottom: 0 none;
+
+            .p-inputtext {
+                width: auto;
+            }
+        }
+
+        .p-dataview-content {
+            background-color: $contentBgColor;
+            color: $textColor;
+            border: 1px solid $contentBorderColor;
+        }
+
+        .p-dataview-footer {
+            background-color: $contentBgColor;
+            color: $textColor;
+            padding: $headerPadding;
+            border: 1px solid $contentBorderColor;
+            border-top: 0 none;
         }
     }
 
@@ -289,8 +273,19 @@ body {
     }
 
     .p-datascroller {
-        .p-datascroller-header,
+        .p-datascroller-header {
+            @include header();
+            border-bottom: 0 none;
+            padding: $headerPadding;
+        }
+
+        .p-datascroller-content {
+            @include content();
+        }
+
         .p-datascroller-footer {
+            @include header();
+            border-top: 0 none;
             padding: $headerPadding;
         }
     }
@@ -305,7 +300,10 @@ body {
         }
 
         .p-picklist-caption {
+            @include header();
             padding: $headerPadding;
+            @include border-radius-top($borderRadius);
+            border-bottom: 0;
         }
 
         .p-picklist-filter-container {
@@ -317,6 +315,8 @@ body {
         }
 
         .p-picklist-list {
+            @include content();
+            @include corner-bottom();
             .p-picklist-item {
                 padding: $listItemPadding;
                 margin: 0;
@@ -339,9 +339,12 @@ body {
         }
 
         .p-orderlist-caption {
+            @include header();
             padding: $headerPadding;
             box-sizing: border-box;
             width: 200px;
+            @include border-radius-top($borderRadius);
+            border-bottom: 0;
         }
 
         .p-orderlist-filter-container {
@@ -353,6 +356,8 @@ body {
         }
 
         .p-orderlist-list {
+            @include content();
+            @include corner-bottom();
             box-sizing: border-box;
 
             .p-orderlist-item {
@@ -376,73 +381,10 @@ body {
         }
     }
 
-    .p-carousel {
-        padding: 0;
-
-        .p-carousel-header {
-            padding: $headerPadding;
-            margin: 0;
-            border: 0 none;
-            border-bottom: 1px solid $headerBorderColor;
-            @include border-radius(0);
-
-            .p-carousel-header-title {
-                padding: 0;
-            }
-        }
-
-        .p-carousel-footer {
-            padding: $headerPadding;
-            border: 0 none;
-            border-top: 1px solid $headerBorderColor;
-            margin: 0;
-            @include border-radius(0);
-        }
-
-        .p-carousel-button {
-            margin-top: .4em;
-            @include transition(color $transitionDuration);
-            color: $headerIconColor;
-
-            &.p-carousel-next-button {
-                @include icon-override("\f054");
-            }
-
-            &.p-carousel-prev-button {
-                @include icon-override("\f053");
-            }
-
-            &:not(.p-disabled):hover {
-                color: $headerIconHoverColor;
-            }
-        }
-
-        .p-carousel-page-links {
-            margin-top: .4em;
-
-            .p-carousel-page-link {
-                color: $headerIconColor;
-                @include transition(color $transitionDuration);
-
-                &:hover {
-                    color: darken($headerIconColor, 10%);
-                }
-
-                &.pi-circle-off {
-                    color: $headerIconColor;
-                    @include icon-override("\F10C")
-                }
-
-                &.pi-circle-on {
-                    color: $headerIconColor;
-                    @include icon-override("\F192")
-                }
-            }
-        }
-    }
-
     .p-organizationchart {
         .p-organizationchart-node-content {
+            @include content();
+            @include corner-all();
             &.p-organizationchart-selectable-node:not(.p-highlight):hover {
                 @include list-item-hover();
             }
@@ -483,100 +425,123 @@ body {
     }
 
     .p-treetable {
-        .p-treetable-header {
+        .p-treetable-header,
+        .p-treetable-footer {
+            @include header();
             padding: $headerPadding;
+            text-align: center;
+        }
+
+        .p-treetable-header {
+            border-bottom: 0 none;
         }
 
         .p-treetable-footer {
-            padding: $headerPadding;
+            border-top: 0 none;
         }
 
-        thead {
-            th {
-                padding: $listItemPadding;
-                color: $headerTextColor;
-                border: 1px solid $datatableCellBorderColor;
+        thead > tr > th {
+            padding:  $listItemPadding;
+            border: 1px solid $datatableCellBorderColor;
+            background-color: $contentBgColor;
+        }
 
-                &.p-hover {
+        tfoot > tr > td {
+            border: 1px solid $datatableCellBorderColor;
+            background-color: $contentBgColor;
+            padding: $listItemPadding;
+        }
+
+        .p-sortable-column {
+            .p-sortable-column-icon {
+                color: $textSecondaryColor;
+            }
+
+            &:not(.p-highlight):hover {
+                @include list-item-hover();
+
+                .p-sortable-column-icon {
                     @include list-item-hover();
                 }
+            }
 
-                &.p-highlight {
-                    background-color: $primaryColor;
+            &.p-highlight {
+                @include highlight();
+
+                .p-sortable-column-icon {
+                    @include highlight();
+                }
+            }
+
+            .p-column-title {
+                vertical-align: super;
+            }
+        }
+
+        .p-treetable-tablewrapper {
+            > table {
+                @include content();
+                > tbody {
+                    background: $contentBgColor;
+                    padding: $contentPadding;
+                    border-bottom: 0 none;
+                    border-top: 0 none;
+
+                    &:last-child {
+                        border-bottom: 1px solid $dividerColor;
+                    }
+
+                    .p-treetable-row {
+                        td {
+                            line-height: 2em;
+                        }
+                    }
+                }
+            }
+        }
+
+        .p-treetable-toggler {
+            color: $textSecondaryColor;
+        }
+
+        .p-treetable-row-selectable {
+            &:not(.p-highlight):hover {
+                cursor: pointer;
+                @include list-item-hover();
+
+                a {
+                    @include list-item-hover();
+                }
+            }
+
+            &.p-highlight {
+                background-color: $primaryColor;
+                color: $primaryTextColor;
+
+                .p-treetable-toggler {
                     color: $primaryTextColor;
-                    border-top-color: $primaryColor;
-                }
-
-                .p-column-title {
-                    font-weight: 700;
                 }
             }
         }
 
-        tfoot {
-            td {
-                padding: $listItemPadding;
-                color: $headerTextColor;
-                border: 1px solid $datatableCellBorderColor;
-            }
-        }
-
-        tbody {
-            > tr {
-                &.p-treetable-row-selectable {
-                    cursor: pointer;
-
-                    &:not(.p-highlight):hover {
-                        @include list-item-hover();
-
-                        .p-treetable-toggler {
-                            color: $primaryTextColor;
-                        }
-                    }
-
-                    &.p-highlight {
-                        background-color: $primaryColor;
-                        color: $primaryTextColor;
-
-                        .p-treetable-toggler {
-                            color: $primaryTextColor;
-                        }
-                    }
-                }
-
-                td {
-                    background: inherit;
-                    border: 1px solid $datatableCellBorderColor;
-
-                    .p-treetable-toggler {
-                        font-size: $fontSize + 2;
-                        vertical-align: middle;
-                        display: inline-block;
-                        float: none;
-                        color: $textSecondaryColor;
-                        line-height: inherit;
-                    }
-
-                    .p-treetable-checkbox .p-chkbox-icon {
-                        margin: 0;
-
-                        &.pi-check {
-                            color: $primaryColor;
-                        }
-                    }
-                }
+        .p-treetable-checkbox {
+            .p-checkbox-icon {
+                color: $textColor;
             }
         }
     }
 
     .p-tree {
+        @include content();
+        @include corner-all();
         padding: .25em .5em;
 
         .p-treenode {
             padding: .15em 0;
 
             .p-treenode-content {
-                padding: 0 0 .25em 0;
+                @include corner-all();
+                padding: .25em 0;
 
                 .p-tree-toggler {
                     font-size: $fontSize + 2;
@@ -584,6 +549,14 @@ body {
                     display: inline-block;
                     float: none;
                     margin: 0;
+                    color: $textSecondaryColor;
+                    &:focus {
+                        outline: 0;
+                    }
+
+                    .p-tree-toggler-icon {
+                        vertical-align: initial;
+                    }
                 }
 
                 .p-treenode-icon {
@@ -604,18 +577,48 @@ body {
                     }
                 }
 
-                .p-chkbox {
+                .p-checkbox {
                     margin: 0 .25em;
 
-                    .p-chkbox-icon {
+                    .p-checkbox-icon {
                         margin: 0;
                     }
                 }
 
-                &.p-treenode-selectable {
-                    .p-treenode-label:not(.p-highlight):hover {
+                &.p-highlight {
+                    @include highlight();
+
+                    .p-tree-toggler,
+                    .p-treenode-icon {
+                        @include highlight();
+                    }
+
+                    .p-checkbox {
+                        .p-checkbox-box {
+                            border-color: $contentBorderColor;
+                        }
+                    }
+                }
+
+                &.p-highlight-contextmenu {
+                    cursor: pointer;
+                    border: 1px dashed $primaryColor;
+                }
+
+                &.p-treenode-selectable:not(.p-highlight):hover {
+                    @include list-item-hover();
+
+                    .p-treenode-icon {
                         @include list-item-hover();
                     }
+
+                    .p-tree-toggler {
+                        @include list-item-hover();
+                    }
+                }
+
+                &:focus {
+                    outline: 0 none;
                 }
 
                 > span {
@@ -641,9 +644,20 @@ body {
 
                     &.p-highlight {
                         @include highlight();
+
+                        .p-tree-toggler,
+                        .p-treenode-icon {
+                            color: $primaryTextColor;
+                        }
+
+                        .p-checkbox {
+                            .p-checkbox-box {
+                                border-color: $contentBorderColor;
+                            }
+                        }
                     }
 
-                    .p-chkbox {
+                    .p-checkbox {
                         .p-icon {
                             color: $primaryColor;
                         }
@@ -656,6 +670,14 @@ body {
 
                     &.p-treenode-selectable:not(.p-highlight):hover {
                         @include list-item-hover();
+
+                        .p-treenode-icon {
+                            @include list-item-hover();
+                        }
+
+                        .p-tree-toggler {
+                            @include list-item-hover();
+                        }
                     }
                 }
             }
@@ -667,26 +689,129 @@ body {
     }
 
     .fc {
-        .fc-toolbar {
-            .p-icon-circle-triangle-e {
-                @include icon_override("\f054");
-                height: auto;
-                width: auto;
-                overflow: visible;
+        button {
+            height: 2.1em;
+            padding: 0 .6em;
+            @include border-radius(3px);
+
+            &.ui-state-active {
+                background-color: $primaryColor;
+                color: $primaryTextColor;
             }
 
-            .p-icon-circle-triangle-w {
-                @include icon_override("\f053");
-                height: auto;
-                width: auto;
-                overflow: visible;
+            &.ui-state-disabled {
+                opacity: .35;
+                filter: Alpha(Opacity=35);
+                background-image: none;
+                cursor: auto !important;
             }
         }
-        .fc-event-container {
-            .fc-event {
+
+        td {
+            @include content();
+        }
+
+        .fc-toolbar {
+            .ui-button {
+                color: $primaryTextColor;
+                background-color: $primaryColor;
+                border: $primaryColor;
                 font-size: $fontSize;
-                border-color: $primaryColor;
-                background-color: darken($primaryColor,5%);
+                @include transition(background-color .3s);
+
+                &:enabled:not(.ui-state-active):hover {
+                    background-color: darken($primaryColor,5%);
+                }
+
+                &.ui-state-active {
+                    background-color: darken($primaryColor,10%);
+                    @include shadow(inset 0 3px 5px rgba(0,0,0,.125));
+                }
+
+                .ui-icon-circle-triangle-w {
+                    background: none !important;
+                    font-family: 'primeicons';
+                    speak: none;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-variant: normal;
+                    text-transform: none;
+                    line-height: 1;
+                    display: inline-block;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    text-indent: 0px !important;
+                    text-align: center;
+
+                    &:before {
+                        content: "\e900";
+                    }
+                }
+
+                .ui-icon-circle-triangle-e {
+                    background: none !important;
+                    font-family: 'primeicons';
+                    speak: none;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-variant: normal;
+                    text-transform: none;
+                    line-height: 1;
+                    display: inline-block;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    text-indent: 0px !important;
+                    text-align: center;
+
+                    &:before {
+                        content: "\e901";
+                    }
+                }
+
+                &:focus {
+                    outline: 0 none;
+                }
+            }
+        }
+
+        .ui-state-highlight {
+            background-color: $primaryColor;
+            color: $primaryTextColor;
+        }
+
+        .fc-button-group {
+            .ui-button {
+                @include border-radius(0);
+
+                &:first-child {
+                    @include border-radius-left($borderRadius);
+                }
+
+                &:last-child {
+                    @include border-radius-right($borderRadius);
+                }
+            }
+        }
+
+        .fc-head-container {
+            @include header();
+            .fc-axis {
+                @include header();
+            }
+        }
+
+        .fc-day-header, .fc-divider {
+            @include header();
+        }
+
+        .fc-event {
+            border-color: $primaryColor;
+            background-color: darken($primaryColor,5%);
+        }
+
+        table {
+            th {
+                padding: $headerPadding;
             }
         }
     }

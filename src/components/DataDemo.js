@@ -125,7 +125,7 @@ export class DataDemo extends Component {
 
         if (layout === 'list') {
             return (
-                <div className="p-grid" style={{padding: '2em', borderBottom: '1px solid #d9d9d9'}}>
+                <div className="p-grid" style={{padding: '2em', borderBottom: '1px solid #d9d9d9', marginRight:'.5em', marginLeft:'.5em'}}>
                     <div className="p-col-12 p-md-3">
                         <img src={src} alt={car.brand}/>
                     </div>
