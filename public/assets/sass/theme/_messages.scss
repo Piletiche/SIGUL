@@ -1,5 +1,6 @@
 body {
     .p-messages {
+        margin: 1em 0;
         .p-messages-icon {
             .p-messages-icon {
                 font-size: 2em;
@@ -72,6 +73,50 @@ body {
 
         .p-messages-close {
             font-size: 1.5em;
+        }
+    }
+
+    .p-message {
+        @include border-radius($borderRadius);
+
+        &.p-message-info {
+            background-color: $infoMessageBgColor;
+            border: 1px solid $infoMessageBgColor;
+            color: $infoMessageTextColor;
+
+            .p-message-icon {
+                color: $infoMessageTextColor;
+            }
+        }
+
+        &.p-message-success {
+            background-color: $successMessageBgColor;
+            border: 1px solid $successMessageBgColor;
+            color: $successMessageTextColor;
+
+            .p-message-icon {
+                color: $successMessageTextColor;
+            }
+        }
+
+        &.p-message-warn {
+            background-color: $warnMessageBgColor;
+            border: 1px solid $warnMessageBgColor;
+            color: $warnMessageTextColor;
+
+            .p-message-icon {
+                color: $warnMessageTextColor;
+            }
+        }
+
+        &.p-message-error {
+            background-color: $errorMessageBgColor;
+            border: 1px solid $errorMessageBgColor;
+            color: $errorMessageTextColor;
+
+            .p-message-icon {
+                color: $errorMessageTextColor;
+            }
         }
     }
 
