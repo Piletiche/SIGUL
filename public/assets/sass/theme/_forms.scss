@@ -1445,36 +1445,6 @@ body {
         }
     }
 
-    .p-fileupload {
-        .p-fileupload-buttonbar {
-            padding: $headerPadding;
-            border-bottom: 0 none;
-
-            .p-button {
-                margin-right: 8px;
-
-                &.p-fileupload-upload {
-                    .p-icon {
-                        @include icon_override("\f093");
-                    }
-                }
-            }
-        }
-
-        .p-progressbar {
-            top: 0;
-        }
-    }
-
-    .p-fileupload-choose:not(.p-disabled):hover,
-    .p-fileupload-choose.p-focus {
-        background-color: darken($primaryColor, 5%);
-    }
-
-    .p-fileupload-choose:not(.p-disabled):active {
-        background-color: darken($primaryColor, 10%);
-    }
-
     .p-password-panel {
         @include corner-all();
         @include overlay-shadow();

@@ -1,5 +1,6 @@
 body {
     .p-progressbar {
+        @include corner-all();
         border: 0 none;
         background-color: $dividerColor;
 
@@ -15,34 +16,30 @@ body {
         }
     }
 
-    .p-galleria {
-        .p-galleria-nav-prev {
-            @include icon_override("\f053");
-            font-size: 18px;
-            margin-bottom: -5px;
-            margin-left: -5px;
+    .p-fileupload {
+        .p-fileupload-buttonbar {
+            @include header();
+            @include corner-top();
+            padding: $headerPadding;
+            border-bottom: 0 none;
 
-            &:hover {
-                color: $primaryColor;
+            .p-button {
+                margin-right: 8px;
             }
         }
 
-        .p-galleria-nav-next {
-            @include icon_override("\f054");
-            font-size: 18px;
-            margin-bottom: -5px;
-            margin-right: -5px;
-
-            &:hover {
-                color: $primaryColor;
-            }
+        .p-fileupload-content {
+            @include content();
+            @include corner-bottom();
         }
     }
 
-    .p-terminal {
-        input {
-            font-family: $fontFamily;
-            font-size: $fontSize;
-        }
+    .p-fileupload-choose:not(.p-disabled):hover,
+    .p-fileupload-choose.p-focus {
+        background-color: darken($primaryColor, 5%);
+    }
+
+    .p-fileupload-choose:not(.p-disabled):active {
+        background-color: darken($primaryColor, 10%);
     }
 }
