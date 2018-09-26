@@ -103,7 +103,7 @@
     }
 
     .disk-spaces {
-        .ui-panel-content {
+        .p-panel-content {
             padding: 2em;
 
             span {
@@ -111,7 +111,7 @@
                 margin-bottom: 20px;
             }
 
-            .ui-progressbar {
+            .p-progressbar {
                 margin-bottom: 40px;
                 height: 5px;
             }
@@ -121,7 +121,7 @@
     .task-list {
         overflow: hidden;
 
-        .ui-panel-content {
+        .p-panel-content {
             padding: 0px !important;
             min-height: 366px;
         }
@@ -140,7 +140,7 @@
                 }
             }
 
-            .ui-chkbox {
+            .p-checkbox {
                 vertical-align: middle;
                 margin-right: 6px;
             }
@@ -162,13 +162,13 @@
     .contact-form {
         overflow: hidden;
 
-        .ui-panel {
-            .ui-panel-content {
+        .p-panel {
+            .p-panel-content {
                 min-height: 366px;
             }
         }
 
-        .ui-g-12 {
+        .p-col-12 {
             padding: 10px 15px;
 
             &:last-child {
@@ -181,8 +181,8 @@
     .contacts {
         overflow: hidden;
 
-        .ui-panel {
-            .ui-panel-content {
+        .p-panel {
+            .p-panel-content {
                 min-height: 366px;
                 padding: 0px !important;
             }
@@ -244,7 +244,7 @@
 
     .chat {
 
-        .ui-panel-content {
+        .p-panel-content {
             padding: 0 !important;
         }
 
@@ -349,8 +349,8 @@
         box-sizing: border-box;
         margin-top: 0;
 
-        > .ui-g {
-            .ui-g-3 {
+        > .p-grid {
+            .p-col-3 {
                 font-size: 14px;
                 position: relative;
                 border-right: 1px solid $dividerColor;
@@ -363,7 +363,7 @@
                 }
             }
 
-            .ui-g-9 {
+            .p-col-9 {
                 padding-left: 1.5em;
                 .event-owner {
 
@@ -400,7 +400,7 @@
                 width: 100%;
             }
 
-            .ui-button {
+            .p-button {
                 position: absolute;
                 width: 36px;
                 height: 36px;
@@ -532,13 +532,13 @@
     }
 
     .circle-panel{
-        .ui-panel-titlebar {
+        .p-panel-titlebar {
             text-align: center;
         }
-        .ui-panel-content{
+        .p-panel-content{
             padding: 0px;
         }
-        div.ui-g-12:not(:last-child) {
+        div.p-col-12:not(:last-child) {
           border-right: 1px solid $dividerColor;
         }
     }

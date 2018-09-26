@@ -11,40 +11,41 @@
 
     <link rel="stylesheet" type="text/css" href="../theme/theme-blue-light.css">
     <link rel="stylesheet" type="text/css" href="../layout/css/layout-blue-light.css">
-    <link rel="stylesheet" type="text/css" href="./grid.css">
+    <link rel="stylesheet" type="text/css" href="./primereact.min.css">
+    <link rel="stylesheet" type="text/css" href="./primeflex.css">
 </head>
 
     <body class="login-body">
         <div class="body-container">
-            <div class="ui-g">
-                <div class="ui-g-12 ui-lg-6 left-side">
+            <div class="p-grid">
+                <div class="p-col-12 p-lg-6 left-side">
                     <img src="../layout/images/logo-dark.png" alt="apollo-layout" class="logo" />
                     <h1>Welcome</h1>
                     <p>
                       Sign in to start your session
                     </p>
                 </div>
-                <div class="ui-g-12 ui-lg-6 right-side">
+                <div class="p-col-12 p-lg-6 right-side">
                     <div class="login-wrapper">
                         <div class="login-container">
                             <span class="title">Login</span>
 
-                            <div class="ui-g ui-fluid">
-                              <div class="ui-g-12">
-                                <input type="text" autocomplete="off" placeholder="Username" class="ui-inputtext ui-widget"/>
+                            <div class="p-grid p-fluid">
+                              <div class="p-col-12">
+                                <input type="text" autocomplete="off" placeholder="Username" class="p-inputtext p-widget"/>
                               </div>
-                              <div class="ui-g-12">
-                                <input type="password" autocomplete="off" placeholder="Password" class="ui-inputtext ui-widget" feedback="false"/>
+                              <div class="p-col-12">
+                                <input type="password" autocomplete="off" placeholder="Password" class="p-inputtext p-widget" feedback="false"/>
                               </div>
-                              <div class="ui-g-6">
-                                <button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only blue-btn">
-                                  <span class="ui-button-text ui-c">
+                              <div class="p-col-6">
+                                <button type="button" class="p-button p-widget p-state-default p-corner-all p-button-text-only blue-btn">
+                                  <span class="p-button-text p-c">
                                     <img src="../layout/images/check.svg" alt="login" style="height: 13px;width: 16px;float: left;margin-top: 3px">
                                     Login
                                   </span>
                                 </button>
                               </div>
-                              <div class="ui-g-6 password-container">
+                              <div class="p-col-6 password-container">
                                   <a href="#">Forgot Password?</a>
                               </div>
                             </div>

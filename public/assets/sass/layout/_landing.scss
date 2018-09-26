@@ -97,8 +97,8 @@
                 font-weight: lighter;
             }
 
-            .ui-button {
-                .ui-button-text {
+            .p-button {
+                .p-button-text {
                     font-size: 16px;
                     padding: 14px 70px;
                 }
@@ -177,11 +177,11 @@
                 top: 75px;
             }
 
-            .ui-button {
+            .p-button {
                 position: absolute;;
                 top: 300px;
 
-                .ui-button-text {
+                .p-button-text {
                     font-size: 16px;
                     padding: 14px 70px;
                 }
@@ -236,7 +236,7 @@
             margin: 0 auto;
             text-align: center;
 
-            .ui-g {
+            .p-grid {
                 margin-top: 50px;
             }
 
@@ -429,7 +429,7 @@
                     padding-bottom: 30px;
                 }
 
-                .ui-button {
+                .p-button {
                     display: block;
                     position: static;
                     width: 250px;
@@ -474,7 +474,7 @@
                     left: 30%;
                 }
 
-                .ui-button {
+                .p-button {
                     position: static;
                     display: block;
                     width: 250px;
@@ -554,7 +554,7 @@
     }
 }
 
-.ui-button {
+.p-button {
   display: inline-block;
   position: relative;
   padding: 0;
@@ -566,7 +566,7 @@
   overflow: visible; /* the overflow property removes extra width in IE */
 }
 
-.ui-button-text-only .ui-button-text {
+.p-button-text-only .p-button-text {
   padding: .25em 1em;
   display: block;
 }

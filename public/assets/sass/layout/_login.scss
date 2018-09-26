@@ -88,7 +88,7 @@
       font-size: 1em;
     }
 
-    .ui-button {
+    .p-button {
       width: 100%;
       font-size: 16px;
     }
@@ -166,7 +166,7 @@
   }
 }
 
-.ui-button {
+.p-button {
   display: inline-block;
   position: relative;
   padding: 0;
@@ -178,7 +178,7 @@
   overflow: visible; /* the overflow property removes extra width in IE */
 }
 
-.ui-button-text-only .ui-button-text {
+.p-button-text-only .p-button-text {
   padding: .25em 1em;
   display: block;
 }
