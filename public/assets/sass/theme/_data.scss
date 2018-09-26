@@ -14,8 +14,9 @@ body {
             @include border-box();
             @include transition(background-color $transitionDuration);
 
-            span {
-                display: none;
+            &:before {
+                position: relative;
+                top: 3px;
             }
 
             &:not(.p-disabled):not(.p-highlight):hover {
@@ -24,43 +25,6 @@ body {
 
             &:focus {
                 outline: 0 none;
-            }
-        }
-
-        .p-paginator-first {
-            @include icon-override("\f048");
-
-            &:before {
-                position: relative;
-                top: 3px;
-            }
-        }
-
-        .p-paginator-prev {
-            @include icon-override("\f04b");
-            @include rotate(180deg);
-
-            &:before {
-                position: relative;
-                top: 3px;
-            }
-        }
-
-        .p-paginator-next {
-            @include icon-override("\f04b");
-
-            &:before {
-                position: relative;
-                top: 3px;
-            }
-        }
-
-        .p-paginator-last {
-            @include icon-override("\f051");
-
-            &:before {
-                position: relative;
-                top: 3px;
             }
         }
 
@@ -194,8 +158,8 @@ body {
                 }
             }
 
-            > tr.p-datatable-even {
-                background-color: $datableEvenRowBgColor;
+            > tr.p-datatable-odd {
+                background-color: $datableOddRowBgColor;
 
                 &.p-highlight {
                     background-color: $primaryColor;

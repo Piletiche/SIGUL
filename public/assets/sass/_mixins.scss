@@ -57,22 +57,6 @@
     transition:         $transition;
 }
 
-@mixin icon-override($icon) {
-    background-image: none !important;
-    display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: inherit;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-indent: 0px !important;
-    text-align: center;
-
-    &:before {
-        content: $icon;
-    }
-}
-
 @mixin border-shadow() {
     -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);

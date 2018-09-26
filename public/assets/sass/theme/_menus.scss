@@ -19,8 +19,6 @@ body {
                 }
 
                 &.p-breadcrumb-chevron {
-                    @include icon_override("\f105");
-                    font-size: $fontSize + 4;
                     margin: 0 .45em;
                     color: $textSecondaryColor;
                 }

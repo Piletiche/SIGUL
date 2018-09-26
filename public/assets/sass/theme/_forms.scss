@@ -490,11 +490,6 @@ body {
             color: $textSecondaryColor;
             @include transition(color $transitionDuration);
 
-            .p-button-icon-left {
-                line-height: inherit;
-                @include icon_override("\f078");
-            }
-
             &:hover {
                 background: transparent;
                 color: $textSecondaryColor;
@@ -655,11 +650,8 @@ body {
             padding: 0;
             @include corner-right();
 
-            .pi-caret-down {
+            .p-dropdown-trigger-icon {
                 color: $textSecondaryColor;
-                @include icon_override("\f078");
-                line-height: inherit;
-                margin-top: -1em;
             }
         }
 
@@ -668,7 +660,7 @@ body {
             @include border-shadow();
 
             .p-dropdown-trigger {
-                .pi-caret-down {
+                .p-dropdown-trigger-icon {
                     color: $primaryColor;
                 }
             }
@@ -742,10 +734,8 @@ body {
             @include corner-right();
             @include box-sizing(border-box);
 
-            .pi {
-                line-height: inherit;
+            .p-multiselect-trigger-icon {
                 color: $textSecondaryColor;
-                @include icon_override("\f078");
             }
         }
 
@@ -1310,24 +1300,14 @@ body {
 
             .p-datepicker-prev {
                 cursor: pointer;
-                top:0.857em;
                 color: $headerIconColor;
-                @include icon_override("\f053");
                 @include transition(color $transitionDuration);
-                span {
-                    display: none;
-                }
             }
 
             .p-datepicker-next {
                 cursor: pointer;
-                top:0.857em;
                 color: $headerIconColor;
-                @include icon_override("\f054");
                 @include transition(color $transitionDuration);
-                span {
-                    display: none;
-                }
             }
         }
 

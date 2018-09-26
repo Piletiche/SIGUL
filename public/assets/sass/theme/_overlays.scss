@@ -172,7 +172,6 @@ body {
             overflow: hidden;
                       
             .p-lightbox-nav-left {
-                @include icon_override("\f053");
                 @include transition(all $transitionDuration);
                 font-size: 24px;
                 margin-left: 4px;
@@ -180,24 +179,15 @@ body {
                 &:hover {
                     @include scale(1.2);
                 }
-                
-                span {
-                    display: none;
-                }
             }
             
             .p-lightbox-nav-right {
-                @include icon_override("\f054");
                 @include transition(all $transitionDuration);
                 font-size: 24px;
                 margin-right: 4px;
                 
                 &:hover {
                     @include scale(1.2);
-                }
-                
-                span {
-                    display: none;
                 }
             }
             
