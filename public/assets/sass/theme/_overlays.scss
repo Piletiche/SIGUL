@@ -1,5 +1,7 @@
 body {
     .p-overlaypanel {
+        @include content();
+        @include corner-all();
         @include overlay-shadow();
         border: grey;
         
@@ -27,11 +29,16 @@ body {
     }
     
     .p-dialog {
+        @include corner-all();
+        @include content();
         @include overlay-shadow();
         border: grey;
         
         .p-dialog-titlebar {
+            @include header();
+            @include corner-top();
             padding: 1em;
+            border: 0 none;
             
             .p-dialog-title {
                 margin: 0;
@@ -50,6 +57,10 @@ body {
                 &:hover {
                     color: darken($headerIconHoverColor, 10%);
                 }
+
+                &:focus {
+                    outline: 0;
+                }
             }
         }
         
@@ -58,6 +69,7 @@ body {
         }
         
         .p-dialog-footer {
+            @include content();
             padding: $headerPadding;
             text-align: right;
             border-width: 1px 0 0 0;
@@ -134,6 +146,7 @@ body {
     }
     
     .p-lightbox {
+        @include corner-all();
         @include overlay-shadow();
         
         .p-lightbox-caption {
