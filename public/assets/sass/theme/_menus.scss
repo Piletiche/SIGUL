@@ -1,5 +1,7 @@
 body {
     .p-breadcrumb {
+        @include header();
+        @include corner-all();
         background-color: $contentBgColor;
         border: 1px solid $contentBorderColor;
         padding: $headerPadding;
@@ -120,152 +122,393 @@ body {
         font-weight: normal;
         @include border-radius(0);
 
+        .p-menuitem-text {
+            color: $textColor;
+        }
+
+        .p-menuitem-icon {
+            color: $textColor;
+            margin-right:  .125em;
+            font-size: 1.5em;
+        }
+
+        .p-submenu-icon {
+            color: $textColor;
+        }
+
         &:hover {
             @include menu-item-hover();
-        }
-    }
 
-    .p-menu .p-menuitem,
-    .p-menubar .p-menuitem,
-    .p-tieredmenu .p-menuitem,
-    .p-contextmenu .p-menuitem,
-    .p-megamenu .p-menuitem,
-    .p-slidemenu .p-menuitem {
-        margin: 0;
-
-        &.p-menuitem-active {
-            > .p-menuitem-link {
-                @include menu-item-hover();
+            .p-menuitem-text {
+                color: $primaryTextColor;
             }
+
+            .p-menuitem-icon {
+                color: $primaryTextColor;
+            }
+
+            .p-submenu-icon {
+                color: $primaryTextColor;
+            }
+
         }
     }
 
     .p-menu {
+        @include content();
+        @include corner-all();
         padding: 0;
+        @include border-radius($borderRadius);
 
-        &.p-shadow, .p-shadow {
+        .p-menuitem {
+            margin: 0;
+        }
+
+        &.p-menu-overlay {
+            @include content();
             @include overlay-shadow();
         }
 
-        .p-menu-list {
-            .p-widget-header {
-                border: 0 none;
-                margin: 0;
-                padding: $listItemPadding;
-            }
+        .p-submenu-header {
+            @include header();
+            @include border-radius(0);
+            margin: 0;
+            border: 0 none;
+            width: 100%;
+            box-sizing: border-box;
+            font-weight: 700;
+            padding: $listItemPadding;
+        }
+
+        .p-menu-separator {
+            height: 1px;
+            background-color: $dividerColor;
+            width: 100%;
+            box-sizing: border-box;
         }
     }
 
     .p-menubar {
+        @include content();
+        @include corner-all();
+        @include border-radius($borderRadius);
         padding: 0;
 
         .p-menubar-root-list {
             > .p-menuitem {
+                > .p-menuitem-link {
+                    &:hover {
+                        .p-menuitem-text {
+                            color: $primaryTextColor;
+                        }
 
-                &:first-child {
-                    .p-menuitem-link {
-                        @include border-radius(0);
-                        @include border-radius-left($borderRadius);
-                    }
-                }
+                        .p-menuitem-icon {
+                            color: $primaryTextColor;
+                        }
 
-                &:last-child {
-                    .p-menuitem-link {
-                        @include border-radius(0);
-                    }
-                }
-
-                &.p-menuitem-active {
-                    > .p-menuitem-link {
-                        background-color: $primaryColor;
-                        color: $primaryTextColor;
-                    }
-                }
-            }
-
-            .p-submenu-list {
-                padding: 0;
-                border: none;
-
-                .p-menuitem {
-                    margin: 0;
-
-                    &.p-menuitem-active {
-                        > .p-menuitem-link {
-                            @include menu-item-hover();
+                        .p-submenu-icon {
+                            color: $primaryTextColor;
                         }
                     }
                 }
             }
         }
 
-    }
-
-    .p-contextmenu {
-        padding: 0;
-        border: none;
-
         .p-submenu-list {
-            padding: 0;
+            @include content();
+            @include corner-all();
+            @include overlay-shadow();
             border: 0 none;
-        }
-    }
-
-    .p-tieredmenu {
-        padding: 0;
-
-        .p-submenu-list {
             padding: 0;
-            border: 0 none;
-        }
-    }
-
-    .p-slidemenu {
-        padding: 0;
-
-        .p-submenu-list {
-            padding: 0;
-            border: 0 none;
 
             .p-menuitem {
                 margin: 0;
             }
+
+            .p-menu-separator {
+                border: solid $dividerColor;
+                border-width: 1px 0 0 0;
+            }
+        }
+
+        .p-menuitem {
+            margin: 0;
+
+            &.p-menuitem-active {
+                > .p-menuitem-link {
+                    @include menu-item-hover();
+
+                    .p-menuitem-text {
+                        color: $primaryTextColor;
+                    }
+
+                    .p-menuitem-icon {
+                        color: $primaryTextColor;
+                    }
+
+                    .p-submenu-icon {
+                        color: $primaryTextColor;
+                    }
+                }
+            }
+        }
+    }
+
+    .p-contextmenu {
+        @include content();
+        @include corner-all();
+        @include border-radius($borderRadius);
+        @include overlay-shadow();
+        padding: 0;
+        border: 0 none;
+
+        .p-submenu-list {
+            @include content();
+            @include corner-all();
+            @include overlay-shadow();
+            padding: 0;
+            border: 0 none;
+        }
+
+        .p-menuitem {
+            margin: 0;
+
+            .p-menuitem-link {
+                .p-submenu-icon {
+                    right: 1.429em;
+                }
+            }
+
+            &.p-menuitem-active {
+                > .p-menuitem-link {
+                    @include menu-item-hover();
+
+                    .p-menuitem-text {
+                        color: $primaryTextColor;
+                    }
+
+                    .p-menuitem-icon {
+                        color: $primaryTextColor;
+                    }
+
+                    .p-submenu-icon {
+                        color: $primaryTextColor;
+                    }
+                }
+            }
+        }
+
+        .p-menu-separator {
+            border: solid $dividerColor;
+            border-width: 1px 0 0 0;
+        }
+    }
+
+    .p-tieredmenu {
+        @include content();
+        @include corner-all();
+        @include border-radius($borderRadius);
+        padding: 0;
+
+        .p-submenu-list {
+            @include content();
+            @include corner-all();
+            @include overlay-shadow();
+            padding: 0;
+            border: 0 none;
+        }
+
+        .p-menuitem {
+            margin: 0;
+
+            .p-menuitem-link {
+                .p-submenu-icon {
+                    right: 1.429em;
+                }
+            }
+
+            &.p-menuitem-active {
+                > .p-menuitem-link {
+                    @include menu-item-hover();
+
+                    .p-menuitem-text {
+                        color: $primaryTextColor;
+                    }
+
+                    .p-menuitem-icon {
+                        color: $primaryTextColor;
+                    }
+
+                    .p-submenu-icon {
+                        color: $primaryTextColor;
+                    }
+                }
+            }
+        }
+
+        .p-menu-separator {
+            border: solid $dividerColor;
+            border-width: 1px 0 0 0;
+        }
+
+        &.p-menu-overlay {
+            @include content();
+            @include overlay-shadow();
+        }
+    }
+
+    .p-slidemenu {
+        @include content();
+        @include corner-all();
+        padding: 0;
+        @include border-radius($borderRadius);
+
+        .p-submenu-list {
+            @include content();
+            @include corner-all();
+            padding: 0;
+            border: 0 none;
+        }
+
+        .p-menuitem {
+            margin: 0;
+
+            .p-menuitem-link {
+                .p-submenu-icon {
+                    right: 1.429em;
+                }
+            }
+
+            &.p-menuitem-active {
+                > .p-menuitem-link {
+                    @include menu-item-hover();
+
+                    .p-menuitem-text {
+                        color: $primaryTextColor;
+                    }
+
+                    .p-menuitem-icon {
+                        color: $primaryTextColor;
+                    }
+
+                    .p-submenu-icon {
+                        color: $primaryTextColor;
+                    }
+                }
+            }
         }
 
         .p-slidemenu-backward {
-            margin-bottom: .4em;
-            padding: $headerPadding;
-            width: 100%;
-            color: $textColor;
             background-color: $dividerColor;
+            color: $textColor;
+            padding: $headerPadding;
             @include border-radius(0);
             border: 0 none;
+            font-weight: bold;
 
             &:hover {
                 background-color: darken($dividerColor, 10%);
             }
         }
+
+        .p-menu-separator {
+            border: solid $dividerColor;
+            border-width: 1px 0 0 0;
+        }
+
+        &.p-menu-overlay {
+            @include overlay-shadow();
+        }
     }
 
     .p-megamenu {
+        @include content();
+        @include corner-all();
+        @include border-radius($borderRadius);
         padding: 0;
 
         .p-megamenu-submenu-header {
-            background-color: $dividerColor;
+            @include header();
+            @include corner-all();
+            margin: 0;
             border: 0 none;
+            width: 100%;
+            box-sizing: border-box;
+            padding: $listItemPadding;
+            background-color: $dividerColor;
         }
 
-        .p-submenu-list {
-            padding: 0;
-            border: 0 none;
+        .p-megamenu-panel {
+            @include content();
+            @include corner-all();
+            @include overlay-shadow();
+            padding: .5em;
+        }
 
-            .p-menuitem {
-                margin: 0;
+
+        .p-megamenu-root-list {
+            > .p-menuitem {
+                > .p-menuitem-link {
+                    &:hover {
+                        .p-menuitem-text {
+                            color: $primaryTextColor;
+                        }
+
+                        .p-menuitem-icon {
+                            color: $primaryTextColor;
+                        }
+
+                        .p-submenu-icon {
+                            color: $primaryTextColor;
+                        }
+                    }
+                }
+            }
+        }
+
+        .p-menuitem {
+            margin: 0;
+
+            .p-menuitem-link {
+                .p-submenu-icon {
+                    right: 1.429em;
+                }
+            }
+
+            &.p-menuitem-active {
+                > .p-menuitem-link {
+                    @include menu-item-hover();
+                    .p-menuitem-text {
+                        color: $primaryTextColor;
+                    }
+
+                    .p-menuitem-icon {
+                        color: $primaryTextColor;
+                    }
+
+                    .p-submenu-icon {
+                        color: $primaryTextColor;
+                    }
+                }
+            }
+        }
+
+        &.p-megamenu-vertical {
+            .p-megamenu-root-list {
+                > .p-menuitem {
+                    > .p-menuitem-link {
+                        > .p-submenu-icon {
+                            right: 1.429em;
+                        }
+                    }
+                }
             }
         }
     }
 
     .p-tabmenu {
+        @include content();
+        @include corner-all();
         border: 0 none;
 
         .p-tabmenu-nav {
@@ -274,6 +517,12 @@ body {
             border-bottom: 1px solid $headerBorderColor;
             background: transparent;
             @include border-radius(0);
+
+            &:after{
+                content: "";
+                display: table;
+                clear: both;
+            }
 
             .p-tabmenuitem {
                 margin: 0;
@@ -291,6 +540,7 @@ body {
                         vertical-align: middle;
                         display: inline-block;
                         float: none;
+                        font-weight: bold;
                     }
 
                     .p-menuitem-icon {
@@ -384,9 +634,11 @@ body {
         }
 
         .p-panelmenu-content {
+            @include content();
             padding: $contentPadding;
             padding-left: 0;
             padding-right: 0;
+            border-top: 0 none;
 
             .p-menuitem {
                 @include border-radius(0);
