@@ -320,7 +320,7 @@ class App extends Component {
     }
 
     render() {
-        let layoutClassName = classNames('layout-wrapper', {
+        const layoutClassName = classNames('layout-wrapper', {
             'layout-horizontal': this.state.layoutMode === 'horizontal',
             'layout-overlay': this.state.layoutMode === 'overlay',
             'layout-static': this.state.layoutMode === 'static',
@@ -331,59 +331,59 @@ class App extends Component {
         });
         const AppBreadCrumbWithRouter = withRouter(AppBreadcrumb);
 
-        return <div className={layoutClassName} onClick={this.onDocumentClick}>
-            <div>
-                <AppTopbar darkTheme={this.state.darkTheme} onThemeChange={this.onThemeChange}
-                           topbarMenuActive={this.state.topbarMenuActive} activeTopbarItem={this.state.activeTopbarItem}
-                           onMenuButtonClick={this.onMenuButtonClick} onTopbarMenuButtonClick={this.onTopbarMenuButtonClick}
-                           onTopbarItemClick={this.onTopbarItemClick} />
+        return (
+            <div className={layoutClassName} onClick={this.onDocumentClick}>
+                <div>
+                    <AppTopbar darkTheme={this.state.darkTheme} onThemeChange={this.onThemeChange}
+                            topbarMenuActive={this.state.topbarMenuActive} activeTopbarItem={this.state.activeTopbarItem}
+                            onMenuButtonClick={this.onMenuButtonClick} onTopbarMenuButtonClick={this.onTopbarMenuButtonClick}
+                            onTopbarItemClick={this.onTopbarItemClick} />
 
-                <div className='layout-menu-container' onClick={this.onMenuClick}>
-                    <ScrollPanel ref={(el) => this.layoutMenuScroller = el} style={{height: '100%'}}>
-                        <div className="layout-menu-content">
-                            <div className="layout-menu-title">MENU</div>
-                            <AppMenu model={this.menu} onMenuItemClick={this.onMenuItemClick} onRootMenuItemClick={this.onRootMenuItemClick}
-                                     layoutMode={this.state.layoutMode} active={this.state.menuActive} />
-                            <div className="layout-menu-footer">
-                                <div className="layout-menu-footer-title">TASKS</div>
+                    <div className='layout-menu-container' onClick={this.onMenuClick}>
+                        <ScrollPanel ref={(el) => this.layoutMenuScroller = el} style={{height: '100%'}}>
+                            <div className="layout-menu-content">
+                                <div className="layout-menu-title">MENU</div>
+                                <AppMenu model={this.menu} onMenuItemClick={this.onMenuItemClick} onRootMenuItemClick={this.onRootMenuItemClick}
+                                        layoutMode={this.state.layoutMode} active={this.state.menuActive} />
+                                <div className="layout-menu-footer">
+                                    <div className="layout-menu-footer-title">TASKS</div>
 
-                                <div className="layout-menu-footer-content">
-                                    <ProgressBar value={50} showValue={false}></ProgressBar>
-                                        Today
-                                    <ProgressBar value={80} showValue={false}></ProgressBar>
-                                        Overall
+                                    <div className="layout-menu-footer-content">
+                                        <ProgressBar value={50} showValue={false}></ProgressBar>
+                                            Today
+                                        <ProgressBar value={80} showValue={false}></ProgressBar>
+                                            Overall
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </ScrollPanel>
-                </div>
-
-                <div className="layout-content">
-                    <AppBreadCrumbWithRouter/>
-
-                    <div className="layout-content-container">
-                        <Route path="/" exact component={Dashboard} />
-                        <Route path="/forms" component={FormsDemo} />
-                        <Route path="/sample" component={SampleDemo} />
-                        <Route path="/data" component={DataDemo} />
-                        <Route path="/panels" component={PanelsDemo} />
-                        <Route path="/overlays" component={OverlaysDemo} />
-                        <Route path="/menus" component={MenusDemo} />
-                        <Route path="/messages" component={MessagesDemo} />
-                        <Route path="/charts" component={ChartsDemo} />
-                        <Route path="/misc" component={MiscDemo} />
-                        <Route path="/empty" component={EmptyPage} />
-                        <Route path="/documentation" component={Documentation} />
+                        </ScrollPanel>
                     </div>
 
-                    <AppFooter />
+                    <div className="layout-content">
+                        <AppBreadCrumbWithRouter/>
 
-                    {this.state.staticMenuMobileActive && <div className="layout-mask"></div>}
+                        <div className="layout-content-container">
+                            <Route path="/" exact component={Dashboard} />
+                            <Route path="/forms" component={FormsDemo} />
+                            <Route path="/sample" component={SampleDemo} />
+                            <Route path="/data" component={DataDemo} />
+                            <Route path="/panels" component={PanelsDemo} />
+                            <Route path="/overlays" component={OverlaysDemo} />
+                            <Route path="/menus" component={MenusDemo} />
+                            <Route path="/messages" component={MessagesDemo} />
+                            <Route path="/charts" component={ChartsDemo} />
+                            <Route path="/misc" component={MiscDemo} />
+                            <Route path="/empty" component={EmptyPage} />
+                            <Route path="/documentation" component={Documentation} />
+                        </div>
+
+                        <AppFooter />
+
+                        {this.state.staticMenuMobileActive && <div className="layout-mask"></div>}
+                    </div>
                 </div>
-
-
             </div>
-        </div>;
+        );
     }
 }
 

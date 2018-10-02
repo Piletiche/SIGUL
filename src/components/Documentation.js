@@ -14,15 +14,15 @@ export class Documentation extends Component {
                 <div className="p-col-12">
                     <div className="card docs no-margin">
                         <h1>Current Version</h1>
-                        <p>React 16.2.0 and PrimeReact 1.6.2</p>
+                        <p>React 16.5.1 and PrimeReact 2.0.0-beta.8</p>
 
                         <h1>Getting Started</h1>
-                        <p>Avalon is an application template for React based on the popular <a href="https://github.com/facebookincubator/create-react-app">create-react-app</a> which allows
+                        <p>Apollo is an application template for React based on the popular <a href="https://github.com/facebookincubator/create-react-app">create-react-app</a> that allows
                             creating React apps with no configuration. To get started extract the contents of the zip bundle and install the dependencies
                             with npm or yarn.</p>
                         <pre>
 {
-    `npm install
+`npm install
 `}
 </pre>
 
@@ -30,16 +30,16 @@ export class Documentation extends Component {
 
                         <pre>
 {
-    `yarn
+`yarn
 `}
 </pre>
 
                         <p>Next step is running the application using the start script and navigate to <b>http://localhost:3000/</b> to view the application.
-                            That is it, you may now start with the development of your application using the Avalon template.</p>
+                            That is it, you may now start with the development of your application using the Apollo template.</p>
 
                         <pre>
 {
-    `npm start
+`npm start
 `}
 </pre>
 
@@ -47,7 +47,7 @@ export class Documentation extends Component {
 
                         <pre>
 {
-    `yarn start
+`yarn start
 `}
 </pre>
 
@@ -55,14 +55,27 @@ export class Documentation extends Component {
                         <p>Following commands are derived from create-app-app.</p>
                         <pre>
 {
-    `"npm start" or "yarn start": Starts the development server
+`"npm start" or "yarn start": Starts the development server
 "npm test" or "yarn test": Runs the tests.
 "npm run build" or "yarn run build": Creates a production build.
 `}
 </pre>
 
+                        <h1>Dependencies</h1>
+                        <p>Only required dependencies are PrimeReact, PrimeIcons PrimeFlex where optional dependencies exist to enable certain components in PrimeReact such as Google Maps.</p>
+
+<pre>
+{
+`"primereact": "^2.0.0-beta.8",       //required: PrimeReact components
+"primeflex": "^1.0.0-rc.1",          //required: Layout
+"primeicons": "^1.0.0-beta.10",      //required: Component Icons
+"react-router-dom": "^4.2.2"         //optional: Router
+`
+}
+</pre>
+
                         <h1>Structure</h1>
-                        <p>Avalon consists of 3 main parts; the application layout, layout resources and theme resources for PrimeReact components. <b>App.js</b> inside src folder is the main component containing the template for the base layout
+                        <p>Apollo consists of 3 main parts; the application layout, layout resources and theme resources for PrimeReact components. <b>App.js</b> inside src folder is the main component containing the template for the base layout
                             whereas required resources for the layout are placed inside the <b>public/assets/layout</b> folder and similarly theme resources are inside <b>public/assets/theme</b> folder.
                         </p>
 
@@ -73,44 +86,71 @@ export class Documentation extends Component {
 
                         <pre>
 {
-    `render() {
-    let layoutClassName = classNames('layout-wrapper', {
-        'menu-layout-static': this.state.layoutMode !== 'overlay',
-        'menu-layout-overlay': this.state.layoutMode === 'overlay',
-        'layout-menu-overlay-active': this.state.overlayMenuActive,
-        'menu-layout-slim': this.state.layoutMode === 'slim',
-        'menu-layout-horizontal': this.state.layoutMode === 'horizontal',
-        'layout-menu-static-inactive': this.state.staticMenuDesktopInactive,
-        'layout-menu-static-active': this.state.staticMenuMobileActive
+`render() {
+    const layoutClassName = classNames('layout-wrapper', {
+        'layout-horizontal': this.state.layoutMode === 'horizontal',
+        'layout-overlay': this.state.layoutMode === 'overlay',
+        'layout-static': this.state.layoutMode === 'static',
+        'layout-slim': this.state.layoutMode === 'slim',
+        'layout-static-inactive': this.state.staticMenuDesktopInactive,
+        'layout-mobile-active': this.state.staticMenuMobileActive,
+        'layout-overlay-active': this.state.overlayMenuActive
     });
-    let menuClassName = classNames('layout-menu-container', {'layout-menu-dark': this.state.darkMenu});
-    
-    return <div className={layoutClassName} onClick={this.onDocumentClick}>
-                <div>
-                    <AppTopbar profileMode={this.state.profileMode} horizontal={this.props.horizontal} 
-                            topbarMenuActive={this.state.topbarMenuActive} activeTopbarItem={this.state.activeTopbarItem}
-                            onMenuButtonClick={this.onMenuButtonClick} onTopbarMenuButtonClick={this.onTopbarMenuButtonClick} 
-                            onTopbarItemClick={this.onTopbarItemClick} />
+    const AppBreadCrumbWithRouter = withRouter(AppBreadcrumb);
 
-                    <div className={menuClassName} onClick={this.onMenuClick}>
-                        <ScrollPanel ref={(el) => this.layoutMenuScroller = el} style={{height: '100%'}}>
-                            <div className="menu-scroll-content">
-                                {(this.state.profileMode === 'inline' && this.state.layoutMode !== 'horizontal') && <AppInlineProfile />}
-                                <AppMenu model={this.menu} onMenuItemClick={this.onMenuItemClick} onRootMenuItemClick={this.onRootMenuItemClick}
-                                        layoutMode={this.state.layoutMode} active={this.state.menuActive} />
+    return (
+        <div className={layoutClassName} onClick={this.onDocumentClick}>
+            <div>
+                <AppTopbar darkTheme={this.state.darkTheme} onThemeChange={this.onThemeChange}
+                        topbarMenuActive={this.state.topbarMenuActive} activeTopbarItem={this.state.activeTopbarItem}
+                        onMenuButtonClick={this.onMenuButtonClick} onTopbarMenuButtonClick={this.onTopbarMenuButtonClick}
+                        onTopbarItemClick={this.onTopbarItemClick} />
+
+                <div className='layout-menu-container' onClick={this.onMenuClick}>
+                    <ScrollPanel ref={(el) => this.layoutMenuScroller = el} style={{height: '100%'}}>
+                        <div className="layout-menu-content">
+                            <div className="layout-menu-title">MENU</div>
+                            <AppMenu model={this.menu} onMenuItemClick={this.onMenuItemClick} onRootMenuItemClick={this.onRootMenuItemClick}
+                                    layoutMode={this.state.layoutMode} active={this.state.menuActive} />
+                            <div className="layout-menu-footer">
+                                <div className="layout-menu-footer-title">TASKS</div>
+
+                                <div className="layout-menu-footer-content">
+                                    <ProgressBar value={50} showValue={false}></ProgressBar>
+                                        Today
+                                    <ProgressBar value={80} showValue={false}></ProgressBar>
+                                        Overall
+                                </div>
                             </div>
-                        </ScrollPanel>
-                    </div>
-                    
-                    <div className="layout-main">
-                        {this.props.children || <Dashboard />}
-                    </div>
-                    
-                    <div className="layout-mask"></div>
-                    
-                    <AppFooter />
+                        </div>
+                    </ScrollPanel>
                 </div>
-            </div>;
+
+                <div className="layout-content">
+                    <AppBreadCrumbWithRouter/>
+
+                    <div className="layout-content-container">
+                        <Route path="/" exact component={Dashboard} />
+                        <Route path="/forms" component={FormsDemo} />
+                        <Route path="/sample" component={SampleDemo} />
+                        <Route path="/data" component={DataDemo} />
+                        <Route path="/panels" component={PanelsDemo} />
+                        <Route path="/overlays" component={OverlaysDemo} />
+                        <Route path="/menus" component={MenusDemo} />
+                        <Route path="/messages" component={MessagesDemo} />
+                        <Route path="/charts" component={ChartsDemo} />
+                        <Route path="/misc" component={MiscDemo} />
+                        <Route path="/empty" component={EmptyPage} />
+                        <Route path="/documentation" component={Documentation} />
+                    </div>
+
+                    <AppFooter />
+
+                    {this.state.staticMenuMobileActive && <div className="layout-mask"></div>}
+                </div>
+            </div>
+        </div>
+    );
 }
 `
 }
@@ -123,103 +163,64 @@ export class Documentation extends Component {
 
                         <pre>
 {
-    `createMenu() {
+`createMenu() {
     this.menu = [
+        {label: 'Dashboard', icon: 'fa fa-fw fa-dashboard', command: () => { window.location = '#/'}},
         {
-            label: 'Bootstrap Version', icon: 'fa fa-fw  fa-tags',
+            label: 'Menu', icon: 'fa fa-fw fa-bars' ,
             items: [
-                {label: 'Bootstrap v3', icon: 'fa fa-fw fa-tag',  command: () => this.changeVersion('v3')},
-                {label: 'Bootstrap v4', icon: 'fa fa-fw fa-tag',  command: () => this.changeVersion('v4')}
-            ]
-        },
-        {label: 'Dashboard', icon: 'fa fa-fw fa-home', command: () => { window.location.hash="/"}},
-        {
-            label: 'Customization', icon: 'fa fa-fw fa-bars' ,badge: '8',
-            items: [
+                {label: 'Horizontal Menu', icon: 'fa fa-fw fa-arrows-h',  command: () => this.setState({layoutMode: 'horizontal'}) },
+                {label: 'Overlay Menu', icon: 'fa fa-fw fa-arrows-v',  command: () => this.setState({layoutMode: 'overlay'}) },
                 {label: 'Static Menu', icon: 'fa fa-fw fa-bars',  command: () => this.setState({layoutMode: 'static'}) },
-                {label: 'Overlay Menu', icon: 'fa fa-fw fa-bars',  command: () => this.setState({layoutMode: 'overlay'}) },
-                {label: 'Slim Menu', icon: 'fa fa-fw fa-bars',  command: () => this.setState({layoutMode: 'slim'}) },
-                {label: 'Horizontal Menu', icon: 'fa fa-fw fa-bars',  command: () => this.setState({layoutMode: 'horizontal'}) },
-                {label: 'Inline Profile', icon: 'fa fa-sun-o fa-fw',  command: () => this.setState({profileMode: 'inline'}) },
-                {label: 'Top Profile', icon: 'fa fa-moon-o fa-fw',  command: () => this.setState({profileMode: 'top'}) },
-                {label: 'Light Menu', icon: 'fa fa-sun-o fa-fw',  command: () => this.setState({darkMenu: false}) },
-                {label: 'Dark Menu', icon: 'fa fa-moon-o fa-fw',  command: () => this.setState({darkMenu: true}) }
+                {label: 'Slim Menu', icon: 'fa fa-fw fa-window-restore',  command: () => this.setState({layoutMode: 'slim'}) }
             ]
         },
         {
-            label: 'Layout Colors', icon: 'fa fa-fw fa-magic',
+            label: 'Dark', icon: 'fa fa-fw fa-circle', badge: '8',
             items: [
-                {
-                    label: 'Flat', 
-                    icon: 'fa fa-fw fa-circle',
-                    items: [
-                        {label: 'Blue', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('blue')}},
-                        {label: 'Purple', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('purple')}},
-                        {label: 'Cyan', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('cyan')}},
-                        {label: 'Indigo', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('indigo')}},
-                        {label: 'Teal', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('teal')}},
-                        {label: 'Pink', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('pink')}},
-                        {label: 'Lime', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('lime')}},
-                        {label: 'Green', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('green')}},
-                        {label: 'Amber', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('amber')}},
-                        {label: 'Dark Grey', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('darkgrey')}},
-                    ]
-                },
-                {
-                    label: 'Special', 
-                    icon: 'fa fa-fw fa-fire',
-                    items: [
-                        {label: 'Influenza', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('influenza', true)}},
-                        {label: 'Suzy', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('suzy', true)}},
-                        {label: 'Calm', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('calm', true)}},
-                        {label: 'Crimson', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('crimson', true)}},
-                        {label: 'Night', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('night', true)}},
-                        {label: 'Skyling', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('skyline', true)}},
-                        {label: 'Sunkist', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('sunkist', true)}},
-                        {label: 'Little Leaf', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('littleleaf', true)}},
-                        {label: 'Joomla', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('joomla', true)}},
-                        {label: 'Firewatch', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeLayout('firewatch', true)}}
-                    ]
-                }
+                {label: 'Blue', icon: 'fa fa-fw fa-paint-brush', styleClass: 'blue-theme',command: (event) => {this.changeTheme('blue-dark')}},
+                {label: 'Green', icon: 'fa fa-fw fa-paint-brush', styleClass: 'green-theme', command: (event) => {this.changeTheme('green-dark')}},
+                {label: 'Cyan', icon: 'fa fa-fw fa-paint-brush', styleClass: 'cyan-theme', command: (event) => {this.changeTheme('cyan-dark')}},
+                {label: 'Purple', icon: 'fa fa-fw fa-paint-brush', styleClass: 'purple-theme', command: (event) => {this.changeTheme('purple-dark')}},
+                {label: 'Indigo', icon: 'fa fa-fw fa-paint-brush', styleClass: 'indigo-theme', command: (event) => {this.changeTheme('indigo-dark')}},
+                {label: 'Yellow', icon: 'fa fa-fw fa-paint-brush', styleClass: 'yellow-theme', command: (event) => {this.changeTheme('yellow-dark')}},
+                {label: 'Orange', icon: 'fa fa-fw fa-paint-brush', styleClass: 'orange-theme', command: (event) => {this.changeTheme('orange-dark')}},
+                {label: 'Pink', icon: 'fa fa-fw fa-paint-brush', styleClass: 'pink-theme', command: (event) => {this.changeTheme('pink-dark')}}
+
             ]
         },
         {
-            label: 'Themes', icon: 'fa fa-fw fa-paint-brush', badge: '5',
+            label: 'Light', icon: 'fa fa-fw fa-circle-o', badge: '8',
             items: [
-                {label: 'Blue', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('blue')}},
-                {label: 'Cyan', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('cyan')}},
-                {label: 'Indigo', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('indigo')}},
-                {label: 'Purple', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('purple')}},
-                {label: 'Teal', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('teal')}},
-                {label: 'Orange', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('orange')}},
-                {label: 'Deep Purple', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('deeppurple')}},
-                {label: 'Light Blue', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('lightblue')}},
-                {label: 'Green', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('green')}},
-                {label: 'Light Green', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('lightgreen')}},
-                {label: 'Lime', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('lime')}},
-                {label: 'Amber', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('amber')}},
-                {label: 'Brown', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('brown')}},
-                {label: 'Dark Grey', icon: 'fa fa-fw fa-paint-brush', command: (event) => {this.changeTheme('darkgrey')}},
+                {label: 'Blue', icon: 'fa fa-fw fa-paint-brush', styleClass: 'blue-theme',command: (event) => {this.changeTheme('blue-light')}},
+                {label: 'Green', icon: 'fa fa-fw fa-paint-brush', styleClass: 'green-theme', command: (event) => {this.changeTheme('green-light')}},
+                {label: 'Cyan', icon: 'fa fa-fw fa-paint-brush', styleClass: 'cyan-theme', command: (event) => {this.changeTheme('cyan-light')}},
+                {label: 'Purple', icon: 'fa fa-fw fa-paint-brush', styleClass: 'purple-theme', command: (event) => {this.changeTheme('purple-light')}},
+                {label: 'Indigo', icon: 'fa fa-fw fa-paint-brush', styleClass: 'indigo-theme', command: (event) => {this.changeTheme('indigo-light')}},
+                {label: 'Yellow', icon: 'fa fa-fw fa-paint-brush', styleClass: 'yellow-theme', command: (event) => {this.changeTheme('yellow-light')}},
+                {label: 'Orange', icon: 'fa fa-fw fa-paint-brush', styleClass: 'orange-theme', command: (event) => {this.changeTheme('orange-light')}},
+                {label: 'Pink', icon: 'fa fa-fw fa-paint-brush', styleClass: 'pink-theme', command: (event) => {this.changeTheme('pink-light')}}
+
             ]
         },
         {
             label: 'Components', icon: 'fa fa-fw fa-sitemap',
             items: [
-                {label: 'Sample Page', icon: 'fa fa-fw fa-columns', command: () => { window.location.hash="/sample"; }},
-                {label: 'Forms', icon: 'fa fa-fw fa-code', command: () => { window.location.hash="/forms"; }},
-                {label: 'Data', icon: 'fa fa-fw fa-table', command: () => { window.location.hash="/data"; }},
-                {label: 'Panels', icon: 'fa fa-fw fa-list-alt', command: () => { window.location.hash="/panels"; }},
-                {label: 'Overlays', icon: 'fa fa-fw fa-square', command: () => { window.location.hash="/overlays"; }},
-                {label: 'Menus', icon: 'fa fa-fw fa-minus-square-o', command: () => { window.location.hash="/menus"; }},
-                {label: 'Messages', icon: 'fa fa-fw fa-circle-o-notch', command: () => { window.location.hash="/messages"; }},
-                {label: 'Charts', icon: 'fa fa-fw fa-area-chart', command: () => { window.location.hash="/charts"; }},
-                {label: 'Misc', icon: 'fa fa-fw fa-user-secret', command: () => { window.location.hash="/misc"; }}
+                {label: 'Sample Page', icon: 'fa fa-fw fa-columns', command: () => { window.location = '#/sample'}},
+                {label: 'Forms', icon: 'fa fa-fw fa-code', command: () => { window.location = '#/forms'}},
+                {label: 'Data', icon: 'fa fa-fw fa-table', command: () => { window.location = "#/data"}},
+                {label: 'Panels', icon: 'fa fa-fw fa-list-alt', command: () => { window.location = "#/panels"}},
+                {label: 'Overlays', icon: 'fa fa-fw fa-square', command: () => { window.location = "#/overlays"}},
+                {label: 'Menus', icon: 'fa fa-fw fa-minus-square-o', command: () => { window.location = "#/menus"}},
+                {label: 'Messages', icon: 'fa fa-fw fa-circle-o-notch', command: () => { window.location = "#/messages"}},
+                {label: 'Charts', icon: 'fa fa-fw fa-area-chart', command: () => { window.location = "#/charts"}},
+                {label: 'Misc', icon: 'fa fa-fw fa-user-secret', command: () => { window.location = "#/misc"}}
             ]
         },
         {
-            label: 'Template Pages', icon: 'fa fa-fw fa-life-saver',
+            label: 'Pages', icon: 'fa fa-fw fa-life-saver',
             items: [
-                {label: 'Empty Page', icon: 'fa fa-fw fa-square-o', command: () => { window.location.hash="/empty"; }},
+                {label: 'Empty Page', icon: 'fa fa-fw fa-square-o', command: () => { window.location = "#/empty"}},
                 {label: 'Landing', icon: 'fa fa-fw fa-certificate', url: 'assets/pages/landing.html', target: '_blank'},
                 {label: 'Login', icon: 'fa fa-fw fa-sign-in', url: 'assets/pages/login.html', target: '_blank'},
                 {label: 'Error', icon: 'fa fa-fw fa-exclamation-circle', url: 'assets/pages/error.html', target: '_blank'},
@@ -272,134 +273,69 @@ export class Documentation extends Component {
                 }
             ]
         },
-        {label: 'Utils', icon: 'fa fa-fw fa-wrench', command: () => { window.location.hash="/utils"; }},
-        {label: 'Documentation', icon: 'fa fa-fw fa-book', command: () => { window.location.hash="/documentation"; }}
+        {label: 'Docs', icon: 'fa fa-fw fa-book', command: () => { window.location = "#/documentation"}}
     ];
 }
     
 `}
 </pre>
 
-
-                        <p>Only required dependencies are PrimeReact and PrimeIcons where optional dependencies exist to enable certain components in PrimeReact such as Google Maps.</p>
-
-                        <pre>
-{
-    `"primereact": "^1.6.0",     //required: PrimeReact components
-"primeicons": "^1.0.0",          //required: PrimeIcons
-"react-router-dom": "^4.2.2",    //optional: Router
-`
-}
-</pre>
-
-
-                        <h1>Bootstrap 3 and 4</h1>
-                        <p>Avalon offers bootstrap 3 and 4 styling options for both the theme and layout. Default one is bootstrap 4 and add "-v4" suffix to the files you use to enable V4 support such as layout-blue-v4.css for the layout and theme-blue-v4.css for the theme.
-                            Note that there is no dependency on Bootstrap since Avalon provides a theme on Bootstrap styling only without using Bootstrap directly. However it is
-                            perfectly compatible with Bootstrap as they share the same look and feel.
-                        </p>
-
                         <h1>Theme and Layout SASS</h1>
-                        <p>Avalon provides 30 PrimeReact themes out of the box, setup of a theme is simple as including the css of theme to your application. All themes are located inside are located inside assets/theme folder.</p>
+                        <p>Apollo provides 30 PrimeReact themes out of the box, setup of a theme is simple as including the css of theme to your application. All themes are located inside are located inside public/assets/theme folder.</p>
 
                         <ul>
-                            <li>theme-amber</li>
-                            <li>theme-amber-v4</li>
-                            <li>theme-blue</li>
-                            <li>theme-blue-v4</li>
-                            <li>theme-brown</li>
-                            <li>theme-brown-v4</li>
-                            <li>theme-cyan</li>
-                            <li>theme-cyan-v4</li>
-                            <li>theme-darkgrey</li>
-                            <li>theme-darkgrey-4</li>
-                            <li>theme-deeppurple</li>
-                            <li>theme-green</li>
-                            <li>theme-green-v4</li>
-                            <li>theme-indigo</li>
-                            <li>theme-indigo-v4</li>
-                            <li>theme-lightblue</li>
-                            <li>theme-lightblue-v4</li>
-                            <li>theme-lightgreen</li>
-                            <li>theme-lightgreen-v4</li>
-                            <li>theme-lime</li>
-                            <li>theme-lime-v4</li>
-                            <li>theme-orange</li>
-                            <li>theme-orange-v4</li>
-                            <li>theme-pink</li>
-                            <li>theme-pink-v4</li>
-                            <li>theme-purple</li>
-                            <li>theme-purple-v4</li>
-                            <li>theme-teal</li>
-                            <li>theme-teal-v4</li>
+                            <li>theme-blue-dark</li>
+                            <li>theme-blue-light</li>
+                            <li>theme-cyan-dark</li>
+                            <li>theme-cyan-light</li>
+                            <li>theme-green-dark</li>
+                            <li>theme-green-light</li>
+                            <li>theme-indigo-dark</li>
+                            <li>theme-indigo-light</li>
+                            <li>theme-orange-dark</li>
+                            <li>theme-orange-light</li>
+                            <li>theme-pink-dark</li>
+                            <li>theme-pink-light</li>
+                            <li>theme-purple-dark</li>
+                            <li>theme-purple-light</li>
+                            <li>theme-yellow-dark</li>
+                            <li>theme-yellow-light</li>
                         </ul>
 
                         <p>A custom theme can be developed by the following steps.</p>
                         <ul>
                             <li>Choose a custom theme name such as theme-myown.</li>
                             <li>Create a file named theme-myown.scss under <i>public/assets/theme folder</i>.</li>
-                            <li>Define the variables listed below and import the <i>../sass/theme/_theme.scss</i> or <i>../sass/theme-v4/_theme.scss</i> file depending on Bootstrap version.</li>
+                            <li>Define the variables listed below and import the <i>/sass/theme/_theme_light.scss</i> or <i>/sass/theme/_theme_dark.scss</i> file.</li>
                             <li>Build the scss to generate css</li>
                             <li>Include the generated theme.css in your application.</li>
                         </ul>
 
-                        <p>Here are the variables required to create a theme.</p>
+                        <p>Here are the variables required to create a light theme.</p>
 
-                        <strong>Bootstrap 3</strong>
-                        <pre>
+<pre>
 {
-    `$primaryColor:#337ab7;
+`
+$primaryColor:#39a3f4;
 $primaryTextColor:#ffffff;
-$inputFocusBorderColor:#66afe9;
-$highlightBgColor:#337ab7;
-$highlightTextColor:#ffffff;
-$headerBgColor:#f5f5f5;
-$headerHoverBgColor:#dcdcdc;
-$headerHoverBorderColor:#c4c4c4;
-$headerTextColor:#292B2C;
-$headerBorderColor:#dddddd;
-$headerIconColor:#999999;
-$headerIconHoverColor:#777777;
-$datableEvenRowBgColor:#f9f9f9;
-$datatableHoverBgColor:#f5f5f5;
 
-@import '../sass/theme/_theme';
+@import '../sass/theme/_theme_light.scss';  
 `
 }
 </pre>
 
-                        <strong>Bootstrap 4</strong>
+                        <p>If you are creating a dark theme, import the _theme_dark.scss instead;</p>
                         <pre>
 {
-    `$primaryColor:#007bff;
+`
+$primaryColor:#39a3f4;
 $primaryTextColor:#ffffff;
-$inputFocusBorderColor:#80bdff;
-$inputFocusBorderShadowColor:rgba(0,123,255,.25);
-$highlightBgColor:#007bff;
-$highlightTextColor:#ffffff;
-$headerBgColor:#f5f5f5;
-$headerHoverBgColor:#dcdcdc;
-$headerHoverBorderColor:#c4c4c4;
-$headerTextColor:#292B2C;
-$headerBorderColor:#dddddd;
-$headerIconColor:#999999;
-$headerIconHoverColor:#bd9090;
-$datableEvenRowBgColor:#f9f9f9;
-$datatableHoverBgColor:#f5f5f5;
-$buttonTextColor:#ffffff;
-$buttonBgColor:#007bff;
-$buttonBorderColor:#007bff;
-$buttonHoverBgColor:#0069d9;
-$buttonHoverBorderColor:#0062cc;
-$buttonActiveBgColor:#0062cc;
-$buttonActiveBorderColor:#005cbf;
-$buttonFocusBorderShadow:rgba(0,123,255,.5);
 
-@import '../sass/theme-v4/_theme';
+@import '../sass/theme/_theme_dark.scss';
 `
 }
 </pre>
-
+                        
                         <p> An example sass command to compile the css would be;</p>
 
                         <pre>
@@ -416,7 +352,7 @@ sass -w src/assets/ --sourcemap=none
                         <ul>
                             <li>Choose a layout name such as layout-myown.</li>
                             <li>Create an empty file named layout-myown.scss inside <i>assets/layout/css</i> folder.</li>
-                            <li>Define the variables listed below and import the <i>../sass/layout/_layout.scss</i> or <i>../sass/layout-v4/_layout.scss</i> file depending on the Bootstrap version.</li>
+                            <li>Define the variables listed below and import the <i>/sass/layout/_layout.scss</i> file.</li>
                             <li>Build the scss to generate css</li>
                             <li>Serve the css by importing it using a link tag or a bundler.</li>
                         </ul>
@@ -425,276 +361,206 @@ sass -w src/assets/ --sourcemap=none
 
                         <pre>
 {
-    `
-$topbarLeftGradientStartBgColor:#ff8f00;
-$topbarLeftGradientEndBgColor:#ffb300;
-$topbarRightGradientStartBgColor:#ff8f00;
-$topbarRightGradientEndBgColor:#ffb300;
-$topbarTextColor:#ffffff;
-$menuGradientStartBgColor:#ffffff;
-$menuGradientEndBgColor:#ffffff;
-$menuitemHoverBgColor:#e8e8e8;
-$menuitemActiveColor: #ff8f00;
-$menuitemActiveBgColor:#e8e8e8;
-$menuButtonBgColor:#ffffff;
-$menuButtonColor:#ff6f00;
-$badgeBgColor:#3eb839;
-$badgeColor:#ffffff;
-$darkMenuGradientStartBgColor:#363a41;
-$darkMenuGradientEndBgColor:#363a41;
-$darkMenuHoverBgColor:#4a4d54;
-$darkMenuMenuitemColor:#ffffff;
-$darkMenuMenuitemActiveColor:#ffe57f;
-$darkMenuMenuitemActiveBgColor:#282b30;
+`$primaryColor:#39a3f4;
+$primaryTextColor:#ffffff;
+$menuBgColor:#243447;
+$menuitemTextColor:#9fadb7;
+$submenuActiveBgColor:#151f2a;
+$menuItemHoverTextColor:#39a3f4;
+$menuItemActiveTextColor:#39a3f4;
 
-//Bootstrap V3
-@import '../../sass/layout/_layout';
+$bodyBgColor:#141d26;
+$textColor:#d8d8d8;
+$textSecondaryColor:#acacac;
+$placeholderColor:#6c6c6c;
+$dividerColor:#121213;
 
-//or
-
-//Bootstrap V4
-@import '../../sass/layout-v4/_layout';
+@import '../../sass/layout/_layout.scss';
 `
 }
 </pre>
 
                         <h1>Common SASS Variables</h1>
-                        <p>In case you'd like to customize common variables, the _common.scss and _common-v4.scss under sass variables folder is where the core variables (e.g. font size, paddings) for the layout are defined.</p>
+                        <p>In case you'd like to customize the shared variables, the _variables.scss files are where the options are defined for layout and theme.</p>
 
-                        <h3>sass/variables/_commons.scss</h3>
+                        <h3>sass/_variables.scss</h3>
                         <pre>
 {
-`
-$fontFamily:"Helvetica Neue",Helvetica,Arial,sans-serif;
+`$fontFamily:"Source Sans Pro",Arial,sans-serif;
 $fontSize:14px;
-$textColor:#212529;
-$textSecondaryColor:#777777;
-$borderRadius:4px;
-$dividerColor:#e5e5e5;
+$borderRadius:2px;
 $transitionDuration:.3s;
-$disabledBgColor:#eeeeee;
 
 /* Predefined Colors */
-$lightestGray:#f5f5f5;
-$lightGray:#cccccc;
-$gray:#999999;
-$darkGray:#777777;
-$white:#ffffff;
-
-$blue:#337ab7;
-$purple:#9189fd;
-$orange:#ffbf79;
-$lightBlue:#8dc8ff;
-$pink:#f790c8;
-
-$green:#3e9018;
-$red:#da2f31;
-$orange:#ffb200;
-$teal:#599597;
-$black:#000000;
-$yellow:#ffd644;
-
-$inputInvalidBorderColor:#b94a48;
-$inputInvalidBgColor:#ffffff;
+$blue:#39a3f4;
+$green:#6ebc3b;
+$purple:#7E57C2;
+$cyan:#26C6DA;
+$pink:#EC407A;
+$indigo:#5C6BC0;
+$orange:#f6a821;
+$yellow:#ffc800;
+$red:#EF5350;
+$secondary:#f4f4f4;
 `
 }
-</pre>
-
-                        <h3>sass/variables/_commons-v4.scss</h3>
+</pre> 
+                        <h3>sass/theme/_theme_light.scss</h3>
                         <pre>
 {
-`
-$fontFamily:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-$fontSize:14px;
-$textColor:#292B2C;
-$textSecondaryColor:#777777;
-$borderRadius:4px;
-$dividerColor:#e5e5e5;
-$transitionDuration:.3s;
-$disabledBgColor:#eeeeee;
+`@import '../variables';
 
-/* Predefined Colors */
-$lightestGray:#f5f5f5;
-$lightGray:#cccccc;
-$gray:#999999;
-$darkGray:#777777;
-$white:#ffffff;
+$textColor:#424242;
+$textSecondaryColor:#7a7a7a;
+$dividerColor:#dddddd;
 
-$blue:#007bff;
-$purple:#9189fd;
-$orange:#ffbf79;
-$lightBlue:#8dc8ff;
-$pink:#f790c8;
-$indigo:#6610f2;
-$green:#3e9018;
-$red:#da2f31;
-$orange:#ffb200;
-$teal:#599597;
-$black:#000000;
-$yellow:#ffd644;
-
-
-$inputInvalidBorderColor:#b94a48;
-$inputInvalidBgColor:#ffffff;
-`
-}
-</pre>
-
-                        <p>_variables.scss under layout and layout-v4 folder define the shared variables of the layout.</p>
-                        <pre>
-{
-`
-@import '../variables/_common';
-
-$menuHoverBgColor:#f4f4f4;
-$bodyBgColor:#EEF2F6;
-`
-}
-</pre>
-                        <p>Similarly _variables.scss files inside theme and theme-v4 folders contain the shared variables of the PrimeReact theme.</p>
-                        <pre>
-{
-`
-@import '../variables/common';
-
-/* Icons */
-$iconFontSize:14px;
-$iconWidth:16px;
-
-/* Error */
-$errorColor:#a94442;
-$disabledColor:#eeeeee;
-
-/*  Invalid Input */
-$errorBorderColor:#b94a48;
-
-/* Headers */
-$headerPadding:10px 15px;
+/* Header */
+$headerPadding:.429em .857em;
+$headerBgColor:#f5f5f5;
+$headerBorderColor:#d8d8d8;
+$headerTextColor:#424242;
+$headerHoverBgColor:#dcdcdc;
+$headerHoverTextColor:#424242;
+$headerIconColor:#424242;
+$headerIconHoverColor:$primaryColor;
 
 /* Contents */
-$contentPadding:15px;
-$contentBorderColor:#dddddd;
+$contentPadding:.429em .857em;
+$contentBorderColor:#d8d8d8;
 $contentBgColor:#ffffff;
-$contentLineHeight:1.43;
 
 /* Forms */
 $inputBgColor:#ffffff;
-$inputPadding:6px 12px;
+$inputPadding:.429em;
 $inputBorderColor:#cccccc;
-$inputHoverBorderColor:#cccccc;
-$inputTextColor:#495057;
-
-//groups
-$inputGroupBorderColor:#cccccc;
-$inputGroupBgColor:#ffffff;
-$inputGroupTextColor:$textColor;
-$inputGroupIconColor:$textSecondaryColor;
-$inputGroupAddonMinWidth:2*$fontSize;
-$checkboxWidth:20px;
-$checkboxHeight:20px;
+$inputHoverBorderColor:$primaryColor;
+$inputGroupAddonBgColor:#f5f5f5;
 
 /* Buttons */
-$buttonPadding: 0.429em 0.857em;
-$buttonIconOnlyPadding: 0.429em;
-$buttonTextColor:#ffffff;
-$toggleButtonBgColor:#ffffff;
-$toggleButtonBorderColor:#cccccc;
-$toggleButtonHoverBgColor:#e6e6e6;
-$toggleButtonHoverBorderColor:#adadad;
+$toggleButtonBgColor:#b6b7c2;
 
 /* List Items */
-$listPadding:6px 0;
-$listItemPadding:6px 20px;
-$listItemHoverBgColor:#f5f5f5;
-$listItemHoverTextColor:#292B2C;
+$listItemPadding:.429em .857em;
 
 /* Messages */
-$infoMessageBgColor:#d9edf7;
-$infoMessageBorderColor:#bce8f1;
-$infoMessageTextColor:#31708f;
-$warnMessageBgColor:#fcf8e3;
-$warnMessageBorderColor:#faebcc;
-$warnMessageTextColor:#8a6d3b;
-$errorMessageBgColor:#f2dede;
-$errorMessageBorderColor:#ebccd1;
-$errorMessageTextColor:#a94442;
-$fatalMessageBgColor:#999999;
-$fatalMessageBorderColor:#6b6b6b;
-$fatalMessageTextColor:#ffffff;
-$successMessageBgColor:#dff0d8;
-$successMessageBorderColor:#d6e9c6;
-$successMessageTextColor:#3c763d;
-
-/* Overlays */
-$overlayBorderColor:#cccccc;
+$infoMessageBgColor:#60b5f6;
+$infoMessageTextColor:#ffffff;
+$warnMessageBgColor:#FFC800;
+$warnMessageTextColor:#141d26;
+$errorMessageBgColor:#EF5350;
+$errorMessageTextColor:#ffffff;
+$successMessageBgColor:#79ab58;
+$successMessageTextColor:#ffffff;
 
 /* Data */
-$datatableCellBorderColor:#dddddd;
-$datatableCellPadding:8px;
-$paginatorBgColor:#ffffff;
+$datatableCellBorderColor:#d8d8d8;
+$datableEvenRowBgColor:#f9f9f9;
 
-/* Panel */
-$panelContentBorderColor:#DCE1E7;
+/* TabView */
+$tabHeaderPadding:.571em .857em;
 
+@import './_theme.scss';
+`
+}
+</pre>
+
+                        <h3>sass/theme/_theme_dark.scss</h3>
+                        <pre>
+{
+`@import '../variables';
+
+$textColor:#d8d8d8;
+$textSecondaryColor:#acacac;
+$dividerColor:#121213;
+
+/* Header */
+$headerPadding:.429em .857em;
+$headerBgColor:#1b3548;
+$headerBorderColor:#121213;
+$headerTextColor:#9fadb7;
+$headerHoverBgColor:#485d6c;
+$headerHoverTextColor:#ffffff;
+$headerIconColor:#9fadb7;
+$headerIconHoverColor:#ffffff;
+
+/* Contents */
+$contentPadding:.429em .857em;
+$contentBorderColor:#121213;
+$contentBgColor:#1c2937;
+
+/* Forms */
+$inputBgColor:#141e27;
+$inputPadding:.429em;
+$inputBorderColor:#121213;
+$inputHoverBorderColor:$primaryColor;
+$inputGroupAddonBgColor:#1b3548;
+
+/* Buttons */
+$toggleButtonBgColor:#323e4b;
+
+/* List Items */
+$listItemPadding:.429em .857em;
+
+/* Messages */
+$infoMessageBgColor:#60b5f6;
+$infoMessageTextColor:#ffffff;
+$warnMessageBgColor:#FFC800;
+$warnMessageTextColor:#141d26;
+$errorMessageBgColor:#EF5350;
+$errorMessageTextColor:#ffffff;
+$successMessageBgColor:#79ab58;
+$successMessageTextColor:#ffffff;
+
+/* Data */
+$datatableCellBorderColor:#121213;
+$datableEvenRowBgColor:#15222F;
+
+/* TabView */
+$tabHeaderPadding:.571em .857em;
+
+@import './_theme.scss';
 `
 }
 </pre>
 
                         <p>In the demo app layout and theme css files are defined using link tags in index.html so the demo can switch them on the fly by changing the path however if this is not a requirement, you may also import them in App.js so that webpack adds them to the bundle.</p>
 
-                        <h1>Menu Item Badges</h1>
-                        <p>Badges are numerical indicators associated with a link.
-                            The badge property is the value of the badge and badgeStyleClass is style class of the badge.</p>
-                        <pre>
-label: 'Components', icon: 'list', badge: '2', badgeClassName: 'red-badge'
-</pre>
-                        <p>Default badge uses the accent color of avalon layout and there are three more alternative colors.</p>
-                        <ul>
-                            <li>red-badge</li>
-                            <li>purple-badge</li>
-                            <li>teal-badge</li>
-                        </ul>
-
                         <h1>Menu Modes</h1>
-                        <p>Menu has 4 modes, static, overlay, slim and horizontal. Main layout container element in App.js is used to define which mode to use by adding specific classes. List
-                            below indicates the style classes for each mode.</p>
-
+                        <p>Menu has 4 modes, static, overlay, slim and horizontal. Layout container element in app.component.html is used to define which mode to use by adding specific classes. List
+                        below indicates the style classes for each mode.</p>
+                        
                         <ul>
-                            <li>Static: "layout-wrapper menu-layout-static"</li>
-                            <li>Overlay: "layout-wrapper menu-layout-overlay"</li>
-                            <li>Slim: "layout-wrapper menu-layout-static menu-layout-slim"</li>
-                            <li>Horizontal: "layout-wrapper menu-layout-static menu-layout-horizontal"</li>
+                            <li>Static: "layout-wrapper layout-static"</li>
+                            <li>Overlay: "layout-wrapper layout-overlay"</li>
+                            <li>Popup: "layout-wrapper layout-popup"</li>
+                            <li>Horizontal: "layout-wrapper layout-horizontal"</li>
                         </ul>
 
                         <p>For example to create a horizontal menu, the div element should be in following form;</p>
-                        <pre>
-&lt;div className="layout-wrapper menu-layout-static menu-layout-horizontal"&gt;
+<pre>
+&lt;div class="layout-wrapper layout-horizontal"&gt;
 </pre>
 
                         <p>It is also possible to leave the choice to the user by keeping the preference at a component and using an expression to bind it so that user can switch between modes. Sample
                             application has an example implementation of such use case. Refer to App.js for an example.</p>
 
-                        <h1>Dark Menu</h1>
-                        <p>Default color scheme of menu is light and alternative dark mode can be activated by adding <i>layout-menu-dark</i> style class to the menu container.</p>
-
-                        <pre>
-&lt;div className="layout-menu-container layout-menu-dark"&gt;
-</pre>
-
-                        <h1>Profile Modes</h1>
-                        <p>There are two possible locations for the user profile menu, first option is inline located inside the main menu and second option is the topbar menu. For inline mode,
-                            profile content should be placed above the menu and for inline mode content goes in topbar-items list. The sample demo application provides examples for
-                            both cases.</p>
-
-                        <h1>Grid CSS</h1>
-                        <p>Avalon uses PrimeReact Grid CSS (p-col-*) throughout the samples, although any grid library can be used we suggest using Grid CSS as your layout framework as it is well tested and supported by PrimeReact. Grid CSS is
-                            available inside primereact.min.css.</p>
+                        <h1>PrimeFlex Grid System</h1>
+                        <p>Apollo uses PrimeFlex Grid System throughout the samples, although any Grid library can be used we suggest using PrimeFlex as your grid system as it is well tested and supported by PrimeReact. PrimeFlex is
+                        available at npm and defined at package.json of Apollo so that it gets installed by default.</p> 
 
                         <h1>Customizing Styles</h1>
-                        <p>It is suggested to write your customizations in <i>App.css</i> file instead of adding them to the
-                            scss files under sass folders to avoid maintenance issues after an update.</p>
+                        <p>It is suggested to write your customizations in <i>sass/_layout_styles.scss</i> and <i>sass/_theme_styles.scss </i> files for seamless updates
+                        as these files are empty by default and never updated.</p>
                     
                         <h1>Migration Guide</h1>
+                        <p>1.x to 2.0.0-beta.1</p>
+                        <p>Brings support to PrimeReact 2.x</p>
+                        <ul>
+                            <li>Install PrimeFlex from npm.</li>
+                            <li>Update layout css files</li>
+                            <li>Update theme css files</li>
+                        </ul>
+                        
                         <p>1.6.0 to 1.6.1</p>
                         <p>Brings support for PrimeReact 1.6.x.</p>
 
