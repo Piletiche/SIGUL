@@ -448,7 +448,7 @@ body {
 
                 ul {
                     margin: 10px 0 0 0;
-                    padding: 0 0 0 12px;
+                    padding: 0;
                     list-style: none;
                     color: $menuitemTextColor;
                     display: inline-block;
@@ -458,6 +458,7 @@ body {
                         vertical-align: middle;
                         color: $menuitemTextColor;
                         text-transform: capitalize;
+                        padding: 0 2px;
 
                         a {
                             color: $menuitemTextColor;
