@@ -79,6 +79,7 @@ body {
         .p-paginator {
             padding: $headerPadding;
         }
+
         .p-datatable-thead > tr > th {
             padding: $headerPadding;
             border: 1px solid $datatableCellBorderColor;
@@ -94,28 +95,24 @@ body {
         }
 
         .p-sortable-column {
-            a, a:hover {
-                color: $textSecondaryColor;
+            .p-sortable-column-icon {
+                color: inherit;
                 margin-left: .125em;
             }
 
             &:not(.p-highlight):hover {
                 @include list-item-hover();
 
-                a, a:hover {
-                    background-color: darken($primaryColor, 15%);
-                    color: $primaryTextColor;
+                .p-sortable-column-icon {
+                    color: inherit;
                 }
             }
 
             &.p-highlight {
                 @include highlight();
-
-                a, a:hover {
-                    @include highlight();
-                }
             }
         }
+
         .p-editable-column {
             input {
                 font-size: $fontSize;
