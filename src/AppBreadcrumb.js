@@ -10,13 +10,12 @@ export class AppBreadcrumb extends Component {
     render() {
         const { location } = this.props;
         const paths = location.pathname.split('/');
-
         return (
             <div className="layout-breadcrumb">
                 <ul>
                     <li><a><i className="fa fa-home"></i></a></li>
                     {
-                        paths.map((path, index) => <li key={index}>{path === '' ? '/' : path}</li>)
+                        location.pathname === '/' ?  <li>/</li> : paths.map((path, index) => <li key={index}>{path === '' ? '/' : path}</li>)
                     }
                 </ul>
     
