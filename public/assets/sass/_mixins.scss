@@ -95,7 +95,7 @@
 
 @mixin list-item-hover {
     background-color: lighten($primaryColor, 25%);
-    color: #424242;
+    color: $listItemHoverTextColor;
 }
 
 @mixin highlight {

@@ -441,6 +441,7 @@ $toggleButtonBgColor:#b6b7c2;
 
 /* List Items */
 $listItemPadding:.429em .857em;
+$listItemHoverTextColor:#424242;
 
 /* Messages */
 $infoMessageBgColor:#60b5f6;
@@ -500,6 +501,7 @@ $toggleButtonBgColor:#323e4b;
 
 /* List Items */
 $listItemPadding:.429em .857em;
+$listItemHoverTextColor:#424242;
 
 /* Messages */
 $infoMessageBgColor:#60b5f6;
