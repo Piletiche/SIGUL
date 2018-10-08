@@ -27,7 +27,7 @@ body {
         background-color: $primaryColor;
         border: 1px solid transparent;
         font-size: $fontSize;
-        @include transition(background-color $transitionDuration);
+        @include transition(background-color $transitionDuration, box-shadow $transitionDuration);
 
         &:enabled:hover {
             background-color: darken($primaryColor,5%);
@@ -35,8 +35,7 @@ body {
 
         &:enabled:focus {
             outline: 0 none;
-            background-color: lighten($primaryColor,5%);
-            color: $primaryTextColor;
+            @include shadow(0 0 14px 0 $primaryColor);
         }
 
         &:enabled:active  {
@@ -67,151 +66,6 @@ body {
                 padding: .385em;
             }
         }
-
-        &.blue-btn {
-            background-color: $blue;
-
-            &:enabled:hover {
-                background-color: darken($blue,6%);
-            }
-
-            &:enabled:focus {
-                background-color: lighten($blue,6%);
-            }
-
-            &:enabled:active {
-                background-color: darken($blue,11%);
-            }
-        }
-
-        &.purple-btn {
-            background-color: $purple;
-
-            &:enabled:hover {
-                background-color: darken($purple,5%);
-            }
-
-            &:enabled:focus {
-                background-color: lighten($purple,7%);
-            }
-
-            &:enabled:active {
-                background-color: darken($purple,10%);
-            }
-        }
-
-        &.orange-btn {
-            background-color: $orange;
-
-            &:enabled:hover {
-                background-color: darken($orange,6%);
-            }
-
-            &:enabled:focus {
-                background-color: lighten($orange,5%);
-            }
-
-            &:enabled:active {
-                background-color: darken($orange,10%);
-            }
-        }
-
-        &.pink-btn {
-            background-color: $pink;
-
-            &:enabled:hover {
-                background-color: darken($pink,5%);
-            }
-
-            &:enabled:focus {
-                background-color: lighten($pink,5%);
-            }
-
-            &:enabled:active {
-                background-color: darken($pink,10%);
-            }
-        }
-
-        &.green-btn {
-            background-color: $green;
-
-            &:enabled:hover {
-                background-color: darken($green,5%);
-            }
-
-            &:enabled:focus {
-                background-color: lighten($green,5%);
-            }
-
-            &:enabled:active {
-                background-color: darken($green,10%);
-            }
-        }
-
-        &.red-btn {
-            background-color: $red;
-
-            &:enabled:hover {
-                background-color: darken($red,5%);
-            }
-
-            &:enabled:focus {
-                background-color: lighten($red,5%);
-            }
-
-            &:enabled:active {
-                background-color: darken($red,11%);
-            }
-        }
-
-        &.yellow-btn {
-            background-color: $yellow;
-            color: $textColor;
-
-            &:enabled:hover {
-                background-color: darken($yellow,4%);
-            }
-
-            &:enabled:focus {
-                background-color: lighten($yellow,4%);
-            }
-
-            &:enabled:active {
-                background-color: darken($yellow,8%);
-            }
-        }
-
-        &.cyan-btn {
-            background-color: $cyan;
-
-            &:enabled:hover {
-                background-color: darken($cyan,5%);
-            }
-
-            &:enabled:focus {
-                background-color: lighten($cyan,5%);
-            }
-
-            &:enabled:active {
-                background-color: darken($cyan,10%);
-            }
-        }
-
-        &.indigo-btn {
-            background-color: $indigo;
-
-            &:enabled:hover {
-                background-color: darken($indigo,6%);
-            }
-
-            &:enabled:focus {
-                background-color: lighten($indigo,6%);
-            }
-
-            &:enabled:active {
-                background-color: darken($indigo,12%);
-            }
-        }
     }
 
 
@@ -229,8 +83,6 @@ body {
         &:enabled:focus {
             border-color: $secondary;
             outline: 0 none;
-            background-color: lighten($secondary,2%);
-            color: $textColor;
         }
 
         &:enabled:active {
@@ -249,7 +101,7 @@ body {
 
         &:enabled:focus {
             outline: 0 none;
-            background-color: lighten($blue,6%);
+            @include shadow(0 0 14px 0 $blue);
         }
 
         &:enabled:active {
@@ -266,7 +118,7 @@ body {
 
         &:enabled:focus {
             outline: 0 none;
-            background-color: lighten($green,5%);
+            @include shadow(0 0 14px 0 $green);
         }
 
         &:enabled:active {
@@ -283,7 +135,7 @@ body {
 
         &:enabled:focus {
             outline: 0 none;
-            background-color: lighten($orange,5%);
+            @include shadow(0 0 14px 0 $orange);
         }
 
         &:enabled:active {
@@ -300,7 +152,7 @@ body {
 
         &:enabled:focus {
             outline: 0 none;
-            background-color: lighten($red,5%);
+            @include shadow(0 0 14px 0 $red);
         }
 
         &:enabled:active {
@@ -340,10 +192,12 @@ body {
             &:not(.p-disabled):not(.p-highlight):hover {
                 border: 1px solid $inputHoverBorderColor;
             }
+
             &.p-focus {
               color: $primaryColor;
               @include focused-input();
             }
+            
             &.p-highlight {
                 border: 1px solid $primaryColor;
                 background-color: $primaryColor;
