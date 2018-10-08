@@ -402,6 +402,8 @@ $orange:#f6a821;
 $yellow:#ffc800;
 $red:#EF5350;
 $secondary:#f4f4f4;
+$secondaryAccent:#424242;
+
 `
 }
 </pre> 

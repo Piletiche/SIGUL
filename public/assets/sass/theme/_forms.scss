@@ -72,12 +72,11 @@ body {
     .p-button.p-button-secondary, .p-buttonset.p-button-secondary > .p-button  {
         background-color: $secondary;
         border-color: $secondary;
-        color: $textColor;
+        color: $secondaryAccent;
 
         &:enabled:hover {
             border-color: darken($secondary,5%);
             background-color: darken($secondary,5%);
-            color: $textColor;
         }
 
         &:enabled:focus {
@@ -88,7 +87,6 @@ body {
         &:enabled:active {
             border-color: darken($secondary,10%);
             background-color: darken($secondary,10%);
-            color: $textColor;
         }
     }
 
@@ -197,7 +195,7 @@ body {
               color: $primaryColor;
               @include focused-input();
             }
-            
+
             &.p-highlight {
                 border: 1px solid $primaryColor;
                 background-color: $primaryColor;
