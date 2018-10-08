@@ -9,12 +9,14 @@
 .landing-wrapper {
     #menu-button {
         display: none;
-        font-size: 28px;
         float: right;
         text-decoration: none;
         color: $primaryTextColor;
         @include transition(color $transitionDuration);
-        margin-top: -5px;
+
+        img {
+            width: 32px;
+        }
     }
 
     .landing-header {

@@ -24,7 +24,7 @@
                 <img src="../layout/images/logo-white.png" alt="apollo-layout" />
 
                 <a id="menu-button" href="#">
-                    <span class="fa fa-bars"></span>
+                        <img src="../layout/images/landing/icon-menu.svg" alt="Menu"/>
                 </a>
                 <ul id="menu">
                     <li><a href="#"><i class="menu-icon fa fa-home"></i>Home</a></li>
@@ -194,35 +194,54 @@
     </div>
 
         <script>
-            var $this = this;
-            this.landingNav = $('#landing-nav');
-            this.landingMenuButton = $('#landing-menubar-button');
+            ApolloLanding = {
+                addClass: function(element, className) {
+                    if (element.classList)
+                        element.classList.add(className);
+                    else
+                        element.className += ' ' + className;
+                },
+    
+                removeClass: function(element, className) {
+                    if (element.classList)
+                        element.classList.remove(className);
+                    else
+                        element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+                },
 
-            this.landingMenuButton.on('click', function(e) {
-              $this.toggleMenu();
-              e.preventDefault();
+                hasClass: function(element, className) {
+                    if (element.classList)
+                        return element.classList.contains(className);
+                    else
+                        return new RegExp('(^| )' + className + '( |$)', 'gi').test(element.className);
+                },
+
+                hideMenu: function() {
+                    this.removeClass(document.getElementById('menu'), 'overlay-menu');
+                },
+
+                showMenu: function() {
+                    this.addClass(document.getElementById('menu'), 'overlay-menu');
+                }
+            };
+
+            document.getElementById('menu-button').addEventListener('click', function(e) {
+                var menu = document.getElementById('menu');
+
+                if(ApolloLanding.hasClass(menu, 'overlay-menu'))
+                    ApolloLanding.hideMenu();
+                else
+                    ApolloLanding.showMenu();
+
+                e.preventDefault();
             });
 
-            function toggleMenu() {
-              if(this.landingNav.hasClass('landing-mobile-menu'))
-                this.landingNav.removeClass('landing-mobile-menu');
-              else
-                $this.landingNav.addClass('landing-mobile-menu');
+            var menuLinks = document.querySelectorAll('#menu a');
+            for (i = 0; i < menuLinks.length; i++) {
+                menuLinks[i].addEventListener('click', function(e) {
+                    ApolloLanding.hideMenu();
+                });
             }
-
-            /* Scroll Animate */
-            $('a[href*="#"]').click(function(event) {
-              $this.toggleMenu(); // When scrolling close the menu.
-
-              var target = $(this.hash);
-              var top = target.length ? target.offset().top - 80 : 0;
-
-              $('html, body').animate({
-                scrollTop: top
-              }, 500);
-
-              event.preventDefault();
-            });
         </script>
     </body>
 </html>
