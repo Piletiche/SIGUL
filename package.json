@@ -1,32 +1,39 @@
 {
   "name": "apollo",
-  "version": "2.0.0-beta.2-SNAPSHOT",
+  "version": "3.0.0-SNAPSHOT",
   "homepage": "/apollo-react",
   "private": true,
-  "devDependencies": {
-    "react-scripts": "1.0.11"
-  },
   "dependencies": {
     "font-awesome": "^4.7.0",
     "axios": "^0.15.3",
     "babel-polyfill": "^6.26.0",
     "chart.js": "^2.4.0",
     "classnames": "^2.2.5",
-    "fullcalendar": "4.0.0-alpha",
+    "fullcalendar": "4.0.0-alpha.2",
     "moment": "^2.17.1",
-    "primereact": "2.0.0-beta.9",
+    "primereact": "3.0.0",
     "primeflex": "1.0.0-rc.1",
-    "primeicons": "1.0.0-beta.10",
+    "primeicons": "1.0.0",
     "quill": "^1.3.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
     "react-transition-group": "^2.2.1",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "2.1.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
-  }
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

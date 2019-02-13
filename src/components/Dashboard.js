@@ -11,7 +11,7 @@ import {Column} from 'primereact/components/column/Column';
 import {Chart} from 'primereact/chart';
 import {ProgressBar} from 'primereact/progressbar';
 import {Menu} from 'primereact/menu';
-import {Schedule} from 'primereact/schedule';
+import {FullCalendar} from 'primereact/fullcalendar';
 
 export class Dashboard extends Component {
 
@@ -20,7 +20,15 @@ export class Dashboard extends Component {
         this.state = {
             tasks: [],
             city: null,
-            selectedCar: null
+            selectedCar: null,
+			fullcalendarOptions: {
+				defaultDate: '2017-02-01',
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				}
+			},
         };
         this.onTaskChange = this.onTaskChange.bind(this);
         this.onCityChange = this.onCityChange.bind(this);
@@ -53,12 +61,6 @@ export class Dashboard extends Component {
             {label:'Istanbul', value:{id:4, name: 'Istanbul', code: 'IST'}},
             {label:'Paris', value:{id:5, name: 'Paris', code: 'PRS'}}
         ];
-
-        let scheduleHeader = {
-			left: 'prev,next today',
-			center: 'title',
-			right: 'month,agendaWeek,agendaDay'
-		};
 
         let events = [
 			{
@@ -605,7 +607,7 @@ export class Dashboard extends Component {
 
             <div className="p-col-12 p-md-8">
                 <Panel header="Calendar" style={{height: '100%'}}>
-                    <Schedule events={events} header={scheduleHeader} defaultDate="2017-02-01" eventLimit={4}></Schedule>
+					<FullCalendar events={events} options={this.state.fullcalendarOptions}></FullCalendar>
                 </Panel>
             </div>
         </div>
