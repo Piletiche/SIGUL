@@ -28,7 +28,7 @@ body {
         }
     }
 
-    .p-overlay {
+    .p-component-overlay {
         background-color: $textColor;
         @include opacity(.7);
     }

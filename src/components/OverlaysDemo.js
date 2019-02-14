@@ -65,7 +65,7 @@ export class OverlaysDemo extends Component {
                     </div>
                     <div className="card">
                         <h1>Dialog</h1>
-                        <Dialog header="Godfather I" visible={this.state.display} modal={true} width="400px" footer={dialogFooter} onHide={() => this.setState({display:false})}>
+                        <Dialog header="Godfather I" visible={this.state.display} modal={true} style={{width:'50vw'}} footer={dialogFooter} onHide={() => this.setState({display:false})}>
                             <p>The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
                                 His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
                                 Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family,

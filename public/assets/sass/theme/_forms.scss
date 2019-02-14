@@ -669,6 +669,8 @@ body {
         }
 
         .p-multiselect-items {
+            padding: 0;
+
             .p-multiselect-item {
                 padding: $listItemPadding;
 
@@ -1129,14 +1131,14 @@ body {
 
             table {
                 td:not(.p-disabled) {
-                    a:not(.p-highlight):not(.p-highlight):hover {
+                    span:not(.p-highlight):not(.p-highlight):hover {
                        @include list-item-hover();
                     }
                 }
             }
 
             .p-monthpicker {
-                a.p-monthpicker-month:not(.p-highlight):hover {
+                .p-monthpicker-month:not(.p-highlight):hover {
                     @include list-item-hover();
                 }
             }
@@ -1152,15 +1154,29 @@ body {
             @include border-radius(0);
 
             .p-datepicker-prev {
+                font-family: $fontFamily;
+                font-size: $fontSize;
                 cursor: pointer;
                 color: $headerIconColor;
                 @include transition(color $transitionDuration);
             }
 
             .p-datepicker-next {
+                font-family: $fontFamily;
+                font-size: $fontSize;
                 cursor: pointer;
                 color: $headerIconColor;
                 @include transition(color $transitionDuration);
+            }
+
+            .p-datepicker-title {
+                margin: 0;
+                padding: 0;
+
+                select {
+                    margin-top: -.35em;
+                    margin-bottom: 0;
+                }
             }
         }
 
@@ -1170,7 +1186,7 @@ body {
             td {
                 padding: 2px;
 
-                a,span {
+                > span {
                     text-align: center;
                     color: $textColor;
                     padding: .5em;
@@ -1187,20 +1203,30 @@ body {
                 }
 
                 &.p-datepicker-today {
-                    a {
+                    > span {
                         background-color: $dividerColor;
                         color: $textColor;
+
+                        &.p-highlight {
+                            color: $primaryTextColor;
+                            background-color: $primaryColor;
+                        }
                     }
                 }
             }
+        }
+
+        .p-datepicker-buttonbar {
+            border-top: 1px solid $headerBorderColor;
         }
 
         .p-timepicker {
             border: 0 none;
             border-top: 1px solid $headerBorderColor;
 
-            a {
+            button {
                 color: $headerTextColor;
+                margin: auto;
 
                 &:hover {
                     color: $primaryColor;

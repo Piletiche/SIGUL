@@ -201,7 +201,7 @@ export class FormsDemo extends Component {
 
                     <div className="card card-w-title">
                         <h1>MultiSelect</h1>
-                        <MultiSelect value={this.state.cars} options={this.state.carOptions} onChange={event => this.setState({cars: event.value})} filter={true}/>
+                        <MultiSelect placeholder="Choose" value={this.state.cars} options={this.state.carOptions} onChange={event => this.setState({cars: event.value})} filter={true}/>
                     </div>
 
                     <div className="card card-w-title">
