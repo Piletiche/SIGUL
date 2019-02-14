@@ -13,22 +13,22 @@ export class AppBreadcrumb extends Component {
         return (
             <div className="layout-breadcrumb">
                 <ul>
-                    <li><a><i className="fa fa-home"></i></a></li>
+                    <li><button className="p-link"><i className="fa fa-home"></i></button></li>
                     {
                         location.pathname === '/' ?  <li>/</li> : paths.map((path, index) => <li key={index}>{path === '' ? '/' : path}</li>)
                     }
                 </ul>
     
                 <div className="layout-breadcrumb-options">
-                    <a title="Backup">
+                    <button className="p-link" title="Backup">
                         <i className="fa fa-cloud-upload"></i>
-                    </a>
-                    <a title="Bookmark">
+                    </button>
+                    <button className="p-link" title="Bookmark">
                         <i className="fa fa-bookmark"></i>
-                    </a>
-                    <a title="Logout">
+                    </button>
+                    <button className="p-link" title="Logout">
                         <i className="fa fa-sign-out"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         );

@@ -460,7 +460,9 @@ body {
                         text-transform: capitalize;
                         padding: 0 2px;
 
-                        a {
+                        button {
+                            font-family: $fontFamily;
+							font-size: 1.25em;
                             color: $menuitemTextColor;
                         }
                     }
@@ -472,7 +474,8 @@ body {
                     height: 100%;
                     cursor: pointer;
 
-                    a {
+                    button {
+                        font-family: $fontFamily;
                         color: $textSecondaryColor;
                         display: inline-block;
                         width: 42px;
