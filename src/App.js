@@ -55,10 +55,6 @@ class App extends Component {
 
     onMenuClick(event) {
         this.menuClick = true;
-
-        if(!this.isHorizontal()) {
-            setTimeout(() => {this.layoutMenuScroller.moveBar(); }, 500);
-        }
     }
 
     onMenuButtonClick(event) {
@@ -115,8 +111,6 @@ class App extends Component {
         this.setState({
             menuActive: !this.state.menuActive
         });
-
-        event.originalEvent.preventDefault();
     }
 
     onDocumentClick(event) {
@@ -207,7 +201,7 @@ class App extends Component {
 
     createMenu() {
         this.menu = [
-            {label: 'Dashboard', icon: 'fa fa-fw fa-dashboard', command: () => { window.location = '#/'}},
+            {label: 'Dashboard', icon: 'fa fa-fw fa-dashboard', to:'/'},
             {
                 label: 'Menu', icon: 'fa fa-fw fa-bars' ,
                 items: [
@@ -248,26 +242,26 @@ class App extends Component {
             {
                 label: 'Components', icon: 'fa fa-fw fa-sitemap',
                 items: [
-                    {label: 'Sample Page', icon: 'fa fa-fw fa-columns', command: () => { window.location = '#/sample'}},
-                    {label: 'Forms', icon: 'fa fa-fw fa-code', command: () => { window.location = '#/forms'}},
-                    {label: 'Data', icon: 'fa fa-fw fa-table', command: () => { window.location = "#/data"}},
-                    {label: 'Panels', icon: 'fa fa-fw fa-list-alt', command: () => { window.location = "#/panels"}},
-                    {label: 'Overlays', icon: 'fa fa-fw fa-square', command: () => { window.location = "#/overlays"}},
-                    {label: 'Menus', icon: 'fa fa-fw fa-minus-square-o', command: () => { window.location = "#/menus"}},
-                    {label: 'Messages', icon: 'fa fa-fw fa-circle-o-notch', command: () => { window.location = "#/messages"}},
-                    {label: 'Charts', icon: 'fa fa-fw fa-area-chart', command: () => { window.location = "#/charts"}},
-                    {label: 'Misc', icon: 'fa fa-fw fa-user-secret', command: () => { window.location = "#/misc"}}
+                    {label: 'Sample Page', icon: 'fa fa-fw fa-columns', to: '/sample'},
+                    {label: 'Forms', icon: 'fa fa-fw fa-code', to: '/forms'},
+                    {label: 'Data', icon: 'fa fa-fw fa-table', to: '/data'},
+                    {label: 'Panels', icon: 'fa fa-fw fa-list-alt', to: '/panels'},
+                    {label: 'Overlays', icon: 'fa fa-fw fa-square', to: '/overlays'},
+                    {label: 'Menus', icon: 'fa fa-fw fa-minus-square-o', to: '/menus'},
+                    {label: 'Messages', icon: 'fa fa-fw fa-circle-o-notch', to: '/messages'},
+                    {label: 'Charts', icon: 'fa fa-fw fa-area-chart', to: '/charts'},
+                    {label: 'Misc', icon: 'fa fa-fw fa-user-secret', to: '/misc'}
                 ]
             },
             {
                 label: 'Pages', icon: 'fa fa-fw fa-life-saver',
                 items: [
-                    {label: 'Empty Page', icon: 'fa fa-fw fa-square-o', command: () => { window.location = "#/empty"}},
+                    {label: 'Empty Page', icon: 'fa fa-fw fa-square-o', to: '/empty'},
                     {label: 'Landing', icon: 'fa fa-fw fa-certificate', url: 'assets/pages/landing.html', target: '_blank'},
-                    {label: 'Login', icon: 'fa fa-fw fa-sign-in', url: 'assets/pages/login.html', target: '_blank'},
-                    {label: 'Error', icon: 'fa fa-fw fa-exclamation-circle', url: 'assets/pages/error.html', target: '_blank'},
-                    {label: 'Not Found', icon: 'fa fa-fw fa-times', url: 'assets/pages/notfound.html', target: '_blank'},
-                    {label: 'Access Denied', icon: 'fa fa-fw fa-exclamation-triangle', url: 'assets/pages/access.html', target: '_blank'}
+                    {label: 'Login', icon: 'fa fa-fw fa-sign-in', to: '/login'},
+                    {label: 'Error', icon: 'fa fa-fw fa-exclamation-circle', to: '/error'},
+                    {label: 'Not Found', icon: 'fa fa-fw fa-times', to: '/notfound'},
+                    {label: 'Access Denied', icon: 'fa fa-fw fa-exclamation-triangle', to: '/access'}
                 ]
             },
             {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {NavLink} from 'react-router-dom'
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -48,11 +49,6 @@ class AppSubmenu extends Component {
             item.command({originalEvent: event, item: item});
         }
 
-        //prevent hash change
-        if(item.items || !item.url) {
-            event.preventDefault();
-        }
-
         if(index === this.state.activeIndex)
             this.setState({activeIndex: null});    
         else
@@ -81,13 +77,45 @@ class AppSubmenu extends Component {
     isHorizontalOrSlim() {
         return (this.props.layoutMode === 'horizontal' || this.props.layoutMode === 'slim');
     }
+
+	renderLinkContent(item) {
+		let submenuIcon = item.items && <i className="fa fa-fw fa-angle-down layout-menuitem-toggler"></i>;
+		let badge = item.badge && <span className="menuitem-badge">{item.badge}</span>;
+
+		return (
+			<React.Fragment>
+				<i className={item.icon}></i>
+				<span>{item.label}</span>
+				{submenuIcon}
+				{badge}
+			</React.Fragment>
+		);
+	}
+
+	renderLink(item, i) {
+		let content = this.renderLinkContent(item);
+
+		if (item.to) {
+			return (
+				<NavLink activeClassName="active-menuitem-routerlink" to={item.to} onClick={(e) => this.onMenuItemClick(e, item, i)} exact
+						 target={item.target} onMouseEnter={(e) => this.onMenuItemMouseEnter(i)} className={item.styleClass}>{content}</NavLink>
+			)
+		}
+		else {
+			return (
+				<a href={item.url} onClick={(e) => this.onMenuItemClick(e, item, i)} target={item.target}
+				   onMouseEnter={(e) => this.onMenuItemMouseEnter(i)} className={item.styleClass}>
+					{content}
+				</a>
+			);
+
+		}
+	}
     
     render() {
         var items = this.props.items && this.props.items.map((item, i) => {
             let active = this.state.activeIndex === i;
             let styleClass = classNames(item.badgeStyleClass, {'active-menuitem': active});
-            let badge = item.badge && <span className="menuitem-badge">{item.badge}</span>;
-            let submenuIcon = item.items && <i className="fa fa-fw fa-angle-down layout-menuitem-toggler"></i>;
             let tooltip = this.props.root && <div className="layout-menu-tooltip">
                                                 <div className="layout-menu-tooltip-arrow"></div>
                                                 <div className="layout-menu-tooltip-text">{item.label}</div>
@@ -95,13 +123,7 @@ class AppSubmenu extends Component {
 
             return <li className={styleClass} key={i}>
                         {item.items && this.props.root===true && <div className='arrow'></div>}
-                        <a href={item.url} onClick={(e) => this.onMenuItemClick(e, item, i)} target={item.target}
-                            onMouseEnter={(e) => this.onMenuItemMouseEnter(i)} className={item.styleClass}>
-                            <i className={item.icon}></i>
-                            <span>{item.label}</span>
-                            {submenuIcon}
-                            {badge}
-                        </a>
+                        {this.renderLink(item, i)}
                         {tooltip}
                         <AppSubmenu items={item.items} onMenuItemClick={this.props.onMenuItemClick} layoutMode={this.props.layoutMode} 
                                     menuActive={this.props.menuActive} />
