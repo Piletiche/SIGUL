@@ -31,7 +31,7 @@ export class DataDemo extends Component {
             selectedFile:null,
             selectedFiles:null,
             documents:[],
-            documentsSelection:[],
+			documentsSelection:[],
             fullcalendarEvents:[],
 			fullcalendarOptions: {
 				defaultDate: '2016-01-12',
@@ -94,7 +94,7 @@ export class DataDemo extends Component {
         this.nodeService.getTreeNodes(this).then(nodes => this.setState({treeData1: nodes}));
         this.nodeService.getTreeNodes(this).then(nodes => this.setState({treeData2: nodes}));
         this.carService.getCarsLarge().then(data => this.setState({dataViewValue: data}));
-        this.nodeService.getFilesystem(this).then(files => this.setState({documents: files}));
+        this.nodeService.getTreeTableNodes(this).then(files => this.setState({documents: files}));
         this.carService.getCarsMedium().then(data => this.setState({picklistSourceCars: data}));
         this.carService.getCarsSmall().then(data => this.setState({orderlistCars: data}));
         this.eventService.getEvents().then(events => this.setState({fullcalendarEvents: events}));
@@ -203,7 +203,7 @@ export class DataDemo extends Component {
                     <div className="card card-w-title">
                         <h1>DataTable</h1>
                         <DataTable value={this.state.dataTableValue} paginatorPosition="both" selectionMode="single" header="List of Cars" paginator={true} rows={10}
-                            responsive={true} selection={this.state.dataTableSelection} onSelectionChange={event => this.setState({dataTableSelection: event.data})}>
+                            responsive={true} selection={this.state.dataTableSelection} onSelectionChange={event => this.setState({dataTableSelection: event.value})}>
                             <Column field="vin" header="Vin" sortable={true}/>
                             <Column field="year" header="Year" sortable={true}/>
                             <Column field="brand" header="Brand" sortable={true}/>
@@ -264,12 +264,12 @@ export class DataDemo extends Component {
                 <div className="p-col-12">
                     <div className="card card-w-title">
                         <h1>TreeTable</h1>
-                        <TreeTable value={this.state.documents} header="Documents" selectionMode="multiple" 
-                            selection={this.state.documents} selectionChange={event => this.setState({documents: event.value})}>
-                            <Column field="name" header="Name"></Column>
-                            <Column field="size" header="Size"></Column>
-                            <Column field="type" header="Type"></Column>
-                        </TreeTable>
+						<TreeTable value={this.state.documents} header="Documents" selectionMode="checkbox"
+								   selectionKeys={this.state.documentsSelection} onSelectionChange={event => this.setState({documentsSelection: event.value})}>
+							<Column field="name" header="Name" expander></Column>
+							<Column field="size" header="Size" sortable></Column>
+							<Column field="type" header="Type"></Column>
+						</TreeTable>
                     </div>
                 </div>
 

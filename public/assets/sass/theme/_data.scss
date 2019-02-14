@@ -10,6 +10,8 @@ body {
             padding: 0;
             display: inline-block;
             vertical-align: middle;
+            font-size: $fontSize;
+            font-family: $fontFamily;
             @include corner-all();
             @include border-box();
             @include transition(background-color $transitionDuration);
@@ -40,6 +42,9 @@ body {
                 padding: 0;
                 vertical-align: middle;
                 display: inline-block;
+                font-size: $fontSize;
+                font-family: $fontFamily;
+                font-weight: 700;
                 @include border-box();
                 @include corner-all();
                 @include transition(background-color $transitionDuration);
@@ -110,6 +115,10 @@ body {
 
             &.p-highlight {
                 @include highlight();
+
+                .p-sortable-column-icon {
+                    color: inherit;
+                }
             }
         }
 
@@ -148,6 +157,19 @@ body {
                 &.p-highlight {
                     background-color: $primaryColor;
                     color: $primaryTextColor;
+
+                    .p-row-toggler {
+                        color: $primaryTextColor;
+
+                        &:hover {
+                            color: $primaryTextColor;
+                        }
+                    }
+                }
+
+                &.p-highlight-contextmenu {
+                    background-color: lighten($primaryColor, 25%);
+                    color: $primaryTextColor;
                 }
 
                 &.p-datatable-dragpoint-bottom > td {
@@ -155,18 +177,39 @@ body {
                 }
             }
 
-            > tr.p-datatable-odd {
-                background-color: $datableOddRowBgColor;
+            > tr:nth-child(even) {
+                background-color: $datableEvenRowBgColor;
 
                 &.p-highlight {
                     background-color: $primaryColor;
                     color: $primaryTextColor;
+
+                    .p-row-toggler {
+                        color: $primaryTextColor;
+
+                        &:hover {
+                            color: $primaryTextColor;
+                        }
+                    }
+                }
+
+                &.p-highlight-contextmenu {
+                    background-color: lighten($primaryColor, 25%);
+                    color: $primaryTextColor;
+
+                    .p-row-toggler {
+                        color: $primaryTextColor;
+
+                        &:hover {
+                            color: $primaryTextColor;
+                        }
+                    }
                 }
             }
         }
 
         &.p-datatable-hoverable-rows {
-            .p-datatable-tbody > tr:not(.p-highlight):hover {
+            .p-datatable-tbody > tr:not(.p-highlight):not(.p-highlight-contextmenu):hover {
                 cursor: pointer;
                 @include list-item-hover();
             }
@@ -176,6 +219,7 @@ body {
             @include header();
         }
 
+        .p-datatable-scrollable-header,
         .p-datatable-scrollable-footer {
             @include header();
         }
@@ -401,13 +445,13 @@ body {
             border-top: 0 none;
         }
 
-        thead > tr > th {
+        .p-treetable-thead > tr > th {
             padding:  $listItemPadding;
             border: 1px solid $datatableCellBorderColor;
             background-color: $contentBgColor;
         }
 
-        tfoot > tr > td {
+        .p-treetable-tfoot > tr > td {
             border: 1px solid $datatableCellBorderColor;
             background-color: $contentBgColor;
             padding: $listItemPadding;
@@ -439,56 +483,71 @@ body {
             }
         }
 
-        .p-treetable-tablewrapper {
-            > table {
+        .p-editable-column {
+            input {
+                font-size: $fontSize;
+                font-family: $fontFamily;
+            }
+        }
+
+        .p-treetable-tbody {
+            > tr {
                 @include content();
-                > tbody {
+                border: 0 none;
+
+                > td {
                     background: $contentBgColor;
                     padding: $contentPadding;
-                    border-bottom: 0 none;
-                    border-top: 0 none;
+                    border: 1px solid $contentBorderColor;
 
                     &:last-child {
                         border-bottom: 1px solid $dividerColor;
                     }
 
-                    .p-treetable-row {
-                        td {
-                            line-height: 2em;
-                        }
+                    .p-treetable-toggler {
+                        color: $textSecondaryColor;
+                        vertical-align: middle;
+                    }
+                }
+
+                &.p-highlight {
+                    background-color: $primaryColor;
+                    color: $primaryTextColor;
+
+                    .p-treetable-toggler {
+                        color: $primaryTextColor;
+                    }
+                }
+
+                &.p-highlight-contextmenu {
+                    background-color: lighten($primaryColor, 25%);
+                    color: $primaryTextColor;
+
+                    .p-treetable-toggler {
+                        color: $primaryTextColor;
                     }
                 }
             }
         }
 
-        .p-treetable-toggler {
-            color: $textSecondaryColor;
-        }
-
-        .p-treetable-row-selectable {
-            &:not(.p-highlight):hover {
+        &.p-treetable-hoverable-rows {
+            .p-treetable-tbody > tr:not(.p-highlight):not(.p-highlight-contextmenu):hover {
                 cursor: pointer;
                 @include list-item-hover();
 
-                a {
-                    @include list-item-hover();
-                }
-            }
-
-            &.p-highlight {
-                background-color: $primaryColor;
-                color: $primaryTextColor;
-
                 .p-treetable-toggler {
-                    color: $primaryTextColor;
+                    @include list-item-hover();
                 }
             }
         }
 
-        .p-treetable-checkbox {
-            .p-checkbox-icon {
-                color: $textColor;
-            }
+        .p-column-resizer-helper {
+            @include header();
+        }
+
+        .p-treetable-scrollable-header,
+        .p-treetable-scrollable-footer {
+            @include header();
         }
     }
 

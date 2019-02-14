@@ -437,7 +437,7 @@ export class Dashboard extends Component {
                 <div className="sales-panel">
                     <div className="card">
                         <DataTable value={this.state.cars} header="Recent Sales" style={{marginBottom: '20px'}} responsive={true}
-                                   selectionMode="single" selection={this.state.selectedCar} onSelectionChange={(e) => this.setState({selectedCar: e.data})}>
+                                   selectionMode="single" selection={this.state.selectedCar} onSelectionChange={(e) => this.setState({selectedCar: e.value})}>
                             <Column field="vin" header="Vin" sortable={true} />
                             <Column field="year" header="Year" sortable={true} />
                             <Column field="brand" header="Brand" sortable={true} />
