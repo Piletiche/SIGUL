@@ -47,15 +47,15 @@ export class AppTopbar extends Component {
 
             <img className="logo" alt="apollo-layout" src="assets/layout/images/apollo_logo.png" />
 
-            <a id="menu-button" onClick={this.props.onMenuButtonClick}>
+            <button className="p-link" id="menu-button" onClick={this.props.onMenuButtonClick}>
                 <i className="fa fa-align-left"></i>
-            </a>
+            </button>
 
-            <a className="profile" onClick={this.props.onTopbarMenuButtonClick}>
+            <button className="p-link profile" onClick={this.props.onTopbarMenuButtonClick}>
                 <span className="username">Sarah Miller</span>
                 <img src="assets/layout/images/avatar/avatar.png" alt="apollo-layout" />
                 <i className="fa fa-angle-down"></i>
-            </a>
+            </button>
 
             <span className="topbar-search">
                 <InputText placeholder="Search"/>
@@ -69,145 +69,145 @@ export class AppTopbar extends Component {
             <ul className={topbarItemsClassName}>
                 <li className={classNames({'menuitem-active': this.props.activeTopbarItem === 'profile'})}
                     onClick={(e) => this.onTopbarItemClick(e, 'profile')}>
-                    <a>
+                    <button className="p-link">
                         <i className="topbar-icon fa fa-fw fa-user"></i>
                         <span className="topbar-item-name">Profile</span>
-                    </a>
+                    </button>
 
                     <ul>
                         <li role="menuitem">
-                            <a>
+                            <button className="p-link">
                                 <i className="fa fa-fw fa-user"></i>
                                 <span>Profile</span>
-                            </a>
+                            </button>
                         </li>
                         <li role="menuitem">
-                            <a>
+                            <button className="p-link">
                                 <i className="fa fa-fw fa-user-secret"></i>
                                 <span>Privacy</span>
-                            </a>
+                            </button>
                         </li>
                         <li role="menuitem">
-                            <a>
+                            <button className="p-link">
                                 <i className="fa fa-fw fa-cog"></i>
                                 <span>Settings</span>
-                            </a>
+                            </button>
                         </li>
                         <li role="menuitem">
-                            <a>
+                            <button className="p-link">
                                 <i className="fa fa-fw fa-sign-out"></i>
                                 <span>Logout</span>
-                            </a>
+                            </button>
                         </li>
                     </ul>
                 </li>
 
                 <li className={classNames({'menuitem-active': this.props.activeTopbarItem === 'settings'})}
                     onClick={(e) => this.onTopbarItemClick(e, 'settings')}>
-                    <a>
+                    <button className="p-link">
                         <i className="topbar-icon fa fa-fw fa-cog"></i>
                         <span className="topbar-item-name">Settings</span>
-                    </a>
+                    </button>
                     <ul>
                         <li role="menuitem">
-                            <a>
+                            <button className="p-link">
                                 <i className="fa fa-fw fa-paint-brush"></i>
                                 <span>Change Theme</span>
                                 <span className="topbar-badge">1</span>
-                            </a>
+                            </button>
                         </li>
                         <li role="menuitem">
-                            <a>
+                            <button className="p-link">
                                 <i className="fa fa-fw fa-star-o"></i>
                                 <span>Favorites</span>
-                            </a>
+                            </button>
                         </li>
                         <li role="menuitem">
-                            <a>
+                            <button className="p-link">
                                 <i className="fa fa-fw fa-lock"></i>
                                 <span>Lock Screen</span>
                                 <span className="topbar-badge">3</span>
-                            </a>
+                            </button>
                         </li>
                         <li role="menuitem">
-                            <a>
+                            <button className="p-link">
                                 <i className="fa fa-fw fa-picture-o"></i>
                                 <span>Wallpaper</span>
-                            </a>
+                            </button>
                         </li>
                     </ul>
                 </li>
                 <li className={classNames({'menuitem-active': this.props.activeTopbarItem === 'messages'})}
                     onClick={(e) => this.onTopbarItemClick(e, 'messages')}>
-                    <a>
+                    <button className="p-link">
                         <i className="topbar-icon fa fa-fw fa-envelope-o"></i>
                         <span className="topbar-item-name">Messages</span>
                         <span className="topbar-badge">5</span>
-                    </a>
+                    </button>
                     <ul>
                         <li role="menuitem">
-                            <a className="topbar-message">
+                            <button className="p-link topbar-message">
                                 <img alt="Avatar 1" src="assets/layout/images/avatar/avatar1.png" width="35"/>
                                 <span>Give me a call</span>
-                            </a>
+                            </button>
                         </li>
                         <li role="menuitem">
-                            <a className="topbar-message">
+                            <button className="p-link topbar-message">
                                 <img alt="Avatar 2" src="assets/layout/images/avatar/avatar2.png" width="35"/>
                                 <span>Sales reports attached</span>
-                            </a>
+                            </button>
                         </li>
                         <li role="menuitem">
-                            <a className="topbar-message">
+                            <button className="p-link topbar-message">
                                 <img alt="Avatar 3" src="assets/layout/images/avatar/avatar3.png" width="35"/>
                                 <span>About your invoice</span>
-                            </a>
+                            </button>
                         </li>
                         <li role="menuitem">
-                            <a className="topbar-message">
+                            <button className="p-link topbar-message">
                                 <img alt="Avatar 4" src="assets/layout/images/avatar/avatar2.png" width="35"/>
                                 <span>Meeting today at 10pm</span>
-                            </a>
+                            </button>
                         </li>
                         <li role="menuitem">
-                            <a className="topbar-message">
+                            <button className="p-link topbar-message">
                                 <img alt="Avatar 5" src="assets/layout/images/avatar/avatar4.png" width="35"/>
                                 <span>Out of office</span>
-                            </a>
+                            </button>
                         </li>
                     </ul>
                 </li>
                 <li className={classNames({'menuitem-active': this.props.activeTopbarItem === 'notifications'})}
                     onClick={(e) => this.onTopbarItemClick(e, 'notifications')}>
-                    <a>
+                    <button className="p-link">
                         <i className="topbar-icon fa fa-fw fa-bell-o"></i>
                         <span className="topbar-item-name">Notifications</span>
                         <span className="topbar-badge">2</span>
-                    </a>
+                    </button>
                     <ul>
                         <li role="menuitem">
-                            <a>
+                            <button className="p-link">
                                 <i className="fa fa-fw fa-tasks"></i>
                                 <span>Pending tasks</span>
-                            </a>
+                            </button>
                         </li>
                         <li role="menuitem">
-                            <a>
+                            <button className="p-link">
                                 <i className="fa fa-fw fa-calendar-check-o"></i>
                                 <span>Meeting today</span>
-                            </a>
+                            </button>
                         </li>
                         <li role="menuitem">
-                            <a>
+                            <button className="p-link">
                                 <i className="fa fa-fw fa-download"></i>
                                 <span>Download documents</span>
-                            </a>
+                            </button>
                         </li>
                         <li role="menuitem">
-                            <a>
+                            <button className="p-link">
                                 <i className="fa fa-fw fa-plane"></i>
                                 <span>Book flight</span>
-                            </a>
+                            </button>
                         </li>
                     </ul>
                 </li>

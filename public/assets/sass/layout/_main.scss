@@ -166,7 +166,10 @@ body {
                 }
 
                 > li {
-                    a {
+                    button {
+                        width: 100%;
+                        font-family: $fontFamily;
+                        font-size: $fontSize;
                         color: $primaryTextColor;
                         padding: 10px 16px;
                         display: block;
@@ -211,7 +214,7 @@ body {
                         margin: 0;
                         display: none;
 
-                        a {
+                        button {
                             padding-left: 32px;
                         }
                     }
