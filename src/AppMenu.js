@@ -12,7 +12,8 @@ class AppSubmenu extends Component {
         onRootItemClick: null,
         root: false,
         layoutMode: null,
-        menuActive: false
+        menuActive: false,
+		parentMenuItemActive: false
     }
 
     static propTypes = {
@@ -22,7 +23,8 @@ class AppSubmenu extends Component {
         onRootItemClick: PropTypes.func,
         root: PropTypes.bool,
         layoutMode: PropTypes.string,
-        menuActive: PropTypes.bool
+        menuActive: PropTypes.bool,
+		parentMenuItemActive: PropTypes.bool
     }
     
     constructor(props) {
@@ -67,6 +69,16 @@ class AppSubmenu extends Component {
             this.setState({activeIndex: index});
         }
     }
+
+	static getDerivedStateFromProps(nextProps, prevState) {
+		if (nextProps.parentMenuItemActive === false) {
+			return {
+				activeIndex: null
+			}
+		}
+
+		return null;
+	}
     
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(this.isHorizontalOrSlim() && prevProps.menuActive && !this.props.menuActive) {
@@ -126,7 +138,7 @@ class AppSubmenu extends Component {
                         {this.renderLink(item, i)}
                         {tooltip}
                         <AppSubmenu items={item.items} onMenuItemClick={this.props.onMenuItemClick} layoutMode={this.props.layoutMode} 
-                                    menuActive={this.props.menuActive} />
+                                    menuActive={this.props.menuActive} parentMenuItemActive={active}/>
                     </li>
         });
         
@@ -155,6 +167,6 @@ export class AppMenu extends Component {
     render() {
         return <AppSubmenu items={this.props.model} className="layout-menu layout-main-menu clearfix" 
                 menuActive={this.props.active} onRootItemClick={this.props.onRootMenuItemClick}
-                onMenuItemClick={this.props.onMenuItemClick} root={true} layoutMode={this.props.layoutMode}/>
+                onMenuItemClick={this.props.onMenuItemClick} root={true} layoutMode={this.props.layoutMode} parentMenuItemActive={true}/>
     }
 }
