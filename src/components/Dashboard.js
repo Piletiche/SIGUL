@@ -29,6 +29,23 @@ export class Dashboard extends Component {
 					right: 'month,agendaWeek,agendaDay'
 				}
 			},
+            chartData: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [
+                    {
+                        label: 'First Dataset',
+                        data: [65, 59, 80, 81, 56, 55, 40],
+                        fill: false,
+                        borderColor: '#03A9F4'
+                    },
+                    {
+                        label: 'Second Dataset',
+                        data: [28, 48, 40, 19, 86, 27, 90],
+                        fill: false,
+                        borderColor: '#FFC107'
+                    }
+                ]
+            }
         };
         this.onTaskChange = this.onTaskChange.bind(this);
         this.onCityChange = this.onCityChange.bind(this);
@@ -128,24 +145,6 @@ export class Dashboard extends Component {
 				"start": "2017-02-28"
 			}
 		];
-
-        let chartData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [
-                {
-                    label: 'First Dataset',
-                    data: [65, 59, 80, 81, 56, 55, 40],
-                    fill: false,
-                    borderColor: '#03A9F4'
-                },
-                {
-                    label: 'Second Dataset',
-                    data: [28, 48, 40, 19, 86, 27, 90],
-                    fill: false,
-                    borderColor: '#FFC107'
-                }
-            ]
-        };
 
         let menuItems = [
             {
@@ -522,7 +521,7 @@ export class Dashboard extends Component {
 
             <div className="p-col-12 p-md-6">
                 <Panel header="Core 1 Data">
-                    <Chart type="line" data={chartData}/>
+                    <Chart type="line" data={this.state.chartData}/>
                 </Panel>
             </div>
 
