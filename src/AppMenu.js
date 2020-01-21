@@ -26,33 +26,33 @@ class AppSubmenu extends Component {
         menuActive: PropTypes.bool,
 		parentMenuItemActive: PropTypes.bool
     }
-    
+
     constructor(props) {
         super(props);
         this.state = {};
     }
-    
+
     onMenuItemClick(event, item, index) {
         //avoid processing disabled items
         if(item.disabled) {
             event.preventDefault();
             return true;
         }
-        
+
         if(this.props.root && this.props.onRootItemClick) {
             this.props.onRootItemClick({
                 originalEvent: event,
                 item: item
             });
         }
-                        
+
         //execute command
         if(item.command) {
             item.command({originalEvent: event, item: item});
         }
 
         if(index === this.state.activeIndex)
-            this.setState({activeIndex: null});    
+            this.setState({activeIndex: null});
         else
             this.setState({activeIndex: index});
 
@@ -62,10 +62,10 @@ class AppSubmenu extends Component {
                 item: item
             });
         }
-    } 
-    
+    }
+
     onMenuItemMouseEnter(index) {
-        if(this.props.root && this.props.menuActive && this.isHorizontalOrSlim()) {
+        if(this.props.root && this.props.menuActive && this.isHorizontalOrSlim() && !this.isMobile()) {
             this.setState({activeIndex: index});
         }
     }
@@ -79,16 +79,20 @@ class AppSubmenu extends Component {
 
 		return null;
 	}
-    
+
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.isHorizontalOrSlim() && prevProps.menuActive && !this.props.menuActive) {
+        if(this.isHorizontalOrSlim() && !this.isMobile() && prevProps.menuActive && !this.props.menuActive) {
             this.setState({activeIndex: null});
         }
     }
-    
+
     isHorizontalOrSlim() {
         return (this.props.layoutMode === 'horizontal' || this.props.layoutMode === 'slim');
     }
+
+	isMobile() {
+		return window.innerWidth <= 640;
+	}
 
 	renderLinkContent(item) {
 		let submenuIcon = item.items && <i className="fa fa-fw fa-angle-down layout-menuitem-toggler"></i>;
@@ -123,7 +127,7 @@ class AppSubmenu extends Component {
 
 		}
 	}
-    
+
     render() {
         var items = this.props.items && this.props.items.map((item, i) => {
             let active = this.state.activeIndex === i;
@@ -137,11 +141,11 @@ class AppSubmenu extends Component {
                         {item.items && this.props.root===true && <div className='arrow'></div>}
                         {this.renderLink(item, i)}
                         {tooltip}
-                        <AppSubmenu items={item.items} onMenuItemClick={this.props.onMenuItemClick} layoutMode={this.props.layoutMode} 
+                        <AppSubmenu items={item.items} onMenuItemClick={this.props.onMenuItemClick} layoutMode={this.props.layoutMode}
                                     menuActive={this.props.menuActive} parentMenuItemActive={active}/>
                     </li>
         });
-        
+
         return items?<ul className={this.props.className}>{items}</ul>:null;
     }
 }
@@ -165,7 +169,7 @@ export class AppMenu extends Component {
     }
 
     render() {
-        return <AppSubmenu items={this.props.model} className="layout-menu layout-main-menu clearfix" 
+        return <AppSubmenu items={this.props.model} className="layout-menu layout-main-menu clearfix"
                 menuActive={this.props.active} onRootItemClick={this.props.onRootMenuItemClick}
                 onMenuItemClick={this.props.onMenuItemClick} root={true} layoutMode={this.props.layoutMode} parentMenuItemActive={true}/>
     }
