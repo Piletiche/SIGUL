@@ -45,21 +45,21 @@ export class AppTopbar extends Component {
 
         return <div className="topbar clearfix">
 
-            <img className="logo" alt="apollo-layout" src="assets/layout/images/apollo_logo.png" />
-
             <button className="p-link" id="menu-button" onClick={this.props.onMenuButtonClick}>
-                <i className="fa fa-align-left"></i>
+                <i className="pi pi-bars"></i>
             </button>
+
+            <img className="logo" alt="apollo-layout" src="assets/layout/images/apollo_logo.png" />
 
             <button className="p-link profile" onClick={this.props.onTopbarMenuButtonClick}>
                 <span className="username">Sarah Miller</span>
                 <img src="assets/layout/images/avatar/avatar.png" alt="apollo-layout" />
-                <i className="fa fa-angle-down"></i>
+                <i className="pi pi-angle-down"></i>
             </button>
 
             <span className="topbar-search">
                 <InputText placeholder="Search"/>
-                <span className="fa fa-search"></span>
+                <span className="pi pi-search"></span>
             </span>
 
             <span className="topbar-themeswitcher">
@@ -70,32 +70,32 @@ export class AppTopbar extends Component {
                 <li className={classNames({'menuitem-active': this.props.activeTopbarItem === 'profile'})}
                     onClick={(e) => this.onTopbarItemClick(e, 'profile')}>
                     <button className="p-link">
-                        <i className="topbar-icon fa fa-fw fa-user"></i>
+                        <i className="topbar-icon pi pi-fw pi-user"></i>
                         <span className="topbar-item-name">Profile</span>
                     </button>
 
                     <ul>
                         <li role="menuitem">
                             <button className="p-link">
-                                <i className="fa fa-fw fa-user"></i>
-                                <span>Profile</span>
+                                <i className="pi pi-fw pi-user-edit"></i>
+                                <span>Account</span>
                             </button>
                         </li>
                         <li role="menuitem">
                             <button className="p-link">
-                                <i className="fa fa-fw fa-user-secret"></i>
+                                <i className="pi pi-fw pi-eye"></i>
                                 <span>Privacy</span>
                             </button>
                         </li>
                         <li role="menuitem">
                             <button className="p-link">
-                                <i className="fa fa-fw fa-cog"></i>
+                                <i className="pi pi-fw pi-cog"></i>
                                 <span>Settings</span>
                             </button>
                         </li>
                         <li role="menuitem">
                             <button className="p-link">
-                                <i className="fa fa-fw fa-sign-out"></i>
+                                <i className="pi pi-fw pi-power-off"></i>
                                 <span>Logout</span>
                             </button>
                         </li>
@@ -105,33 +105,33 @@ export class AppTopbar extends Component {
                 <li className={classNames({'menuitem-active': this.props.activeTopbarItem === 'settings'})}
                     onClick={(e) => this.onTopbarItemClick(e, 'settings')}>
                     <button className="p-link">
-                        <i className="topbar-icon fa fa-fw fa-cog"></i>
+                        <i className="topbar-icon pi pi-fw pi-cog"></i>
                         <span className="topbar-item-name">Settings</span>
                     </button>
                     <ul>
                         <li role="menuitem">
                             <button className="p-link">
-                                <i className="fa fa-fw fa-paint-brush"></i>
+                                <i className="pi pi-fw pi-palette"></i>
                                 <span>Change Theme</span>
                                 <span className="topbar-badge">1</span>
                             </button>
                         </li>
                         <li role="menuitem">
                             <button className="p-link">
-                                <i className="fa fa-fw fa-star-o"></i>
+                                <i className="pi pi-fw pi-bookmark"></i>
                                 <span>Favorites</span>
                             </button>
                         </li>
                         <li role="menuitem">
                             <button className="p-link">
-                                <i className="fa fa-fw fa-lock"></i>
+                                <i className="pi pi-fw pi-lock"></i>
                                 <span>Lock Screen</span>
                                 <span className="topbar-badge">3</span>
                             </button>
                         </li>
                         <li role="menuitem">
                             <button className="p-link">
-                                <i className="fa fa-fw fa-picture-o"></i>
+                                <i className="pi pi-fw pi-image"></i>
                                 <span>Wallpaper</span>
                             </button>
                         </li>
@@ -140,7 +140,7 @@ export class AppTopbar extends Component {
                 <li className={classNames({'menuitem-active': this.props.activeTopbarItem === 'messages'})}
                     onClick={(e) => this.onTopbarItemClick(e, 'messages')}>
                     <button className="p-link">
-                        <i className="topbar-icon fa fa-fw fa-envelope-o"></i>
+                        <i className="topbar-icon pi pi-fw pi-envelope"></i>
                         <span className="topbar-item-name">Messages</span>
                         <span className="topbar-badge">5</span>
                     </button>
@@ -180,32 +180,32 @@ export class AppTopbar extends Component {
                 <li className={classNames({'menuitem-active': this.props.activeTopbarItem === 'notifications'})}
                     onClick={(e) => this.onTopbarItemClick(e, 'notifications')}>
                     <button className="p-link">
-                        <i className="topbar-icon fa fa-fw fa-bell-o"></i>
+                        <i className="topbar-icon pi pi-fw pi-bell"></i>
                         <span className="topbar-item-name">Notifications</span>
                         <span className="topbar-badge">2</span>
                     </button>
                     <ul>
                         <li role="menuitem">
                             <button className="p-link">
-                                <i className="fa fa-fw fa-tasks"></i>
+                                <i className="pi pi-fw pi-list"></i>
                                 <span>Pending tasks</span>
                             </button>
                         </li>
                         <li role="menuitem">
                             <button className="p-link">
-                                <i className="fa fa-fw fa-calendar-check-o"></i>
+                                <i className="pi pi-fw pi-calendar"></i>
                                 <span>Meeting today</span>
                             </button>
                         </li>
                         <li role="menuitem">
                             <button className="p-link">
-                                <i className="fa fa-fw fa-download"></i>
+                                <i className="pi pi-fw pi-download"></i>
                                 <span>Download documents</span>
                             </button>
                         </li>
                         <li role="menuitem">
                             <button className="p-link">
-                                <i className="fa fa-fw fa-plane"></i>
+                                <i className="pi pi-fw pi-ticket"></i>
                                 <span>Book flight</span>
                             </button>
                         </li>

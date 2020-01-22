@@ -95,7 +95,7 @@ class AppSubmenu extends Component {
 	}
 
 	renderLinkContent(item) {
-		let submenuIcon = item.items && <i className="fa fa-fw fa-angle-down layout-menuitem-toggler"></i>;
+		let submenuIcon = item.items && <i className="pi pi-fw pi-angle-down layout-menuitem-toggler"></i>;
 		let badge = item.badge && <span className="menuitem-badge">{item.badge}</span>;
 
 		return (

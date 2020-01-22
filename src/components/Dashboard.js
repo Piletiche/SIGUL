@@ -151,13 +151,13 @@ export class Dashboard extends Component {
 
         let menuItems = [
             {
-                label: 'Save', icon: 'fa fa-fw fa-check'
+                label: 'Save', icon: 'pi pi-fw pi-check'
             },
             {
-                label: 'Update', icon: 'fa fa-fw fa-refresh'
+                label: 'Update', icon: 'pi pi-fw pi-refresh'
             },
             {
-                label: 'Delete', icon: 'fa fa-fw fa-trash'
+                label: 'Delete', icon: 'pi pi-fw pi-trash'
             }
         ];
 
@@ -167,7 +167,7 @@ export class Dashboard extends Component {
                     <div className="overview-value">$25,620</div>
                     <div className="overview-ratio">
                         <div className="overview-direction">
-                            <i className="fa fa-arrow-up" ></i>
+                            <i className="pi pi-arrow-up" ></i>
                         </div>
                         <div className="overview-ratio-value">
                             51%
@@ -183,7 +183,7 @@ export class Dashboard extends Component {
                     <div className="overview-value">9521</div>
                     <div className="overview-ratio">
                         <div className="overview-direction">
-                            <i className="fa fa-arrow-up" ></i>
+                            <i className="pi pi-arrow-up" ></i>
                         </div>
                         <div className="overview-ratio-value">
                             36%
@@ -199,7 +199,7 @@ export class Dashboard extends Component {
                     <div className="overview-value">452</div>
                     <div className="overview-ratio">
                         <div className="overview-direction">
-                            <i className="fa fa-arrow-up"></i>
+                            <i className="pi pi-arrow-up"></i>
                         </div>
                         <div className="overview-ratio-value">
                             19%
@@ -215,7 +215,7 @@ export class Dashboard extends Component {
                     <div className="overview-value">65922</div>
                     <div className="overview-ratio">
                         <div className="overview-direction">
-                            <i className="fa fa-arrow-up" ></i>
+                            <i className="pi pi-arrow-up" ></i>
                         </div>
                         <div className="overview-ratio-value">
                             25%
@@ -231,29 +231,29 @@ export class Dashboard extends Component {
                         <div className="p-col-12 p-lg-3 p-md-6">
                             <div className="status-title" style={{color:'#6ebc3b'}}>Users</div>
                             <div className="circle1">
-                                <i className="fa fa-user"></i>
-                                <span>95</span>
+                                <i className="pi pi-user"></i>
+                                <span>75</span>
                             </div>
                         </div>
                         <div className="p-col-12 p-lg-3 p-md-6">
                             <div className="status-title" style={{color:'#f6a821'}}>Mobile</div>
                             <div className="circle2">
-                                <i className="fa fa-mobile"></i>
-                                <span>95</span>
+                                <i className="pi pi-mobile"></i>
+                                <span>25</span>
                             </div>
                         </div>
                         <div className="p-col-12 p-lg-3 p-md-6">
                             <div className="status-title" style={{color:'#039ade'}}>Pageviews</div>
                             <div className="circle3">
-                                <i className="fa fa-eye"></i>
-                                <span>95</span>
+                                <i className="pi pi-eye"></i>
+                                <span>50</span>
                             </div>
                         </div>
                         <div className="p-col-12 p-lg-3 p-md-6">
                             <div className="status-title" style={{color:'#d66351'}}>Sales</div>
                             <div className="circle4">
-                                <i className="fa fa-dollar"></i>
-                                <span>95</span>
+                                <i className="pi pi-dollar"></i>
+                                <span>75</span>
                             </div>
                         </div>
                     </div>
@@ -266,42 +266,42 @@ export class Dashboard extends Component {
                         <li>
                             <Checkbox value="task1" onChange={this.onTaskChange} checked={this.state.tasks.indexOf('task1')>-1?true:false}></Checkbox>
                             <span className="task-name">Sales Reports</span>
-                            <i className="fa fa-briefcase"></i>
+                            <i className="pi pi-briefcase"></i>
                         </li>
                         <li>
                             <Checkbox value="task2" onChange={this.onTaskChange} checked={this.state.tasks.indexOf('task2')>-1?true:false}></Checkbox>
                             <span className="task-name">Pay Invoices</span>
-                            <i className="fa fa-credit-card"></i>
+                            <i className="pi pi-file"></i>
                         </li>
                         <li>
                             <Checkbox value="task3" onChange={this.onTaskChange} checked={this.state.tasks.indexOf('task3')>-1?true:false}></Checkbox>
                             <span className="task-name">Dinner with Tony</span>
-                            <i className="fa fa-cutlery"></i>
+                            <i className="pi pi-comments"></i>
                         </li>
                         <li>
                             <Checkbox value="task4" onChange={this.onTaskChange} checked={this.state.tasks.indexOf('task4')>-1?true:false}></Checkbox>
                             <span className="task-name">Client Meeting</span>
-                            <i className="fa fa-user"></i>
+                            <i className="pi pi-users"></i>
                         </li>
                         <li>
                             <Checkbox value="task5" onChange={this.onTaskChange} checked={this.state.tasks.indexOf('task5')>-1?true:false}></Checkbox>
                             <span className="task-name">New Theme</span>
-                            <i className="fa fa-paint-brush"></i>
+                            <i className="pi pi-palette"></i>
                         </li>
                         <li>
                             <Checkbox value="task6" onChange={this.onTaskChange} checked={this.state.tasks.indexOf('task6')>-1?true:false}></Checkbox>
                             <span className="task-name">Flight Ticket</span>
-                            <i className="fa fa-fighter-jet"></i>
+                            <i className="pi pi-ticket"></i>
                         </li>
                         <li>
                             <Checkbox value="task6" onChange={this.onTaskChange} checked={this.state.tasks.indexOf('task7')>-1?true:false}></Checkbox>
                             <span className="task-name">Generate Charts</span>
-                            <i className="fa fa-area-chart"></i>
+                            <i className="pi pi-chart-bar"></i>
                         </li>
                         <li>
                             <Checkbox value="task6" onChange={this.onTaskChange} checked={this.state.tasks.indexOf('task8')>-1?true:false}></Checkbox>
                             <span className="task-name">Call Client</span>
-                            <i className="fa fa-phone"></i>
+                            <i className="pi pi-mobile"></i>
                         </li>
                     </ul>
                 </Panel>
@@ -326,7 +326,7 @@ export class Dashboard extends Component {
                             <InputTextarea type="text" placeholder="Message" />
                         </div>
                         <div className="p-col-12">
-                            <Button type="button" label="Send" icon="fa fa-send"></Button>
+                            <Button type="button" label="Send" icon="pi pi-check"></Button>
                         </div>
                     </div>
                 </Panel>
@@ -342,8 +342,8 @@ export class Dashboard extends Component {
                                 <span className="location">jane@pn-apollo.com</span>
                             </div>
                             <div className="contact-actions">
-                                <Button icon="fa fa-paper-plane-o"></Button>
-                                <Button icon="fa fa-phone" className="green-btn"></Button>
+                                <Button icon="pi pi-comment"></Button>
+                                <Button icon="pi pi-reply" className="p-button-success"></Button>
                             </div>
                         </li>
                         <li className="clearfix">
@@ -353,8 +353,8 @@ export class Dashboard extends Component {
                                 <span className="location">joshua@pn-apollo.com</span>
                             </div>
                             <div className="contact-actions">
-                                <Button icon="fa fa-paper-plane-o"></Button>
-                                <Button icon="fa fa-phone" className="green-btn"></Button>
+                                <Button icon="pi pi-comment"></Button>
+                                <Button icon="pi pi-reply" className="p-button-success"></Button>
                             </div>
                         </li>
                         <li className="clearfix">
@@ -364,8 +364,8 @@ export class Dashboard extends Component {
                                 <span className="location">emily@pn-apollo.com</span>
                             </div>
                             <div className="contact-actions">
-                                <Button icon="fa fa-paper-plane-o"></Button>
-                                <Button icon="fa fa-phone" className="green-btn"></Button>
+                                <Button icon="pi pi-comment"></Button>
+                                <Button icon="pi pi-reply" className="p-button-success"></Button>
                             </div>
                         </li>
                         <li className="clearfix">
@@ -375,8 +375,8 @@ export class Dashboard extends Component {
                                 <span className="location">tim@pn-apollo.com</span>
                             </div>
                             <div className="contact-actions">
-                                <Button icon="fa fa-paper-plane-o"></Button>
-                                <Button icon="fa fa-phone" className="green-btn"></Button>
+                                <Button icon="pi pi-comment"></Button>
+                                <Button icon="pi pi-reply" className="p-button-success"></Button>
                             </div>
                         </li>
                         <li className="clearfix">
@@ -386,8 +386,8 @@ export class Dashboard extends Component {
                                 <span className="location">kelly@pn-apollo.com</span>
                             </div>
                             <div className="contact-actions">
-                                <Button icon="fa fa-paper-plane-o"></Button>
-                                <Button icon="fa fa-phone" className="green-btn"></Button>
+                                <Button icon="pi pi-comment"></Button>
+                                <Button icon="pi pi-reply" className="p-button-success"></Button>
                             </div>
                         </li>
                     </ul>
@@ -427,7 +427,7 @@ export class Dashboard extends Component {
                     </ul>
                     <div className="new-message">
                         <div className="message-attachment">
-                            <i className="fa fa-paperclip"></i>
+                            <i className="pi pi-paperclip"></i>
                         </div>
                         <div className="message-input">
                             <input type="text" placeholder="Write a message" className="p-inputtext" />
@@ -454,7 +454,7 @@ export class Dashboard extends Component {
                     <div className="p-grid">
                         <div className="p-col-3">
                             <span className="event-time">just now</span>
-                            <i className="fa fa-map-signs" style={{color:'#3984b8'}}></i>
+                            <i className="pi pi-fw pi-map-marker" style={{color:'#3984b8'}}></i>
                         </div>
                         <div className="p-col-9">
                             <span className="event-owner" style={{color:'#3984b8'}}>Katherine May</span>
@@ -466,7 +466,7 @@ export class Dashboard extends Component {
 
                         <div className="p-col-3">
                             <span className="event-time">12h ago</span>
-                            <i className="fa fa-star" style={{color:'#f6ac2b'}}></i>
+                            <i className="pi pi-fw pi-star" style={{color:'#f6ac2b'}}></i>
                         </div>
                         <div className="p-col-9">
                             <span className="event-owner" style={{color:'#f6ac2b'}}>Brandon Santos</span>
@@ -475,7 +475,7 @@ export class Dashboard extends Component {
 
                         <div className="p-col-3">
                             <span className="event-time">15h ago</span>
-                            <i className="fa fa-comment" style={{color:'#7e8dcd'}}></i>
+                            <i className="pi pi-fw pi-comment" style={{color:'#7e8dcd'}}></i>
                         </div>
                         <div className="p-col-9">
                             <span className="event-owner" style={{color:'#7e8dcd'}}>Stephan Ward</span>
@@ -487,7 +487,7 @@ export class Dashboard extends Component {
 
                         <div className="p-col-3">
                             <span className="event-time">2d ago</span>
-                            <i className="fa fa-map" style={{color:'#e175a0'}}></i>
+                            <i className="pi pi-fw pi-globe" style={{color:'#e175a0'}}></i>
                         </div>
                         <div className="p-col-9">
                             <span className="event-owner" style={{color:'#e175a0'}}>Jason Smith</span>
@@ -499,7 +499,7 @@ export class Dashboard extends Component {
 
                         <div className="p-col-3">
                             <span className="event-time">1w ago</span>
-                            <i className="fa fa-heart" style={{color:'#39b8b6'}}></i>
+                            <i className="pi pi-fw pi-heart" style={{color:'#39b8b6'}}></i>
                         </div>
                         <div className="p-col-9">
                             <span className="event-owner">Kevin Cox</span>
@@ -508,7 +508,7 @@ export class Dashboard extends Component {
 
                         <div className="p-col-3">
                             <span className="event-time">2w ago</span>
-                            <i className="fa fa-history" style={{color:'#3eb839'}}></i>
+                            <i className="pi pi-fw pi-compass" style={{color:'#3eb839'}}></i>
                         </div>
                         <div className="p-col-9">
                             <span className="event-owner" style={{color:'#3eb839'}}>Walter White</span>
@@ -516,7 +516,7 @@ export class Dashboard extends Component {
                         </div>
 
                         <div className="p-col-12">
-                            <Button type="button" label="Refresh" icon="fa fa-refresh" className="rounded-btn raised-btn"></Button>
+                            <Button type="button" label="Refresh" icon="pi pi-refresh" className="rounded-btn raised-btn"></Button>
                         </div>
                     </div>
                 </div>
@@ -557,7 +557,7 @@ export class Dashboard extends Component {
                         <div className="user-detail">
                             <ul>
                                 <li className="clearfix">
-                                    <i className="fa fa-tasks fa-fw"></i>
+                                    <i className="pi pi-fw pi-list"></i>
                                     <span className="project-title">Tasks</span>
                                     <span className="project-detail">3 open</span>
                                     <div className="project-progressbar">
@@ -565,7 +565,7 @@ export class Dashboard extends Component {
                                     </div>
                                 </li>
                                 <li className="clearfix">
-                                    <i className="fa fa-usd fa-fw"></i>
+                                    <i className="pi pi-fw pi-chart-line"></i>
                                     <span className="project-title">Revenue</span>
                                     <span className="project-detail">+20%</span>
                                     <div className="project-progressbar">
@@ -573,7 +573,7 @@ export class Dashboard extends Component {
                                     </div>
                                 </li>
                                 <li className="clearfix">
-                                    <i className="fa fa-credit-card fa-fw"></i>
+                                    <i className="pi pi-fw pi-ticket"></i>
                                     <span className="project-title">Payments</span>
                                     <span className="project-detail">24 new</span>
                                     <div className="project-progressbar">
@@ -581,7 +581,7 @@ export class Dashboard extends Component {
                                     </div>
                                 </li>
                                 <li className="clearfix">
-                                    <i className="fa fa-users fa-fw"></i>
+                                    <i className="pi pi-fw pi-users"></i>
                                     <span className="project-title">Clients</span>
                                     <span className="project-detail">+80%</span>
                                     <div className="project-progressbar">
@@ -589,7 +589,7 @@ export class Dashboard extends Component {
                                     </div>
                                 </li>
                                 <li className="clearfix">
-                                    <i className="fa fa-users fa-fw"></i>
+                                    <i className="pi pi-fw pi-sliders-h"></i>
                                     <span className="project-title">Turnover</span>
                                     <span className="project-detail">+40%</span>
                                     <div className="project-progressbar">

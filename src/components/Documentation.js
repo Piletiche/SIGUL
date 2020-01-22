@@ -165,116 +165,116 @@ export class Documentation extends Component {
 {
 `createMenu() {
     this.menu = [
-        {label: 'Dashboard', icon: 'fa fa-fw fa-dashboard', command: () => { window.location = '#/'}},
-        {
-            label: 'Menu', icon: 'fa fa-fw fa-bars' ,
-            items: [
-                {label: 'Horizontal Menu', icon: 'fa fa-fw fa-arrows-h',  command: () => this.setState({layoutMode: 'horizontal'}) },
-                {label: 'Overlay Menu', icon: 'fa fa-fw fa-arrows-v',  command: () => this.setState({layoutMode: 'overlay'}) },
-                {label: 'Static Menu', icon: 'fa fa-fw fa-bars',  command: () => this.setState({layoutMode: 'static'}) },
-                {label: 'Slim Menu', icon: 'fa fa-fw fa-window-restore',  command: () => this.setState({layoutMode: 'slim'}) }
-            ]
-        },
-        {
-            label: 'Dark', icon: 'fa fa-fw fa-circle', badge: '8',
-            items: [
-                {label: 'Blue', icon: 'fa fa-fw fa-paint-brush', styleClass: 'blue-theme',command: (event) => {this.changeTheme('blue-dark')}},
-                {label: 'Green', icon: 'fa fa-fw fa-paint-brush', styleClass: 'green-theme', command: (event) => {this.changeTheme('green-dark')}},
-                {label: 'Cyan', icon: 'fa fa-fw fa-paint-brush', styleClass: 'cyan-theme', command: (event) => {this.changeTheme('cyan-dark')}},
-                {label: 'Purple', icon: 'fa fa-fw fa-paint-brush', styleClass: 'purple-theme', command: (event) => {this.changeTheme('purple-dark')}},
-                {label: 'Indigo', icon: 'fa fa-fw fa-paint-brush', styleClass: 'indigo-theme', command: (event) => {this.changeTheme('indigo-dark')}},
-                {label: 'Yellow', icon: 'fa fa-fw fa-paint-brush', styleClass: 'yellow-theme', command: (event) => {this.changeTheme('yellow-dark')}},
-                {label: 'Orange', icon: 'fa fa-fw fa-paint-brush', styleClass: 'orange-theme', command: (event) => {this.changeTheme('orange-dark')}},
-                {label: 'Pink', icon: 'fa fa-fw fa-paint-brush', styleClass: 'pink-theme', command: (event) => {this.changeTheme('pink-dark')}}
+            {label: 'Dashboard', icon: 'pi pi-fw pi-home', to:'/'},
+            {
+                label: 'Menu', icon: 'pi pi-fw pi-bars' ,
+                items: [
+                    {label: 'Horizontal Menu', icon: 'pi pi-fw pi-bars',  command: () => this.setState({layoutMode: 'horizontal'}) },
+                    {label: 'Overlay Menu', icon: 'pi pi-fw pi-bars',  command: () => this.setState({layoutMode: 'overlay'}) },
+                    {label: 'Static Menu', icon: 'pi pi-fw pi-bars',  command: () => this.setState({layoutMode: 'static'}) },
+                    {label: 'Slim Menu', icon: 'pi pi-fw pi-bars',  command: () => this.setState({layoutMode: 'slim'}) }
+                ]
+            },
+            {
+                label: 'Dark', icon: 'pi pi-fw pi-circle-on', badge: '8',
+                items: [
+                    {label: 'Blue', icon: 'pi pi-fw pi-palette', styleClass: 'blue-theme',command: (event) => {this.changeTheme('blue-dark')}},
+                    {label: 'Green', icon: 'pi pi-fw pi-palette', styleClass: 'green-theme', command: (event) => {this.changeTheme('green-dark')}},
+                    {label: 'Cyan', icon: 'pi pi-fw pi-palette', styleClass: 'cyan-theme', command: (event) => {this.changeTheme('cyan-dark')}},
+                    {label: 'Purple', icon: 'pi pi-fw pi-palette', styleClass: 'purple-theme', command: (event) => {this.changeTheme('purple-dark')}},
+                    {label: 'Indigo', icon: 'pi pi-fw pi-palette', styleClass: 'indigo-theme', command: (event) => {this.changeTheme('indigo-dark')}},
+                    {label: 'Yellow', icon: 'pi pi-fw pi-palette', styleClass: 'yellow-theme', command: (event) => {this.changeTheme('yellow-dark')}},
+                    {label: 'Orange', icon: 'pi pi-fw pi-palette', styleClass: 'orange-theme', command: (event) => {this.changeTheme('orange-dark')}},
+                    {label: 'Pink', icon: 'pi pi-fw pi-palette', styleClass: 'pink-theme', command: (event) => {this.changeTheme('pink-dark')}}
 
-            ]
-        },
-        {
-            label: 'Light', icon: 'fa fa-fw fa-circle-o', badge: '8',
-            items: [
-                {label: 'Blue', icon: 'fa fa-fw fa-paint-brush', styleClass: 'blue-theme',command: (event) => {this.changeTheme('blue-light')}},
-                {label: 'Green', icon: 'fa fa-fw fa-paint-brush', styleClass: 'green-theme', command: (event) => {this.changeTheme('green-light')}},
-                {label: 'Cyan', icon: 'fa fa-fw fa-paint-brush', styleClass: 'cyan-theme', command: (event) => {this.changeTheme('cyan-light')}},
-                {label: 'Purple', icon: 'fa fa-fw fa-paint-brush', styleClass: 'purple-theme', command: (event) => {this.changeTheme('purple-light')}},
-                {label: 'Indigo', icon: 'fa fa-fw fa-paint-brush', styleClass: 'indigo-theme', command: (event) => {this.changeTheme('indigo-light')}},
-                {label: 'Yellow', icon: 'fa fa-fw fa-paint-brush', styleClass: 'yellow-theme', command: (event) => {this.changeTheme('yellow-light')}},
-                {label: 'Orange', icon: 'fa fa-fw fa-paint-brush', styleClass: 'orange-theme', command: (event) => {this.changeTheme('orange-light')}},
-                {label: 'Pink', icon: 'fa fa-fw fa-paint-brush', styleClass: 'pink-theme', command: (event) => {this.changeTheme('pink-light')}}
+                ]
+            },
+            {
+                label: 'Light', icon: 'pi pi-fw pi-circle-off', badge: '8',
+                items: [
+                    {label: 'Blue', icon: 'pi pi-fw pi-palette', styleClass: 'blue-theme',command: (event) => {this.changeTheme('blue-light')}},
+                    {label: 'Green', icon: 'pi pi-fw pi-palette', styleClass: 'green-theme', command: (event) => {this.changeTheme('green-light')}},
+                    {label: 'Cyan', icon: 'pi pi-fw pi-palette', styleClass: 'cyan-theme', command: (event) => {this.changeTheme('cyan-light')}},
+                    {label: 'Purple', icon: 'pi pi-fw pi-palette', styleClass: 'purple-theme', command: (event) => {this.changeTheme('purple-light')}},
+                    {label: 'Indigo', icon: 'pi pi-fw pi-palette', styleClass: 'indigo-theme', command: (event) => {this.changeTheme('indigo-light')}},
+                    {label: 'Yellow', icon: 'pi pi-fw pi-palette', styleClass: 'yellow-theme', command: (event) => {this.changeTheme('yellow-light')}},
+                    {label: 'Orange', icon: 'pi pi-fw pi-palette', styleClass: 'orange-theme', command: (event) => {this.changeTheme('orange-light')}},
+                    {label: 'Pink', icon: 'pi pi-fw pi-palette', styleClass: 'pink-theme', command: (event) => {this.changeTheme('pink-light')}}
 
-            ]
-        },
-        {
-            label: 'Components', icon: 'fa fa-fw fa-sitemap',
-            items: [
-                {label: 'Sample Page', icon: 'fa fa-fw fa-columns', command: () => { window.location = '#/sample'}},
-                {label: 'Forms', icon: 'fa fa-fw fa-code', command: () => { window.location = '#/forms'}},
-                {label: 'Data', icon: 'fa fa-fw fa-table', command: () => { window.location = "#/data"}},
-                {label: 'Panels', icon: 'fa fa-fw fa-list-alt', command: () => { window.location = "#/panels"}},
-                {label: 'Overlays', icon: 'fa fa-fw fa-square', command: () => { window.location = "#/overlays"}},
-                {label: 'Menus', icon: 'fa fa-fw fa-minus-square-o', command: () => { window.location = "#/menus"}},
-                {label: 'Messages', icon: 'fa fa-fw fa-circle-o-notch', command: () => { window.location = "#/messages"}},
-                {label: 'Charts', icon: 'fa fa-fw fa-area-chart', command: () => { window.location = "#/charts"}},
-                {label: 'Misc', icon: 'fa fa-fw fa-user-secret', command: () => { window.location = "#/misc"}}
-            ]
-        },
-        {
-            label: 'Pages', icon: 'fa fa-fw fa-life-saver',
-            items: [
-                {label: 'Empty Page', icon: 'fa fa-fw fa-square-o', command: () => { window.location = "#/empty"}},
-                {label: 'Landing', icon: 'fa fa-fw fa-certificate', url: 'assets/pages/landing.html', target: '_blank'},
-                {label: 'Login', icon: 'fa fa-fw fa-sign-in', url: 'assets/pages/login.html', target: '_blank'},
-                {label: 'Error', icon: 'fa fa-fw fa-exclamation-circle', url: 'assets/pages/error.html', target: '_blank'},
-                {label: 'Not Found', icon: 'fa fa-fw fa-times', url: 'assets/pages/notfound.html', target: '_blank'},
-                {label: 'Access Denied', icon: 'fa fa-fw fa-exclamation-triangle', url: 'assets/pages/access.html', target: '_blank'}
-            ]
-        },
-        {
-            label: 'Menu Hierarchy', icon: 'fa fa-fw fa-gg',
-            items: [
-                {
-                    label: 'Submenu 1', icon: 'fa fa-fw fa-sign-in',
-                    items: [
-                        {
-                            label: 'Submenu 1.1', icon: 'fa fa-fw fa-sign-in',
-                            items: [
-                                {label: 'Submenu 1.1.1', icon: 'fa fa-fw fa-sign-in'},
-                                {label: 'Submenu 1.1.2', icon: 'fa fa-fw fa-sign-in'},
-                                {label: 'Submenu 1.1.3', icon: 'fa fa-fw fa-sign-in'},
-                            ]
-                        },
-                        {
-                            label: 'Submenu 1.2', icon: 'fa fa-fw fa-sign-in',
-                            items: [
-                                {label: 'Submenu 1.2.1', icon: 'fa fa-fw fa-sign-in'},
-                                {label: 'Submenu 1.2.2', icon: 'fa fa-fw fa-sign-in'}
-                            ]
-                        },
-                    ]
-                },
-                {
-                    label: 'Submenu 2', icon: 'fa fa-fw fa-sign-in',
-                    items: [
-                        {
-                            label: 'Submenu 2.1', icon: 'fa fa-fw fa-sign-in',
-                            items: [
-                                {label: 'Submenu 2.1.1', icon: 'fa fa-fw fa-sign-in'},
-                                {label: 'Submenu 2.1.2', icon: 'fa fa-fw fa-sign-in'},
-                                {label: 'Submenu 2.1.3', icon: 'fa fa-fw fa-sign-in'},
-                            ]
-                        },
-                        {
-                            label: 'Submenu 2.2', icon: 'fa fa-fw fa-sign-in',
-                            items: [
-                                {label: 'Submenu 2.2.1', icon: 'fa fa-fw fa-sign-in'},
-                                {label: 'Submenu 2.2.2', icon: 'fa fa-fw fa-sign-in'}
-                            ]
-                        },
-                    ]
-                }
-            ]
-        },
-        {label: 'Docs', icon: 'fa fa-fw fa-book', command: () => { window.location = "#/documentation"}}
-    ];
+                ]
+            },
+            {
+                label: 'Components', icon: 'pi pi-fw pi-sitemap',
+                items: [
+                    {label: 'Sample Page', icon: 'pi pi-fw pi-desktop', to: '/sample'},
+                    {label: 'Forms', icon: 'pi pi-fw pi-check-square', to: '/forms'},
+                    {label: 'Data', icon: 'pi pi-fw pi-table', to: '/data'},
+                    {label: 'Panels', icon: 'pi pi-fw pi-list', to: '/panels'},
+                    {label: 'Overlays', icon: 'pi pi-fw pi-images', to: '/overlays'},
+                    {label: 'Menus', icon: 'pi pi-fw pi-bars', to: '/menus'},
+                    {label: 'Messages', icon: 'pi pi-fw pi-info-circle', to: '/messages'},
+                    {label: 'Charts', icon: 'pi pi-fw pi-chart-bar', to: '/charts'},
+                    {label: 'Misc', icon: 'pi pi-fw pi-globe', to: '/misc'}
+                ]
+            },
+            {
+                label: 'Pages', icon: 'pi pi-fw pi-clone',
+                items: [
+                    {label: 'Empty Page', icon: 'pi pi-fw pi-ticket', to: '/empty'},
+                    {label: 'Landing', icon: 'pi pi-fw pi-eye', url: 'assets/pages/landing.html', target: '_blank'},
+                    {label: 'Login', icon: 'pi pi-fw pi-user', to: '/login'},
+                    {label: 'Error', icon: 'pi pi-fw pi-times', to: '/error'},
+                    {label: 'Not Found', icon: 'pi pi-fw pi-ban', to: '/notfound'},
+                    {label: 'Access Denied', icon: 'pi pi-fw pi-lock', to: '/access'}
+                ]
+            },
+            {
+                label: 'Menu Hierarchy', icon: 'pi pi-fw pi-sort-amount-down-alt',
+                items: [
+                    {
+                        label: 'Submenu 1', icon: 'pi pi-fw pi-angle-right',
+                        items: [
+                            {
+                                label: 'Submenu 1.1', icon: 'pi pi-fw pi-angle-right',
+                                items: [
+                                    {label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-angle-right'},
+                                    {label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-angle-right'},
+                                    {label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-angle-right'},
+                                ]
+                            },
+                            {
+                                label: 'Submenu 1.2', icon: 'pi pi-fw pi-angle-right',
+                                items: [
+                                    {label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-angle-right'},
+                                    {label: 'Submenu 1.2.2', icon: 'pi pi-fw pi-angle-right'}
+                                ]
+                            },
+                        ]
+                    },
+                    {
+                        label: 'Submenu 2', icon: 'pi pi-fw pi-angle-right',
+                        items: [
+                            {
+                                label: 'Submenu 2.1', icon: 'pi pi-fw pi-angle-right',
+                                items: [
+                                    {label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-angle-right'},
+                                    {label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-angle-right'},
+                                    {label: 'Submenu 2.1.3', icon: 'pi pi-fw pi-angle-right'},
+                                ]
+                            },
+                            {
+                                label: 'Submenu 2.2', icon: 'pi pi-fw pi-angle-right',
+                                items: [
+                                    {label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-angle-right'},
+                                    {label: 'Submenu 2.2.2', icon: 'pi pi-fw pi-angle-right'}
+                                ]
+                            },
+                        ]
+                    }
+                ]
+            },
+            {label: 'Docs', icon: 'pi pi-fw pi-question', command: () => { window.location = "#/documentation"}}
+        ];
 }
     
 `}
@@ -335,7 +335,7 @@ $primaryTextColor:#ffffff;
 `
 }
 </pre>
-                        
+
                         <p> An example sass command to compile the css would be;</p>
 
                         <pre>
@@ -406,7 +406,7 @@ $secondaryAccent:#424242;
 
 `
 }
-</pre> 
+</pre>
                         <h3>sass/theme/_theme_light.scss</h3>
                         <pre>
 {
@@ -532,7 +532,7 @@ $tabHeaderPadding:.571em .857em;
                         <h1>Menu Modes</h1>
                         <p>Menu has 4 modes, static, overlay, slim and horizontal. Layout container element in app.component.html is used to define which mode to use by adding specific classes. List
                         below indicates the style classes for each mode.</p>
-                        
+
                         <ul>
                             <li>Static: "layout-wrapper layout-static"</li>
                             <li>Overlay: "layout-wrapper layout-overlay"</li>
@@ -550,12 +550,12 @@ $tabHeaderPadding:.571em .857em;
 
                         <h1>PrimeFlex Grid System</h1>
                         <p>Apollo uses PrimeFlex Grid System throughout the samples, although any Grid library can be used we suggest using PrimeFlex as your grid system as it is well tested and supported by PrimeReact. PrimeFlex is
-                        available at npm and defined at package.json of Apollo so that it gets installed by default.</p> 
+                        available at npm and defined at package.json of Apollo so that it gets installed by default.</p>
 
                         <h1>Customizing Styles</h1>
                         <p>It is suggested to write your customizations in <i>sass/_layout_styles.scss</i> and <i>sass/_theme_styles.scss </i> files for seamless updates
                         as these files are empty by default and never updated.</p>
-                    
+
                         <h1>Migration Guide</h1>
 						<p>2.0.0-beta.1 to 3.0.0</p>
 						<ul>
@@ -576,7 +576,7 @@ $tabHeaderPadding:.571em .857em;
                             <li>Update layout css files</li>
                             <li>Update theme css files</li>
                         </ul>
-                        
+
                         <p>1.6.0 to 1.6.1</p>
                         <p>Brings support for PrimeReact 1.6.x.</p>
 
@@ -607,7 +607,7 @@ $tabHeaderPadding:.571em .857em;
                         <ul>
                             <li>Update theme css files</li>
                         </ul>
-                        
+
                         <p>1.0.0 to 1.4.0</p>
                         <ul>
                             <li>Update PrimeReact to 1.4.0</li>
