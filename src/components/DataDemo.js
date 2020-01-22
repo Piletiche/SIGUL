@@ -14,6 +14,9 @@ import {Panel} from 'primereact/panel';
 import {InputText} from 'primereact/inputtext';
 import {Button} from 'primereact/button';
 import {Dropdown} from 'primereact/dropdown';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
 import {DataView, DataViewLayoutOptions} from 'primereact/dataview';
 
 export class DataDemo extends Component {
@@ -34,12 +37,15 @@ export class DataDemo extends Component {
 			documentsSelection:[],
             fullcalendarEvents:[],
 			fullcalendarOptions: {
-				defaultDate: '2016-01-12',
-				header: {
-					left: 'prev,next today',
-					center: 'title',
-					right: 'month,agendaWeek,agendaDay'
-				}
+                plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+                defaultView: 'dayGridMonth',
+                defaultDate: '2016-01-12',
+                header: {
+                    left: 'prev,next, today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                editable: true
 			},
             layout: 'list',
             sortOptions: [
@@ -104,7 +110,7 @@ export class DataDemo extends Component {
         if (!car) {
             return;
         }
-        
+
         return <div className="p-clearfix">
             <img src={`assets/demo/images/car/${car.brand}.png`} alt={car.brand} style={{display:'inline-block', margin:'2px 0 2px 2px', width: '50px'}}/>
             <div style={{fontSize:'16px', float:'right', margin:'15px 5px 0 0'}}>{car.brand}</div>
