@@ -1,24 +1,25 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import classNames from 'classnames';
-import { AppTopbar } from './AppTopbar';
-import { AppBreadcrumb } from './AppBreadcrumb';
-import { AppFooter } from './AppFooter';
-import { AppMenu } from './AppMenu';
-import { withRouter } from 'react-router';
-import { Route } from 'react-router-dom';
-import { Dashboard } from './components/Dashboard';
-import { FormsDemo } from './components/FormsDemo';
-import { SampleDemo } from './components/SampleDemo';
-import { DataDemo } from './components/DataDemo';
-import { PanelsDemo } from './components/PanelsDemo';
-import { OverlaysDemo } from './components/OverlaysDemo';
-import { MenusDemo } from './components/MenusDemo';
-import { MessagesDemo } from './components/MessagesDemo';
-import { ChartsDemo } from './components/ChartsDemo';
-import { MiscDemo } from './components/MiscDemo';
-import { EmptyPage } from './components/EmptyPage';
-import { Documentation } from './components/Documentation';
-import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
+import {AppTopbar} from './AppTopbar';
+import {AppBreadcrumb} from './AppBreadcrumb';
+import {AppFooter} from './AppFooter';
+import {AppMenu} from './AppMenu';
+import {AppConfig} from './AppConfig';
+import {withRouter} from 'react-router';
+import {Route} from 'react-router-dom';
+import {Dashboard} from './components/Dashboard';
+import {FormsDemo} from './components/FormsDemo';
+import {SampleDemo} from './components/SampleDemo';
+import {DataDemo} from './components/DataDemo';
+import {PanelsDemo} from './components/PanelsDemo';
+import {OverlaysDemo} from './components/OverlaysDemo';
+import {MenusDemo} from './components/MenusDemo';
+import {MessagesDemo} from './components/MessagesDemo';
+import {ChartsDemo} from './components/ChartsDemo';
+import {MiscDemo} from './components/MiscDemo';
+import {EmptyPage} from './components/EmptyPage';
+import {Documentation} from './components/Documentation';
+import {ProgressBar} from 'primereact/components/progressbar/ProgressBar';
 import 'primereact/resources/primereact.min.css';
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
@@ -40,6 +41,8 @@ class App extends Component {
             activeTopbarItem: null,
             darkTheme: false,
             menuActive: false,
+            themeColor: 'blue',
+            configDialogActive: false
         };
 
         this.onDocumentClick = this.onDocumentClick.bind(this);
@@ -50,6 +53,12 @@ class App extends Component {
         this.onTopbarItemClick = this.onTopbarItemClick.bind(this);
         this.onMenuItemClick = this.onMenuItemClick.bind(this);
         this.onRootMenuItemClick = this.onRootMenuItemClick.bind(this);
+        this.changeMenuMode = this.changeMenuMode.bind(this);
+        this.changeMenuColor = this.changeMenuColor.bind(this);
+        this.changeTheme = this.changeTheme.bind(this);
+        this.onConfigButtonClick = this.onConfigButtonClick.bind(this);
+        this.onConfigCloseClick = this.onConfigCloseClick.bind(this);
+        this.onConfigClick = this.onConfigClick.bind(this);
         this.createMenu();
     }
 
@@ -63,13 +72,12 @@ class App extends Component {
             topbarMenuActive: false
         }));
 
-        if(this.state.layoutMode === 'overlay' && !this.isMobile()) {
+        if (this.state.layoutMode === 'overlay' && !this.isMobile()) {
             this.setState({
                 overlayMenuActive: !this.state.overlayMenuActive
             });
-        }
-        else {
-            if(this.isDesktop())
+        } else {
+            if (this.isDesktop())
                 this.setState({staticMenuDesktopInactive: !this.state.staticMenuDesktopInactive});
             else
                 this.setState({staticMenuMobileActive: !this.state.staticMenuMobileActive});
@@ -88,7 +96,7 @@ class App extends Component {
     onTopbarItemClick(event) {
         this.topbarItemClick = true;
 
-        if(this.state.activeTopbarItem === event.item)
+        if (this.state.activeTopbarItem === event.item)
             this.setState({activeTopbarItem: null});
         else
             this.setState({activeTopbarItem: event.item});
@@ -97,10 +105,10 @@ class App extends Component {
     }
 
     onMenuItemClick(event) {
-        if(!event.item.items) {
+        if (!event.item.items) {
             this.hideOverlayMenu();
         }
-        if(!event.item.items && (this.isHorizontal() || this.isSlim())) {
+        if (!event.item.items && (this.isHorizontal() || this.isSlim())) {
             this.setState({
                 menuActive: false
             })
@@ -113,16 +121,33 @@ class App extends Component {
         });
     }
 
+    onConfigButtonClick(event){
+        this.configClick = true;
+        this.setState({configDialogActive: !this.state.configDialogActive})
+    }
+
+    onConfigCloseClick(){
+        this.setState({configDialogActive: false})
+    }
+
+    onConfigClick(){
+        this.configClick = true;
+    }
+
     onDocumentClick(event) {
-        if(!this.topbarItemClick) {
+        if (!this.topbarItemClick) {
             this.setState({
                 activeTopbarItem: null,
                 topbarMenuActive: false
             });
         }
 
-        if(!this.menuClick) {
-            if(this.isHorizontal() || this.isSlim()) {
+        if (!this.configClick) {
+            this.setState({configDialogActive: false});
+        }
+
+        if (!this.menuClick) {
+            if (this.isHorizontal() || this.isSlim()) {
                 this.setState({
                     menuActive: false
                 })
@@ -133,6 +158,7 @@ class App extends Component {
 
         this.topbarItemClick = false;
         this.menuClick = false;
+        this.configClick = false;
     }
 
     hideOverlayMenu() {
@@ -167,26 +193,20 @@ class App extends Component {
         return this.state.layoutMode === 'slim';
     }
 
-    changeTheme(theme) {
-        this.changeStyleSheetUrl('layout-css', theme, 'layout');
-        this.changeStyleSheetUrl('theme-css', theme, 'theme');
+    changeMenuMode(event) {
+        this.setState({
+            layoutMode : event.menuMode,
+            staticMenuDesktopInactive: false,
+            overlayMenuActive: false
+        });
     }
 
-    changeStyleSheetUrl(id, value, prefix) {
-        let element = document.getElementById(id);
-        let urlTokens = element.getAttribute('href').split('/');
-        urlTokens[urlTokens.length - 1] = prefix + '-' + value + '.css';
-        let newURL = urlTokens.join('/');
-        element.setAttribute('href', newURL);
-
-        if (value.indexOf('dark') !== -1) {
-            this.setState({darkTheme : true});
-        } else {
-            this.setState({darkTheme : false});
-        }
+    changeMenuColor(event) {
+        this.setState({darkTheme : event.darkTheme})
+        this.onThemeChange();
     }
 
-    onThemeChange(){
+    onThemeChange() {
         const themeLink = document.getElementById('theme-css');
         const href = themeLink.href;
         const themeFile = href.substring(href.lastIndexOf('/') + 1, href.lastIndexOf('.'));
@@ -195,47 +215,158 @@ class App extends Component {
         const themeMode = themeTokens[2];
         const newThemeMode = (themeMode === 'dark') ? 'light' : 'dark';
 
-        this.changeTheme(themeName + '-' + newThemeMode);
+        this.changeTheme({originalEvent: null, theme:themeName + '-' + newThemeMode});
+    }
 
+    changeTheme(event) {
+        this.setState({themeColor: event.theme.split('-')[0]})
+        this.changeStyleSheetUrl('layout-css', event.theme, 'layout');
+        this.changeStyleSheetUrl('theme-css', event.theme, 'theme');
+    }
+
+    changeStyleSheetUrl(id, value, prefix) {
+        let element = document.getElementById(id);
+        let urlTokens = element.getAttribute('href').split('/');
+        urlTokens[urlTokens.length - 1] = prefix + '-' + value + '.css';
+        let newURL = urlTokens.join('/');
+
+        this.replaceLink(element, newURL);
+
+        if (value.indexOf('dark') !== -1) {
+            this.setState({darkTheme: true});
+        } else {
+            this.setState({darkTheme: false});
+        }
+    }
+
+    replaceLink(linkElement, href) {
+        const id = linkElement.getAttribute('id');
+        const cloneLinkElement = linkElement.cloneNode(true);
+
+        cloneLinkElement.setAttribute('href', href);
+        cloneLinkElement.setAttribute('id', id + '-clone');
+
+        linkElement.parentNode.insertBefore(cloneLinkElement, linkElement.nextSibling);
+
+        cloneLinkElement.addEventListener('load', () => {
+            linkElement.remove();
+            cloneLinkElement.setAttribute('id', id);
+        });
     }
 
     createMenu() {
         this.menu = [
-            {label: 'Dashboard', icon: 'pi pi-fw pi-home', to:'/'},
+            {label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/'},
             {
-                label: 'Menu', icon: 'pi pi-fw pi-bars' ,
+                label: 'Menu', icon: 'pi pi-fw pi-bars',
                 items: [
-                    {label: 'Horizontal Menu', icon: 'pi pi-fw pi-bars',  command: () => this.setState({layoutMode: 'horizontal'}) },
-                    {label: 'Overlay Menu', icon: 'pi pi-fw pi-bars',  command: () => this.setState({layoutMode: 'overlay'}) },
-                    {label: 'Static Menu', icon: 'pi pi-fw pi-bars',  command: () => this.setState({layoutMode: 'static'}) },
-                    {label: 'Slim Menu', icon: 'pi pi-fw pi-bars',  command: () => this.setState({layoutMode: 'slim'}) }
+                    {
+                        label: 'Horizontal Menu',
+                        icon: 'pi pi-fw pi-bars',
+                        command: () => this.setState({layoutMode: 'horizontal'})
+                    },
+                    {
+                        label: 'Overlay Menu',
+                        icon: 'pi pi-fw pi-bars',
+                        command: () => this.setState({layoutMode: 'overlay'})
+                    },
+                    {
+                        label: 'Static Menu',
+                        icon: 'pi pi-fw pi-bars',
+                        command: () => this.setState({layoutMode: 'static'})
+                    },
+                    {label: 'Slim Menu', icon: 'pi pi-fw pi-bars', command: () => this.setState({layoutMode: 'slim'})}
                 ]
             },
             {
                 label: 'Dark', icon: 'pi pi-fw pi-circle-on', badge: '8',
                 items: [
-                    {label: 'Blue', icon: 'pi pi-fw pi-palette', styleClass: 'blue-theme',command: (event) => {this.changeTheme('blue-dark')}},
-                    {label: 'Green', icon: 'pi pi-fw pi-palette', styleClass: 'green-theme', command: (event) => {this.changeTheme('green-dark')}},
-                    {label: 'Cyan', icon: 'pi pi-fw pi-palette', styleClass: 'cyan-theme', command: (event) => {this.changeTheme('cyan-dark')}},
-                    {label: 'Purple', icon: 'pi pi-fw pi-palette', styleClass: 'purple-theme', command: (event) => {this.changeTheme('purple-dark')}},
-                    {label: 'Indigo', icon: 'pi pi-fw pi-palette', styleClass: 'indigo-theme', command: (event) => {this.changeTheme('indigo-dark')}},
-                    {label: 'Yellow', icon: 'pi pi-fw pi-palette', styleClass: 'yellow-theme', command: (event) => {this.changeTheme('yellow-dark')}},
-                    {label: 'Orange', icon: 'pi pi-fw pi-palette', styleClass: 'orange-theme', command: (event) => {this.changeTheme('orange-dark')}},
-                    {label: 'Pink', icon: 'pi pi-fw pi-palette', styleClass: 'pink-theme', command: (event) => {this.changeTheme('pink-dark')}}
+                    {
+                        label: 'Blue', icon: 'pi pi-fw pi-palette', styleClass: 'blue-theme', command: (event) => {
+                            this.changeTheme({originalEvent:event, theme:'blue-dark'})
+                        }
+                    },
+                    {
+                        label: 'Green', icon: 'pi pi-fw pi-palette', styleClass: 'green-theme', command: (event) => {
+                            this.changeTheme({originalEvent:event, theme:'green-dark'})
+                        }
+                    },
+                    {
+                        label: 'Cyan', icon: 'pi pi-fw pi-palette', styleClass: 'cyan-theme', command: (event) => {
+                            this.changeTheme({originalEvent:event, theme:'cyan-dark'})
+                        }
+                    },
+                    {
+                        label: 'Purple', icon: 'pi pi-fw pi-palette', styleClass: 'purple-theme', command: (event) => {
+                            this.changeTheme({originalEvent:event, theme:'purple-dark'})
+                        }
+                    },
+                    {
+                        label: 'Indigo', icon: 'pi pi-fw pi-palette', styleClass: 'indigo-theme', command: (event) => {
+                            this.changeTheme({originalEvent:event, theme:'indigo-dark'})
+                        }
+                    },
+                    {
+                        label: 'Yellow', icon: 'pi pi-fw pi-palette', styleClass: 'yellow-theme', command: (event) => {
+                            this.changeTheme({originalEvent:event, theme:'yellow-dark'})
+                        }
+                    },
+                    {
+                        label: 'Orange', icon: 'pi pi-fw pi-palette', styleClass: 'orange-theme', command: (event) => {
+                            this.changeTheme({originalEvent:event, theme:'orange-dark'})
+                        }
+                    },
+                    {
+                        label: 'Pink', icon: 'pi pi-fw pi-palette', styleClass: 'pink-theme', command: (event) => {
+                            this.changeTheme({originalEvent:event, theme:'pink-dark'})
+                        }
+                    }
 
                 ]
             },
             {
                 label: 'Light', icon: 'pi pi-fw pi-circle-off', badge: '8',
                 items: [
-                    {label: 'Blue', icon: 'pi pi-fw pi-palette', styleClass: 'blue-theme',command: (event) => {this.changeTheme('blue-light')}},
-                    {label: 'Green', icon: 'pi pi-fw pi-palette', styleClass: 'green-theme', command: (event) => {this.changeTheme('green-light')}},
-                    {label: 'Cyan', icon: 'pi pi-fw pi-palette', styleClass: 'cyan-theme', command: (event) => {this.changeTheme('cyan-light')}},
-                    {label: 'Purple', icon: 'pi pi-fw pi-palette', styleClass: 'purple-theme', command: (event) => {this.changeTheme('purple-light')}},
-                    {label: 'Indigo', icon: 'pi pi-fw pi-palette', styleClass: 'indigo-theme', command: (event) => {this.changeTheme('indigo-light')}},
-                    {label: 'Yellow', icon: 'pi pi-fw pi-palette', styleClass: 'yellow-theme', command: (event) => {this.changeTheme('yellow-light')}},
-                    {label: 'Orange', icon: 'pi pi-fw pi-palette', styleClass: 'orange-theme', command: (event) => {this.changeTheme('orange-light')}},
-                    {label: 'Pink', icon: 'pi pi-fw pi-palette', styleClass: 'pink-theme', command: (event) => {this.changeTheme('pink-light')}}
+                    {
+                        label: 'Blue', icon: 'pi pi-fw pi-palette', styleClass: 'blue-theme', command: (event) => {
+                            this.changeTheme({originalEvent:event, theme:'blue-light'})
+                        }
+                    },
+                    {
+                        label: 'Green', icon: 'pi pi-fw pi-palette', styleClass: 'green-theme', command: (event) => {
+                            this.changeTheme({originalEvent:event, theme:'green-light'})
+                        }
+                    },
+                    {
+                        label: 'Cyan', icon: 'pi pi-fw pi-palette', styleClass: 'cyan-theme', command: (event) => {
+                            this.changeTheme({originalEvent:event, theme:'cyan-light'})
+                        }
+                    },
+                    {
+                        label: 'Purple', icon: 'pi pi-fw pi-palette', styleClass: 'purple-theme', command: (event) => {
+                            this.changeTheme({originalEvent:event, theme:'purple-light'})
+                        }
+                    },
+                    {
+                        label: 'Indigo', icon: 'pi pi-fw pi-palette', styleClass: 'indigo-theme', command: (event) => {
+                            this.changeTheme({originalEvent:event, theme:'indigo-light'})
+                        }
+                    },
+                    {
+                        label: 'Yellow', icon: 'pi pi-fw pi-palette', styleClass: 'yellow-theme', command: (event) => {
+                            this.changeTheme({originalEvent:event, theme:'yellow-light'})
+                        }
+                    },
+                    {
+                        label: 'Orange', icon: 'pi pi-fw pi-palette', styleClass: 'orange-theme', command: (event) => {
+                            this.changeTheme({originalEvent:event, theme:'orange-light'})
+                        }
+                    },
+                    {
+                        label: 'Pink', icon: 'pi pi-fw pi-palette', styleClass: 'pink-theme', command: (event) => {
+                            this.changeTheme({originalEvent:event, theme:'pink-light'})
+                        }
+                    }
 
                 ]
             },
@@ -309,7 +440,11 @@ class App extends Component {
                     }
                 ]
             },
-            {label: 'Docs', icon: 'pi pi-fw pi-question', command: () => { window.location = "#/documentation"}}
+            {
+                label: 'Docs', icon: 'pi pi-fw pi-question', command: () => {
+                    window.location = "#/documentation"
+                }
+            }
         ];
     }
 
@@ -327,53 +462,60 @@ class App extends Component {
 
         return (
             <div className={layoutClassName} onClick={this.onDocumentClick}>
-                <div>
-                    <AppTopbar darkTheme={this.state.darkTheme} onThemeChange={this.onThemeChange}
-                            topbarMenuActive={this.state.topbarMenuActive} activeTopbarItem={this.state.activeTopbarItem}
-                            onMenuButtonClick={this.onMenuButtonClick} onTopbarMenuButtonClick={this.onTopbarMenuButtonClick}
-                            onTopbarItemClick={this.onTopbarItemClick} />
 
-                    <div className='layout-menu-container' onClick={this.onMenuClick}>
-                        <div className="layout-menu-content">
-                            <div className="layout-menu-title">MENU</div>
-                            <AppMenu model={this.menu} onMenuItemClick={this.onMenuItemClick} onRootMenuItemClick={this.onRootMenuItemClick}
-                                    layoutMode={this.state.layoutMode} active={this.state.menuActive} />
-                            <div className="layout-menu-footer">
-                                <div className="layout-menu-footer-title">TASKS</div>
+                <AppTopbar darkTheme={this.state.darkTheme} onThemeChange={this.onThemeChange}
+                           topbarMenuActive={this.state.topbarMenuActive} activeTopbarItem={this.state.activeTopbarItem}
+                           onMenuButtonClick={this.onMenuButtonClick}
+                           onTopbarMenuButtonClick={this.onTopbarMenuButtonClick}
+                           onTopbarItemClick={this.onTopbarItemClick}/>
 
-                                <div className="layout-menu-footer-content">
-                                    <ProgressBar value={50} showValue={false}></ProgressBar>
-                                        Today
-                                    <ProgressBar value={80} showValue={false}></ProgressBar>
-                                        Overall
-                                </div>
+                <div className='layout-menu-container' onClick={this.onMenuClick}>
+                    <div className="layout-menu-content">
+                        <div className="layout-menu-title">MENU</div>
+                        <AppMenu model={this.menu} onMenuItemClick={this.onMenuItemClick}
+                                 onRootMenuItemClick={this.onRootMenuItemClick}
+                                 layoutMode={this.state.layoutMode} active={this.state.menuActive}/>
+                        <div className="layout-menu-footer">
+                            <div className="layout-menu-footer-title">TASKS</div>
+
+                            <div className="layout-menu-footer-content">
+                                <ProgressBar value={50} showValue={false}></ProgressBar>
+                                Today
+                                <ProgressBar value={80} showValue={false}></ProgressBar>
+                                Overall
                             </div>
                         </div>
                     </div>
-
-                    <div className="layout-content">
-                        <AppBreadCrumbWithRouter/>
-
-                        <div className="layout-content-container">
-                            <Route path="/" exact component={Dashboard} />
-                            <Route path="/forms" component={FormsDemo} />
-                            <Route path="/sample" component={SampleDemo} />
-                            <Route path="/data" component={DataDemo} />
-                            <Route path="/panels" component={PanelsDemo} />
-                            <Route path="/overlays" component={OverlaysDemo} />
-                            <Route path="/menus" component={MenusDemo} />
-                            <Route path="/messages" component={MessagesDemo} />
-                            <Route path="/charts" component={ChartsDemo} />
-                            <Route path="/misc" component={MiscDemo} />
-                            <Route path="/empty" component={EmptyPage} />
-                            <Route path="/documentation" component={Documentation} />
-                        </div>
-
-                        <AppFooter />
-
-                        {this.state.staticMenuMobileActive && <div className="layout-mask"></div>}
-                    </div>
                 </div>
+
+                <div className="layout-content">
+                    <AppBreadCrumbWithRouter/>
+
+                    <div className="layout-content-container">
+                        <Route path="/" exact component={Dashboard}/>
+                        <Route path="/forms" component={FormsDemo}/>
+                        <Route path="/sample" component={SampleDemo}/>
+                        <Route path="/data" component={DataDemo}/>
+                        <Route path="/panels" component={PanelsDemo}/>
+                        <Route path="/overlays" component={OverlaysDemo}/>
+                        <Route path="/menus" component={MenusDemo}/>
+                        <Route path="/messages" component={MessagesDemo}/>
+                        <Route path="/charts" component={ChartsDemo}/>
+                        <Route path="/misc" component={MiscDemo}/>
+                        <Route path="/empty" component={EmptyPage}/>
+                        <Route path="/documentation" component={Documentation}/>
+                    </div>
+
+                    <AppFooter/>
+
+                    {this.state.staticMenuMobileActive && <div className="layout-mask"></div>}
+                </div>
+
+
+                <AppConfig layoutMode={this.state.layoutMode} darkTheme={this.state.darkTheme} themeColor={this.state.themeColor}
+                           changeMenuMode={this.changeMenuMode} changeMenuColor={this.changeMenuColor} changeTheme={this.changeTheme}
+                           onConfigButtonClick={this.onConfigButtonClick} onConfigCloseClick={this.onConfigCloseClick}
+                           onConfigClick={this.onConfigClick} configDialogActive={this.state.configDialogActive}/>
             </div>
         );
     }
