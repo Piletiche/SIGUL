@@ -119,7 +119,8 @@ h2 {
 .docs {
     pre[class*="language-"] {
         padding: 0 !important;
-        background: transparent;
+        border-left: none;
+        @include shadow(none);
 
         > code {
             border-left: 10px solid lighten($primaryColor, 15%);

@@ -20,7 +20,6 @@ import { EmptyPage } from './components/EmptyPage';
 import { Documentation } from './components/Documentation';
 import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
 import 'primereact/resources/primereact.min.css';
-import 'prismjs/themes/prism-coy.css';
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
 import '@fullcalendar/timegrid/main.css';

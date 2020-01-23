@@ -4,6 +4,7 @@ import AppWrapper from './AppWrapper';
 import {HashRouter} from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import 'babel-polyfill';
+import 'prismjs/themes/prism-coy.css';
 
 ReactDOM.render(
 	<HashRouter>

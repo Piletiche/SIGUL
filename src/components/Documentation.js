@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Documentation.css';
+import {CodeHighlight} from "./CodeHighlight";
 
 export class Documentation extends Component {
 
@@ -14,7 +15,7 @@ export class Documentation extends Component {
                 <div className="p-col-12">
                     <div className="card docs no-margin">
                         <h1>Current Version</h1>
-                        <p>React 16.7.0 and PrimeReact 3.0.0</p>
+                        <p>React 16.11.0 and PrimeReact 3.4.x</p>
 
                         <h1>Getting Started</h1>
                         <p>Apollo is an application template for React based on the popular <a href="https://github.com/facebookincubator/create-react-app">create-react-app</a> that allows
@@ -23,14 +24,10 @@ export class Documentation extends Component {
                         <pre>
 {
 `npm install
-`}
-</pre>
 
-                        or
+# OR
 
-                        <pre>
-{
-`yarn
+yarn
 `}
 </pre>
 
@@ -40,14 +37,10 @@ export class Documentation extends Component {
                         <pre>
 {
 `npm start
-`}
-</pre>
 
-                        or
+# OR
 
-                        <pre>
-{
-`yarn start
+yarn start
 `}
 </pre>
 
@@ -62,13 +55,13 @@ export class Documentation extends Component {
 </pre>
 
                         <h1>Dependencies</h1>
-                        <p>Only required dependencies are PrimeReact, PrimeIcons PrimeFlex where optional dependencies exist to enable certain components in PrimeReact such as Google Maps.</p>
+                        <p>Dependencies of Apollo are listed below and needs to be added to package.json. Apollo has no direct dependency, even PrimeReact components are an optional dependency.</p>
 
-<pre>
+                        <pre>
 {
-`"primereact": "^2.0.0-beta.8",       //required: PrimeReact components
-"primeflex": "^1.0.0-rc.1",          //required: Layout
-"primeicons": "^1.0.0-beta.10",      //required: Component Icons
+`"primereact": "^3.4.0",              //optional: PrimeReact components
+"primeicons": "^2.0.0",              //optional: PrimeReact component icons
+"primeflex": "1.0.0",                //optional: Samples
 "react-router-dom": "^4.2.2"         //optional: Router
 `
 }
@@ -84,9 +77,10 @@ export class Documentation extends Component {
                             App.js component that implements the logic such as menu state, layout modes and so on.
                         </p>
 
-                        <pre>
+                        <CodeHighlight>
 {
-`render() {
+`
+render() {
     const layoutClassName = classNames('layout-wrapper', {
         'layout-horizontal': this.state.layoutMode === 'horizontal',
         'layout-overlay': this.state.layoutMode === 'overlay',
@@ -154,14 +148,15 @@ export class Documentation extends Component {
 }
 `
 }
-</pre>
+</CodeHighlight>
 
                         <h1>Menu</h1>
                         <p>Menu is a separate component defined in AppMenu.js file based on PrimeReact MenuModel API. In order to define the menuitems,
                             navigate to createMenu() method App.js file and define your own model as a nested structure. Here is the menu component from the demo application.
                             Notice that menu object is bound to the model property of AppMenu component as shown above.</p>
 
-                        <pre>
+<div style={{overflow: 'auto', height: '400px'}}>
+<CodeHighlight lang="js">
 {
 `createMenu() {
     this.menu = [
@@ -278,7 +273,8 @@ export class Documentation extends Component {
 }
     
 `}
-</pre>
+</CodeHighlight>
+</div>
 
                         <h1>Theme and Layout SASS</h1>
                         <p>Apollo provides 30 PrimeReact themes out of the box, setup of a theme is simple as including the css of theme to your application. All themes are located inside are located inside public/assets/theme folder.</p>
@@ -313,7 +309,7 @@ export class Documentation extends Component {
 
                         <p>Here are the variables required to create a light theme.</p>
 
-<pre>
+<CodeHighlight lang="css">
 {
 `
 $primaryColor:#39a3f4;
@@ -322,10 +318,10 @@ $primaryTextColor:#ffffff;
 @import '../sass/theme/_theme_light.scss';  
 `
 }
-</pre>
+</CodeHighlight>
 
                         <p>If you are creating a dark theme, import the _theme_dark.scss instead;</p>
-                        <pre>
+<CodeHighlight lang="css">
 {
 `
 $primaryColor:#39a3f4;
@@ -334,7 +330,7 @@ $primaryTextColor:#ffffff;
 @import '../sass/theme/_theme_dark.scss';
 `
 }
-</pre>
+</CodeHighlight>
 
                         <p> An example sass command to compile the css would be;</p>
 
@@ -359,9 +355,10 @@ sass -w src/assets/ --sourcemap=none
 
                         <p>Here are the variables required to create a layout.</p>
 
-                        <pre>
+<CodeHighlight lang="css">
 {
-`$primaryColor:#39a3f4;
+`
+$primaryColor:#39a3f4;
 $primaryTextColor:#ffffff;
 $menuBgColor:#243447;
 $menuitemTextColor:#9fadb7;
@@ -378,15 +375,16 @@ $dividerColor:#121213;
 @import '../../sass/layout/_layout.scss';
 `
 }
-</pre>
+</CodeHighlight>
 
                         <h1>Common SASS Variables</h1>
                         <p>In case you'd like to customize the shared variables, the _variables.scss files are where the options are defined for layout and theme.</p>
 
                         <h3>sass/_variables.scss</h3>
-                        <pre>
+<CodeHighlight lang="css">
 {
-`$fontFamily:"Source Sans Pro",Arial,sans-serif;
+`
+$fontFamily:"Source Sans Pro",Arial,sans-serif;
 $fontSize:14px;
 $borderRadius:2px;
 $transitionDuration:.3s;
@@ -406,11 +404,12 @@ $secondaryAccent:#424242;
 
 `
 }
-</pre>
+</CodeHighlight>
                         <h3>sass/theme/_theme_light.scss</h3>
-                        <pre>
+<CodeHighlight lang="css">
 {
-`@import '../variables';
+`
+@import '../variables';
 
 $textColor:#424242;
 $textSecondaryColor:#7a7a7a;
@@ -465,12 +464,13 @@ $tabHeaderPadding:.571em .857em;
 @import './_theme.scss';
 `
 }
-</pre>
+</CodeHighlight>
 
                         <h3>sass/theme/_theme_dark.scss</h3>
-                        <pre>
+<CodeHighlight lang="css">
 {
-`@import '../variables';
+`
+@import '../variables';
 
 $textColor:#d8d8d8;
 $textSecondaryColor:#acacac;
@@ -525,7 +525,7 @@ $tabHeaderPadding:.571em .857em;
 @import './_theme.scss';
 `
 }
-</pre>
+</CodeHighlight>
 
                         <p>In the demo app layout and theme css files are defined using link tags in index.html so the demo can switch them on the fly by changing the path however if this is not a requirement, you may also import them in App.js so that webpack adds them to the bundle.</p>
 
