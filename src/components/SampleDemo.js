@@ -59,6 +59,8 @@ export class SampleDemo extends Component {
             dialogVisible: false,
             dataTableValue: [],
             dataTableSelection: null,
+            datatableBrand: null,
+            datatableColors: null,
             dataViewValue: [],
             treeData: [],
 			selectedFile:null,
@@ -91,7 +93,7 @@ export class SampleDemo extends Component {
                 {label: 'Apartment', value: 'Apartment'},
                 {label: 'House', value: 'House'},
                 {label: 'Studio', value: 'Studio'}
-            ],    
+            ],
             splitButtonItems: [
                 {label: 'Update', icon: 'pi pi-refresh'},
                 {label: 'Delete', icon: 'pi pi-times'},
@@ -102,7 +104,7 @@ export class SampleDemo extends Component {
                     label: 'Options',
                     items: [{label: 'New', icon: 'pi pi-fw pi-plus',command:() => window.location.hash="/fileupload"},
                             {label: 'Delete', icon: 'pi pi-fw pi-trash', url: 'http://primetek.com.tr'}]
-                }, 
+                },
                 {
                     label: 'Account',
                     items: [{label: 'Options', icon: 'pi pi-fw pi-cog',command:() => window.location.hash="/"},
@@ -126,7 +128,7 @@ export class SampleDemo extends Component {
                                 label:'Video',
                                 icon:'pi pi-fw pi-video'
                              },
-              
+
                           ]
                        },
                        {
@@ -162,7 +164,7 @@ export class SampleDemo extends Component {
                           label:'Justify',
                           icon:'pi pi-fw pi-align-justify'
                        },
-              
+
                     ]
                  },
                  {
@@ -172,12 +174,12 @@ export class SampleDemo extends Component {
                        {
                           label:'New',
                           icon:'pi pi-fw pi-user-plus',
-              
+
                        },
                        {
                           label:'Delete',
                           icon:'pi pi-fw pi-user-minus',
-              
+
                        },
                        {
                           label:'Search',
@@ -240,14 +242,16 @@ export class SampleDemo extends Component {
 
         this.onCheckboxChange = this.onCheckboxChange.bind(this);
         this.filterCountry = this.filterCountry.bind(this);
-        
+        this.onBrandChange = this.onBrandChange.bind(this);
+        this.onColorChange = this.onColorChange.bind(this);
+        this.actionTemplate = this.actionTemplate.bind(this);
         this.dataViewItemTemplate = this.dataViewItemTemplate.bind(this);
         this.orderListTemplate = this.orderListTemplate.bind(this);
     }
 
     componentDidMount(){
         this.setState({countriesData: this.countryService.getCountries(this)});
-        this.carService.getCarsSmall().then(data => this.setState({dataTableValue: data}));
+        this.carService.getCarsMedium().then(data => this.setState({dataTableValue: data}));
         this.carService.getCarsLarge().then(data => this.setState({dataViewValue: data}));
         this.nodeService.getTreeNodes(this).then(nodes => this.setState({treeData: nodes}));
         this.carService.getCarsSmall().then(data => this.setState({picklistSourceCars: data}));
@@ -295,27 +299,17 @@ export class SampleDemo extends Component {
 
         if (layout === 'list') {
             return (
-                <div className="p-grid" style={{padding: '2em', borderBottom: '1px solid #d9d9d9'}}>
-                    <div className="p-col-12 p-md-3">
-                        <img src={src} alt={car.brand} />
-                    </div>
-                    <div className="p-col-12 p-md-8 car-details">
-                        <div className="p-grid">
-                            <div className="p-col-2 p-sm-6">Vin:</div>
-                            <div className="p-col-10 p-sm-6">{car.vin}</div>
-
-                            <div className="p-col-2 p-sm-6">Year:</div>
-                            <div className="p-col-10 p-sm-6">{car.year}</div>
-
-                            <div className="p-col-2 p-sm-6">Brand:</div>
-                            <div className="p-col-10 p-sm-6">{car.brand}</div>
-
-                            <div className="p-col-2 p-sm-6">Color:</div>
-                            <div className="p-col-10 p-sm-6">{car.color}</div>
+                <div className="p-col-12">
+                    <div className="car-details">
+                        <div>
+                            <img src={src} alt={car.brand}/>
+                            <div className="p-grid">
+                                <div className="p-col-12">Vin: <b>{car.vin}</b></div>
+                                <div className="p-col-12">Year: <b>{car.year}</b></div>
+                                <div className="p-col-12">Brand: <b>{car.brand}</b></div>
+                                <div className="p-col-12">Color: <b>{car.color}</b></div>
+                            </div>
                         </div>
-                    </div>
-
-                    <div className="p-col-12 p-md-1 search-icon" style={{marginTop:'40px'}}>
                         <Button icon="pi pi-search"></Button>
                     </div>
                 </div>
@@ -335,23 +329,70 @@ export class SampleDemo extends Component {
         }
     }
 
+    onBrandChange(event) {
+        this.dt.filter(event.value, 'brand', 'equals');
+        this.setState({brand: event.value});
+    }
+
+    onColorChange(event) {
+        this.dt.filter(event.value, 'color', 'in');
+        this.setState({colors: event.value});
+    }
+
+    actionTemplate(rowData, column) {
+        return <div>
+            <Button type="button" icon="pi pi-search" className="p-button-success" style={{marginRight: '.5em'}}/>
+            <Button type="button" icon="pi pi-pencil" className="p-button-warning"/>
+        </div>;
+    }
+
     render() {
         const dialogFooter = (
             <Button label="Login" icon="pi pi-user" onClick={() => this.setState({dialogValue:false})} />
         );
-        
+
         const dataViewHeader = (
-            <div className="p-grid">
-                <div className="p-col-6 p-md-8 filter-container">
+            <div className="p-grid p-nogutter">
+                <div className="p-col-4" style={{textAlign: 'left'}}>
                     <div style={{position:'relative'}}>
                         <InputText placeholder="Search by brand" onKeyUp={e => this.dv.filter(e.target.value)} />
                     </div>
                 </div>
-                <div className="p-col-6 p-md-4" style={{textAlign: 'right'}}>
+                <div className="p-col-4 p-offset-4" style={{textAlign: 'right'}}>
                     <DataViewLayoutOptions layout={this.state.layout} onChange={(e) => this.setState({layout: e.value})} />
                 </div>
             </div>
         );
+
+        let datatableBrands = [
+            {label: 'Audi', value: 'Audi'},
+            {label: 'BMW', value: 'BMW'},
+            {label: 'Fiat', value: 'Fiat'},
+            {label: 'Honda', value: 'Honda'},
+            {label: 'Jaguar', value: 'Jaguar'},
+            {label: 'Mercedes', value: 'Mercedes'},
+            {label: 'Renault', value: 'Renault'},
+            {label: 'VW', value: 'VW'},
+            {label: 'Volvo', value: 'Volvo'}
+        ];
+
+        let brandFilter = <Dropdown style={{width: '100%'}} placeholder="Select a Brand" value={this.state.datatableBrand} options={datatableBrands} onChange={this.onBrandChange}/>
+
+        let datatableColors = [
+            {label: 'White', value: 'White'},
+            {label: 'Green', value: 'Green'},
+            {label: 'Silver', value: 'Silver'},
+            {label: 'Black', value: 'Black'},
+            {label: 'Red', value: 'Red'},
+            {label: 'Maroon', value: 'Maroon'},
+            {label: 'Brown', value: 'Brown'},
+            {label: 'Orange', value: 'Orange'},
+            {label: 'Blue', value: 'Blue'}
+        ];
+
+        let colorFilter = <MultiSelect style={{width:'100%'}} placeholder="Select a Color" value={this.state.datatableColors} options={datatableColors} onChange={this.onColorChange}/>
+
+        let actionHeader = <Button type="button" icon="pi pi-cog"/>;
 
         return (
             <div className="p-fluid">
@@ -381,13 +422,13 @@ export class SampleDemo extends Component {
                                     <label htmlFor="textarea">Textarea</label>
                                 </div>
                                 <div className="p-col-12 p-md-4">
-                                    <InputTextarea id="textarea" rows={3} cols={30} autoResize={true}></InputTextarea>
+                                    <InputTextarea placeholder="Your Message" id="textarea" rows={3} cols={30} autoResize={true}></InputTextarea>
                                 </div>
                                 <div className="p-col-12 p-md-2">
                                     <label htmlFor="calendar">Calendar</label>
                                 </div>
                                 <div className="p-col-12 p-md-4">
-                                    <Calendar id="calendar" value={this.state.date} onChange={event => this.setState({date: event.value})}></Calendar>
+                                    <Calendar placeholder="Popup" id="calendar" value={this.state.date} onChange={event => this.setState({date: event.value})}></Calendar>
                                 </div>
                                 <div className="p-col-12 p-md-2">
                                     <label htmlFor="autocomplete">AutoComplete</label>
@@ -523,19 +564,20 @@ export class SampleDemo extends Component {
                             </Dialog>
                         </div>
 
-                        <div className="card card-w-title">
+                        <div className="card card-w-title datatable-demo">
                             <h1>DataTable</h1>
-                            <DataTable value={this.state.dataTableValue} selectionMode="single" header="DataTable" selection={this.state.dataTableSelection}
-                                    onSelectionChange={event => this.setState({dataTableSelection: event.value})}>
-                                <Column field="vin" header="Vin" sortable={true} />
-                                <Column field="year" header="Year" sortable={true} />
-                                <Column field="brand" header="Brand" sortable={true} />
-                                <Column field="color" header="Color" sortable={true} />
+                            <DataTable ref={(el) => this.dt = el} value={this.state.dataTableValue} selectionMode="single" header="List of Cars" paginator={true} rows={10}
+                                       responsive={true} selection={this.state.dataTableSelection1} onSelectionChange={event => this.setState({dataTableSelection1: event.value})}>
+                                <Column field="vin" header="Vin" sortable={true} filter={true} filterPlaceholder="Starts with"/>
+                                <Column field="year" header="Year" sortable={true} filter={true} filterPlaceholder="Contains"/>
+                                <Column field="brand" header="Brand" sortable={true} filter={true} filterElement={brandFilter}/>
+                                <Column field="color" header="Color" sortable={true} filter={true} filterElement={colorFilter}/>
+                                <Column header={actionHeader} body={this.actionTemplate} style={{textAlign:'center', width: '8em'}}/>
                             </DataTable>
                         </div>
                     </div>
                     <div className="p-col-12">
-                        <div className="card card-w-title">
+                        <div className="card card-w-title dataview-demo">
                             <h1>DataView</h1>
                             <DataView ref={el => this.dv = el} value={this.state.dataViewValue} filterBy="brand" itemTemplate={this.dataViewItemTemplate}
                                     paginatorPosition="both" paginator={true} rows={10} header={dataViewHeader} layout={this.state.layout} />
@@ -545,7 +587,7 @@ export class SampleDemo extends Component {
                         <div className="card card-w-title">
                             <h1>PickList</h1>
                             <PickList source={this.state.picklistSourceCars} target={this.state.picklistTargetCars} sourceHeader="Available" targetHeader="Selected"
-                                    responsive={true} itemTemplate={(car) => <span>{car.brand}</span>} 
+                                    responsive={true} itemTemplate={(car) => <span>{car.brand}</span>}
                                     onChange={event => this.setState({picklistSourceCars: event.source, picklistTargetCars: event.target})} />
                         </div>
 
