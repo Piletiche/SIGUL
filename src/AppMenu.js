@@ -144,8 +144,7 @@ class AppSubmenu extends Component {
 				{this.renderLink(item, i)}
 				{tooltip}
 				<CSSTransition classNames="layout-submenu" timeout={{enter: 400, exit: 400}} in={active}>
-					<AppSubmenu items={item.items} onMenuItemClick={this.props.onMenuItemClick}
-								layoutMode={this.props.layoutMode}
+					<AppSubmenu items={item.items} onMenuItemClick={this.props.onMenuItemClick} layoutMode={this.props.layoutMode}
 								menuActive={this.props.menuActive} parentMenuItemActive={active}/>
 				</CSSTransition>
 			</li>

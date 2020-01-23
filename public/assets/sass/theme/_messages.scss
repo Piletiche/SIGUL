@@ -1,10 +1,9 @@
 body {
     .p-messages {
         margin: 1em 0;
+
         .p-messages-icon {
-            .p-messages-icon {
-                font-size: 2em;
-            }
+            font-size: 2em;
         }
 
         &.p-messages-info {
@@ -78,6 +77,8 @@ body {
 
     .p-message {
         @include border-radius($borderRadius);
+        border: 0 none;
+        padding: .37em;
 
         &.p-message-info {
             background-color: $infoMessageBgColor;
@@ -126,6 +127,7 @@ body {
         .p-growl-item-container {
             @include opacity(.95);
             @include overlay-shadow();
+            margin-bottom: .5em;
 
             .p-growl-message {
                 margin-left: 4em;

@@ -15,15 +15,33 @@ body {
 
             .p-panel-title {
                 vertical-align: middle;
+                font-weight: 700;
             }
 
             .p-panel-titlebar-icon {
                 margin: 0;
                 position: relative;
-                font-size: $fontSize + 3;
+                width: auto;
+                height: auto;
+                top: 1px;
+                line-height: auto;
                 color: $headerIconColor;
                 border: 1px solid transparent;
-                @include transition(color $transitionDuration);
+                @include border-radius($borderRadius);
+                @include transition(color $transitionDuration, box-shadow $transitionDuration);
+
+                &:hover {
+                    color: $headerIconHoverColor;
+                }
+
+                span {
+                    display: block;
+                    margin: 0;
+                }
+
+                &:focus {
+                    @include focused-element();
+                }
             }
         }
 
@@ -57,13 +75,18 @@ body {
             color: $headerTextColor;
             background-color: $headerBgColor;
             margin-left: 10px;
+            font-weight: 700;
             border: 1px solid $headerBorderColor;
             @include transition(background-color $transitionDuration);
+
+            > a {
+                @include transition(box-shadow $transitionDuration);
+            }
 
             .p-fieldset-toggler {
                 float: none;
                 display: inline-block;
-                vertical-align: middle;
+                vertical-align: text-top;
                 margin-right: 4px;
                 height: $fontSize;
                 margin-top: 0;
@@ -83,9 +106,8 @@ body {
                     color: $headerHoverTextColor;
                 }
 
-                &:focus {
-                    background-color: $headerHoverBgColor;
-                    color: $headerHoverTextColor;
+                > a:focus {
+                    @include focused-element();
                 }
             }
         }
@@ -98,12 +120,13 @@ body {
     .p-accordion {
         .p-accordion-header {
             @include corner-all();
-            background-color: $contentBgColor;
+            background-color: $headerBgColor;
             color: $textColor;
             font-size: $fontSize;
             border: 1px solid $contentBorderColor;
             @include transition(background-color $transitionDuration);
             margin-bottom: 0;
+            font-weight: 700;
 
             &:not(.p-highlight):not(.p-disabled):hover {
                 background-color: $headerHoverBgColor;
@@ -121,10 +144,6 @@ body {
 
                 a {
                     color: $primaryTextColor;
-
-                    &:focus {
-                        background-color: darken($primaryColor ,10%);
-                    }
                 }
 
                 span {
@@ -143,7 +162,7 @@ body {
                 @include transition(background-color $transitionDuration);
 
                 &:focus {
-                    background-color: $headerHoverBgColor;
+                    @include focused-element();
                 }
             }
 
@@ -183,6 +202,8 @@ body {
                     a {
                         padding: $tabHeaderPadding;
                         color: $headerTextColor;
+                        font-weight: 700;
+                        @include transition(box-shadow $transitionDuration);
 
                         .p-tabview-left-icon {
                             margin-right: .25em;
@@ -193,7 +214,7 @@ body {
                         }
 
                         &:focus {
-                            outline: 0 none;
+                            @include focused-element();
                         }
                     }
 

@@ -168,7 +168,7 @@ export class FormsDemo extends Component {
                                 <InputText placeholder="Disabled" disabled={true} />
                             </div>
                             <div className="p-col-12 p-md-4">
-                                <InputText placeholder="Error" className="p-error"/>
+                                <InputText placeholder="Invalid" className="p-error"/>
                             </div>
                         </div>
                     </div>
@@ -253,7 +253,7 @@ export class FormsDemo extends Component {
                             </div>
                         </div>
                     </div>
-        
+
                     <div className="card card-w-title">
                         <h1>RadioButtons</h1>
                         <div className="p-grid">
@@ -271,32 +271,32 @@ export class FormsDemo extends Component {
                             </div>
                         </div>
                     </div>
-        
+
                     <div className="card card-w-title">
                         <h1>InputSwitch</h1>
                         <InputSwitch checked={this.state.inputSwitchValue} onChange={event => this.setState({inputSwitchValue: event.value})} />
                     </div>
-            
+
                     <div className="card card-w-title">
                         <h1>Dropdown</h1>
                         <Dropdown options={this.state.cities} value={this.state.dropdownCity} onChange={event => this.setState({dropdownCity: event.value})} autoWidth={false} />
                     </div>
-            
+
                     <div className="card card-w-title">
                         <h1>Password</h1>
                         <Password/>
                     </div>
-            
+
                     <div className="card card-w-title">
                         <h1>Spinner</h1>
                         <Spinner value={this.state.spinnerValue} onChange={event => this.setState({spinnerValue: event.value})} />
                     </div>
-        
+
                     <div className="card card-w-title">
                         <h1>Slider</h1>
                         <Slider range={true} value={this.state.sliderValue} onChange={event => this.setState({sliderValue: event.value})} />
                     </div>
-            
+
                     <div className="card card-w-title">
                         <h1>ListBox</h1>
                         <ListBox options={this.state.listBoxCities} value={this.state.listBoxCity} onChange={event => this.setState({listBoxCity: event.value})} filter={true} />
@@ -306,7 +306,7 @@ export class FormsDemo extends Component {
                         <h1>Rating</h1>
                         <Rating value={this.state.ratingValue} onChange={event => this.setState({ratingValue: event.value})} />
                     </div>
-            
+
                     <div className="card card-w-title">
                         <h1>ColorPicker</h1>
                         <ColorPicker inline={true} value={this.state.colorPickerValue} onChange={event => this.setState({colorPickerValue: event.value})} />
@@ -371,12 +371,12 @@ export class FormsDemo extends Component {
                                     <div className="p-col-12">
                                         <ToggleButton checked={this.state.toggleButtonValue} onChange={event => this.setState({toggleButtonValue: event.value})} />
                                     </div>
-                            
+
                                     <div className="p-col-12">SelectButton</div>
                                     <div className="p-col-12">
                                         <SelectButton value={this.state.selectedType} options={this.state.types} onChange={event => this.setState({selectedType: event.value})} />
                                     </div>
-                            
+
                                     <div className="p-col-12">Button</div>
                                     <div className="p-col-12">
                                         <Button label="Bookmark"/>
@@ -386,7 +386,7 @@ export class FormsDemo extends Component {
                                     <div className="p-col-12">
                                         <Button label="Clear" icon="pi pi-times" />
                                     </div>
-                            
+
                                     <div className="p-col-12">Right Icon</div>
                                     <div className="p-col-12">
                                         <Button label="Clear" icon="pi pi-times" iconPos="right"/>
@@ -411,7 +411,7 @@ export class FormsDemo extends Component {
                             <div className="card card-w-title">
                                 <h1>Colored Buttons</h1>
                                 <p>Flat buttons with various color alternatives.</p>
-                                
+
                                 <div className="p-grid">
                                     <div className="p-col-12" style={{textAlign:'center'}}>
                                         <Button label="Primary" style={{marginBottom:'10px'}} />

@@ -35,7 +35,7 @@ body {
 
         &:enabled:focus {
             outline: 0 none;
-            @include shadow(0 0 14px 0 $primaryColor);
+            @include focused-button();
         }
 
         &:enabled:active  {
@@ -62,6 +62,8 @@ body {
         }
 
         &.p-button-icon-only {
+            width: 2em;
+
             .p-button-text {
                 padding: .385em;
             }
@@ -160,7 +162,7 @@ body {
 
     .p-fluid {
         .p-button-icon-only {
-            width: auto;
+            width: 2em;
         }
 
         .p-spinner {
@@ -400,7 +402,7 @@ body {
         @include overlay-shadow();
 
         .p-autocomplete-items {
-            padding: 0;
+            padding: $listPadding;
 
             .p-autocomplete-list-item {
                 margin: 0;
@@ -509,7 +511,6 @@ body {
         }
 
         &:not(.p-disabled).p-focus {
-            border: 1px solid $primaryColor;
             @include focused-input();
 
             .p-dropdown-trigger {
@@ -542,26 +543,26 @@ body {
         }
 
         .p-dropdown-items {
-            padding: 0;
+            padding: $listPadding;
 
             .p-dropdown-item {
                 margin: 0;
                 padding: $listItemPadding;
                 @include border-radius(0);
+                @include transition(box-shadow $transitionDuration);
 
                 &:not(.p-highlight):hover {
                     @include list-item-hover();
                 }
 
+                &:focus {
+                    @include focused-element();
+                    z-index: 1;
+                }
+
                 > td {
                     padding: $listItemPadding;
                 }
-            }
-
-            .p-selectonemenu-item-group {
-                @include border-radius(0);
-                padding: $listItemPadding;
-                background-color: $dividerColor;
             }
         }
     }
@@ -598,7 +599,6 @@ body {
         }
 
         &:not(.p-disabled).p-focus {
-            border: 1px solid $primaryColor;
             @include focused-input();
 
             .p-multiselect-trigger {
@@ -622,6 +622,7 @@ body {
             @include corner-all();
             padding: $headerPadding;
             border: 0 none;
+            margin-bottom: 0;
             border-bottom: 1px solid $headerBorderColor;
 
             .p-multiselect-filter-container {
@@ -655,7 +656,7 @@ body {
                 margin: 0;
                 margin-top: -.15em;
                 padding: 0;
-                @include transition(color $transitionDuration);
+                @include transition(color $transitionDuration, box-shadow $transitionDuration);
 
                 &:hover {
                     padding: 0;
@@ -663,17 +664,21 @@ body {
                 }
 
                 &:focus {
-                    outline: 0 none;
-                    color: lighten($primaryColor,10%);
+                    @include focused-element();
                 }
             }
         }
 
-        .p-multiselect-items {
+        .p-multiselect-items-wrapper {
             padding: 0;
+        }
+
+        .p-multiselect-items {
+            padding: $listPadding;
 
             .p-multiselect-item {
                 padding: $listItemPadding;
+                @include transition(box-shadow $transitionDuration);
 
                 .p-checkbox {
                     position: static;
@@ -691,6 +696,11 @@ body {
 
                 &:not(.p-highlight):not(.p-disabled):hover {
                     @include list-item-hover();
+                }
+
+                &:focus {
+                    @include focused-element();
+                    z-index: 1;
                 }
             }
         }
@@ -732,10 +742,15 @@ body {
             }
         }
 
+        .p-listbox-list {
+            padding: $listPadding;
+        }
+
         .p-listbox-item {
             margin: 0;
             padding: $listItemPadding;
             @include border-radius(0);
+            @include transition(box-shadow $transitionDuration);
 
             &.p-highlight {
                 @include highlight();
@@ -743,6 +758,11 @@ body {
 
             > td {
                 padding: $listItemPadding;
+            }
+
+            &:focus {
+                @include focused-element();
+                z-index: 1;
             }
         }
 
@@ -894,7 +914,6 @@ body {
 
         &:not(.p-disabled):not(.p-highlight):hover {
             background-color: $toggleButtonBgColor;
-            border-color: $primaryColor;
         }
 
         &.p-highlight {
@@ -916,21 +935,15 @@ body {
 
             &:not(.p-disabled):not(.p-highlight):hover {
                 background-color: $toggleButtonBgColor;
-                border-color: $primaryColor;
-            }
-
-            &:not(.p-disabled):not(.p-highlight).p-focus {
-                background-color: $toggleButtonBgColor;
-                border-color: $primaryColor;
             }
 
             &.p-highlight {
               @include highlight();
+            }
 
-                &.p-focus {
-                  background-color: $primaryColor;
-                  @include focused-input();
-                }
+            &.p-focus {
+                @include focused-button();
+                z-index: 1;
             }
 
             &:first-child {
@@ -1306,6 +1319,8 @@ body {
     .p-password-panel {
         @include corner-all();
         @include overlay-shadow();
+        background-color: $primaryColor;
+        color: $primaryTextColor;
     }
 
     .p-inputgroup {

@@ -60,7 +60,7 @@ export class MenusDemo extends Component {
                                 label:'Video',
                                 icon:'pi pi-fw pi-video'
                              },
-              
+
                           ]
                        },
                        {
@@ -96,7 +96,7 @@ export class MenusDemo extends Component {
                           label:'Justify',
                           icon:'pi pi-fw pi-align-justify'
                        },
-              
+
                     ]
                  },
                  {
@@ -106,12 +106,12 @@ export class MenusDemo extends Component {
                        {
                           label:'New',
                           icon:'pi pi-fw pi-user-plus',
-              
+
                        },
                        {
                           label:'Delete',
                           icon:'pi pi-fw pi-user-minus',
-              
+
                        },
                        {
                           label:'Search',
@@ -173,9 +173,9 @@ export class MenusDemo extends Component {
             items: [
                 {
                     label: 'Options',
-                    items: [{label: 'New', icon: 'pi pi-fw pi-plus',command:() => window.location.hash="/fileupload"},
+                    items: [{label: 'New', icon: 'pi pi-fw pi-plus'},
                             {label: 'Delete', icon: 'pi pi-fw pi-trash', url: 'http://primetek.com.tr'}]
-                }, 
+                },
                 {
                     label: 'Account',
                     items: [{label: 'Options', icon: 'pi pi-fw pi-cog',command:() => window.location.hash="/"},
@@ -199,7 +199,7 @@ export class MenusDemo extends Component {
                                 label:'Video',
                                 icon:'pi pi-fw pi-video'
                              },
-              
+
                           ]
                        },
                        {
@@ -235,7 +235,7 @@ export class MenusDemo extends Component {
                           label:'Justify',
                           icon:'pi pi-fw pi-align-justify'
                        },
-              
+
                     ]
                  },
                  {
@@ -245,12 +245,12 @@ export class MenusDemo extends Component {
                        {
                           label:'New',
                           icon:'pi pi-fw pi-user-plus',
-              
+
                        },
                        {
                           label:'Delete',
                           icon:'pi pi-fw pi-user-minus',
-              
+
                        },
                        {
                           label:'Search',
@@ -435,12 +435,12 @@ export class MenusDemo extends Component {
                         <h1>Breadcrumb</h1>
                         <BreadCrumb model={this.state.breadcrumdItems} home={this.state.home} />
                     </div>
-        
+
                     <div className="card card-w-title">
                         <h1>Steps</h1>
                         <Steps model={this.state.stepsItems} />
                     </div>
-                
+
                     <div className="card card-w-title">
                         <h1>MenuBar</h1>
                         <Menubar model={this.state.tieredItems} />
@@ -467,7 +467,7 @@ export class MenusDemo extends Component {
                         Right click!
                         <ContextMenu global={true} model={this.state.tieredItems} style={{width:'12.5em'}} />
                     </div>
-        
+
                     <div className="card">
                         <h1>SlideMenu</h1>
                         <SlideMenu model={this.state.items} style={{width:'260px'}} menuWidth={260} />
