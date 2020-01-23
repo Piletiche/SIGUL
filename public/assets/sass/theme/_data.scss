@@ -13,7 +13,6 @@ body {
             font-size: $fontSize;
             font-family: $fontFamily;
             @include corner-all();
-            @include border-box();
             @include transition(background-color $transitionDuration);
 
             &:before {
@@ -34,18 +33,18 @@ body {
             padding: 0;
             vertical-align: middle;
             display: inline-block;
+            height: 2em;
 
             .p-paginator-page {
                 color: $headerTextColor;
-                height: 20px;
-                width: 20px;
+                height: 2em;
+                width: 2em;
                 padding: 0;
                 vertical-align: middle;
                 display: inline-block;
                 font-size: $fontSize;
                 font-family: $fontFamily;
                 font-weight: 700;
-                @include border-box();
                 @include corner-all();
                 @include transition(background-color $transitionDuration);
 
@@ -219,9 +218,55 @@ body {
             @include header();
         }
 
+        .pi-sort-down {
+            position: relative;
+            top: -4px;
+        }
+
         .p-datatable-scrollable-header,
         .p-datatable-scrollable-footer {
             @include header();
+        }
+
+        .p-column-filter {
+            width: 100%;
+        }
+
+        &.p-datatable-borderless {
+            .p-datatable-header {
+                border: 0 none;
+                border-bottom: 1px solid $contentBorderColor;
+            }
+
+            .p-datatable-thead {
+                > tr > th {
+                    border: 0 none;
+                    text-align: left;
+                    padding: 0.857em;
+                }
+            }
+
+            .p-datatable-tbody {
+                border: 0 none;
+
+                > tr {
+                    border: 0 none;
+
+                    > td {
+                        border: 0 none;
+                    }
+                }
+            }
+
+            .p-datatable-tfoot {
+                > tr > td {
+                    border: 0 none;
+                }
+            }
+
+            .p-paginator {
+                border: 0 none;
+            }
         }
     }
 
@@ -246,6 +291,20 @@ body {
             background-color: $contentBgColor;
             color: $textColor;
             border: 1px solid $contentBorderColor;
+
+            > .p-grid {
+                margin-right: 0;
+                margin-left: 0;
+                margin-top: 0;
+            }
+
+            > .p-grid > div {
+                border-bottom: 1px solid $dividerColor;
+
+                &:last-child {
+                    border-bottom: 0 none;
+                }
+            }
         }
 
         .p-dataview-footer {
@@ -296,9 +355,11 @@ body {
     }
 
     .p-picklist {
-        .p-picklist-buttons {
-            padding: $contentPadding;
+        .p-picklist-listwrapper {
+            padding: 0 $contentPadding;
+        }
 
+        .p-picklist-buttons {
             button {
                 font-size: $fontSize + 2;
             }
@@ -322,13 +383,21 @@ body {
         .p-picklist-list {
             @include content();
             @include corner-bottom();
+            padding: $listItemPadding;
+
             .p-picklist-item {
                 padding: $listItemPadding;
                 margin: 0;
+                @include transition(box-shadow $transitionDuration);
                 @include border-radius(0);
 
                 &:not(.p-highlight):hover {
                     @include list-item-hover();
+                }
+
+                &:focus {
+                    @include focused-element();
+                    z-index: 1;
                 }
             }
         }
@@ -336,8 +405,6 @@ body {
 
     .p-orderlist {
         .p-orderlist-controls {
-            padding: $contentPadding;
-
             button {
                 font-size: $fontSize + 2;
             }
@@ -347,7 +414,6 @@ body {
             @include header();
             padding: $headerPadding;
             box-sizing: border-box;
-            width: 200px;
             @include border-radius-top($borderRadius);
             border-bottom: 0;
         }
@@ -363,15 +429,21 @@ body {
         .p-orderlist-list {
             @include content();
             @include corner-bottom();
-            box-sizing: border-box;
+            padding: $listPadding;
 
             .p-orderlist-item {
                 padding: $listItemPadding;
                 margin: 0;
                 @include border-radius(0);
+                @include transition(box-shadow $transitionDuration);
 
                 &:not(.p-highlight):hover {
                     @include list-item-hover();
+                }
+
+                &:focus {
+                    @include focused-element();
+                    z-index: 1;
                 }
             }
         }
@@ -561,6 +633,7 @@ body {
 
             .p-treenode-content {
                 @include corner-all();
+                @include transition(box-shadow $transitionDuration);
                 padding: .25em 0;
 
                 .p-tree-toggler {
@@ -573,10 +646,7 @@ body {
                     &:focus {
                         outline: 0;
                     }
-
-                    .p-tree-toggler-icon {
-                        vertical-align: initial;
-                    }
+                    margin-top: -2px;
                 }
 
                 .p-treenode-icon {
@@ -638,7 +708,7 @@ body {
                 }
 
                 &:focus {
-                    outline: 0 none;
+                    @include focused-element();
                 }
 
                 > span {
@@ -791,11 +861,28 @@ body {
         }
     }
 
-    .p-fluid {
-        .fc {
-            .fc-toolbar {
-                .ui-button {
-                    width: auto;
+    .p-carousel {
+        .p-carousel-dot-item {
+            padding: 0 .25em;
+            button {
+                @include transition(background-color $transitionDuration, box-shadow $transitionDuration);
+                @include border-radius($borderRadius);
+
+                &:focus {
+                    @include focused-button();
+                }
+            }
+
+            .p-carousel-dot-icon {
+                font-size: 1.5em;
+                color: $textColor;
+            }
+
+            &.p-highlight {
+                background-color: transparent;
+
+                .p-carousel-dot-icon {
+                    color: $primaryColor;
                 }
             }
         }

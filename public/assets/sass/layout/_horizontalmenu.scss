@@ -9,6 +9,7 @@
             .layout-menu-container {
                 padding: 0 20px;
                 width: 100%;
+                overflow: visible;
 
                 .layout-menu-title {
                     display: none;
@@ -147,21 +148,6 @@
                                 top: 0px;
                             }
                         }
-                    }
-                }
-
-                .p-scrollpanel {
-                    .p-scrollpanel-wrapper {
-                        overflow: visible;
-                        .p-scrollpanel-content {
-                            overflow: visible;
-                            padding: 0;
-                        }
-                    }
-                    .layout-menu-content {
-                        width: 100%;
-                        padding-right: 0;
-                        padding-bottom: 0;
                     }
                 }
 

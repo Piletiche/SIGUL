@@ -15,7 +15,7 @@ $headerIconColor:#424242;
 $headerIconHoverColor:$primaryColor;
 
 /* Contents */
-$contentPadding:.429em .857em;
+$contentPadding:.857em;
 $contentBorderColor:#d8d8d8;
 $contentBgColor:#ffffff;
 
@@ -28,8 +28,10 @@ $inputGroupAddonBgColor:#f5f5f5;
 
 /* Buttons */
 $toggleButtonBgColor:#b6b7c2;
+$toggleButtonHoverBgColor:#c4c5ce;
 
 /* List Items */
+$listPadding:.429em 0;
 $listItemPadding:.429em .857em;
 $listItemHoverTextColor:#424242;
 
@@ -49,5 +51,8 @@ $datableEvenRowBgColor:#f9f9f9;
 
 /* TabView */
 $tabHeaderPadding:.571em .857em;
+
+/* Misc */
+$overlayMaskBgColor:#EEF2F6;
 
 @import './_theme.scss';

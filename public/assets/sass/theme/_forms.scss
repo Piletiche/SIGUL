@@ -448,7 +448,7 @@ body {
 
             &:not(.p-disabled).p-focus {
                 border: 1px solid $primaryColor;
-                @include border-shadow();
+                @include focused-input();
             }
 
             .p-chips-input-token {
@@ -510,7 +510,7 @@ body {
 
         &:not(.p-disabled).p-focus {
             border: 1px solid $primaryColor;
-            @include border-shadow();
+            @include focused-input();
 
             .p-dropdown-trigger {
                 .p-dropdown-trigger-icon {
@@ -576,6 +576,7 @@ body {
             color: $textColor;
             padding: $inputPadding;
             padding-right: 2.3em;
+            font-weight: normal;
         }
 
         .p-multiselect-trigger {
@@ -598,7 +599,7 @@ body {
 
         &:not(.p-disabled).p-focus {
             border: 1px solid $primaryColor;
-            @include border-shadow();
+            @include focused-input();
 
             .p-multiselect-trigger {
                 .pi {
@@ -896,15 +897,13 @@ body {
             border-color: $primaryColor;
         }
 
-        &:not(.p-disabled):not(.p-highlight).p-focus {
-          background-color: $toggleButtonBgColor;
-          border-color: $primaryColor;
-        }
-
-        &.p-highlight, &.p-focus {
+        &.p-highlight {
             background-color: $primaryColor;
             color: $primaryTextColor;
-            @include border-shadow();
+        }
+
+        &.p-focus {
+            @include focused-button();
         }
     }
 

@@ -18,7 +18,6 @@ import { ChartsDemo } from './components/ChartsDemo';
 import { MiscDemo } from './components/MiscDemo';
 import { EmptyPage } from './components/EmptyPage';
 import { Documentation } from './components/Documentation';
-import { ScrollPanel } from 'primereact/components/scrollpanel/ScrollPanel';
 import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
 import 'primereact/resources/primereact.min.css';
 import 'prismjs/themes/prism-coy.css';
@@ -336,23 +335,21 @@ class App extends Component {
                             onTopbarItemClick={this.onTopbarItemClick} />
 
                     <div className='layout-menu-container' onClick={this.onMenuClick}>
-                        <ScrollPanel ref={(el) => this.layoutMenuScroller = el} style={{height: '100%'}}>
-                            <div className="layout-menu-content">
-                                <div className="layout-menu-title">MENU</div>
-                                <AppMenu model={this.menu} onMenuItemClick={this.onMenuItemClick} onRootMenuItemClick={this.onRootMenuItemClick}
-                                        layoutMode={this.state.layoutMode} active={this.state.menuActive} />
-                                <div className="layout-menu-footer">
-                                    <div className="layout-menu-footer-title">TASKS</div>
+                        <div className="layout-menu-content">
+                            <div className="layout-menu-title">MENU</div>
+                            <AppMenu model={this.menu} onMenuItemClick={this.onMenuItemClick} onRootMenuItemClick={this.onRootMenuItemClick}
+                                    layoutMode={this.state.layoutMode} active={this.state.menuActive} />
+                            <div className="layout-menu-footer">
+                                <div className="layout-menu-footer-title">TASKS</div>
 
-                                    <div className="layout-menu-footer-content">
-                                        <ProgressBar value={50} showValue={false}></ProgressBar>
-                                            Today
-                                        <ProgressBar value={80} showValue={false}></ProgressBar>
-                                            Overall
-                                    </div>
+                                <div className="layout-menu-footer-content">
+                                    <ProgressBar value={50} showValue={false}></ProgressBar>
+                                        Today
+                                    <ProgressBar value={80} showValue={false}></ProgressBar>
+                                        Overall
                                 </div>
                             </div>
-                        </ScrollPanel>
+                        </div>
                     </div>
 
                     <div className="layout-content">

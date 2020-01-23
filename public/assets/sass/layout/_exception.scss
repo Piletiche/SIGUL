@@ -3,7 +3,6 @@
     height: 100%;
     font-size: 16px;
     margin: 0;
-    @include border-box();
 
     background: {
         position: top right;
@@ -58,7 +57,6 @@
         .exception-container {
             padding-left: 0;
             padding-top: 200px;
-            @include border-box();
 
             img {
                 margin-top: 0;

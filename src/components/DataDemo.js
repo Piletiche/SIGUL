@@ -14,10 +14,12 @@ import {Panel} from 'primereact/panel';
 import {InputText} from 'primereact/inputtext';
 import {Button} from 'primereact/button';
 import {Dropdown} from 'primereact/dropdown';
+import {MultiSelect} from 'primereact/multiselect';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import {DataView, DataViewLayoutOptions} from 'primereact/dataview';
+import {Carousel} from 'primereact/carousel';
 
 export class DataDemo extends Component {
 
@@ -25,6 +27,8 @@ export class DataDemo extends Component {
         super();
         this.state = {
             dataTableValue:[],
+            datatableBrand: null,
+            datatableColors: null,
             dataViewValue:[],
             picklistSourceCars:[],
             picklistTargetCars:[],
@@ -35,6 +39,7 @@ export class DataDemo extends Component {
             selectedFiles:null,
             documents:[],
 			documentsSelection:[],
+            carouselCars:[],
             fullcalendarEvents:[],
 			fullcalendarOptions: {
                 plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
@@ -85,6 +90,24 @@ export class DataDemo extends Component {
             }]
         };
 
+        this.responsiveOptions = [
+            {
+                breakpoint: '1024px',
+                numVisible: 3,
+                numScroll: 3
+            },
+            {
+                breakpoint: '768px',
+                numVisible: 2,
+                numScroll: 2
+            },
+            {
+                breakpoint: '560px',
+                numVisible: 1,
+                numScroll: 1
+            }
+        ];
+
         this.carService = new CarService();
         this.nodeService = new NodeService();
         this.eventService = new EventService();
@@ -93,6 +116,10 @@ export class DataDemo extends Component {
         this.pickListTemplate = this.pickListTemplate.bind(this);
         this.orderListTemplate = this.orderListTemplate.bind(this);
         this.onSortChange = this.onSortChange.bind(this);
+        this.onBrandChange = this.onBrandChange.bind(this);
+        this.onColorChange = this.onColorChange.bind(this);
+        this.actionTemplate = this.actionTemplate.bind(this);
+        this.carouselItemTemplate = this.carouselItemTemplate.bind(this);
     }
 
     componentDidMount() {
@@ -104,6 +131,7 @@ export class DataDemo extends Component {
         this.carService.getCarsMedium().then(data => this.setState({picklistSourceCars: data}));
         this.carService.getCarsSmall().then(data => this.setState({orderlistCars: data}));
         this.eventService.getEvents().then(events => this.setState({fullcalendarEvents: events}));
+        this.carService.getCarsSmall().then(data => this.setState({carouselCars: data}));
     }
 
     pickListTemplate(car){
@@ -139,27 +167,17 @@ export class DataDemo extends Component {
 
         if (layout === 'list') {
             return (
-                <div className="p-grid" style={{padding: '2em', borderBottom: '1px solid #d9d9d9', marginRight:'.5em', marginLeft:'.5em'}}>
-                    <div className="p-col-12 p-md-3">
-                        <img src={src} alt={car.brand}/>
-                    </div>
-                    <div className="p-col-12 p-md-8 car-details">
-                        <div className="p-grid">
-                            <div className="p-col-2 p-sm-6">Vin:</div>
-                            <div className="p-col-10 p-sm-6">{car.vin}</div>
-
-                            <div className="p-col-2 p-sm-6">Year:</div>
-                            <div className="p-col-10 p-sm-6">{car.year}</div>
-
-                            <div className="p-col-2 p-sm-6">Brand:</div>
-                            <div className="p-col-10 p-sm-6">{car.brand}</div>
-
-                            <div className="p-col-2 p-sm-6">Color:</div>
-                            <div className="p-col-10 p-sm-6">{car.color}</div>
+                <div className="p-col-12">
+                    <div className="car-details">
+                        <div>
+                            <img src={src} alt={car.brand}/>
+                            <div className="p-grid">
+                                <div className="p-col-12">Vin: <b>{car.vin}</b></div>
+                                <div className="p-col-12">Year: <b>{car.year}</b></div>
+                                <div className="p-col-12">Brand: <b>{car.brand}</b></div>
+                                <div className="p-col-12">Color: <b>{car.color}</b></div>
+                            </div>
                         </div>
-                    </div>
-
-                    <div className="p-col-12 p-md-1 search-icon" style={{marginTop:'40px'}}>
                         <Button icon="pi pi-search"></Button>
                     </div>
                 </div>
@@ -188,8 +206,47 @@ export class DataDemo extends Component {
             this.setState({sortOrder: 1, sortField:value, sortKey: value});
     }
 
+    onBrandChange(event) {
+        this.dt.filter(event.value, 'brand', 'equals');
+        this.setState({brand: event.value});
+    }
+
+    onColorChange(event) {
+        this.dt.filter(event.value, 'color', 'in');
+        this.setState({colors: event.value});
+    }
+
+    actionTemplate(rowData, column) {
+        return <div>
+            <Button type="button" icon="pi pi-search" className="p-button-success" style={{marginRight: '.5em'}}/>
+            <Button type="button" icon="pi pi-pencil" className="p-button-warning"/>
+        </div>;
+    }
+
+    carouselItemTemplate(car) {
+        return (
+            <div className="car-details">
+                <div className="p-grid p-nogutter separator">
+                    <div className="p-col-12">
+                        <img src={`assets/demo/images/car/${car.brand}.png`} alt={car.brand} />
+                    </div>
+                    <div className="p-col-12 car-data">
+                        <div className="car-title">{car.brand}</div>
+                        <div className="car-subtitle">{car.year} | {car.color}</div>
+
+                        <div className="car-buttons">
+                            <Button icon="pi pi-search" className="p-button-info" />
+                            <Button icon="pi pi-star" className="p-button-warning" />
+                            <Button icon="pi pi-cog" className="p-button-success" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     render() {
-        const header = (
+        const dataviewHeader = (
             <div className="p-grid">
                 <div className="p-col-12 p-md-4" style={{textAlign:'left'}}>
                     <Dropdown options={this.state.sortOptions} value={this.state.sortKey} placeholder="Sort By" onChange={this.onSortChange} />
@@ -203,13 +260,60 @@ export class DataDemo extends Component {
             </div>
         );
 
+        let datatableBrands = [
+            {label: 'Audi', value: 'Audi'},
+            {label: 'BMW', value: 'BMW'},
+            {label: 'Fiat', value: 'Fiat'},
+            {label: 'Honda', value: 'Honda'},
+            {label: 'Jaguar', value: 'Jaguar'},
+            {label: 'Mercedes', value: 'Mercedes'},
+            {label: 'Renault', value: 'Renault'},
+            {label: 'VW', value: 'VW'},
+            {label: 'Volvo', value: 'Volvo'}
+        ];
+
+        let brandFilter = <Dropdown style={{width: '100%'}} placeholder="Select a Brand" value={this.state.datatableBrand} options={datatableBrands} onChange={this.onBrandChange}/>
+
+        let datatableColors = [
+            {label: 'White', value: 'White'},
+            {label: 'Green', value: 'Green'},
+            {label: 'Silver', value: 'Silver'},
+            {label: 'Black', value: 'Black'},
+            {label: 'Red', value: 'Red'},
+            {label: 'Maroon', value: 'Maroon'},
+            {label: 'Brown', value: 'Brown'},
+            {label: 'Orange', value: 'Orange'},
+            {label: 'Blue', value: 'Blue'}
+        ];
+
+        let colorFilter = <MultiSelect style={{width:'100%'}} placeholder="Select a Color" value={this.state.datatableColors} options={datatableColors} onChange={this.onColorChange}/>
+
+        let actionHeader = <Button type="button" icon="pi pi-cog"/>;
+
+        let borderlessHeader = <h2 style={{margin: 0}}>Borderless DataTable</h2>;
+
+        let treetableFooter = <div style={{textAlign:'left'}}><Button icon="pi pi-refresh" className="p-button-success" tooltip="Reload"/></div>;
+
         return (
             <div className="p-grid">
                 <div className="p-col-12">
-                    <div className="card card-w-title">
+                    <div className="card card-w-title datatable-demo">
                         <h1>DataTable</h1>
-                        <DataTable value={this.state.dataTableValue} paginatorPosition="both" selectionMode="single" header="List of Cars" paginator={true} rows={10}
-                            responsive={true} selection={this.state.dataTableSelection} onSelectionChange={event => this.setState({dataTableSelection: event.value})}>
+                        <DataTable ref={(el) => this.dt = el} value={this.state.dataTableValue} selectionMode="single" header="List of Cars" paginator={true} rows={10}
+                            responsive={true} selection={this.state.dataTableSelection1} onSelectionChange={event => this.setState({dataTableSelection1: event.value})}>
+                            <Column field="vin" header="Vin" sortable={true} filter={true} filterPlaceholder="Starts with"/>
+                            <Column field="year" header="Year" sortable={true} filter={true} filterPlaceholder="Contains"/>
+                            <Column field="brand" header="Brand" sortable={true} filter={true} filterElement={brandFilter}/>
+                            <Column field="color" header="Color" sortable={true} filter={true} filterElement={colorFilter}/>
+                            <Column header={actionHeader} body={this.actionTemplate} style={{textAlign:'center', width: '8em'}}/>
+                        </DataTable>
+                    </div>
+                </div>
+
+                <div className="p-col-12">
+                    <div className="card card-w-title" style={{'padding': '0px'}}>
+                        <DataTable className="p-datatable-borderless" value={this.state.dataTableValue} selectionMode="single" header={borderlessHeader} paginator={true} rows={10}
+                            responsive={true} selection={this.state.dataTableSelection2} onSelectionChange={event => this.setState({dataTableSelection2: event.value})}>
                             <Column field="vin" header="Vin" sortable={true}/>
                             <Column field="year" header="Year" sortable={true}/>
                             <Column field="brand" header="Brand" sortable={true}/>
@@ -219,10 +323,10 @@ export class DataDemo extends Component {
                 </div>
 
                 <div className="p-col-12">
-                    <div className="card card-w-title">
+                    <div className="card card-w-title dataview-demo">
                         <h1>DataView</h1>
                         <DataView ref={el => this.dv = el} value={this.state.dataViewValue} filterBy="brand" itemTemplate={this.dataViewItemTemplate} layout={this.state.layout}
-                                  paginatorPosition={'both'} paginator={true} rows={10} header={header} sortOrder={this.state.sortOrder} sortField={this.state.sortField}/>
+                                  paginatorPosition={'both'} paginator={true} rows={10} header={dataviewHeader} sortOrder={this.state.sortOrder} sortField={this.state.sortField}/>
                     </div>
                 </div>
 
@@ -262,27 +366,35 @@ export class DataDemo extends Component {
 
                 <div className="p-col-12">
                     <div className="card card-w-title">
+                        <h1>TreeTable</h1>
+                        <TreeTable value={this.state.documents} header="Documents" selectionMode="checkbox" footer={treetableFooter}
+                                   selectionKeys={this.state.documentsSelection} onSelectionChange={event => this.setState({documentsSelection: event.value})}>
+                            <Column field="name" header="Name" expander/>
+                            <Column field="size" header="Size" sortable/>
+                            <Column field="type" header="Type"/>
+                            <Column header={actionHeader} body={this.actionTemplate} style={{textAlign:'center', width: '8em'}}/>
+                        </TreeTable>
+                    </div>
+                </div>
+
+                <div className="p-col-12">
+                    <div className="card card-w-title" style={{overflow: 'auto'}}>
                         <h1>Organization Chart</h1>
                         <OrganizationChart value={this.state.organizationChartValue} />
                     </div>
                 </div>
 
                 <div className="p-col-12">
-                    <div className="card card-w-title">
-                        <h1>TreeTable</h1>
-						<TreeTable value={this.state.documents} header="Documents" selectionMode="checkbox"
-								   selectionKeys={this.state.documentsSelection} onSelectionChange={event => this.setState({documentsSelection: event.value})}>
-							<Column field="name" header="Name" expander></Column>
-							<Column field="size" header="Size" sortable></Column>
-							<Column field="type" header="Type"></Column>
-						</TreeTable>
+                    <div className="card card-w-title carousel-demo">
+                        <h1>Carousel</h1>
+                        <Carousel value={this.state.carouselCars} itemTemplate={this.carouselItemTemplate} numVisible={4} numScroll={3} responsiveOptions={this.responsiveOptions}></Carousel>
                     </div>
                 </div>
 
                 <div className="p-col-12">
                     <div className="card card-w-title">
                         <h1>Schedule</h1>
-						<FullCalendar events={this.state.fullcalendarEvents} options={this.state.fullcalendarOptions}></FullCalendar>
+						<FullCalendar events={this.state.fullcalendarEvents} options={this.state.fullcalendarOptions}/>
                     </div>
                 </div>
             </div>
