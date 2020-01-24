@@ -115,13 +115,13 @@ class AppSubmenu extends Component {
 		if (item.to) {
 			return (
 				<NavLink activeClassName="active-menuitem-routerlink" to={item.to}
-						 onClick={(e) => this.onMenuItemClick(e, item, i)} exact
+						 onClick={(e) => this.onMenuItemClick(e, item, i)} exact role="menuitem"
 						 target={item.target} onMouseEnter={(e) => this.onMenuItemMouseEnter(i)}
 						 className={item.styleClass}>{content}</NavLink>
 			)
 		} else {
 			return (
-				<a href={item.url} onClick={(e) => this.onMenuItemClick(e, item, i)} target={item.target}
+				<a href={item.url||'#'} role="menuitem" onClick={(e) => this.onMenuItemClick(e, item, i)} target={item.target}
 				   onMouseEnter={(e) => this.onMenuItemMouseEnter(i)} className={item.styleClass}>
 					{content}
 				</a>
@@ -139,7 +139,7 @@ class AppSubmenu extends Component {
 				<div className="layout-menu-tooltip-text">{item.label}</div>
 			</div>;
 
-			return <li className={styleClass} key={i}>
+			return <li className={styleClass} key={i} role="none">
 				{item.items && this.props.root === true && <div className='arrow'></div>}
 				{this.renderLink(item, i)}
 				{tooltip}
@@ -150,7 +150,7 @@ class AppSubmenu extends Component {
 			</li>
 		});
 
-		return items ? <ul className={this.props.className}>{items}</ul> : null;
+		return items ? <ul role="menu" className={this.props.className}>{items}</ul> : null;
 	}
 }
 
