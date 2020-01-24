@@ -47,6 +47,10 @@ class AppSubmenu extends Component {
 			});
 		}
 
+		if (item.items) {
+			event.preventDefault();
+		}
+
 		//execute command
 		if (item.command) {
 			item.command({originalEvent: event, item: item});
