@@ -208,12 +208,12 @@ export class DataDemo extends Component {
 
     onBrandChange(event) {
         this.dt.filter(event.value, 'brand', 'equals');
-        this.setState({brand: event.value});
+        this.setState({datatableBrands: event.value});
     }
 
     onColorChange(event) {
         this.dt.filter(event.value, 'color', 'in');
-        this.setState({colors: event.value});
+        this.setState({datatableColors: event.value});
     }
 
     actionTemplate(rowData, column) {
