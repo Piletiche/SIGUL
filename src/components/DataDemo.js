@@ -208,7 +208,7 @@ export class DataDemo extends Component {
 
     onBrandChange(event) {
         this.dt.filter(event.value, 'brand', 'equals');
-        this.setState({datatableBrands: event.value});
+        this.setState({datatableBrand: event.value});
     }
 
     onColorChange(event) {

@@ -48,71 +48,78 @@ body {
         }
     }
 
-    .p-dialog {
-        @include corner-all();
-        @include content();
-        @include overlay-shadow();
-        border: grey;
-
-        .p-dialog-titlebar {
-            @include header();
-            @include corner-top();
-            padding: 1em;
-            border: 0 none;
-
-            .p-dialog-title {
-                margin: 0;
-                float: none;
-                vertical-align: middle;
-            }
-
-            .p-dialog-titlebar-icon {
-                color: $headerIconColor;
-                border: 0 none;
-                @include transition(color $transitionDuration);
-                padding: 0;
-                margin-left: .35em;
-                font-size: $fontSize + 2;
-
-                &:hover {
-                    color: darken($headerIconHoverColor, 10%);
-                }
-
-                &:focus {
-                    outline: 0;
-                }
-            }
+    .p-dialog-wrapper {
+        &.p-component-overlay {
+            background-color: rgba(0, 0, 0, 0.4);
+            @include opacity(1);
         }
 
-        .p-dialog-content {
-            padding: 1em;
-        }
-
-        .p-dialog-footer {
+        .p-dialog {
+            @include corner-all();
             @include content();
-            padding: $headerPadding;
-            text-align: right;
-            border-width: 1px 0 0 0;
+            @include overlay-shadow();
+            border: grey;
 
-            button {
-                margin: 0 .35em 0 0;
-            }
-        }
+            .p-dialog-titlebar {
+                @include header();
+                @include corner-top();
+                padding: 1em;
+                border: 0 none;
 
-        &.p-confirm-dialog {
-            .p-dialog-content {
-                padding: 1.5em;
-
-                > span {
-                    float: none;
-                    display: inline-block;
-                    vertical-align: middle;
-                    line-height: $fontSize;
+                .p-dialog-title {
                     margin: 0;
+                    float: none;
+                    vertical-align: middle;
+                }
 
-                    &.p-icon {
-                        margin-right: .35em;
-                        font-size: $fontSize + 2;
+                .p-dialog-titlebar-icon {
+                    color: $headerIconColor;
+                    border: 0 none;
+                    @include transition(color $transitionDuration);
+                    padding: 0;
+                    margin-left: .35em;
+                    font-size: $fontSize + 2;
+
+                    &:hover {
+                        color: darken($headerIconHoverColor, 10%);
+                    }
+
+                    &:focus {
+                        outline: 0;
+                    }
+                }
+            }
+
+            .p-dialog-content {
+                padding: 1em;
+            }
+
+            .p-dialog-footer {
+                @include content();
+                padding: $headerPadding;
+                text-align: right;
+                border-width: 1px 0 0 0;
+
+                button {
+                    margin: 0 .35em 0 0;
+                }
+            }
+
+            &.p-confirm-dialog {
+                .p-dialog-content {
+                    padding: 1.5em;
+
+                    > span {
+                        float: none;
+                        display: inline-block;
+                        vertical-align: middle;
+                        line-height: $fontSize;
+                        margin: 0;
+
+                        &.p-icon {
+                            margin-right: .35em;
+                            font-size: $fontSize + 2;
+                        }
                     }
                 }
             }
