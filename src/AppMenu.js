@@ -54,6 +54,7 @@ class AppSubmenu extends Component {
 		//execute command
 		if (item.command) {
 			item.command({originalEvent: event, item: item});
+			event.preventDefault();
 		}
 
 		if (index === this.state.activeIndex)
