@@ -84,6 +84,14 @@ body {
             padding: $headerPadding;
         }
 
+        .p-dropdown-item {
+            color: $textColor;
+        }
+
+        .p-multiselect-item {
+            color: $textColor;
+        }
+
         .p-datatable-thead > tr > th {
             padding: $headerPadding;
             border: 1px solid $datatableCellBorderColor;
