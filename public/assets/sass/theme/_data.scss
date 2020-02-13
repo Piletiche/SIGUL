@@ -159,6 +159,11 @@ body {
                             color: $textColor;
                         }
                     }
+
+                    .p-row-editor-init-icon, .p-row-editor-cancel-icon,
+                    .p-row-editor-save-icon {
+                        color: $textColor;
+                    }
                 }
 
                 &.p-highlight {
@@ -166,6 +171,15 @@ body {
                     color: $primaryTextColor;
 
                     .p-row-toggler {
+                        color: $primaryTextColor;
+
+                        &:hover {
+                            color: $primaryTextColor;
+                        }
+                    }
+
+                    .p-row-editor-init-icon, .p-row-editor-cancel-icon,
+                    .p-row-editor-save-icon {
                         color: $primaryTextColor;
 
                         &:hover {
@@ -198,6 +212,15 @@ body {
                             color: $primaryTextColor;
                         }
                     }
+
+                    .p-row-editor-init-icon, .p-row-editor-cancel-icon,
+                    .p-row-editor-save-icon {
+                        color: $primaryTextColor;
+
+                        &:hover {
+                            color: $primaryTextColor;
+                        }
+                    }
                 }
 
                 &.p-highlight-contextmenu {
@@ -219,6 +242,11 @@ body {
             .p-datatable-tbody > tr:not(.p-highlight):not(.p-highlight-contextmenu):hover {
                 cursor: pointer;
                 @include list-item-hover();
+
+                .p-row-editor-init-icon, .p-row-editor-cancel-icon,
+                .p-row-editor-save-icon {
+                    color: $listItemHoverTextColor;
+                }
             }
         }
 
