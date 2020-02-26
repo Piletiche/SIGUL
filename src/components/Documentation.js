@@ -654,6 +654,17 @@ $overlayMaskBgColor:#141d26;
                         as these files are empty by default and never updated.</p>
 
                         <h1>Migration Guide</h1>
+						<p>3.0.0 to 3.0.1</p>
+						<ul>
+							<li>Update index.jx</li>
+							<li>Update App.js</li>
+                            <li>Update AppBreadcrumb.js</li>
+							<li>Update AppMenu.js</li>
+                            <li>Update AppTopbar.js</li>
+							<li>Update layout css files</li>
+							<li>Update theme css files</li>
+						</ul>
+
 						<p>2.0.0-beta.1 to 3.0.0</p>
 						<ul>
 							<li>Update index.jx</li>
