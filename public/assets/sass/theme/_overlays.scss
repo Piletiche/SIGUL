@@ -49,11 +49,6 @@ body {
     }
 
     .p-dialog-wrapper {
-        &.p-component-overlay {
-            background-color: rgba(0, 0, 0, 0.4);
-            @include opacity(1);
-        }
-
         .p-dialog {
             @include corner-all();
             @include content();
