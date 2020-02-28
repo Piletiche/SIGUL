@@ -134,6 +134,14 @@
 
                 > a {
                     padding: 13px 15px 10px;
+
+                    &:focus {
+                        @include shadow(none);
+                    }
+
+                    .p-tabview-title {
+                        color: #1b1c1e;
+                    }
                 }
 
                 &:not(.p-highlight):not(.p-disabled):hover {
@@ -141,7 +149,9 @@
                     background-color: transparent;
 
                     > a {
-                        color: #1b1c1e;
+                        .p-tabview-title {
+                            color: #1b1c1e;
+                        }
                     }
                 }
 
@@ -152,7 +162,9 @@
                     @include transition(background-color $transitionDuration);
 
                     > a {
-                        color: #1b1c1e;
+                        .p-tabview-title {
+                            color: #1b1c1e;
+                        }
                     }
                 }
             }
