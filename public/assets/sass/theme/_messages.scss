@@ -128,11 +128,7 @@ body {
             @include opacity(.95);
             @include overlay-shadow();
             margin-bottom: .5em;
-
-            .p-growl-message {
-                margin-left: 4em;
-            }
-
+            
             .p-growl-image {
                 font-size: 2.769em;
             }
