@@ -15,7 +15,7 @@ export class Documentation extends Component {
                 <div className="p-col-12">
                     <div className="card docs no-margin">
                         <h1>Current Version</h1>
-                        <p>React 16.11.0 and PrimeReact 3.4.x</p>
+                        <p>React 16.13.0 and PrimeReact 4.x</p>
 
                         <h1>Getting Started</h1>
                         <p>Apollo is an application template for React based on the popular <a href="https://github.com/facebookincubator/create-react-app">create-react-app</a> that allows
@@ -654,6 +654,12 @@ $overlayMaskBgColor:#141d26;
                         as these files are empty by default and never updated.</p>
 
                         <h1>Migration Guide</h1>
+						<p>3.0.1 to 4.0.0</p>
+						<ul>
+							<li>Update layout css files</li>
+							<li>Update theme css files</li>
+						</ul>
+
 						<p>3.0.0 to 3.0.1</p>
 						<ul>
 							<li>Update index.jx</li>
