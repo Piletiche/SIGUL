@@ -7,7 +7,7 @@ export default class Login extends Component {
 	render() {
 		return <div className="login-body">
 			<div className="body-container">
-				<div className="p-grid">
+				<div className="p-grid p-nogutter">
 					<div className="p-col-12 p-lg-6 left-side">
 						<img src="assets/layout/images/logo-dark.png" alt="apollo-layout" className="logo"/>
 						<h1>Welcome</h1>

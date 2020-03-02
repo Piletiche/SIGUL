@@ -239,19 +239,28 @@ class App extends Component {
         }
     }
 
+    isIE() {
+        return /(MSIE|Trident\/|Edge\/)/i.test(window.navigator.userAgent)
+    }
+
     replaceLink(linkElement, href) {
         const id = linkElement.getAttribute('id');
         const cloneLinkElement = linkElement.cloneNode(true);
 
-        cloneLinkElement.setAttribute('href', href);
-        cloneLinkElement.setAttribute('id', id + '-clone');
+        if(this.isIE()){
+            linkElement.setAttribute('href', href);
+        }
+        else {
+            cloneLinkElement.setAttribute('href', href);
+            cloneLinkElement.setAttribute('id', id + '-clone');
 
-        linkElement.parentNode.insertBefore(cloneLinkElement, linkElement.nextSibling);
+            linkElement.parentNode.insertBefore(cloneLinkElement, linkElement.nextSibling);
 
-        cloneLinkElement.addEventListener('load', () => {
-            linkElement.remove();
-            cloneLinkElement.setAttribute('id', id);
-        });
+            cloneLinkElement.addEventListener('load', () => {
+                linkElement.remove();
+                cloneLinkElement.setAttribute('id', id);
+            });
+        }
     }
 
     createMenu() {
