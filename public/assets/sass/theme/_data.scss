@@ -5,9 +5,9 @@ body {
 
         .p-paginator-first,.p-paginator-prev,.p-paginator-next,.p-paginator-last {
             color: $headerTextColor;
-            height: 20px;
-            width: 20px;
-            padding: 0;
+            height: 2em;
+            width: 2em;
+            padding: 0 .5em;
             display: inline-block;
             vertical-align: middle;
             font-size: $fontSize;
@@ -38,8 +38,9 @@ body {
             .p-paginator-page {
                 color: $headerTextColor;
                 height: 2em;
-                width: 2em;
-                padding: 0;
+                width: auto;
+                min-width: 2em;
+                padding: 0 .5em;
                 vertical-align: middle;
                 display: inline-block;
                 font-size: $fontSize;
