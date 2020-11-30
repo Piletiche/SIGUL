@@ -1,14 +1,16 @@
 .layout-wrapper {
     .topbar {
         background-color: $primaryColor;
-        padding: 10px 30px 10px 10px;
+        padding: 10px 16px;
         height: 50px;
+        box-sizing: border-box;
         position: fixed;
         top: 0px;
         width: 100%;
         z-index: 102;
+        @include border-box();
 
-        #menu-button {
+        .menu-button {
             display: none;
             cursor: pointer;
             vertical-align: top;
@@ -17,10 +19,10 @@
             line-height: 50px;
             text-align: center;
             margin-top: -10px;
-            margin-right: 10px;
+            margin-left: 30px;
             color: #ffffff;
             user-select: none;
-            @include transition(background-color $transitionDuration);
+            transition: background-color $transitionDuration;
 
             i {
                 font-size: 28px;
@@ -76,16 +78,16 @@
                 width: 175px;
                 padding: 4px 20px 4px 8px;
                 margin: 0px;
-                @include border-radius($borderRadius);
+                border-radius: $borderRadius;
 
-                &::-webkit-input-placeholder { color:$primaryTextColor;; opacity: .7; @include transition(opacity $transitionDuration);}
-                &:-moz-placeholder { color:$primaryTextColor;; opacity: .7; @include transition(opacity $transitionDuration);}
-                &::-moz-placeholder { color:$primaryTextColor;; opacity: .7; @include transition(opacity $transitionDuration);}
-                &:-ms-input-placeholder { color:$primaryTextColor;; opacity: .7; @include transition(opacity $transitionDuration);}
+                &::-webkit-input-placeholder { color:$primaryTextColor;; opacity: .7; transition: opacity $transitionDuration;}
+                &:-moz-placeholder { color:$primaryTextColor;; opacity: .7; transition: opacity $transitionDuration;}
+                &::-moz-placeholder { color:$primaryTextColor;; opacity: .7; transition: opacity $transitionDuration;}
+                &:-ms-input-placeholder { color:$primaryTextColor;; opacity: .7; transition: opacity $transitionDuration;}
             }
 
             .pi {
-                font-size: 18px;
+                font-size: 16px;
                 position: absolute;
                 top: 4px;
                 right: 5px;
@@ -93,8 +95,14 @@
             }
         }
 
-        .logo {
-            height: 30px;
+        .logo-link {
+            display: inline-block;
+            height: 100%;
+            width: 185px;
+
+            .logo {
+                height: 30px;
+            }
         }
 
         .profile {
@@ -127,7 +135,7 @@
             display: none;
             position: absolute;
             cursor: pointer;
-            right: 0;
+            right: 30px;
             top: 50px;
             width: 250px;
             list-style-type: none;
@@ -135,7 +143,7 @@
             margin: 0;
             background-color: $primaryColor;
             border-top: 1px solid darken($primaryColor, 10%);
-            @include animation-duration($transitionDuration);
+            animation-duration: $transitionDuration;
 
             &.topbar-menu-visible {
                 display: block;
@@ -151,7 +159,7 @@
                     display: block;
 
                     i {
-                        font-size: 18px;
+                        font-size: 16px;
                         display: inline-block;
                         vertical-align: middle;
                     }
@@ -177,7 +185,7 @@
                         line-height: 18px;
                         text-align: center;
                         margin-top: 1px;
-                        @include border-radius(50%);
+                        border-radius: 50%;
                     }
 
                     &:hover {
@@ -189,18 +197,29 @@
                     list-style-type: none;
                     padding: 0;
                     margin: 0;
-                    max-height: 0;
-                    overflow: hidden;
-                    @include transition(max-height, $transitionDuration);
 
                     button {
                         padding-left: 32px;
                     }
-                }
 
-                &.menuitem-active {
-                    > ul {
-                        max-height: 500px;
+                    &.layout-submenu-container-enter-from,
+                    &.layout-submenu-container-leave-to {
+                        max-height: 0;
+                    }
+
+                    &.layout-submenu-container-enter-to,
+                    &.layout-submenu-container-leave-from {
+                        max-height: 1000px;
+                    }
+
+                    &.layout-submenu-container-leave-active {
+                        overflow: hidden;
+                        transition: max-height 0.45s cubic-bezier(0, 1, 0, 1);
+                    }
+
+                    &.layout-submenu-container-enter-active {
+                        overflow: hidden;
+                        transition: max-height 1s ease-in-out;
                     }
                 }
 
@@ -226,17 +245,17 @@
 
     &.layout-overlay, &.layout-static {
         .topbar {
-            @include overlay-shadow;
+            box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.3);
 
-            #menu-button {
-                display: inline-block;
+            .menu-button {
+              display: inline-block;
             }
         }
     }
 
     &.layout-slim {
         .topbar {
-            @include overlay-shadow;
+            box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.3);
         }
     }
 }

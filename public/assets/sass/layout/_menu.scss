@@ -4,8 +4,8 @@
         position: fixed;
         z-index: 101;
         top: 50px;
-        overflow: auto;
-        @include overlay-shadow();
+        left: 0;
+        box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.3);
 
         .layout-menu {
             margin: 0;
@@ -15,13 +15,9 @@
             li {
                 > a {
                     cursor: pointer;
-                    color: $menuitemTextColor;
+                    color: $textColor;
                     display: block;
                     user-select: none;
-                    width: 100%;
-                    -moz-user-select: none;
-                    -ms-user-select: none;
-                    -webkit-user-select: none;
 
                     span {
                         display: inline-block;
@@ -36,25 +32,29 @@
 
                     > span.menuitem-badge {
                         background-color: $primaryColor;
-                        color: $primaryTextColor;
                         width: 18px;
                         height: 18px;
                         text-align: center;
+                        color: $primaryTextColor;
                         font-size: 12px;
                         float: right;
                         position: relative;
                         top: 2px;
                         padding-top: 1px;
-                        @include border-radius(50%);
+                        border-radius: 50%;
                     }
 
                     .layout-menuitem-toggler {
-                        @include transition(transform $transitionDuration);
+                        transition: transform $transitionDuration;
                     }
 
-                    &.active-menuitem-routerlink {
+                    &.router-link-active {
                         color: $primaryColor;
                         font-weight: 700;
+                    }
+
+                    &.router-link-active, &.router-link-exact-active {
+                        color: $primaryColor;
                     }
 
                     &:not(:hover) {
@@ -90,53 +90,45 @@
                             i {color: $pink}
                         }
                     }
-                }
 
-                &.active-menuitem {
-                    > a {
-                        .layout-menuitem-toggler {
-                            @include rotate(-180deg);
-                        }
-                    }
+                    &.rotated-icon {
+						.layout-menuitem-icon {
+							transform: rotate(90deg);
+						}
+					}
                 }
 
                 ul {
                     margin: 0;
                     padding: 0;
                     list-style-type: none;
-                    display: none;
                     overflow: hidden;
 
-                    &.layout-submenu-enter {
+                    &.layout-submenu-container-enter-from,
+                    &.layout-submenu-container-leave-to {
                         max-height: 0;
-                        display: block;
                     }
 
-                    &.layout-submenu-enter-active {
+                    &.layout-submenu-container-enter-to,
+                    &.layout-submenu-container-leave-from {
                         max-height: 1000px;
-                        transition: max-height cubic-bezier(0.86, 0, 0.07, 1) .4s;
                     }
 
-                    &.layout-submenu-enter-done {
-                        display: block;
+                    &.layout-submenu-container-leave-active {
+                        overflow: hidden;
+                        transition: max-height 0.45s cubic-bezier(0, 1, 0, 1);
                     }
 
-                    &.layout-submenu-exit {
-                        max-height: 1000px;
-                        display: block;
-                    }
-
-                    &.layout-submenu-exit-active {
-                        max-height: 0;
-                        display: block;
-                        transition: max-height cubic-bezier(0.86, 0, 0.07, 1) .4s;
+                    &.layout-submenu-container-enter-active {
+                        overflow: hidden;
+                        transition: max-height 1s ease-in-out;
                     }
                 }
 
                 &.active-menuitem {
                     > a {
                         .layout-menuitem-toggler {
-                            @include rotate(-180deg);
+                            transform: rotate(-180deg);
                         }
                     }
                 }
@@ -158,8 +150,8 @@
                     min-width: 75px;
                     white-space: nowrap;
                     text-align: center;
-                    @include border-radius($borderRadius);
-                    @include overlay-shadow();
+                    border-radius: $borderRadius;
+                    box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.3);
                 }
 
                 .layout-menu-tooltip-arrow {

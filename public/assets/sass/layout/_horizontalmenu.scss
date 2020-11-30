@@ -1,7 +1,6 @@
 @media (min-width: 1025px) {
     .layout-wrapper {
         &.layout-horizontal {
-
             .layout-content {
                 padding-top: 100px;
             }
@@ -9,14 +8,12 @@
             .layout-menu-container {
                 padding: 0 20px;
                 width: 100%;
-                overflow: visible;
 
                 .layout-menu-title {
                     display: none;
                 }
 
                 .layout-menu {
-
                     > li {
                         display: inline-block;
                         position: relative;
@@ -24,12 +21,13 @@
                         > a {
                             padding: 12px;
                             height: 50px;
+                            margin-bottom: -4px;
                             border-bottom: 2px solid transparent;
-                            @include transition(border-bottom-color $transitionDuration, background-color $transitionDuration);
+                            transition: border-bottom-color $transitionDuration, background-color $transitionDuration;
 
-                            &:hover {
+                            &:not(.p-disabled):hover {
                                 border-bottom-color: $primaryColor;
-                                color: $menuItemHoverTextColor;
+                                color: $primaryColor;
                             }
                         }
 
@@ -37,6 +35,10 @@
                             > a {
                                 background-color: $primaryColor;
                                 color: $primaryTextColor;
+
+                                &:not(.p-disabled):hover {
+                                    color: $primaryTextColor;
+                                }
                             }
 
                             > ul {
@@ -47,12 +49,12 @@
                             }
                         }
 
-                        > ul {
+                        ul {
                             min-width: 200px;
-                            @include overlay-shadow();
+                            box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.3);
                         }
 
-                        ul {
+                        > ul {
                             display: none;
                             margin: 0;
                             padding: 0;
@@ -60,7 +62,7 @@
                             list-style-type: none;
                             background-color: $menuBgColor;
 
-                            li {
+                            > li {
                                 a {
                                     padding: 8px 12px;
                                     display: block;
@@ -75,17 +77,22 @@
                                         margin-top: 4px;
                                     }
 
-                                    &:hover {
+                                    &:not(.p-disabled):hover {
                                         background-color: $primaryColor;
                                         color: $primaryTextColor;
                                     }
                                 }
 
+                                &.p-menu-separator {
+                                    border-top: 1px solid $dividerColor;
+                                    margin: 0.25rem 0;
+                                }
+
                                 &.active-menuitem {
                                     > a {
-                                        color: $menuItemActiveTextColor;
+                                        color: $primaryColor;
 
-                                        &:hover {
+                                        &:not(.p-disabled):hover {
                                             color: $primaryTextColor;
                                         }
                                     }
@@ -97,7 +104,7 @@
 
                                 ul {
                                     width: 100%;
-                                    @include no-shadow();
+                                    box-shadow: none;
 
                                     li {
                                         a {
@@ -107,13 +114,13 @@
                                         ul {
                                             li {
                                                 a {
-                                                    padding-left: 36px;
+                                                  padding-left: 36px;
                                                 }
 
                                                 ul {
                                                     li {
                                                         a {
-                                                            padding-left: 48px;
+                                                          padding-left: 48px;
                                                         }
 
                                                         ul {

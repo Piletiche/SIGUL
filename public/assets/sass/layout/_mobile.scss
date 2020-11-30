@@ -1,15 +1,15 @@
 @media (max-width: 1024px) {
     .layout-wrapper {
         .topbar {
-            @include overlay-shadow;
+            box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.3);
 
             .profile {
                 .username {
-                    display: none;
+                  display: none;
                 }
             }
 
-            #menu-button {
+            .menu-button {
                 display: inline-block;
                 margin-left: 10px;
             }
@@ -24,17 +24,34 @@
                     display: block;
                 }
             }
+
+            .logo-link {
+                width: auto;
+            }
         }
+
         .layout-mask {
             display: none;
         }
 
         .layout-menu-container {
-            padding: 0 0 60px 0;
+            padding: 0;
             width: 230px;
             height: 100%;
-            left: -230px;
-            @include transition(left $transitionDuration);
+            overflow: auto;
+            transform: translateX(-100%);
+            transition: transform $transitionDuration;
+
+            &.layout-menu-container-enter-from {
+                transform: translateX(-100%) !important;
+            }
+
+            .layout-menu-content {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
 
             .layout-menu-title {
                 display: block;
@@ -46,6 +63,7 @@
             }
 
             .layout-menu {
+                flex: 1 1 0;
 
                 li {
                     a {
@@ -78,17 +96,13 @@
 
                     &.active-menuitem {
                         > a {
-                            background-color: $submenuActiveBgColor;
-                            color: $menuItemActiveTextColor;
+                            background-color: $menuitemActiveBgColor;
+                            color: $primaryColor;
 
                             &:hover {
                                 background-color: $primaryColor;
                                 color: $primaryTextColor;
                             }
-                        }
-
-                        >ul {
-                            max-height: 1000px;
                         }
                     }
                 }
@@ -99,7 +113,7 @@
                     }
 
                     ul {
-                        background: $submenuActiveBgColor;
+                        background: $menuBgColor;
 
                         li {
                             a {
@@ -143,6 +157,8 @@
             }
 
             .layout-menu-footer {
+                padding-bottom: 50px;
+
                 .layout-menu-footer-title {
                     display: block;
                     padding: 16px;
@@ -154,7 +170,7 @@
 
                 .layout-menu-footer-content {
                     padding: 10px 12px;
-                    color: $menuitemTextColor;
+                    color: $textColor;
 
                     .p-progressbar {
                         height: 5px;
@@ -167,7 +183,7 @@
 
         &.layout-mobile-active {
             .layout-menu-container {
-                left: 0;
+                transform: translateX(0);
             }
 
             .layout-mask {
@@ -184,7 +200,7 @@
         }
 
         .layout-content {
-            padding: 50px 0px;
+            padding: 50px 0px 0px 0px;
         }
     }
 }

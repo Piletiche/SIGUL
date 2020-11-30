@@ -33,7 +33,7 @@
                             padding-bottom: 10px;
 
                             i:first-child {
-                                font-size: 19px;
+                                font-size: 16px;
                             }
 
                             span, .layout-menuitem-toggler {
@@ -44,14 +44,19 @@
                                 display: block;
                             }
 
-                            &:hover {
+                            &:not(.p-disabled):hover {
                                 background-color: $primaryColor;
                                 color: $primaryTextColor;
                             }
                         }
 
+                        &.p-menu-separator {
+                            border-top: 1px solid $dividerColor;
+                            margin: 0.25rem 0;
+                        }
+
                         > ul {
-                            @include overlay-shadow();
+                            box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.3);
                             background-color: $menuBgColor;
                             position: absolute;
                             top: 0;
@@ -75,15 +80,20 @@
                                         margin-top: 4px;
                                     }
 
-                                    &:hover {
+                                    &:not(.p-disabled):hover {
                                         background-color: $primaryColor;
                                         color: $primaryTextColor;
                                     }
                                 }
 
+                                &.p-menu-separator {
+                                    border-top: 1px solid $dividerColor;
+                                    margin: 0.25rem 0;
+                                }
+
                                 &.active-menuitem {
                                     > a {
-                                        color: $menuItemActiveTextColor;
+                                        color: $primaryColor;
 
                                         &:hover {
                                             color: $primaryTextColor;
@@ -97,7 +107,7 @@
 
                                 ul {
                                     width: 100%;
-                                    @include no-shadow();
+                                    box-shadow: none;
 
                                     li {
                                         a {
@@ -107,19 +117,19 @@
                                         ul {
                                             li {
                                                 a {
-                                                    padding-left: 36px;
+                                                padding-left: 36px;
                                                 }
 
                                                 ul {
                                                     li {
                                                         a {
-                                                            padding-left: 48px;
+                                                        padding-left: 48px;
                                                         }
 
                                                         ul {
                                                             li {
                                                                 a {
-                                                                    padding-left: 60px;
+                                                                padding-left: 60px;
                                                                 }
 
                                                                 ul {
@@ -141,19 +151,19 @@
                         }
 
                         &.active-menuitem {
-                            > a {
-                                background-color: $submenuActiveBgColor;
-                                color: $menuItemActiveTextColor;
+                        > a {
+                            background-color: $menuitemActiveBgColor;
+                            color: $primaryColor;
 
-                                &:hover {
-                                    background-color: $primaryColor;
-                                    color: $primaryTextColor;
-                                }
-
-                                &:hover + .layout-menu-tooltip {
-                                    display: none;
-                                }
+                            &:hover {
+                            background-color: $primaryColor;
+                            color: $primaryTextColor;
                             }
+
+                            &:hover + .layout-menu-tooltip {
+                            display: none;
+                            }
+                        }
 
                             > ul {
                                 display: block;

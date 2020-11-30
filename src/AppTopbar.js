@@ -1,74 +1,47 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import classNames from 'classnames';
-import {InputText} from 'primereact/inputtext';
-import {InputSwitch} from 'primereact/inputswitch';
+import { InputText } from 'primereact/inputtext';
+import { InputSwitch } from 'primereact/inputswitch';
 
-export class AppTopbar extends Component {
+export const AppTopbar = (props) => {
 
-    static defaultProps = {
-        onMenuButtonClick: null,
-        onTopbarMenuButtonClick: null,
-        onTopbarItemClick: null,
-        topbarMenuActive: false,
-        activeTopbarItem: null,
-        darkTheme: null,
-        onThemeChange: null
-    }
-
-    static propTypes = {
-        onMenuButtonClick: PropTypes.func.isRequired,
-        onTopbarMenuButtonClick: PropTypes.func.isRequired,
-        onTopbarItemClick: PropTypes.func.isRequired,
-        topbarMenuActive: PropTypes.bool.isRequired,
-        activeTopbarItem: PropTypes.string,
-        darkTheme: PropTypes.bool,
-        onThemeChange: PropTypes.func
-    }
-
-    constructor() {
-        super();
-        this.state = {};
-    }
-
-    onTopbarItemClick(event, item) {
-        if(this.props.onTopbarItemClick) {
+    const onTopbarItemClick = (event, item) => {
+        if (this.props.onTopbarItemClick) {
             this.props.onTopbarItemClick({
                 originalEvent: event,
                 item: item
             });
         }
     }
+    let topbarItemsClassName = classNames('topbar-menu fadeInDown', { 'topbar-menu-visible': props.topbarMenuActive });
 
-    render() {
-        let topbarItemsClassName = classNames('topbar-menu fadeInDown', {'topbar-menu-visible': this.props.topbarMenuActive});
+    return (
+        <div className="topbar clearfix">
 
-        return <div className="topbar clearfix">
-
-            <button className="p-link" id="menu-button" onClick={this.props.onMenuButtonClick}>
+            <button className="p-link" id="menu-button" onClick={props.onMenuButtonClick}>
                 <i className="pi pi-bars"></i>
             </button>
 
             <img className="logo" alt="apollo-layout" src="assets/layout/images/apollo_logo.png" />
 
-            <button className="p-link profile" onClick={this.props.onTopbarMenuButtonClick}>
+            <button className="p-link profile" onClick={props.onTopbarMenuButtonClick}>
                 <span className="username">Sarah Miller</span>
                 <img src="assets/layout/images/avatar/avatar.png" alt="apollo-layout" />
                 <i className="pi pi-angle-down"></i>
             </button>
 
             <span className="topbar-search">
-                <InputText placeholder="Search"/>
+                <InputText placeholder="Search" />
                 <span className="pi pi-search"></span>
             </span>
 
             <span className="topbar-themeswitcher">
-                <InputSwitch checked={this.props.darkTheme} onChange={this.props.onThemeChange}></InputSwitch>
+                <InputSwitch checked={props.darkTheme} onChange={props.onThemeChange}></InputSwitch>
             </span>
 
             <ul className={topbarItemsClassName}>
-                <li className={classNames({'menuitem-active': this.props.activeTopbarItem === 'profile'})}
-                    onClick={(e) => this.onTopbarItemClick(e, 'profile')}>
+                <li className={classNames({ 'menuitem-active': props.activeTopbarItem === 'profile' })}
+                    onClick={(e) => onTopbarItemClick(e, 'profile')}>
                     <button className="p-link">
                         <i className="topbar-icon pi pi-fw pi-user"></i>
                         <span className="topbar-item-name">Profile</span>
@@ -102,8 +75,8 @@ export class AppTopbar extends Component {
                     </ul>
                 </li>
 
-                <li className={classNames({'menuitem-active': this.props.activeTopbarItem === 'settings'})}
-                    onClick={(e) => this.onTopbarItemClick(e, 'settings')}>
+                <li className={classNames({ 'menuitem-active': props.activeTopbarItem === 'settings' })}
+                    onClick={(e) => onTopbarItemClick(e, 'settings')}>
                     <button className="p-link">
                         <i className="topbar-icon pi pi-fw pi-cog"></i>
                         <span className="topbar-item-name">Settings</span>
@@ -137,8 +110,8 @@ export class AppTopbar extends Component {
                         </li>
                     </ul>
                 </li>
-                <li className={classNames({'menuitem-active': this.props.activeTopbarItem === 'messages'})}
-                    onClick={(e) => this.onTopbarItemClick(e, 'messages')}>
+                <li className={classNames({ 'menuitem-active': props.activeTopbarItem === 'messages' })}
+                    onClick={(e) => onTopbarItemClick(e, 'messages')}>
                     <button className="p-link">
                         <i className="topbar-icon pi pi-fw pi-envelope"></i>
                         <span className="topbar-item-name">Messages</span>
@@ -147,38 +120,38 @@ export class AppTopbar extends Component {
                     <ul>
                         <li role="menuitem">
                             <button className="p-link topbar-message">
-                                <img alt="Avatar 1" src="assets/layout/images/avatar/avatar1.png" width="35"/>
+                                <img alt="Avatar 1" src="assets/layout/images/avatar/avatar1.png" width="35" />
                                 <span>Give me a call</span>
                             </button>
                         </li>
                         <li role="menuitem">
                             <button className="p-link topbar-message">
-                                <img alt="Avatar 2" src="assets/layout/images/avatar/avatar2.png" width="35"/>
+                                <img alt="Avatar 2" src="assets/layout/images/avatar/avatar2.png" width="35" />
                                 <span>Sales reports attached</span>
                             </button>
                         </li>
                         <li role="menuitem">
                             <button className="p-link topbar-message">
-                                <img alt="Avatar 3" src="assets/layout/images/avatar/avatar3.png" width="35"/>
+                                <img alt="Avatar 3" src="assets/layout/images/avatar/avatar3.png" width="35" />
                                 <span>About your invoice</span>
                             </button>
                         </li>
                         <li role="menuitem">
                             <button className="p-link topbar-message">
-                                <img alt="Avatar 4" src="assets/layout/images/avatar/avatar2.png" width="35"/>
+                                <img alt="Avatar 4" src="assets/layout/images/avatar/avatar2.png" width="35" />
                                 <span>Meeting today at 10pm</span>
                             </button>
                         </li>
                         <li role="menuitem">
                             <button className="p-link topbar-message">
-                                <img alt="Avatar 5" src="assets/layout/images/avatar/avatar4.png" width="35"/>
+                                <img alt="Avatar 5" src="assets/layout/images/avatar/avatar4.png" width="35" />
                                 <span>Out of office</span>
                             </button>
                         </li>
                     </ul>
                 </li>
-                <li className={classNames({'menuitem-active': this.props.activeTopbarItem === 'notifications'})}
-                    onClick={(e) => this.onTopbarItemClick(e, 'notifications')}>
+                <li className={classNames({ 'menuitem-active': props.activeTopbarItem === 'notifications' })}
+                    onClick={(e) => onTopbarItemClick(e, 'notifications')}>
                     <button className="p-link">
                         <i className="topbar-icon pi pi-fw pi-bell"></i>
                         <span className="topbar-item-name">Notifications</span>
@@ -212,6 +185,7 @@ export class AppTopbar extends Component {
                     </ul>
                 </li>
             </ul>
-        </div>;
-    }
+        </div>
+    );
+
 }

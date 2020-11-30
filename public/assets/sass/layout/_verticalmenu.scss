@@ -1,20 +1,24 @@
 @media (min-width: 1025px) {
     .layout-wrapper {
-
-        &.layout-overlay {
-            .layout-content {
-                padding-top: 50px;
-            }
-        }
-
         &.layout-overlay, &.layout-static {
-
             .layout-menu-container {
-                padding: 0 0 60px 0;
+                padding: 0;
                 width: 230px;
-                height: 100%;
-                left: -230px;
-                @include transition(left $transitionDuration);
+                height: calc(100% - 50px);
+                overflow: auto;
+                transition: transform $transitionDuration;
+
+                .layout-menu-content {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                }
+
+                &.layout-menu-container-enter-from,
+                &.layout-menu-container-leave-to {
+                    transform: translateX(-100%);
+                }
 
                 .layout-menu-title {
                     display: block;
@@ -26,19 +30,20 @@
                 }
 
                 .layout-menu {
+                    flex: 1 1 0;
 
                     li {
                         a {
                             padding: 10px 12px;
                             display: block;
 
-                            &:hover {
+                            &:not(.p-disabled):hover {
                                 background-color: $primaryColor;
                                 color: $primaryTextColor;
                             }
 
                             i:first-child {
-                                font-size: 18px;
+                                font-size: 14px;
                                 vertical-align: middle;
                                 display: inline-block;
                             }
@@ -51,15 +56,19 @@
                             > span {
                                 vertical-align: middle;
                                 display: inline-block;
-                                line-height: $fontSize + 1;
                                 margin-left: 6px;
                             }
                         }
 
+                        &.p-menu-separator {
+                            border-top: 1px solid $dividerColor;
+                            margin: 0.25rem 0;
+                        }
+
                         &.active-menuitem {
                             > a {
-                                background-color: $submenuActiveBgColor;
-                                color: $menuItemActiveTextColor;
+                                background-color: $menuitemActiveBgColor;
+                                color: $primaryColor;
 
                                 &:hover {
                                     background-color: $primaryColor;
@@ -75,7 +84,7 @@
                         }
 
                         ul {
-                            background: $submenuActiveBgColor;
+                            background: $menuBgColor;
 
                             li {
                                 a {
@@ -119,6 +128,8 @@
                 }
 
                 .layout-menu-footer {
+                    padding-bottom: 10px;
+
                     .layout-menu-footer-title {
                         display: block;
                         padding: 11px;
@@ -130,7 +141,7 @@
 
                     .layout-menu-footer-content {
                         padding: 10px 12px;
-                        color: $menuitemTextColor;
+                        color: $textColor;
 
                         .p-progressbar {
                             height: 5px;
@@ -142,11 +153,9 @@
             }
         }
 
-        &.layout-overlay{
-            &.layout-overlay-active {
-                .layout-menu-container {
-                    left: 0;
-                }
+        &.layout-overlay {
+            .layout-content {
+                padding-top: 50px;
             }
         }
 
@@ -154,21 +163,16 @@
             .layout-content {
                 padding-top: 50px;
                 margin-left: 230px;
-                @include transition(margin-left $transitionDuration);
-            }
-
-            &.layout-static-inactive {
-                .layout-content {
-                    margin-left: 0;
-                }
-            }
-            .layout-menu-container {
-                left: 0;
+                transition: margin-left $transitionDuration;
             }
 
             &.layout-static-inactive {
                 .layout-menu-container {
-                    left: -230px;
+                    transform: translateX(-100%);
+                }
+
+                .layout-content {
+                    margin-left: 0;
                 }
             }
         }

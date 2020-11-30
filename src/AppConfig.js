@@ -1,136 +1,126 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { useRef, useState, useCallback, useEffect } from 'react';
 import classNames from 'classnames';
-import { TabView, TabPanel } from 'primereact/tabview';
 
-export class AppConfig extends Component {
+export const AppConfig = () => {
 
-	static defaultProps = {
-		layoutMode: 'slim',
-		themeColor: 'blue',
-		darkTheme: true,
-		configDialogActive: false
-	}
+	const [active, setActive] = useState(false);
+	const config = useRef(null);
+	let outsideClickListener = useRef(null);
 
-	static propTypes = {
-		layoutMode: PropTypes.string.isRequired,
-		darkTheme: PropTypes.bool.isRequired,
-		themeColor: PropTypes.string.isRequired,
-		configDialogActive: PropTypes.bool.isRequired
-	}
+	let themeColors = [
+		{ name: 'Blue', file: 'blue', image: 'blue.svg' },
+		{ name: 'Green', file: 'green', image: 'green.svg' },
+		{ name: 'Cyan', file: 'cyan', image: 'cyan.svg' },
+		{ name: 'Purple', file: 'purple', image: 'purple.svg' },
+		{ name: 'Indigo', file: 'indigo', image: 'indigo.svg' },
+		{ name: 'Yellow', file: 'yellow', image: 'yellow.svg' },
+		{ name: 'Orange', file: 'orange', image: 'orange.svg' },
+		{ name: 'Pink', file: 'pink', image: 'pink.svg' }
+	];
 
-	constructor(props) {
-		super(props);
+	const unbindOutsideClickListener = useCallback(() => {
+		if (outsideClickListener.current) {
+			document.removeEventListener('click', outsideClickListener.current);
+			outsideClickListener.current = null;
+		}
+	}, []);
 
-		this.onChangeTheme = this.onChangeTheme.bind(this);
-	}
+	const hideConfigurator = useCallback((event) => {
+		setActive(false);
+		unbindOutsideClickListener();
+		event.preventDefault();
+	}, [unbindOutsideClickListener]);
 
-	onChangeTheme(event, file) {
-		let theme;
-		if(this.props.darkTheme) {
-			theme = file + '-dark';
+	const bindOutsideClickListener = useCallback(() => {
+		if (!outsideClickListener.current) {
+			outsideClickListener.current = (event) => {
+				if (active && isOutsideClicked(event)) {
+					hideConfigurator(event);
+				}
+			};
+			document.addEventListener('click', outsideClickListener.current);
+		}
+	}, [active, hideConfigurator]);
+
+	useEffect(() => {
+		if (active) {
+			bindOutsideClickListener()
 		}
 		else {
-			theme = file + '-light';
+			unbindOutsideClickListener()
 		}
-		this.props.changeTheme({
-			originalEvent: event,
-			theme: theme
-		})
+	}, [active, bindOutsideClickListener, unbindOutsideClickListener]);
+
+	const isOutsideClicked = (event) => {
+		return !(config.current.isSameNode(event.target) || config.current.contains(event.target));
 	}
 
-	render() {
-		let themeColors = [
-			{name: 'Blue', file: 'blue', image: 'blue.svg'},
-			{name: 'Green', file: 'green', image: 'green.svg'},
-			{name: 'Cyan', file: 'cyan', image: 'cyan.svg'},
-			{name: 'Purple', file: 'purple', image: 'purple.svg'},
-			{name: 'Indigo', file: 'indigo', image: 'indigo.svg'},
-			{name: 'Yellow', file: 'yellow', image: 'yellow.svg'},
-			{name: 'Orange', file: 'orange', image: 'orange.svg'},
-			{name: 'Pink', file: 'pink', image: 'pink.svg'}
-		];
+	const toggleConfigurator = (event) => {
+		setActive(prevState => !prevState);
+	}
 
-		return (
-			<div className={classNames("layout-config", {'layout-config-active': this.props.configDialogActive})} onClick={this.props.onConfigClick}>
-				<div className="layout-config-content">
-					<button className="layout-config-button" id="layout-config-button" onClick={this.props.onConfigButtonClick}>
-						<i className="pi pi-cog"/>
-					</button>
+	const configClassName = classNames('layout-config', {
+		'layout-config-active': active
+	});
 
-					<button className="layout-config-close" onClick={this.props.onConfigCloseClick}>
-						<i className="pi pi-times"/>
-					</button>
+	return (
+		<div ref={config} id="layout-config" className={configClassName}>
+			<div className="layout-config-content">
+				<button className="layout-config-button" onClick={toggleConfigurator}>
+					<i className="pi pi-cog" />
+				</button>
 
-					<TabView>
-						<TabPanel header="Light or Dark">
-							<div className="panel-items">
-								<div className="panel-item">
-									<button className="p-link" onClick={event => this.props.changeMenuColor({ originalEvent: event, darkTheme: false })}>
-										<img src="assets/layout/images/configurator/menu/apollo-static.png" alt="apollo"/>
-										{this.props.darkTheme === false && <i className="pi pi-check"/>}
-									</button>
-								</div>
-								<div className="panel-item">
-									<button className="p-link" onClick={event => this.props.changeMenuColor({ originalEvent: event, darkTheme: true })}>
-										<img src="assets/layout/images/configurator/menu/apollo-dark.png" alt="apollo"/>
-										{this.props.darkTheme === true && <i className="pi pi-check"/>}
-									</button>
-								</div>
+				<button className="layout-config-close" onClick={hideConfigurator}>
+					<i className="pi pi-times" />
+				</button>
+
+				<h5 style={{ marginTop: 0 }}>Input Style</h5>
+				<div class="p-formgroup-inline">
+					<div class="p-field-radiobutton">
+						<RadioButton id="input_outlined" name="inputstyle" value="outlined" />
+						<label htmlFor="input_outlined">Outlined</label>
+					</div>
+					<div class="p-field-radiobutton">
+						<RadioButton id="input_filled" name="inputstyle" value="filled" />
+						<label htmlFor="input_filled">Filled</label>
+					</div>
+				</div>
+
+				<h5>Ripple Effect</h5>
+				<InputSwitch />
+
+				<h5>Menu Type</h5>
+				<div class="p-field-radiobutton">
+					<RadioButton id="static" name="layoutMode" value="static" />
+					<label htmlFor="static">Static</label>
+				</div>
+				<div class="p-field-radiobutton">
+					<RadioButton id="overlay" name="layoutMode" value="overlay" />
+					<label htmlFor="overlay">Overlay</label>
+				</div>
+				<div class="p-field-radiobutton">
+					<RadioButton id="horizontal" name="layoutMode" value="horizontal" />
+					<label htmlFor="horizontal">Horizontal</label>
+				</div>
+				<div class="p-field-radiobutton">
+					<RadioButton id="slim" name="layoutMode" value="slim" />
+					<label htmlFor="slim">Slim</label>
+				</div>
+
+				<h5>Themes</h5>
+				<div class="layout-themes">
+					{
+						themeColors.map(color => {
+							return <div key={color.name}>
+								<a href="#" style={{ backgroundColor: color.color }} onClick={(event) => props.changeTheme(color.file)}>
+									{props.themeColor === color.file && <i className="pi pi-check"></i>}
+								</a>
 							</div>
-						</TabPanel>
-
-						<TabPanel header="Menu" headerClassName="">
-							<h1>Menu Modes</h1>
-							<div className="panel-items">
-								<div className="panel-item">
-									<button className="p-link" onClick={event => this.props.changeMenuMode({ originalEvent: event, menuMode: 'static' })}>
-										<img src="assets/layout/images/configurator/menu/apollo-static.png" alt="apollo"/>
-										{this.props.layoutMode === 'static' && <i className="pi pi-check"/>}
-									</button>
-									<span>Static</span>
-								</div>
-								<div className="panel-item">
-									<button className="p-link" onClick={event => this.props.changeMenuMode({ originalEvent: event, menuMode: 'overlay' })}>
-										<img src="assets/layout/images/configurator/menu/apollo-overlay.png" alt="apollo"/>
-										{this.props.layoutMode === 'overlay' && <i className="pi pi-check"/>}
-									</button>
-									<span>Overlay</span>
-								</div>
-								<div className="panel-item">
-									<button className="p-link" onClick={event => this.props.changeMenuMode({ originalEvent: event, menuMode: 'horizontal' })}>
-										<img src="assets/layout/images/configurator/menu/apollo-horizontal.png" alt="apollo"/>
-										{this.props.layoutMode === 'horizontal' && <i className="pi pi-check"/>}
-									</button>
-									<span>Horizontal</span>
-								</div>
-								<div className="panel-item">
-									<button className="p-link" onClick={event => this.props.changeMenuMode({ originalEvent: event, menuMode: 'slim' })}>
-										<img src="assets/layout/images/configurator/menu/apollo-slim.png" alt="apollo"/>
-										{this.props.layoutMode === 'slim' && <i className="pi pi-check"/>}
-									</button>
-									<span>Slim</span>
-								</div>
-							</div>
-						</TabPanel>
-
-						<TabPanel header="Themes">
-							<div className="panel-items">
-								{themeColors && themeColors.map((t, index) => {
-									return <div className="panel-item colors" key={index}>
-										<button className="p-link layout-config-option"
-												onClick={event => this.onChangeTheme(event, t.file)}>
-											<img src={"assets/layout/images/configurator/themes/" + t.image} alt={t.name}/>
-											{this.props.themeColor === t.file && <i className="pi pi-check"/>}
-										</button>
-									</div>
-								})
-								}
-							</div>
-						</TabPanel>
-					</TabView>
+						})
+					}
 				</div>
 			</div>
-		);
-	}
+		</div>
+	);
+
 }

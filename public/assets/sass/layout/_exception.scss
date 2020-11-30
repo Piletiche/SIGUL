@@ -1,6 +1,6 @@
 /* Exception */
 .exception-body {
-    height: 100%;
+    height: 100vh;
     font-size: 16px;
     margin: 0;
 
@@ -34,17 +34,17 @@
     }
 
     &.error-body {
-        background-image: url("../images/error.png");
+        background-image: url("../../layout/images/error.png");
         border-top: 7px solid $red;
     }
 
     &.access-body {
-        background-image: url("../images/access.png");
+        background-image: url("../../layout/images/access.png");
         border-top: 7px solid $orange;
     }
 
     &.notfound-body {
-        background-image: url("../images/404.png");
+        background-image: url("../../layout/images/404.png");
         border-top: 7px solid $yellow;
     }
 }
