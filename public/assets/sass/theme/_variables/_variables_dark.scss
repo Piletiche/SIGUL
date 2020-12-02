@@ -1,6 +1,7 @@
 //shades
 $shade000:rgba(255,255,255,.87) !default;  //text color
 $shade100:rgba(255,255,255,.60) !default;  //text secondary color
+$shade300:#dee2e6 !default;    //border, divider
 $shade600:#383838 !default;  //input bg, border, divider
 $shade700:#2b2b2b !default;  //unused
 $shade800:#1e1e1e !default;  //elevated surface
@@ -94,6 +95,7 @@ $inputOverlayHeaderBg:$inputListHeaderBg !default;
 $inputOverlayBorder:1px solid $shade600 !default;
 $inputOverlayShadow:0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12) !default;
 
+//password
 $passwordMeterBg:$shade300 !default;
 $passwordWeakBg:#FFCDD2 !default;
 $passwordMediumBg:#FFECB3 !default;

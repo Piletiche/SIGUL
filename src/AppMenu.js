@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom'
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
@@ -133,10 +133,10 @@ const AppSubmenu = (props) => {
 
 }
 
-export const AppMenu = () => {
+export const AppMenu = (props) => {
 
-		return <AppSubmenu items={props.model} className="layout-menu layout-main-menu clearfix"
-			menuActive={props.active} onRootItemClick={props.onRootMenuItemClick}
-			onMenuItemClick={props.onMenuItemClick} root={true} layoutMode={props.layoutMode}
-			parentMenuItemActive={true} />
+	return <AppSubmenu items={props.model} className="layout-menu layout-main-menu clearfix"
+		menuActive={props.active} onRootItemClick={props.onRootMenuItemClick}
+		onMenuItemClick={props.onMenuItemClick} root={true} layoutMode={props.layoutMode}
+		parentMenuItemActive={true} />
 }

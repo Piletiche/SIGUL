@@ -1,19 +1,19 @@
-import React, {Component} from 'react';
-import {InputText} from 'primereact/inputtext';
-import {Button} from "primereact/button";
+import React from 'react';
+import { InputText } from 'primereact/inputtext';
+import { Button } from "primereact/button";
 
-export default class Login extends Component {
+const Login = () => {
 
-	render() {
-		return <div className="login-body">
+	return (
+		<div className="login-body">
 			<div className="body-container">
-				<div className="p-grid p-nogutter">
+				<div className="p-grid">
 					<div className="p-col-12 p-lg-6 left-side">
-						<img src="assets/layout/images/logo-dark.png" alt="apollo-layout" className="logo"/>
+						<img src="assets/layout/images/logo-dark.png" alt="apollo-layout" className="logo" />
 						<h1>Welcome</h1>
 						<p>
 							Sign in to start your session
-						</p>
+					</p>
 					</div>
 					<div className="p-col-12 p-lg-6 right-side">
 						<div className="login-wrapper">
@@ -22,16 +22,17 @@ export default class Login extends Component {
 
 								<div className="p-grid p-fluid">
 									<div className="p-col-12">
-										<InputText placeholder="Username"/>
+										<InputText placeholder="Username" />
 									</div>
 									<div className="p-col-12">
-										<InputText type="password" placeholder="Password"/>
+										<InputText type="password" placeholder="Password" />
 									</div>
 									<div className="p-col-6">
-										<Button label="Sign In" icon="pi pi-check" onClick={() => {window.location = "/#"}} />
+										<Button label="Sign In" icon="pi pi-check" onClick={() => { window.location = "/#" }}
+										/>
 									</div>
 									<div className="p-col-6 password-container">
-										<a href="/#">Forgot Password?</a>
+										<button className="p-link">Forgot Password?</button>
 									</div>
 								</div>
 							</div>
@@ -40,5 +41,7 @@ export default class Login extends Component {
 				</div>
 			</div>
 		</div>
-	}
+	)
 }
+
+export default Login;

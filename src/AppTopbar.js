@@ -2,17 +2,19 @@ import React from 'react';
 import classNames from 'classnames';
 import { InputText } from 'primereact/inputtext';
 import { InputSwitch } from 'primereact/inputswitch';
+import { CSSTransition } from 'react-transition-group';
 
 export const AppTopbar = (props) => {
 
     const onTopbarItemClick = (event, item) => {
-        if (this.props.onTopbarItemClick) {
-            this.props.onTopbarItemClick({
+        if (props.onTopbarItemClick) {
+            props.onTopbarItemClick({
                 originalEvent: event,
                 item: item
             });
         }
-    }
+    };
+
     let topbarItemsClassName = classNames('topbar-menu fadeInDown', { 'topbar-menu-visible': props.topbarMenuActive });
 
     return (
@@ -35,9 +37,6 @@ export const AppTopbar = (props) => {
                 <span className="pi pi-search"></span>
             </span>
 
-            <span className="topbar-themeswitcher">
-                <InputSwitch checked={props.darkTheme} onChange={props.onThemeChange}></InputSwitch>
-            </span>
 
             <ul className={topbarItemsClassName}>
                 <li className={classNames({ 'menuitem-active': props.activeTopbarItem === 'profile' })}
@@ -47,32 +46,34 @@ export const AppTopbar = (props) => {
                         <span className="topbar-item-name">Profile</span>
                     </button>
 
-                    <ul>
-                        <li role="menuitem">
-                            <button className="p-link">
-                                <i className="pi pi-fw pi-user-edit"></i>
-                                <span>Account</span>
-                            </button>
-                        </li>
-                        <li role="menuitem">
-                            <button className="p-link">
-                                <i className="pi pi-fw pi-eye"></i>
-                                <span>Privacy</span>
-                            </button>
-                        </li>
-                        <li role="menuitem">
-                            <button className="p-link">
-                                <i className="pi pi-fw pi-cog"></i>
-                                <span>Settings</span>
-                            </button>
-                        </li>
-                        <li role="menuitem">
-                            <button className="p-link">
-                                <i className="pi pi-fw pi-power-off"></i>
-                                <span>Logout</span>
-                            </button>
-                        </li>
-                    </ul>
+                    <CSSTransition classNames="layout-submenu" timeout={{ enter: 400, exit: 400 }} in={props.activeTopbarItem === 'profile'} unmountOnExit>
+                        <ul>
+                            <li role="menuitem">
+                                <button className="p-link">
+                                    <i className="pi pi-fw pi-user-edit"></i>
+                                    <span>Account</span>
+                                </button>
+                            </li>
+                            <li role="menuitem">
+                                <button className="p-link">
+                                    <i className="pi pi-fw pi-eye"></i>
+                                    <span>Privacy</span>
+                                </button>
+                            </li>
+                            <li role="menuitem">
+                                <button className="p-link">
+                                    <i className="pi pi-fw pi-cog"></i>
+                                    <span>Settings</span>
+                                </button>
+                            </li>
+                            <li role="menuitem">
+                                <button className="p-link">
+                                    <i className="pi pi-fw pi-power-off"></i>
+                                    <span>Logout</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </CSSTransition>
                 </li>
 
                 <li className={classNames({ 'menuitem-active': props.activeTopbarItem === 'settings' })}
@@ -81,34 +82,37 @@ export const AppTopbar = (props) => {
                         <i className="topbar-icon pi pi-fw pi-cog"></i>
                         <span className="topbar-item-name">Settings</span>
                     </button>
-                    <ul>
-                        <li role="menuitem">
-                            <button className="p-link">
-                                <i className="pi pi-fw pi-palette"></i>
-                                <span>Change Theme</span>
-                                <span className="topbar-badge">1</span>
-                            </button>
-                        </li>
-                        <li role="menuitem">
-                            <button className="p-link">
-                                <i className="pi pi-fw pi-bookmark"></i>
-                                <span>Favorites</span>
-                            </button>
-                        </li>
-                        <li role="menuitem">
-                            <button className="p-link">
-                                <i className="pi pi-fw pi-lock"></i>
-                                <span>Lock Screen</span>
-                                <span className="topbar-badge">3</span>
-                            </button>
-                        </li>
-                        <li role="menuitem">
-                            <button className="p-link">
-                                <i className="pi pi-fw pi-image"></i>
-                                <span>Wallpaper</span>
-                            </button>
-                        </li>
-                    </ul>
+
+                    <CSSTransition classNames="layout-submenu" timeout={{ enter: 400, exit: 400 }} in={props.activeTopbarItem === 'settings'} unmountOnExit>
+                        <ul>
+                            <li role="menuitem">
+                                <button className="p-link">
+                                    <i className="pi pi-fw pi-palette"></i>
+                                    <span>Change Theme</span>
+                                    <span className="topbar-badge">1</span>
+                                </button>
+                            </li>
+                            <li role="menuitem">
+                                <button className="p-link">
+                                    <i className="pi pi-fw pi-bookmark"></i>
+                                    <span>Favorites</span>
+                                </button>
+                            </li>
+                            <li role="menuitem">
+                                <button className="p-link">
+                                    <i className="pi pi-fw pi-lock"></i>
+                                    <span>Lock Screen</span>
+                                    <span className="topbar-badge">3</span>
+                                </button>
+                            </li>
+                            <li role="menuitem">
+                                <button className="p-link">
+                                    <i className="pi pi-fw pi-image"></i>
+                                    <span>Wallpaper</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </CSSTransition>
                 </li>
                 <li className={classNames({ 'menuitem-active': props.activeTopbarItem === 'messages' })}
                     onClick={(e) => onTopbarItemClick(e, 'messages')}>
@@ -117,38 +121,40 @@ export const AppTopbar = (props) => {
                         <span className="topbar-item-name">Messages</span>
                         <span className="topbar-badge">5</span>
                     </button>
-                    <ul>
-                        <li role="menuitem">
-                            <button className="p-link topbar-message">
-                                <img alt="Avatar 1" src="assets/layout/images/avatar/avatar1.png" width="35" />
-                                <span>Give me a call</span>
-                            </button>
-                        </li>
-                        <li role="menuitem">
-                            <button className="p-link topbar-message">
-                                <img alt="Avatar 2" src="assets/layout/images/avatar/avatar2.png" width="35" />
-                                <span>Sales reports attached</span>
-                            </button>
-                        </li>
-                        <li role="menuitem">
-                            <button className="p-link topbar-message">
-                                <img alt="Avatar 3" src="assets/layout/images/avatar/avatar3.png" width="35" />
-                                <span>About your invoice</span>
-                            </button>
-                        </li>
-                        <li role="menuitem">
-                            <button className="p-link topbar-message">
-                                <img alt="Avatar 4" src="assets/layout/images/avatar/avatar2.png" width="35" />
-                                <span>Meeting today at 10pm</span>
-                            </button>
-                        </li>
-                        <li role="menuitem">
-                            <button className="p-link topbar-message">
-                                <img alt="Avatar 5" src="assets/layout/images/avatar/avatar4.png" width="35" />
-                                <span>Out of office</span>
-                            </button>
-                        </li>
-                    </ul>
+                    <CSSTransition classNames="layout-submenu" timeout={{ enter: 400, exit: 400 }} in={props.activeTopbarItem === 'messages'} unmountOnExit>
+                        <ul>
+                            <li role="menuitem">
+                                <button className="p-link topbar-message">
+                                    <img alt="Avatar 1" src="assets/layout/images/avatar/avatar1.png" width="35" />
+                                    <span>Give me a call</span>
+                                </button>
+                            </li>
+                            <li role="menuitem">
+                                <button className="p-link topbar-message">
+                                    <img alt="Avatar 2" src="assets/layout/images/avatar/avatar2.png" width="35" />
+                                    <span>Sales reports attached</span>
+                                </button>
+                            </li>
+                            <li role="menuitem">
+                                <button className="p-link topbar-message">
+                                    <img alt="Avatar 3" src="assets/layout/images/avatar/avatar3.png" width="35" />
+                                    <span>About your invoice</span>
+                                </button>
+                            </li>
+                            <li role="menuitem">
+                                <button className="p-link topbar-message">
+                                    <img alt="Avatar 4" src="assets/layout/images/avatar/avatar2.png" width="35" />
+                                    <span>Meeting today at 10pm</span>
+                                </button>
+                            </li>
+                            <li role="menuitem">
+                                <button className="p-link topbar-message">
+                                    <img alt="Avatar 5" src="assets/layout/images/avatar/avatar4.png" width="35" />
+                                    <span>Out of office</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </CSSTransition>
                 </li>
                 <li className={classNames({ 'menuitem-active': props.activeTopbarItem === 'notifications' })}
                     onClick={(e) => onTopbarItemClick(e, 'notifications')}>
@@ -157,32 +163,35 @@ export const AppTopbar = (props) => {
                         <span className="topbar-item-name">Notifications</span>
                         <span className="topbar-badge">2</span>
                     </button>
-                    <ul>
-                        <li role="menuitem">
-                            <button className="p-link">
-                                <i className="pi pi-fw pi-list"></i>
-                                <span>Pending tasks</span>
-                            </button>
-                        </li>
-                        <li role="menuitem">
-                            <button className="p-link">
-                                <i className="pi pi-fw pi-calendar"></i>
-                                <span>Meeting today</span>
-                            </button>
-                        </li>
-                        <li role="menuitem">
-                            <button className="p-link">
-                                <i className="pi pi-fw pi-download"></i>
-                                <span>Download documents</span>
-                            </button>
-                        </li>
-                        <li role="menuitem">
-                            <button className="p-link">
-                                <i className="pi pi-fw pi-ticket"></i>
-                                <span>Book flight</span>
-                            </button>
-                        </li>
-                    </ul>
+
+                    <CSSTransition classNames="layout-submenu" timeout={{ enter: 400, exit: 400 }} in={props.activeTopbarItem === 'notifications'} unmountOnExit>
+                        <ul>
+                            <li role="menuitem">
+                                <button className="p-link">
+                                    <i className="pi pi-fw pi-list"></i>
+                                    <span>Pending tasks</span>
+                                </button>
+                            </li>
+                            <li role="menuitem">
+                                <button className="p-link">
+                                    <i className="pi pi-fw pi-calendar"></i>
+                                    <span>Meeting today</span>
+                                </button>
+                            </li>
+                            <li role="menuitem">
+                                <button className="p-link">
+                                    <i className="pi pi-fw pi-download"></i>
+                                    <span>Download documents</span>
+                                </button>
+                            </li>
+                            <li role="menuitem">
+                                <button className="p-link">
+                                    <i className="pi pi-fw pi-ticket"></i>
+                                    <span>Book flight</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </CSSTransition>
                 </li>
             </ul>
         </div>

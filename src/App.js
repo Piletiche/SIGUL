@@ -1,25 +1,52 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
+import { withRouter } from 'react-router';
+import { Route } from 'react-router-dom';
+
 import { AppTopbar } from './AppTopbar';
 import { AppBreadcrumb } from './AppBreadcrumb';
 import { AppFooter } from './AppFooter';
 import { AppMenu } from './AppMenu';
 import { AppConfig } from './AppConfig';
-import { withRouter } from 'react-router';
-import { Route } from 'react-router-dom';
+
 import { Dashboard } from './components/Dashboard';
-import { FormsDemo } from './components/FormsDemo';
-import { SampleDemo } from './components/SampleDemo';
-import { DataDemo } from './components/DataDemo';
-import { PanelsDemo } from './components/PanelsDemo';
-import { OverlaysDemo } from './components/OverlaysDemo';
-import { MenusDemo } from './components/MenusDemo';
+import { ButtonDemo } from './components/ButtonDemo';
+import { ChartDemo } from './components/ChartDemo';
 import { MessagesDemo } from './components/MessagesDemo';
-import { ChartsDemo } from './components/ChartsDemo';
-import { MiscDemo } from './components/MiscDemo';
-import { EmptyPage } from './components/EmptyPage';
 import { Documentation } from './components/Documentation';
-import { ProgressBar } from 'primereact/components/progressbar/ProgressBar';
+import { FileDemo } from './components/FileDemo';
+import { FormLayoutDemo } from './components/FormLayoutDemo';
+import { InputDemo } from './components/InputDemo';
+import { ListDemo } from './components/ListDemo';
+import { MiscDemo } from './components/MiscDemo';
+import { MenuDemo } from './components/MenuDemo';
+import { OverlayDemo } from './components/OverlayDemo';
+import { PanelDemo } from './components/PanelDemo';
+import { TableDemo } from './components/TableDemo';
+import { TreeDemo } from './components/TreeDemo';
+import { FloatLabelDemo } from './components/FloatLabelDemo';
+import { MediaDemo } from './components/MediaDemo';
+
+import { DisplayDemo } from './utilities/DisplayDemo';
+import { ElevationDemo } from './utilities/ElevationDemo';
+import { FlexBoxDemo } from './utilities/FlexboxDemo';
+import { GridDemo } from './utilities/GridDemo';
+import { IconsDemo } from './utilities/IconsDemo';
+import { SpacingDemo } from './utilities/SpacingDemo';
+import { TextDemo } from './utilities/TextDemo';
+import { TypographyDemo } from './utilities/TypographyDemo';
+import { WidgetsDemo } from './utilities/WidgetsDemo';
+
+import { Crud } from './pages/Crud';
+import { Calendar } from './pages/Calendar';
+import { EmptyPage } from './pages/EmptyPage';
+import { Invoice } from './pages/Invoice';
+import { Help } from './pages/Help';
+
+import PrimeReact from 'primereact/utils';
+
+import { ProgressBar } from 'primereact/progressbar'
+
 import 'primereact/resources/primereact.min.css';
 import '@fullcalendar/core/main.css';
 import '@fullcalendar/daygrid/main.css';
@@ -33,13 +60,15 @@ const App = () => {
     const [layoutMode, setLayoutMode] = useState('static');
     const [overlayMenuActive, setOverlayMenuActive] = useState(false);
     const [staticMenuDesktopInactive, setStaticMenuDesktopInactive] = useState(false);
-    const [staticMenuMobileActive, seStaticMenuMobileActive] = useState(false);
+    const [staticMenuMobileActive, setStaticMenuMobileActive] = useState(false);
     const [topbarMenuActive, setTopbarMenuActive] = useState(false);
     const [activeTopbarItem, setActiveTopbarItem] = useState(null);
     const [darkTheme, setDarkTheme] = useState(false);
     const [menuActive, setMenuActive] = useState(false);
     const [themeColor, setThemeColor] = useState('blue');
-    const [configDialogActive, setConfigDialogActive] = useState(false)
+    const [configDialogActive, setConfigDialogActive] = useState(false);
+    const [inputStyle, setInputStyle] = useState('outlined');
+    const [ripple, setRipple] = useState(true);
 
     let menuClick;
     let topbarItemClick;
@@ -145,21 +174,30 @@ const App = () => {
         { label: 'Documentation', icon: 'pi pi-fw pi-info-circle', to: '/documentation' },
     ]
 
+    const onInputStyleChange = (inputStyle) => {
+        setInputStyle(inputStyle);
+    }
+
+    const onRippleChange = (e) => {
+        PrimeReact.ripple = e.value;
+        setRipple(e.value);
+    }
+
     const onMenuClick = (event) => {
         menuClick = true;
     }
 
     const onMenuButtonClick = (event) => {
         menuClick = true;
-        setTopbarMenuActive(false)
+        setTopbarMenuActive(false);
 
         if (layoutMode === 'overlay' && !isMobile()) {
             setOverlayMenuActive(prevState => !prevState);
         } else {
             if (isDesktop())
-                setStaticMenuDesktopInactive(prevState => !prevState)
+                setStaticMenuDesktopInactive(prevState => !prevState);
             else
-                setStaticMenuMobileActive(prevState => !prevState)
+                setStaticMenuMobileActive(prevState => !prevState);
         }
 
         event.preventDefault();
@@ -176,7 +214,7 @@ const App = () => {
         topbarItemClick = true;
 
         if (activeTopbarItem === event.item)
-            setActiveTopbarItem(null)
+            setActiveTopbarItem(null);
         else
             setActiveTopbarItem(event.item);
 
@@ -188,21 +226,21 @@ const App = () => {
             hideOverlayMenu();
         }
         if (!event.item.items && (isHorizontal() || isSlim())) {
-            setMenuActive(false)
+            setMenuActive(false);
         }
     }
 
     const onRootMenuItemClick = (event) => {
-        setMenuActive(prevState => !prevState)
+        setMenuActive(prevState => !prevState);
     }
 
     const onConfigButtonClick = (event) => {
         configClick = true;
-        setConfigDialogActive(prevState => !prevState)
+        setConfigDialogActive(prevState => !prevState);
     }
 
     const onConfigCloseClick = () => {
-        setConfigDialogActive(false)
+        setConfigDialogActive(false);
     }
 
     const onConfigClick = () => {
@@ -265,11 +303,11 @@ const App = () => {
     const changeMenuMode = (event) => {
         setLayoutMode(event.menuMode);
         setStaticMenuDesktopInactive(false);
-        setOverlayMenuActive(false)
+        setOverlayMenuActive(false);
     }
 
     const changeMenuColor = (event) => {
-        setDarkTheme(event.darkTheme)
+        setDarkTheme(event.darkTheme);
         onThemeChange();
     }
 
@@ -286,9 +324,9 @@ const App = () => {
     }
 
     const changeTheme = (event) => {
-        setThemeColor(event.theme.split('-')[0])
-        changeStyleSheetUrl('layout-css', event.theme, 'layout');
-        changeStyleSheetUrl('theme-css', event.theme, 'theme');
+        setThemeColor(event)
+        // changeStyleSheetUrl('layout-css', event.theme, 'layout');
+        changeStyleSheetUrl('theme-css', event, 'theme');
     }
 
     const changeStyleSheetUrl = (id, value, prefix) => {
@@ -298,12 +336,6 @@ const App = () => {
         let newURL = urlTokens.join('/');
 
         replaceLink(element, newURL);
-
-        if (value.indexOf('dark') !== -1) {
-            setDarkTheme(true);
-        } else {
-            setDarkTheme(false);
-        }
     }
 
     const isIE = () => {
@@ -311,13 +343,13 @@ const App = () => {
     }
 
     const replaceLink = (linkElement, href) => {
-        const id = linkElement.getAttribute('id');
-        const cloneLinkElement = linkElement.cloneNode(true);
-
         if (isIE()) {
             linkElement.setAttribute('href', href);
         }
         else {
+            const id = linkElement.getAttribute('id');
+            const cloneLinkElement = linkElement.cloneNode(true);
+
             cloneLinkElement.setAttribute('href', href);
             cloneLinkElement.setAttribute('id', id + '-clone');
 
@@ -329,6 +361,7 @@ const App = () => {
             });
         }
     }
+
     const layoutClassName = classNames('layout-wrapper', {
         'layout-horizontal': layoutMode === 'horizontal',
         'layout-overlay': layoutMode === 'overlay',
@@ -336,7 +369,8 @@ const App = () => {
         'layout-slim': layoutMode === 'slim',
         'layout-static-inactive': staticMenuDesktopInactive,
         'layout-mobile-active': staticMenuMobileActive,
-        'layout-overlay-active': overlayMenuActive
+        'layout-overlay-active': overlayMenuActive,
+        'p-input-filled': inputStyle === 'filled'
     });
     const AppBreadCrumbWithRouter = withRouter(AppBreadcrumb);
 
@@ -361,9 +395,9 @@ const App = () => {
                         <div className="layout-menu-footer-content">
                             <ProgressBar value={50} showValue={false}></ProgressBar>
                                 Today
-                                <ProgressBar value={80} showValue={false}></ProgressBar>
-                                Overall
-                            </div>
+                            <ProgressBar value={80} showValue={false}></ProgressBar>
+                            Overall
+                        </div>
                     </div>
                 </div>
             </div>
@@ -373,29 +407,48 @@ const App = () => {
 
                 <div className="layout-content-container">
                     <Route path="/" exact component={Dashboard} />
-                    <Route path="/forms" component={FormsDemo} />
-                    <Route path="/sample" component={SampleDemo} />
-                    <Route path="/data" component={DataDemo} />
-                    <Route path="/panels" component={PanelsDemo} />
-                    <Route path="/overlays" component={OverlaysDemo} />
-                    <Route path="/menus" component={MenusDemo} />
-                    <Route path="/messages" component={MessagesDemo} />
-                    <Route path="/charts" component={ChartsDemo} />
-                    <Route path="/misc" component={MiscDemo} />
-                    <Route path="/empty" component={EmptyPage} />
                     <Route path="/documentation" component={Documentation} />
+                    <Route path="/formlayout" component={FormLayoutDemo} />
+                    <Route path="/floatlabel" component={FloatLabelDemo} />
+                    <Route path="/input" component={InputDemo} />
+                    <Route path="/button" component={ButtonDemo} />
+                    <Route path="/table" component={TableDemo} />
+                    <Route path="/list" component={ListDemo} />
+                    <Route path="/tree" component={TreeDemo} />
+                    <Route path="/panel" component={PanelDemo} />
+                    <Route path="/overlay" component={OverlayDemo} />
+                    <Route path="/menu" component={MenuDemo} />
+                    <Route path="/messages" component={MessagesDemo} />
+                    <Route path="/file" component={FileDemo} />
+                    <Route path="/chart" component={ChartDemo} />
+                    <Route path="/misc" component={MiscDemo} />
+                    <Route path="/display" component={DisplayDemo} />
+                    <Route path="/elevation" component={ElevationDemo} />
+                    <Route path="/flexbox" component={FlexBoxDemo} />
+                    <Route path="/icons" component={IconsDemo} />
+                    <Route path="/grid" component={GridDemo} />
+                    <Route path="/spacing" component={SpacingDemo} />
+                    <Route path="/typography" component={TypographyDemo} />
+                    <Route path="/text" component={TextDemo} />
+                    <Route path="/crud" component={Crud} />
+                    <Route path="/calendar" component={Calendar} />
+                    <Route path="/help" component={Help} />
+                    <Route path="/invoice" component={Invoice} />
+                    <Route path="/empty" component={EmptyPage} />
+                    <Route path="/widgets" component={WidgetsDemo} />
+                    <Route path="/media" component={MediaDemo} />
                 </div>
 
                 <AppFooter />
 
-                {this.state.staticMenuMobileActive && <div className="layout-mask"></div>}
+                {staticMenuMobileActive && <div className="layout-mask"></div>}
             </div>
 
 
-            <AppConfig layoutMode={layoutMode} darkTheme={darkTheme} themeColor={themeColor}
-                changeMenuMode={changeMenuMode} changeMenuColor={changeMenuColor} changeTheme={changeTheme}
-                onConfigButtonClick={onConfigButtonClick} onConfigCloseClick={onConfigCloseClick}
-                onConfigClick={onConfigClick} configDialogActive={configDialogActive} />
+            <AppConfig themeColor={themeColor} changeTheme={changeTheme}
+                inputStyle={inputStyle} onInputStyleChange={onInputStyleChange}
+                layoutMode={layoutMode} changeMenuMode={changeMenuMode}
+                ripple={ripple} onRippleChange={onRippleChange} />
         </div>
     );
 

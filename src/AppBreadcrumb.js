@@ -4,11 +4,12 @@ export const AppBreadcrumb = (props) => {
 
     const { location } = props;
     const paths = location.pathname.split('/');
+    const home = () => window.location = "/#/"
 
     return (
         <div className="layout-breadcrumb">
             <ul>
-                <li><button className="p-link"><i className="pi pi-home"></i></button></li>
+                <li><button className="p-link" onClick={home}><i className="pi pi-home"></i></button></li>
                 {
                     location.pathname === '/' ? <li>/</li> : paths.map((path, index) => <li key={index}>{path === '' ? '/' : path}</li>)
                 }

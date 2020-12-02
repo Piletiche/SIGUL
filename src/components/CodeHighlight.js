@@ -1,43 +1,32 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import Prism from 'prismjs';
-import classNames from 'classnames';
+import React, { useEffect, useRef } from 'react';
+import Prism from 'prismjs/components/prism-core';
+import 'prismjs/components/prism-clike';
+import 'prismjs/components/prism-markup';
+import 'prismjs/components/prism-jsx';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-css';
+import 'prismjs/components/prism-scss';
 
-export class CodeHighlight extends Component {
+export const CodeHighlight = (props) => {
 
-	static defaultProps = {
-		className: null,
-		style: null,
-		lang: 'markup'
-	};
+    const codeElement = useRef(null);
 
-	static propTypes = {
-		className: PropTypes.string,
-		style: PropTypes.object,
-		lang: PropTypes.string
-	};
+    useEffect(() => {
+        if (Prism) {
+            Prism.highlightElement(codeElement.current);
+        }
+    }, []);
 
-	componentDidMount() {
-		this.highlightCode();
-	}
-
-	componentDidUpdate() {
-		this.highlightCode();
-	}
-
-	highlightCode() {
-		if(Prism) {
-			Prism.highlightElement(this.codeElement);
-		}
-	}
-
-	render() {
-		return (
-			<pre style={this.props.style} className={classNames('language-'+this.props.lang, this.props.className)}>
-                <code ref={el => this.codeElement = el} className={this.props.className}>
-                    {this.props.children}
+    return (
+        <pre style={props.style}>
+            <code ref={codeElement} className={`language-${props.lang}`}>
+                {props.children}&nbsp;
                 </code>
-            </pre>
-		);
-	}
+        </pre>
+    );
 }
+
+CodeHighlight.defaultProps = {
+    lang: 'jsx',
+    style: null
+};
