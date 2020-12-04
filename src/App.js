@@ -63,16 +63,15 @@ const App = () => {
     const [staticMenuMobileActive, setStaticMenuMobileActive] = useState(false);
     const [topbarMenuActive, setTopbarMenuActive] = useState(false);
     const [activeTopbarItem, setActiveTopbarItem] = useState(null);
-    const [darkTheme, setDarkTheme] = useState(false);
     const [menuActive, setMenuActive] = useState(false);
     const [themeColor, setThemeColor] = useState('blue');
-    const [configDialogActive, setConfigDialogActive] = useState(false);
     const [inputStyle, setInputStyle] = useState('outlined');
-    const [ripple, setRipple] = useState(true);
+    const [ripple, setRipple] = useState(false);
+    const [scheme, setScheme] = useState('light');
 
     let menuClick;
     let topbarItemClick;
-    let configClick;
+
 
     const menu = [
         { label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' },
@@ -81,7 +80,7 @@ const App = () => {
             items: [
                 { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout' },
                 { label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input' },
-                { label: "Float Label", icon: "pi pi-fw pi-bookmark", to: "/floatlabel" },
+                { label: 'Float Label', icon: 'pi pi-fw pi-bookmark', to: '/floatlabel' },
                 { label: 'Button', icon: 'pi pi-fw pi-mobile', to: '/button', class: 'rotated-icon' },
                 { label: 'Table', icon: 'pi pi-fw pi-table', to: '/table' },
                 { label: 'List', icon: 'pi pi-fw pi-list', to: '/list' },
@@ -172,7 +171,8 @@ const App = () => {
         },
         { label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', command: () => { window.location = "https://www.primefaces.org/store" } },
         { label: 'Documentation', icon: 'pi pi-fw pi-info-circle', to: '/documentation' },
-    ]
+    ];
+
 
     const onInputStyleChange = (inputStyle) => {
         setInputStyle(inputStyle);
@@ -234,27 +234,10 @@ const App = () => {
         setMenuActive(prevState => !prevState);
     }
 
-    const onConfigButtonClick = (event) => {
-        configClick = true;
-        setConfigDialogActive(prevState => !prevState);
-    }
-
-    const onConfigCloseClick = () => {
-        setConfigDialogActive(false);
-    }
-
-    const onConfigClick = () => {
-        configClick = true;
-    }
-
     const onDocumentClick = (event) => {
         if (!topbarItemClick) {
             setActiveTopbarItem(null)
             setTopbarMenuActive(false)
-        }
-
-        if (!configClick) {
-            setConfigDialogActive(false)
         }
 
         if (!menuClick) {
@@ -267,17 +250,11 @@ const App = () => {
 
         topbarItemClick = false;
         menuClick = false;
-        configClick = false;
     }
 
     const hideOverlayMenu = () => {
         setOverlayMenuActive(false);
         setStaticMenuMobileActive(false)
-    }
-
-    const isTablet = () => {
-        let width = window.innerWidth;
-        return width <= 1024 && width > 640;
     }
 
     const isDesktop = () => {
@@ -286,10 +263,6 @@ const App = () => {
 
     const isMobile = () => {
         return window.innerWidth <= 640;
-    }
-
-    const isOverlay = () => {
-        return layoutMode === 'overlay';
     }
 
     const isHorizontal = () => {
@@ -306,27 +279,25 @@ const App = () => {
         setOverlayMenuActive(false);
     }
 
-    const changeMenuColor = (event) => {
-        setDarkTheme(event.darkTheme);
-        onThemeChange();
-    }
-
-    const onThemeChange = () => {
+    const onSchemeChange = (color) => {
+        setScheme(color);
         const themeLink = document.getElementById('theme-css');
         const href = themeLink.href;
         const themeFile = href.substring(href.lastIndexOf('/') + 1, href.lastIndexOf('.'));
         const themeTokens = themeFile.split('-');
         const themeName = themeTokens[1];
-        const themeMode = themeTokens[2];
-        const newThemeMode = (themeMode === 'dark') ? 'light' : 'dark';
-
-        changeTheme({ originalEvent: null, theme: themeName + '-' + newThemeMode });
+        changeTheme(themeName + '-' + color);
     }
 
-    const changeTheme = (event) => {
-        setThemeColor(event)
-        // changeStyleSheetUrl('layout-css', event.theme, 'layout');
-        changeStyleSheetUrl('theme-css', event, 'theme');
+    const changeTheme = (theme) => {
+        setThemeColor(theme.split('-')[0]);
+        changeStyleSheetUrl('layout-css', theme, 'layout');
+        changeStyleSheetUrl('theme-css', theme, 'theme');
+    }
+
+    const onThemeChange = (theme) => {
+        setThemeColor(theme)
+        changeTheme(theme + '-' + scheme);
     }
 
     const changeStyleSheetUrl = (id, value, prefix) => {
@@ -367,7 +338,7 @@ const App = () => {
         'layout-overlay': layoutMode === 'overlay',
         'layout-static': layoutMode === 'static',
         'layout-slim': layoutMode === 'slim',
-        'layout-static-inactive': staticMenuDesktopInactive,
+        'layout-static-inactive': staticMenuDesktopInactive && layoutMode !== 'slim',
         'layout-mobile-active': staticMenuMobileActive,
         'layout-overlay-active': overlayMenuActive,
         'p-input-filled': inputStyle === 'filled'
@@ -377,7 +348,7 @@ const App = () => {
     return (
         <div className={layoutClassName} onClick={onDocumentClick}>
 
-            <AppTopbar darkTheme={darkTheme} onThemeChange={onThemeChange}
+            <AppTopbar
                 topbarMenuActive={topbarMenuActive} activeTopbarItem={activeTopbarItem}
                 onMenuButtonClick={onMenuButtonClick}
                 onTopbarMenuButtonClick={onTopbarMenuButtonClick}
@@ -445,10 +416,11 @@ const App = () => {
             </div>
 
 
-            <AppConfig themeColor={themeColor} changeTheme={changeTheme}
+            <AppConfig themeColor={themeColor} onThemeChange={onThemeChange}
                 inputStyle={inputStyle} onInputStyleChange={onInputStyleChange}
                 layoutMode={layoutMode} changeMenuMode={changeMenuMode}
-                ripple={ripple} onRippleChange={onRippleChange} />
+                ripple={ripple} onRippleChange={onRippleChange}
+                scheme={scheme} onSchemeChange={onSchemeChange} />
         </div>
     );
 

@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { NavLink } from 'react-router-dom'
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
+import { Ripple } from 'primereact/ripple';
+
 
 const AppSubmenu = (props) => {
 
@@ -52,29 +54,20 @@ const AppSubmenu = (props) => {
 		}
 	}
 
-	// static getDerivedStateFromProps(nextProps, prevState) {
-	// 	if (nextProps.parentMenuItemActive === false) {
-	// 		return {
-	// 			activeIndex: null
-	// 		}
-	// 	}
-
-	// 	return null;
-	// }
-
-	// componentDidUpdate(prevProps, prevState, snapshot) {
-	// 	if (this.isHorizontalOrSlim() && !this.isMobile() && prevProps.menuActive && !this.props.menuActive) {
-	// 		this.setState({activeIndex: null});
-	// 	}
-	// }
-
-	const isHorizontalOrSlim = () => {
+	const isHorizontalOrSlim = useCallback(() => {
 		return (props.layoutMode === 'horizontal' || props.layoutMode === 'slim');
-	}
+	}, [props.layoutMode]);
 
-	const isMobile = () => {
+	const isMobile = useCallback(() => {
 		return window.innerWidth <= 640;
-	}
+	}, []);
+
+	useEffect(() => {
+		if (!props.menuActive && isHorizontalOrSlim() && !isMobile()) {
+			setActiveIndex(null);
+		}
+	}, [props.menuActive, isHorizontalOrSlim, isMobile]);
+
 
 	const renderLinkContent = (item) => {
 		let submenuIcon = item.items && <i className="pi pi-fw pi-angle-down layout-menuitem-toggler"></i>;
@@ -95,10 +88,11 @@ const AppSubmenu = (props) => {
 
 		if (item.to) {
 			return (
-				<NavLink activeClassName="active-menuitem-routerlink" to={item.to}
+				<NavLink activeClassName="router-link-active" to={item.to}
 					onClick={(e) => onMenuItemClick(e, item, i)} exact role="menuitem"
 					target={item.target} onMouseEnter={(e) => onMenuItemMouseEnter(i)}
-					className={item.styleClass}>{content}</NavLink>
+					className={item.styleClass}>{content}
+				</NavLink>
 			)
 		} else {
 			return (
@@ -122,7 +116,7 @@ const AppSubmenu = (props) => {
 			{item.items && props.root === true && <div className='arrow'></div>}
 			{renderLink(item, i)}
 			{tooltip}
-			<CSSTransition classNames="layout-submenu" timeout={{ enter: 400, exit: 400 }} in={active} unmountOnExit>
+			<CSSTransition classNames="layout-submenu-container" timeout={{ enter: 400, exit: 400 }} in={active} unmountOnExit>
 				<AppSubmenu items={item.items} onMenuItemClick={props.onMenuItemClick} layoutMode={props.layoutMode}
 					menuActive={props.menuActive} parentMenuItemActive={active} />
 			</CSSTransition>

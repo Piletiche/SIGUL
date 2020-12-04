@@ -79,28 +79,28 @@ export const WidgetsDemo = () => {
                     <h4>Status</h4>
                     <div className="p-grid p-nogutter">
                         <div className="p-col-12 p-lg-3 p-md-6">
-                            <div className="status-title" style={{color:'#6ebc3b'}}>Users</div>
+                            <div className="status-title" style={{ color: '#6ebc3b' }}>Users</div>
                             <div className="circle1">
                                 <i className="pi pi-user"></i>
                                 <span>95</span>
                             </div>
                         </div>
                         <div className="p-col-12 p-lg-3 p-md-6">
-                            <div className="status-title" style={{color:'#f6a821'}}>Mobile</div>
+                            <div className="status-title" style={{ color: '#f6a821' }}>Mobile</div>
                             <div className="circle2">
                                 <i className="pi pi-mobile"></i>
                                 <span>95</span>
                             </div>
                         </div>
                         <div className="p-col-12 p-lg-3 p-md-6">
-                            <div className="status-title" style={{color:'#039ade'}}>Pageviews</div>
+                            <div className="status-title" style={{ color: '#039ade' }}>Pageviews</div>
                             <div className="circle3">
                                 <i className="pi pi-eye"></i>
                                 <span>95</span>
                             </div>
                         </div>
                         <div className="p-col-12 p-lg-3 p-md-6">
-                            <div className="status-title" style={{color:'#d66351'}}>Sales</div>
+                            <div className="status-title" style={{ color: '#d66351' }}>Sales</div>
                             <div className="circle4">
                                 <i className="pi pi-dollar"></i>
                                 <span>95</span>
@@ -135,7 +135,7 @@ export const WidgetsDemo = () => {
                 <div className="card widget-contacts">
                     <ul>
                         <li className="clearfix">
-                            <img src="assets/layout/images/avatar/avatar.png" library="verona-layout" width="45" />
+                            <img src="assets/layout/images/avatar/avatar.png" library="verona-layout" width="45" alt="avatar.png" />
                             <div className="contact-info">
                                 <span className="name">Samantha Owens (me)</span>
                                 <span className="location">jane@pf-verona.com</span>
@@ -146,7 +146,7 @@ export const WidgetsDemo = () => {
                             </div>
                         </li>
                         <li className="clearfix">
-                            <img src="assets/layout/images/avatar/avatar1.png" library="verona-layout" width="45" />
+                            <img src="assets/layout/images/avatar/avatar1.png" library="verona-layout" width="45" alt="avatar1.png" />
                             <div className="contact-info">
                                 <span className="name">Joshua Williams</span>
                                 <span className="location">joshua@pf-verona.com</span>
@@ -157,7 +157,7 @@ export const WidgetsDemo = () => {
                             </div>
                         </li>
                         <li className="clearfix">
-                            <img src="assets/layout/images/avatar/avatar2.png" library="verona-layout" width="45" />
+                            <img src="assets/layout/images/avatar/avatar2.png" library="verona-layout" width="45" alt="avatar2.png" />
                             <div className="contact-info">
                                 <span className="name">Emily Clark</span>
                                 <span className="location">emily@pf-verona.com</span>
@@ -168,7 +168,7 @@ export const WidgetsDemo = () => {
                             </div>
                         </li>
                         <li className="clearfix">
-                            <img src="assets/layout/images/avatar/avatar3.png" library="verona-layout" width="45" />
+                            <img src="assets/layout/images/avatar/avatar3.png" library="verona-layout" width="45" alt="avatar3.png" />
                             <div className="contact-info">
                                 <span className="name">Tim Johnson</span>
                                 <span className="location">tim@pf-verona.com</span>
@@ -179,7 +179,7 @@ export const WidgetsDemo = () => {
                             </div>
                         </li>
                         <li className="clearfix">
-                            <img src="assets/layout/images/avatar/avatar4.png" library="verona-layout" width="45" />
+                            <img src="assets/layout/images/avatar/avatar4.png" library="verona-layout" width="45" alt="avatar4.png" />
                             <div className="contact-info">
                                 <span className="name">David Stark</span>
                                 <span className="location">kelly@pf-verona.com</span>
@@ -303,7 +303,7 @@ export const WidgetsDemo = () => {
                             <span className="event-owner" style={{ color: '#147df0' }}>Katherine May</span>
                             <span className="event-text">Lorem ipsun dolor amet</span>
                             <div className="event-content">
-                                <img src="assets/layout/images/dashboard/bridge.png" library="verona-layout" width="100" />
+                                <img src="assets/layout/images/dashboard/bridge.png" library="verona-layout" width="100" alt="bridge.png" />
                             </div>
                         </div>
 
@@ -333,7 +333,7 @@ export const WidgetsDemo = () => {
                             <span className="event-owner" style={{ color: '#ffb200' }}>Jason Smith</span>
                             <span className="event-text">Laudantium, repudiandae, similique!</span>
                             <div className="event-content">
-                                <img src="assets/layout/images/dashboard/map.png" />
+                                <img src="assets/layout/images/dashboard/map.png" alt="map.png" />
                             </div>
                         </div>
 
@@ -348,10 +348,10 @@ export const WidgetsDemo = () => {
 
                         <div className="p-col-3">
                             <span className="event-time">2w ago</span>
-                            <i className="pi pi-fw pi-compass" style={{color:'#599597'}}></i>
+                            <i className="pi pi-fw pi-compass" style={{ color: '#599597' }}></i>
                         </div>
                         <div className="p-col-9">
-                            <span className="event-owner" style={{color:'#599597'}}>Walter White</span>
+                            <span className="event-owner" style={{ color: '#599597' }}>Walter White</span>
                             <span className="event-text">I am the one who knocks!</span>
                         </div>
                         <div className="p-col-12">

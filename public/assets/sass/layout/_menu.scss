@@ -104,24 +104,28 @@
                     list-style-type: none;
                     overflow: hidden;
 
-                    &.layout-submenu-container-enter-from,
-                    &.layout-submenu-container-leave-to {
+                    &.layout-submenu-container-enter {
                         max-height: 0;
                     }
-
-                    &.layout-submenu-container-enter-to,
-                    &.layout-submenu-container-leave-from {
-                        max-height: 1000px;
-                    }
-
-                    &.layout-submenu-container-leave-active {
-                        overflow: hidden;
-                        transition: max-height 0.45s cubic-bezier(0, 1, 0, 1);
-                    }
-
+    
                     &.layout-submenu-container-enter-active {
                         overflow: hidden;
+                        max-height: 1000px;
                         transition: max-height 1s ease-in-out;
+                    }
+    
+                    &.layout-submenu-container-enter-done {
+                        transform: none;
+                    }
+    
+                    &.layout-submenu-container-exit {
+                        max-height: 1000px;
+                    }
+    
+                    &.layout-submenu-container-exit-active {
+                        overflow: hidden;
+                        max-height: 0;
+                        transition: max-height 0.45s cubic-bezier(0.86, 0, 0.07, 1);
                     }
                 }
 

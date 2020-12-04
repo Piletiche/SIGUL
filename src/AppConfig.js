@@ -68,13 +68,13 @@ export const AppConfig = (props) => {
 	return (
 		<div ref={config} id="layout-config" className={configClassName}>
 			<div className="layout-config-content">
-				<a href="#" className="layout-config-button" onClick={toggleConfigurator}>
+				<button type="button" className="layout-config-button p-link" onClick={toggleConfigurator}>
 					<i className="pi pi-cog" />
-				</a>
+				</button>
 
-				<a href="#" className="layout-config-close" onClick={hideConfigurator}>
+				<button type="button" className="layout-config-close p-link" onClick={hideConfigurator}>
 					<i className="pi pi-times" />
-				</a>
+				</button>
 
 				<h5 style={{ marginTop: 0 }}>Input Style</h5>
 				<div className="p-formgroup-inline">
@@ -111,15 +111,15 @@ export const AppConfig = (props) => {
 
 				<h5>Color Scheme</h5>
 				<div className="p-field-radiobutton">
-					<RadioButton id="light" name="color" value="light" />
+					<RadioButton id="light" name="color" value="light" checked={props.scheme === 'light'} onChange={(e) => props.onSchemeChange(e.value)} />
 					<label htmlFor="light">Light</label>
 				</div>
 				<div className="p-field-radiobutton">
-					<RadioButton id="dark" name="color" value="dark" />
+					<RadioButton id="dark" name="color" value="dark" checked={props.scheme === 'dark'} onChange={(e) => props.onSchemeChange(e.value)} />
 					<label htmlFor="dark">Dark</label>
 				</div>
 				<div className="p-field-radiobutton">
-					<RadioButton id="dim" name="color" value="dim" />
+					<RadioButton id="dim" name="color" value="dim" checked={props.scheme === 'dim'} onChange={(e) => props.onSchemeChange(e.value)} />
 					<label htmlFor="dim">Dim</label>
 				</div>
 
@@ -128,9 +128,9 @@ export const AppConfig = (props) => {
 					{
 						themeColors.map(color => {
 							return <div key={color.name}>
-								<a href="#" style={{ backgroundColor: color.color }} onClick={(event) => props.changeTheme(color.name)}>
+								<button type="button" className="p-link" style={{ backgroundColor: color.color }} onClick={(event) => props.onThemeChange(color.name)}>
 									{props.themeColor === color.name && <i className="pi pi-check"></i>}
-								</a>
+								</button>
 							</div>
 						})
 					}

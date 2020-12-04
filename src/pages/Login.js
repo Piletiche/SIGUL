@@ -1,8 +1,15 @@
 import React from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Button } from "primereact/button";
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
+
+	const history = useHistory();
+
+	const goDashboard = () => {
+		history.push('/');
+	}
 
 	return (
 		<div className="login-body">
@@ -28,11 +35,11 @@ const Login = () => {
 										<InputText type="password" placeholder="Password" />
 									</div>
 									<div className="p-col-6">
-										<Button label="Sign In" icon="pi pi-check" onClick={() => { window.location = "/#" }}
+										<Button label="Sign In" icon="pi pi-check" onClick={goDashboard}
 										/>
 									</div>
 									<div className="p-col-6 password-container">
-										<button className="p-link">Forgot Password?</button>
+										<button type="text" className="p-link">Forgot Password?</button>
 									</div>
 								</div>
 							</div>

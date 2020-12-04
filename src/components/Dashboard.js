@@ -20,6 +20,24 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { ProductService } from '../service/ProductService';
 import { EventService } from '../service/EventService';
 
+const chartData = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [
+        {
+            label: 'First Dataset',
+            data: [65, 59, 80, 81, 56, 55, 40],
+            fill: false,
+            borderColor: '#03A9F4'
+        },
+        {
+            label: 'Second Dataset',
+            data: [28, 48, 40, 19, 86, 27, 90],
+            fill: false,
+            borderColor: '#FFC107'
+        }
+    ]
+};
+
 export const Dashboard = () => {
 
     const [products, setProducts] = useState(null);
@@ -28,24 +46,6 @@ export const Dashboard = () => {
     const [tasks, setTasks] = useState([]);
     const [city, setCity] = useState(null);
     const menu = useRef(null);
-
-    const chartData = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [
-            {
-                label: 'First Dataset',
-                data: [65, 59, 80, 81, 56, 55, 40],
-                fill: false,
-                borderColor: '#03A9F4'
-            },
-            {
-                label: 'Second Dataset',
-                data: [28, 48, 40, 19, 86, 27, 90],
-                fill: false,
-                borderColor: '#FFC107'
-            }
-        ]
-    };
 
     const fullcalendarOptions = {
         plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],

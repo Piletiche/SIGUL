@@ -1,7 +1,15 @@
 import React from 'react';
 import { Button } from "primereact/button";
+import { useHistory } from 'react-router-dom';
 
 const Access = () => {
+
+	const history = useHistory();
+	
+	const goDashboard = () => {
+		history.push('/');
+	}
+	
 
 	return <div className="exception-body access-body">
 		<div className="exception-container">
@@ -11,7 +19,7 @@ const Access = () => {
 				You do not have the necessary privileges.
 				</p>
 
-			<Button label="Go To Dashboard" icon="pi pi-arrow-left" onClick={() => { window.location = "/#" }} />
+			<Button label="Go To Dashboard" icon="pi pi-arrow-left" onClick={goDashboard} />
 		</div>
 	</div>
 }

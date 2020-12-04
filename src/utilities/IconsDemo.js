@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button } from 'primereact/button';
-import { CodeHighlight } from '../components/CodeHighlight';
+import { AppCodeHighlight } from '../AppCodeHighlight';
 
 export const IconsDemo = () => {
 
@@ -30,52 +30,52 @@ export const IconsDemo = () => {
 
             <h5>Getting Started</h5>
             <p>PrimeIcons use the pi pi-{`{icon}`} syntax such as pi pi-check. A standalone icon can be displayed using an element like i or span.</p>
-            <CodeHighlight>
+            <AppCodeHighlight>
                 {`
 <i className="pi pi-check"></i>
 <i className="pi pi-times"></i>
 `}
-            </CodeHighlight>
+            </AppCodeHighlight>
 
             <i className="pi pi-check" style={{ marginRight: '.5rem' }}></i>
             <i className="pi pi-times"></i>
 
             <h5>Component Icons</h5>
             <p>Components that have icon properties accept PrimeIcons with the pi pi-{`{icon}`} syntax.</p>
-            <CodeHighlight>
+            <AppCodeHighlight>
                 {`
 <Button type="button" label="Confirm" icon="pi pi-check"></Button>
 `}
-            </CodeHighlight>
+            </AppCodeHighlight>
 
             <Button type="button" label="Confirm" icon="pi pi-check"></Button>
 
             <h5>Size</h5>
             <p>Size of the icons can easily be changed using font-size property.</p>
 
-            <CodeHighlight>
+            <AppCodeHighlight>
                 {`
 <i className="pi pi-check"></i>
 `}
-            </CodeHighlight>
+            </AppCodeHighlight>
 
             <i className="pi pi-check"></i>
 
-            <CodeHighlight>
+            <AppCodeHighlight>
                 {`
 <i className="pi pi-check" style={{ fontSize: '2rem' }}></i>
 `}
-            </CodeHighlight>
+            </AppCodeHighlight>
 
             <i className="pi pi-check" style={{ fontSize: '2rem' }}></i>
 
             <h5>Spinning Animation</h5>
             <p>Special pi-spin class applies continuous rotation to an icon.</p>
-            <CodeHighlight>
+            <AppCodeHighlight>
                 {`
 <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i>
 `}
-            </CodeHighlight>
+            </AppCodeHighlight>
 
             <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i>
 

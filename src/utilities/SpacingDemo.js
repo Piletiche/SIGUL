@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
-import { CodeHighlight } from '../components/CodeHighlight';
+import { AppCodeHighlight } from '../AppCodeHighlight';
 
 export const SpacingDemo = () => {
 
@@ -17,13 +17,13 @@ export const SpacingDemo = () => {
                     <h5>Classes</h5>
                     <p>The classes modify the margins and use the <mark>p-m{`{position}`}-{`{value}`}</mark> syntax whereas for responsive
                     values <mark>p-m{`{position}`}-{`{breakpoint}`}-{`{value}`}</mark> format is used.</p>
-                    <CodeHighlight>
+                    <AppCodeHighlight>
                         {`
 <div className="p-mb-2"></div>
 <div className="p-mt-4"></div>
 <div className="p-m-1 p-m-lg-2"></div>
 `}
-                    </CodeHighlight>
+                    </AppCodeHighlight>
                     <h5>Position</h5>
                     <p>Position can either be either of the 4 sides, the x-y axis or blank for the shortand of all sides.</p>
                     <ul>

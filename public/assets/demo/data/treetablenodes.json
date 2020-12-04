@@ -12,7 +12,7 @@
                 {  
                     "key": "0-0",
                     "data":{
-                        "name":"Vue",
+                        "name":"React",
                         "size":"25kb",
                         "type":"Folder"
                     },
@@ -20,7 +20,7 @@
                         {  
                             "key": "0-0-0",
                             "data":{  
-                                "name":"Vue.app",
+                                "name":"React.app",
                                 "size":"10kb",
                                 "type":"Application"
                             }
@@ -308,7 +308,7 @@
                 {  
                     "key": "7-1",
                     "data":{  
-                        "name":"primevue.png",
+                        "name":"primereact.png",
                         "size":"30kb",
                         "type":"Picture"
                     }
