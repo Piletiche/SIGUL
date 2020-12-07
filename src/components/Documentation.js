@@ -1,6 +1,6 @@
 import React from 'react';
 import './Documentation.css';
-import { AppCodeHighlight } from "../AppCodeHighlight";
+import AppCodeHighlight from "../AppCodeHighlight";
 
 export const Documentation = () => {
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'primereact/button';
-import { AppCodeHighlight } from '../AppCodeHighlight';
+import AppCodeHighlight from '../AppCodeHighlight';
 
 export const FlexBoxDemo = () => {
 
