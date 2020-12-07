@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { NavLink } from 'react-router-dom'
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
+import { Ripple } from 'primereact/ripple';
 
 const AppSubmenu = (props) => {
 
@@ -83,20 +84,23 @@ const AppSubmenu = (props) => {
 
 	const renderLink = (item, i) => {
 		let content = renderLinkContent(item);
+		let linkStyle = classNames(item.styleClass, 'p-ripple');
 
 		if (item.to) {
 			return (
 				<NavLink activeClassName="router-link-active" to={item.to}
 					onClick={(e) => onMenuItemClick(e, item, i)} exact role="menuitem"
 					target={item.target} onMouseEnter={(e) => onMenuItemMouseEnter(i)}
-					className={item.styleClass}>{content}
+					className={linkStyle}>{content}
+					<Ripple />
 				</NavLink>
 			)
 		} else {
 			return (
 				<a href={item.url} tabIndex={item.url ? '' : 0} role="menuitem" onClick={(e) => onMenuItemClick(e, item, i)} target={item.target}
-					onMouseEnter={(e) => onMenuItemMouseEnter(i)} onKeyDown={(e) => onKeyDown(e, item, i)} className={item.styleClass}>
+					onMouseEnter={(e) => onMenuItemMouseEnter(i)} onKeyDown={(e) => onKeyDown(e, item, i)} className={linkStyle}>
 					{content}
+					<Ripple />
 				</a>
 			);
 

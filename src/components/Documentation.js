@@ -12,54 +12,33 @@ export const Documentation = () => {
                     <p>React 17.x and PrimeReact 5.x</p>
 
                     <h4>Getting Started</h4>
-                    <p>Apollo is an application template for React based on the popular <a href="https://github.com/facebookincubator/create-react-app">create-react-app</a> that allows
+                    <p>Apollo is an application template for React, based on the popular <a href="https://github.com/facebookincubator/create-react-app">create-react-app</a> that allows
                             creating React apps with no configuration. To get started extract the contents of the zip bundle and install the dependencies
                             with npm or yarn.</p>
-                    <pre>
-                        {
-                            `npm install
-
-# OR
-
-yarn
+                    <AppCodeHighlight>
+                        {`
+"npm install" or "yarn"
 `}
-                    </pre>
+                    </AppCodeHighlight>
 
-                    <p>Next step is running the application using the start script and navigate to <b>http://localhost:3000/</b> to view the application.
-                            That is it, you may now start with the development of your application using the Apollo template.</p>
+                    <p>Next step is running the application using the start script and navigate to <b>http://localhost:3000/</b> to view the application.</p>
 
-                    <pre>
-                        {
-                            `npm start
-
-# OR
-
-yarn start
+                    <AppCodeHighlight>
+                        {`
+"npm start" or "yarn start"
 `}
-                    </pre>
+                    </AppCodeHighlight>
+                    <p>That is it, you may now start with the development of your application using the Apollo template.</p>
 
                     <h4>React Scripts</h4>
                     <p>Following commands are derived from create-app-app.</p>
-                    <pre>
-                        {
-                            `"npm start" or "yarn start": Starts the development server
+                    <AppCodeHighlight>
+                        {`
+"npm start" or "yarn start": Starts the development server
 "npm test" or "yarn test": Runs the tests.
 "npm run build" or "yarn run build": Creates a production build.
 `}
-                    </pre>
-
-                    <h4>Dependencies</h4>
-                    <p>Dependencies of Apollo are listed below and needs to be added to package.json. Apollo has no direct dependency, even PrimeReact components are an optional dependency.</p>
-
-                    <pre>
-                        {
-                            `"primereact": "^5.0.2",              //optional: PrimeReact components
-"primeicons": "^4.0.0",              //optional: PrimeReact component icons
-"primeflex": "2.0.0",                //optional: Samples
-"react-router-dom": "^5.2.0"         //optional: Router
-`
-                        }
-                    </pre>
+                    </AppCodeHighlight>
 
                     <h4>Structure</h4>
                     <p>Apollo consists of 3 main parts; the application layout, layout resources and theme resources for PrimeReact components. <b>App.js</b> inside src folder is the main component containing the template for the base layout
@@ -67,10 +46,9 @@ yarn start
                         </p>
 
                     <h4>Template</h4>
-                    <p>Main layout is the JSX of the App.js, it is divided into a couple of child components such as topbar, profile, menu and footer. Here is render method of the
-                    App.js component that implements the logic such as menu state, layout modes and so on.
-                        </p>
-
+                    <p>Main layout is the template of the <i>App.js</i>, it is divided into a couple of child components such as topbar, content, menu, right menu, app search and footer. Here is template of the
+                        <i>App.js</i> component that implements the logic such as menu state, layout modes and other configurable options.
+                    </p>
                     <AppCodeHighlight>
                         {
                             `

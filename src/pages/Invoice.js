@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Button } from "primereact/button";
 
 export const Invoice = () => {
@@ -6,11 +6,6 @@ export const Invoice = () => {
     const print = () => {
         window.print();
     }
-
-    useEffect(() => {
-        const themeLink = document.getElementById('theme-css');
-        console.log(themeLink)
-    })
 
     return (
         <div>
@@ -22,7 +17,7 @@ export const Invoice = () => {
                         <div className="invoice">
                             <div className="invoice-header">
                                 <div className="invoice-company">
-                                    <img id="invoice-logo" className="logo-image" alt="apollo-layout" />
+                                    <img id="invoice-logo" className="logo-image" src="assets/layout/images/logo-dark.png" alt="apollo-layout" />
                                     <div className="company-name">YOUR COMPANY</div>
                                     <div>9137 3rd Lane California City</div>
                                     <div>CA 93504, U.S.A.</div>

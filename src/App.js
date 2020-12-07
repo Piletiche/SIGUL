@@ -66,7 +66,6 @@ const App = () => {
     let menuClick;
     let topbarItemClick;
 
-
     const menu = [
         { label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' },
         {
@@ -281,12 +280,14 @@ const App = () => {
         const themeTokens = themeFile.split('-');
         const themeName = themeTokens[1];
         changeTheme(themeName + '-' + color);
+        changeLogo(color);
     }
 
     const changeTheme = (theme) => {
         setThemeColor(theme.split('-')[0]);
         changeStyleSheetUrl('layout-css', theme, 'layout');
         changeStyleSheetUrl('theme-css', theme, 'theme');
+
     }
 
     const onThemeChange = (theme) => {
@@ -302,6 +303,16 @@ const App = () => {
 
         replaceLink(element, newURL);
     }
+
+    const changeLogo = (scheme) => {
+
+        const invoiceLogoLink = document.getElementById("invoice-logo");
+        const logoUrl = `assets/layout/images/logo-${scheme === 'light' ? 'dark' : 'white'}.png`;
+
+        if (invoiceLogoLink) {
+            invoiceLogoLink.src = logoUrl;
+        }
+    };
 
     const isIE = () => {
         return /(MSIE|Trident\/|Edge\/)/i.test(window.navigator.userAgent)
