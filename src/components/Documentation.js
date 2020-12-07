@@ -384,7 +384,7 @@ $dividerColor:#121213;
                     <h4>Common SASS Variables</h4>
                     <p>In case you'd like to customize the shared variables, the _variables.scss files are where the options are defined for layout and theme.</p>
 
-                    <h3>sass/_variables.scss</h3>
+                    <h5>sass/_variables.scss</h5>
                     <AppCodeHighlight lang="css">
                         {
                             `
@@ -409,7 +409,7 @@ $secondaryAccent:#424242;
 `
                         }
                     </AppCodeHighlight>
-                    <h3>sass/theme/_theme_light.scss</h3>
+                    <h5>sass/theme/_theme_light.scss</h5>
                     <AppCodeHighlight lang="css">
                         {
                             `
@@ -476,7 +476,7 @@ $overlayMaskBgColor:#EEF2F6;
                         }
                     </AppCodeHighlight>
 
-                    <h3>sass/theme/_theme_dark.scss</h3>
+                    <h5>sass/theme/_theme_dark.scss</h5>
                     <AppCodeHighlight lang="css">
                         {
                             `
@@ -543,122 +543,31 @@ $overlayMaskBgColor:#141d26;
                         }
                     </AppCodeHighlight>
 
-                    <p>In the demo app layout and theme css files are defined using link tags in index.html so the demo can switch them on the fly by changing the path however if this is not a requirement, you may also import them in App.js so that webpack adds them to the bundle.</p>
-
                     <h4>Menu Modes</h4>
-                    <p>Menu has 4 modes, static, overlay, slim and horizontal. Layout container element in app.component.html is used to define which mode to use by adding specific classes. List
-                        below indicates the style classes for each mode.</p>
+                    <p>Menu has 2 modes; horizontal and overlay. Layout container element in App.js is used to define which mode to use by adding specific classes. List
+                    below indicates the style classes for each mode.</p>
 
                     <ul>
-                        <li>Static: "layout-wrapper layout-static"</li>
-                        <li>Overlay: "layout-wrapper layout-overlay"</li>
-                        <li>Popup: "layout-wrapper layout-popup"</li>
-                        <li>Horizontal: "layout-wrapper layout-horizontal"</li>
+                        <li>Horizontal: "layout-container layout-menu-horizontal"</li>
+                        <li>Overlay: "layout-container"</li>
                     </ul>
-
-                    <p>For example to create a horizontal menu, the div element should be in following form;</p>
-                    <pre>
-                        &lt;div class="layout-wrapper layout-horizontal"&gt;
-</pre>
 
                     <p>It is also possible to leave the choice to the user by keeping the preference at a component and using an expression to bind it so that user can switch between modes. Sample
-                            application has an example implementation of such use case. Refer to App.js for an example.</p>
-
-                    <h4>PrimeFlex Grid System</h4>
-                    <p>Apollo uses PrimeFlex Grid System throughout the samples, although any Grid library can be used we suggest using PrimeFlex as your grid system as it is well tested and supported by PrimeReact. PrimeFlex is
-                        available at npm and defined at package.json of Apollo so that it gets installed by default.</p>
+                    application has an example implementation of such use case. Refer to App.js for an example.</p>
 
                     <h4>Customizing Styles</h4>
-                    <p>It is suggested to write your customizations in <i>sass/_layout_styles.scss</i> and <i>sass/_theme_styles.scss </i> files for seamless updates
-                        as these files are empty by default and never updated.</p>
+                    <p>It is suggested to add your customizations in the following sass files under the overrides folder instead of adding them to the
+                        scss files under sass folder to avoid maintenance issues after an update.</p>
+
+                    <ul>
+                        <li><b>_layout_variables</b>: Variables of the layout.</li>
+                        <li><b>_layout_styles</b>: Styles for the layout.</li>
+                        <li><b>_theme_variables</b>: Variables of the theme.</li>
+                        <li><b>_theme_styles</b>: Styles for the theme.</li>
+                    </ul>
 
                     <h4>Migration Guide</h4>
-                    <p>4.0.1 to 4.0.2</p>
-                    <ul>
-                        <li>Update layout css files</li>
-                        <li>Update theme css files</li>
-                    </ul>
-
-                    <p>4.0.0 to 4.0.1</p>
-                    <ul>
-                        <li>Update App.js</li>
-                        <li>Update layout css files</li>
-                        <li>Update theme css files</li>
-                    </ul>
-
-                    <p>3.0.1 to 4.0.0</p>
-                    <ul>
-                        <li>Update layout css files</li>
-                        <li>Update theme css files</li>
-                    </ul>
-
-                    <p>3.0.0 to 3.0.1</p>
-                    <ul>
-                        <li>Update index.jx</li>
-                        <li>Update App.js</li>
-                        <li>Update AppBreadcrumb.js</li>
-                        <li>Update AppMenu.js</li>
-                        <li>Update AppTopbar.js</li>
-                        <li>Update layout css files</li>
-                        <li>Update theme css files</li>
-                    </ul>
-
-                    <p>2.0.0-beta.1 to 3.0.0</p>
-                    <ul>
-                        <li>Update index.jx</li>
-                        <li>Update App.js</li>
-                        <li>Update AppBreadcrumb.js</li>
-                        <li>Update AppMenu.js</li>
-                        <li>Update AppTopbar.js</li>
-                        <li>Add AppWrapper.js</li>
-                        <li>Update layout css files</li>
-                        <li>Update theme css files</li>
-                    </ul>
-
-                    <p>1.x to 2.0.0-beta.1</p>
-                    <p>Brings support to PrimeReact 2.x</p>
-                    <ul>
-                        <li>Install PrimeFlex from npm.</li>
-                        <li>Update layout css files</li>
-                        <li>Update theme css files</li>
-                    </ul>
-
-                    <p>1.6.0 to 1.6.1</p>
-                    <p>Brings support for PrimeReact 1.6.x.</p>
-
-                    <ul>
-                        <li>Import primeicons.css in App.js.</li>
-                        <li>Update layout css files</li>
-                        <li>Update theme css files</li>
-                    </ul>
-                    <p>1.5.0 to 1.6.0</p>
-                    <ul>
-                        <li>Update AppMenu.js.</li>
-                        <li>Update layout css files.</li>
-                        <li>Update theme css files.</li>
-                    </ul>
-                    <p>1.4.2 to 1.5.0</p>
-                    <ul>
-                        <li>Update App.js.</li>
-                        <li>Update layout css files.</li>
-                        <li>Update theme css files.</li>
-                    </ul>
-
-                    <p>1.4.1 to 1.4.2</p>
-                    <ul>
-                        <li>Update theme css files</li>
-                    </ul>
-
-                    <p>1.4.0 to 1.4.1</p>
-                    <ul>
-                        <li>Update theme css files</li>
-                    </ul>
-
-                    <p>1.0.0 to 1.4.0</p>
-                    <ul>
-                        <li>Update PrimeReact to 1.4.0</li>
-                        <li>Update css files of theme and layout</li>
-                    </ul>
+                    <p>Every change is included in <b>CHANGELOG.md</b> file at the root folder of the distribution along with the instructions to update.</p>
                 </div>
             </div>
         </div>

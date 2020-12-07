@@ -1,15 +1,18 @@
 import React from 'react';
+import { useHistory, useLocation, withRouter } from 'react-router-dom';
 
-export const AppBreadcrumb = (props) => {
 
-    const { location } = props;
+const AppBreadcrumb = () => {
+
+    const location = useLocation();
+    const history = useHistory();
+
     const paths = location.pathname.split('/');
-    const home = () => window.location = "/#/"
 
     return (
         <div className="layout-breadcrumb">
             <ul>
-                <li><button type="button" className="p-link" onClick={home}><i className="pi pi-home"></i></button></li>
+                <li><button type="button" className="p-link" onClick={() => history.push('/')}><i className="pi pi-home"></i></button></li>
                 {
                     location.pathname === '/' ? <li>/</li> : paths.map((path, index) => <li key={index}>{path === '' ? '/' : path}</li>)
                 }
@@ -30,3 +33,5 @@ export const AppBreadcrumb = (props) => {
     );
 
 }
+
+export default withRouter(AppBreadcrumb);

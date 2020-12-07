@@ -7,7 +7,7 @@ import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { OverlayPanel } from 'primereact/overlaypanel';
 import { InputText } from 'primereact/inputtext';
-import { ProductService } from '../service/ProductService';
+import ProductService from '../service/ProductService';
 
 export const OverlayDemo = () => {
 

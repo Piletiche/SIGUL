@@ -17,8 +17,8 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
-import { ProductService } from '../service/ProductService';
-import { EventService } from '../service/EventService';
+import ProductService from '../service/ProductService';
+import EventService from '../service/EventService';
 
 const chartData = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -471,7 +471,7 @@ export const Dashboard = () => {
                         </div>
 
                         <div className="p-col-12">
-                            <Button type="button" label="Refresh" icon="pi pi-refresh"
+                            <Button label="Refresh" icon="pi pi-refresh"
                                 className="rounded-btn raised-btn"></Button>
                         </div>
                     </div>

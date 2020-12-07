@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { RadioButton } from 'primereact/radiobutton';
 import { InputSwitch } from 'primereact/inputswitch';
 
-export const AppConfig = (props) => {
+const AppConfig = (props) => {
 
 	const [active, setActive] = useState(false);
 	const config = useRef(null);
@@ -140,3 +140,5 @@ export const AppConfig = (props) => {
 	);
 
 }
+
+export default AppConfig;

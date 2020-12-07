@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { InputText } from 'primereact/inputtext';
 import { CSSTransition } from 'react-transition-group';
 
-export const AppTopbar = (props) => {
+const AppTopbar = (props) => {
 
     const onTopbarItemClick = (event, item) => {
         if (props.onTopbarItemClick) {
@@ -199,3 +199,5 @@ export const AppTopbar = (props) => {
     );
 
 }
+
+export default AppTopbar;

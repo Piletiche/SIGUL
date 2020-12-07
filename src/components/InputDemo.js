@@ -17,7 +17,7 @@ import { MultiSelect } from 'primereact/multiselect';
 import { SelectButton } from 'primereact/selectbutton';
 import { Button } from 'primereact/button';
 import { InputNumber } from 'primereact/inputnumber';
-import { CountryService } from '../service/CountryService';
+import CountryService from '../service/CountryService';
 
 export const InputDemo = () => {
 

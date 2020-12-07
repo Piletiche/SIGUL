@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const AppFooter = () => {
+const AppFooter = () => {
 
     return (
         <div className="layout-footer">
@@ -10,3 +10,5 @@ export const AppFooter = () => {
     )
 
 }
+
+export default AppFooter;

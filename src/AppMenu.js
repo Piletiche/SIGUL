@@ -2,8 +2,6 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { NavLink } from 'react-router-dom'
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
-import { Ripple } from 'primereact/ripple';
-
 
 const AppSubmenu = (props) => {
 
@@ -127,10 +125,12 @@ const AppSubmenu = (props) => {
 
 }
 
-export const AppMenu = (props) => {
+const AppMenu = (props) => {
 
 	return <AppSubmenu items={props.model} className="layout-menu layout-main-menu clearfix"
 		menuActive={props.active} onRootItemClick={props.onRootMenuItemClick}
 		onMenuItemClick={props.onMenuItemClick} root={true} layoutMode={props.layoutMode}
 		parentMenuItemActive={true} />
 }
+
+export default AppMenu;

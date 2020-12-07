@@ -1,9 +1,8 @@
 import axios from 'axios';
 
-export class PhotoService {
+export default class PhotoService {
 
     getPhotos() {
-        return axios.get('assets/demo/data/photos.json')
-            .then(res => res.data.data);
+        return axios.get('assets/demo/data/photos.json').then((res) => res.data.data);
     }
 }

@@ -3,7 +3,7 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { InputTextarea } from 'primereact/inputtextarea';
 
-export const WidgetsDemo = () => {
+export const Widgets = () => {
 
     return (
         <div className="p-grid">

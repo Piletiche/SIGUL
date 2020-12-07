@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import { withRouter } from 'react-router';
 import { Route } from 'react-router-dom';
 
-import { AppTopbar } from './AppTopbar';
-import { AppBreadcrumb } from './AppBreadcrumb';
-import { AppFooter } from './AppFooter';
-import { AppMenu } from './AppMenu';
-import { AppConfig } from './AppConfig';
+import AppTopbar from './AppTopbar';
+import AppBreadcrumb from './AppBreadcrumb';
+import AppFooter from './AppFooter';
+import AppMenu from './AppMenu';
+import AppConfig from './AppConfig';
 
 import { Dashboard } from './components/Dashboard';
 import { ButtonDemo } from './components/ButtonDemo';
@@ -26,7 +25,6 @@ import { TableDemo } from './components/TableDemo';
 import { TreeDemo } from './components/TreeDemo';
 import { FloatLabelDemo } from './components/FloatLabelDemo';
 import { MediaDemo } from './components/MediaDemo';
-
 import { DisplayDemo } from './utilities/DisplayDemo';
 import { ElevationDemo } from './utilities/ElevationDemo';
 import { FlexBoxDemo } from './utilities/FlexboxDemo';
@@ -35,22 +33,18 @@ import { IconsDemo } from './utilities/IconsDemo';
 import { SpacingDemo } from './utilities/SpacingDemo';
 import { TextDemo } from './utilities/TextDemo';
 import { TypographyDemo } from './utilities/TypographyDemo';
-import { WidgetsDemo } from './utilities/WidgetsDemo';
-
-import { Crud } from './pages/Crud';
-import { Calendar } from './pages/Calendar';
+import { Widgets } from './utilities/Widgets';
+import { CrudDemo } from './pages/CrudDemo';
 import { EmptyPage } from './pages/EmptyPage';
 import { Invoice } from './pages/Invoice';
 import { Help } from './pages/Help';
+import { CalendarDemo } from './pages/CalendarDemo';
 
 import PrimeReact from 'primereact/utils';
 
 import { ProgressBar } from 'primereact/progressbar'
 
 import 'primereact/resources/primereact.min.css';
-import '@fullcalendar/core/main.css';
-import '@fullcalendar/daygrid/main.css';
-import '@fullcalendar/timegrid/main.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import './App.scss';
@@ -343,7 +337,6 @@ const App = () => {
         'layout-overlay-active': overlayMenuActive,
         'p-input-filled': inputStyle === 'filled'
     });
-    const AppBreadCrumbWithRouter = withRouter(AppBreadcrumb);
 
     return (
         <div className={layoutClassName} onClick={onDocumentClick}>
@@ -374,7 +367,7 @@ const App = () => {
             </div>
 
             <div className="layout-content">
-                <AppBreadCrumbWithRouter />
+                <AppBreadcrumb />
 
                 <div className="layout-content-container">
                     <Route path="/" exact component={Dashboard} />
@@ -401,12 +394,12 @@ const App = () => {
                     <Route path="/spacing" component={SpacingDemo} />
                     <Route path="/typography" component={TypographyDemo} />
                     <Route path="/text" component={TextDemo} />
-                    <Route path="/crud" component={Crud} />
-                    <Route path="/calendar" component={Calendar} />
+                    <Route path="/crud" component={CrudDemo} />
+                    <Route path="/calendar" component={CalendarDemo} />
                     <Route path="/help" component={Help} />
                     <Route path="/invoice" component={Invoice} />
                     <Route path="/empty" component={EmptyPage} />
-                    <Route path="/widgets" component={WidgetsDemo} />
+                    <Route path="/widgets" component={Widgets} />
                     <Route path="/media" component={MediaDemo} />
                 </div>
 

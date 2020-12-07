@@ -3,7 +3,7 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from "primereact/button";
 import { useHistory } from 'react-router-dom';
 
-const Login = () => {
+export const Login = () => {
 
 	const history = useHistory();
 
@@ -50,5 +50,3 @@ const Login = () => {
 		</div>
 	)
 }
-
-export default Login;

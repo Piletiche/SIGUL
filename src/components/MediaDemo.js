@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Carousel } from 'primereact/carousel';
 import { Button } from 'primereact/button';
 import { Galleria } from 'primereact/galleria';
-import { ProductService } from '../service/ProductService';
-import { PhotoService } from '../service/PhotoService';
+import ProductService from '../service/ProductService';
+import PhotoService from '../service/PhotoService';
 
 export const MediaDemo = () => {
     const [products, setProducts] = useState([]);

@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from "primereact/button";
 import { useHistory } from 'react-router-dom';
 
-const NotFound = () => {
+export const NotFound = () => {
 
 	const history = useHistory();
 
@@ -24,4 +24,3 @@ const NotFound = () => {
 	</div>
 }
 
-export default NotFound;
