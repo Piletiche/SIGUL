@@ -105,7 +105,7 @@ export const TableDemo = () => {
         return (
             <>
                 <span className="p-column-title">Country</span>
-                <img src="assets/demo/flags/flag_placeholder.png" alt={data.country.name} className={`flag flag-${data.country.code}`} width={30} height={20} />
+                <img src="assets/demo/images/flags/flag_placeholder.png" alt={data.country.name} className={`flag flag-${data.country.code}`} width={30} height={20} />
                 <span style={{ marginLeft: '.5em', verticalAlign: 'middle' }} className="image-text">{data.country.name}</span>
             </>
         );

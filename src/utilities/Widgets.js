@@ -262,28 +262,28 @@ export const Widgets = () => {
                         </li>
                         <li>
                             <span>
-                                <img src="assets/demo/images/product/bamboo-watch.jpg" alt="diamond-layout" />
+                                <img src="assets/demo/images/product/bamboo-watch.jpg" alt="apollo-layout" />
                                 <span>Bamboo Watch</span>
                             </span>
                             <span className="listitem-value">82</span>
                         </li>
                         <li>
                             <span>
-                                <img src="assets/demo/images/product/blue-band.jpg" alt="diamond-layout" />
+                                <img src="assets/demo/images/product/blue-band.jpg" alt="apollo-layout" />
                                 <span>Blue Band</span>
                             </span>
                             <span className="listitem-value">75</span>
                         </li>
                         <li>
                             <span>
-                                <img src="assets/demo/images/product/game-controller.jpg" alt="diamond-layout" />
+                                <img src="assets/demo/images/product/game-controller.jpg" alt="apollo-layout" />
                                 <span>Game Controller</span>
                             </span>
                             <span className="listitem-value">64</span>
                         </li>
                         <li>
                             <span>
-                                <img src="assets/demo/images/product/lime-band.jpg" alt="diamond-layout" />
+                                <img src="assets/demo/images/product/lime-band.jpg" alt="apollo-layout" />
                                 <span>Lime Band</span>
                             </span>
                             <span className="listitem-value">62</span>
@@ -367,19 +367,19 @@ export const Widgets = () => {
                     <div className="widget-chat">
                         <ul>
                             <li className="message-from">
-                                <img src="assets/demo/images/avatar/ionibowcher.png" alt="diamond-layout" />
+                                <img src="assets/demo/images/avatar/ionibowcher.png" alt="apollo-layout" />
                                 <div>Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore.</div>
                             </li>
                             <li className="message-own">
-                                <img src="assets/demo/images/avatar/onyamalimba.png" alt="diamond-layout" />
+                                <img src="assets/demo/images/avatar/onyamalimba.png" alt="apollo-layout" />
                                 <div>Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage.</div>
                             </li>
                             <li className="message-from">
-                                <img src="assets/demo/images/avatar/ionibowcher.png" alt="diamond-layout" />
+                                <img src="assets/demo/images/avatar/ionibowcher.png" alt="apollo-layout" />
                                 <div>Chillwave craft beer tote bag stumptown quinoa hashtag.</div>
                             </li>
                             <li className="message-own">
-                                <img src="assets/demo/images/avatar/onyamalimba.png" alt="diamond-layout" />
+                                <img src="assets/demo/images/avatar/onyamalimba.png" alt="apollo-layout" />
                                 <div>Dreamcatcher locavore iPhone chillwave, occupy trust fund slow-carb distillery art party narwhal.</div>
                             </li>
                         </ul>

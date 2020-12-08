@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { Route } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 
 import AppTopbar from './AppTopbar';
 import AppBreadcrumb from './AppBreadcrumb';
@@ -57,6 +58,7 @@ const App = () => {
     const [staticMenuMobileActive, setStaticMenuMobileActive] = useState(false);
     const [topbarMenuActive, setTopbarMenuActive] = useState(false);
     const [activeTopbarItem, setActiveTopbarItem] = useState(null);
+    const [activeSubmenus, setActiveSubmenus] = useState([]);
     const [menuActive, setMenuActive] = useState(false);
     const [themeColor, setThemeColor] = useState('blue');
     const [inputStyle, setInputStyle] = useState('outlined');
@@ -166,7 +168,6 @@ const App = () => {
         { label: 'Documentation', icon: 'pi pi-fw pi-info-circle', to: '/documentation' },
     ];
 
-
     const onInputStyleChange = (inputStyle) => {
         setInputStyle(inputStyle);
     }
@@ -227,6 +228,10 @@ const App = () => {
         setMenuActive(prevState => !prevState);
     }
 
+    const onSubmenuChange = (submenus) => {
+        setActiveSubmenus(submenus || []);
+    };
+
     const onDocumentClick = (event) => {
         if (!topbarItemClick) {
             setActiveTopbarItem(null)
@@ -245,17 +250,31 @@ const App = () => {
         menuClick = false;
     }
 
+    const isMenuVisible = () => {
+        if (isDesktop()) {
+            if (layoutMode === 'static')
+                return !staticMenuDesktopInactive;
+            else if (layoutMode === 'overlay')
+                return overlayMenuActive;
+            else
+                return true;
+        }
+        else {
+            return true;
+        }
+    };
+
     const hideOverlayMenu = () => {
         setOverlayMenuActive(false);
         setStaticMenuMobileActive(false)
     }
 
-    const isDesktop = () => {
-        return window.innerWidth > 1024;
+    const isMobile = () => {
+        return window.innerWidth < 1025;
     }
 
-    const isMobile = () => {
-        return window.innerWidth <= 640;
+    const isDesktop = () => {
+        return window.innerWidth > 1024;
     }
 
     const isHorizontal = () => {
@@ -270,6 +289,10 @@ const App = () => {
         setLayoutMode(event.menuMode);
         setStaticMenuDesktopInactive(false);
         setOverlayMenuActive(false);
+
+        if (event.menuMode === 'horizontal' || event.menuMode === 'slim') {
+            setActiveSubmenus([]);
+        }
     }
 
     const onSchemeChange = (color) => {
@@ -287,7 +310,6 @@ const App = () => {
         setThemeColor(theme.split('-')[0]);
         changeStyleSheetUrl('layout-css', theme, 'layout');
         changeStyleSheetUrl('theme-css', theme, 'theme');
-
     }
 
     const onThemeChange = (theme) => {
@@ -305,7 +327,6 @@ const App = () => {
     }
 
     const changeLogo = (scheme) => {
-
         const invoiceLogoLink = document.getElementById("invoice-logo");
         const logoUrl = `assets/layout/images/logo-${scheme === 'light' ? 'dark' : 'white'}.png`;
 
@@ -358,24 +379,26 @@ const App = () => {
                 onTopbarMenuButtonClick={onTopbarMenuButtonClick}
                 onTopbarItemClick={onTopbarItemClick} />
 
-            <div className='layout-menu-container' onClick={onMenuClick}>
-                <div className="layout-menu-content">
-                    <div className="layout-menu-title">MENU</div>
-                    <AppMenu model={menu} onMenuItemClick={onMenuItemClick}
-                        onRootMenuItemClick={onRootMenuItemClick}
-                        layoutMode={layoutMode} active={menuActive} />
-                    <div className="layout-menu-footer">
-                        <div className="layout-menu-footer-title">TASKS</div>
+            <CSSTransition classNames="layout-menu-container" timeout={{ enter: 0, exit: 200 }} in={isMenuVisible()} unmountOnExit>
+                <div className="layout-menu-container" onClick={onMenuClick}>
+                    <div className="layout-menu-content">
+                        <div className="layout-menu-title">MENU</div>
+                        <AppMenu model={menu} onMenuItemClick={onMenuItemClick}
+                            onRootMenuItemClick={onRootMenuItemClick}
+                            layoutMode={layoutMode} active={menuActive} activeSubmenus={activeSubmenus} onSubmenuChange={onSubmenuChange}/>
+                        <div className="layout-menu-footer">
+                            <div className="layout-menu-footer-title">TASKS</div>
 
-                        <div className="layout-menu-footer-content">
-                            <ProgressBar value={50} showValue={false}></ProgressBar>
-                                Today
-                            <ProgressBar value={80} showValue={false}></ProgressBar>
-                            Overall
+                            <div className="layout-menu-footer-content">
+                                <ProgressBar value={50} showValue={false}></ProgressBar>
+                                    Today
+                                <ProgressBar value={80} showValue={false}></ProgressBar>
+                                Overall
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </CSSTransition>
 
             <div className="layout-content">
                 <AppBreadcrumb />

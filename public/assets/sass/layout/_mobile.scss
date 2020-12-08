@@ -42,7 +42,7 @@
             transform: translateX(-100%);
             transition: transform $transitionDuration;
 
-            &.layout-menu-container-enter-from {
+            &.layout-menu-container-enter {
                 transform: translateX(-100%) !important;
             }
 
