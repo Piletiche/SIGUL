@@ -702,12 +702,20 @@
 }
 
 .docs {
-    h1 {
-        margin-top: 28px;
-        margin-bottom: 14px;
+    i:not([class~="pi"]) {
+        background-color: var(--surface-b);
+        color: #2196f3;
+        font-family: Monaco, courier, monospace;
+        font-style: normal;
+        font-size: 12px;
+        padding: 2px 4px;
+        letter-spacing: .5px;
+        border-radius: 3px;
+        font-weight: 600;
+        margin: 0 2px;
     }
 
-    p {
+    li {
         line-height: 1.5;
     }
 }
@@ -745,7 +753,10 @@ pre[class*="language-"] {
             }
 
             &.operator,
-            &.string {
+            &.string,
+            &.entity,
+            &.url,
+            &.variable {
                 background: transparent;
             }
         }
