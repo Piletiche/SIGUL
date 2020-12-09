@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { Route } from 'react-router-dom';
-import { CSSTransition } from 'react-transition-group';
 
 import AppTopbar from './AppTopbar';
 import AppBreadcrumb from './AppBreadcrumb';
@@ -58,7 +57,6 @@ const App = () => {
     const [staticMenuMobileActive, setStaticMenuMobileActive] = useState(false);
     const [topbarMenuActive, setTopbarMenuActive] = useState(false);
     const [activeTopbarItem, setActiveTopbarItem] = useState(null);
-    const [activeSubmenus, setActiveSubmenus] = useState([]);
     const [menuActive, setMenuActive] = useState(false);
     const [themeColor, setThemeColor] = useState('blue');
     const [inputStyle, setInputStyle] = useState('outlined');
@@ -228,10 +226,6 @@ const App = () => {
         setMenuActive(prevState => !prevState);
     }
 
-    const onSubmenuChange = (submenus) => {
-        setActiveSubmenus(submenus || []);
-    };
-
     const onDocumentClick = (event) => {
         if (!topbarItemClick) {
             setActiveTopbarItem(null)
@@ -289,10 +283,6 @@ const App = () => {
         setLayoutMode(event.menuMode);
         setStaticMenuDesktopInactive(false);
         setOverlayMenuActive(false);
-
-        if (event.menuMode === 'horizontal' || event.menuMode === 'slim') {
-            setActiveSubmenus([]);
-        }
     }
 
     const onSchemeChange = (color) => {
@@ -370,6 +360,8 @@ const App = () => {
         'p-input-filled': inputStyle === 'filled'
     });
 
+    const menuContainerClassName = classNames('layout-menu-container', { 'layout-menu-container-inactive': !isMenuVisible()})
+
     return (
         <div className={layoutClassName} onClick={onDocumentClick}>
 
@@ -379,26 +371,24 @@ const App = () => {
                 onTopbarMenuButtonClick={onTopbarMenuButtonClick}
                 onTopbarItemClick={onTopbarItemClick} />
 
-            <CSSTransition classNames="layout-menu-container" timeout={{ enter: 0, exit: 200 }} in={isMenuVisible()} unmountOnExit>
-                <div className="layout-menu-container" onClick={onMenuClick}>
-                    <div className="layout-menu-content">
-                        <div className="layout-menu-title">MENU</div>
-                        <AppMenu model={menu} onMenuItemClick={onMenuItemClick}
-                            onRootMenuItemClick={onRootMenuItemClick}
-                            layoutMode={layoutMode} active={menuActive} activeSubmenus={activeSubmenus} onSubmenuChange={onSubmenuChange}/>
-                        <div className="layout-menu-footer">
-                            <div className="layout-menu-footer-title">TASKS</div>
+            <div className={menuContainerClassName} onClick={onMenuClick}>
+                <div className="layout-menu-content">
+                    <div className="layout-menu-title">MENU</div>
+                    <AppMenu model={menu} onMenuItemClick={onMenuItemClick}
+                        onRootMenuItemClick={onRootMenuItemClick}
+                        layoutMode={layoutMode} active={menuActive} />
+                    <div className="layout-menu-footer">
+                        <div className="layout-menu-footer-title">TASKS</div>
 
-                            <div className="layout-menu-footer-content">
-                                <ProgressBar value={50} showValue={false}></ProgressBar>
-                                    Today
-                                <ProgressBar value={80} showValue={false}></ProgressBar>
-                                Overall
-                            </div>
+                        <div className="layout-menu-footer-content">
+                            <ProgressBar value={50} showValue={false}></ProgressBar>
+                                Today
+                            <ProgressBar value={80} showValue={false}></ProgressBar>
+                            Overall
                         </div>
                     </div>
                 </div>
-            </CSSTransition>
+            </div>
 
             <div className="layout-content">
                 <AppBreadcrumb />

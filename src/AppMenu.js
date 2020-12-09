@@ -7,7 +7,6 @@ import { Ripple } from 'primereact/ripple';
 const AppSubmenu = (props) => {
 
     const [activeIndex, setActiveIndex] = useState(null);
-    let level = props.level || 0;
 
 	const onMenuItemClick = (event, item, index) => {
 		//avoid processing disabled items
@@ -30,10 +29,7 @@ const AppSubmenu = (props) => {
 		}
 
 		if (item.items) {
-            let activeSubmenus = [...props.activeSubmenus];
-            activeSubmenus[level] = activeSubmenus[level] === index ? null : index;
-            props.onSubmenuChange(activeSubmenus);
-            setActiveIndex(activeSubmenus[level]);
+            setActiveIndex(activeIndex === index ? null : index);
         }
 
 		if (props.onMenuItemClick) {
@@ -53,10 +49,6 @@ const AppSubmenu = (props) => {
 	const onMenuItemMouseEnter = (index) => {
 		if (props.root && props.menuActive && isHorizontalOrSlim() && !isMobile()) {
             setActiveIndex(index)
-
-            if (props.activeSubmenus && props.activeSubmenus.length) {
-                props.onSubmenuChange(null);
-            }
 		}
 	}
 
@@ -71,10 +63,6 @@ const AppSubmenu = (props) => {
 	useEffect(() => {
 		if (!props.menuActive && isHorizontalOrSlim() && !isMobile()) {
             setActiveIndex(null);
-
-            if (props.activeSubmenus && props.activeSubmenus.length) {
-                props.onSubmenuChange(null);
-            }
 		}
 	}, [props, isHorizontalOrSlim, isMobile]);
 
@@ -118,7 +106,7 @@ const AppSubmenu = (props) => {
 		}
     }
     const isMenuActive = (index) => {
-        return activeIndex === index || props.activeSubmenus[level] === index;
+        return activeIndex === index;
     }
 
 	var items = props.items && props.items.map((item, i) => {
@@ -134,8 +122,8 @@ const AppSubmenu = (props) => {
 			{renderLink(item, i)}
 			{tooltip}
 			<CSSTransition classNames="layout-submenu-container" timeout={{ enter: 400, exit: 400 }} in={active} unmountOnExit>
-				<AppSubmenu level={level + 1} items={item.items} onMenuItemClick={props.onMenuItemClick} layoutMode={props.layoutMode}
-					menuActive={props.menuActive} parentMenuItemActive={active} activeSubmenus={props.activeSubmenus} onSubmenuChange={props.onSubmenuChange}/>
+				<AppSubmenu items={item.items} onMenuItemClick={props.onMenuItemClick} layoutMode={props.layoutMode}
+					menuActive={props.menuActive} parentMenuItemActive={active}/>
 			</CSSTransition>
 		</li>
 	});
@@ -149,7 +137,7 @@ const AppMenu = (props) => {
 	return <AppSubmenu items={props.model} className="layout-menu layout-main-menu clearfix"
 		menuActive={props.active} onRootItemClick={props.onRootMenuItemClick}
 		onMenuItemClick={props.onMenuItemClick} root={true} layoutMode={props.layoutMode}
-		parentMenuItemActive={true} activeSubmenus={props.activeSubmenus} onSubmenuChange={props.onSubmenuChange}/>
+		parentMenuItemActive={true}/>
 }
 
 export default AppMenu;

@@ -15,8 +15,7 @@
                     justify-content: space-between;
                 }
 
-                &.layout-menu-container-enter,
-                &.layout-menu-container-exit-active {
+                &.layout-menu-container-inactive {
                     transform: translateX(-100%);
                 }
 
