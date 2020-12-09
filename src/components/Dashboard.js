@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import { Panel } from 'primereact/components/panel/Panel';
-import { Checkbox } from 'primereact/components/checkbox/Checkbox';
-import { Button } from 'primereact/components/button/Button';
-import { Dropdown } from 'primereact/components/dropdown/Dropdown';
-import { InputText } from 'primereact/components/inputtext/InputText';
-import { InputTextarea } from 'primereact/components/inputtextarea/InputTextarea';
-import { DataTable } from 'primereact/components/datatable/DataTable';
-import { Column } from 'primereact/components/column/Column';
+import { Panel } from 'primereact/panel';
+import { Checkbox } from 'primereact/checkbox';
+import { Button } from 'primereact/button';
+import { Dropdown } from 'primereact/dropdown';
+import { InputText } from 'primereact/inputtext';
+import { InputTextarea } from 'primereact/inputtextarea';
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 import { Chart } from 'primereact/chart';
 import { ProgressBar } from 'primereact/progressbar';
 import { Menu } from 'primereact/menu';
