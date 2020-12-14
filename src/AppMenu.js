@@ -6,7 +6,7 @@ import { Ripple } from 'primereact/ripple';
 
 const AppSubmenu = (props) => {
 
-    const [activeIndex, setActiveIndex] = useState(null);
+	const [activeIndex, setActiveIndex] = useState(null);
 
 	const onMenuItemClick = (event, item, index) => {
 		//avoid processing disabled items
@@ -29,8 +29,8 @@ const AppSubmenu = (props) => {
 		}
 
 		if (item.items) {
-            setActiveIndex(activeIndex === index ? null : index);
-        }
+			setActiveIndex(activeIndex === index ? null : index);
+		}
 
 		if (props.onMenuItemClick) {
 			props.onMenuItemClick({
@@ -48,7 +48,7 @@ const AppSubmenu = (props) => {
 
 	const onMenuItemMouseEnter = (index) => {
 		if (props.root && props.menuActive && isHorizontalOrSlim() && !isMobile()) {
-            setActiveIndex(index)
+			setActiveIndex(index)
 		}
 	}
 
@@ -60,9 +60,16 @@ const AppSubmenu = (props) => {
 		return window.innerWidth < 1025;
 	}, []);
 
+	const isHorizontal = () => {
+		return props.layoutMode === 'horizontal';
+	}
+	const isSlim = () => {
+		return props.layoutMode === 'slim';
+	}
+
 	useEffect(() => {
 		if (!props.menuActive && isHorizontalOrSlim() && !isMobile()) {
-            setActiveIndex(null);
+			setActiveIndex(null);
 		}
 	}, [props, isHorizontalOrSlim, isMobile]);
 
@@ -104,27 +111,27 @@ const AppSubmenu = (props) => {
 			);
 
 		}
-    }
-    const isMenuActive = (index) => {
-        return activeIndex === index;
-    }
+	}
+	const isMenuActive = (index) => {
+		return activeIndex === index;
+	}
 
 	var items = props.items && props.items.map((item, i) => {
-        const active = isMenuActive(i);
-		let styleClass = classNames(item.badgeStyleClass, { 'active-menuitem': active });
-		let tooltip = props.root && <div className="layout-menu-tooltip">
-			<div className="layout-menu-tooltip-arrow"></div>
-			<div className="layout-menu-tooltip-text">{item.label}</div>
+		const active = isMenuActive(i);
+		let styleClass = classNames(item.badgeStyleClass, { 'active-menuitem': active }, { 'layout-root-menuitem': props.root });
+		let tooltip = props.root && <div className="layout-menuitem-root-text" style={{ textTransform: 'uppercase' }}>
+			{item.label}
 		</div>;
 
 		return <li className={styleClass} key={i} role="none">
 			{item.items && props.root === true && <div className='arrow'></div>}
 			{renderLink(item, i)}
 			{tooltip}
-			<CSSTransition classNames="layout-submenu-container" timeout={{ enter: 400, exit: 400 }} in={active} unmountOnExit>
-				<AppSubmenu items={item.items} onMenuItemClick={props.onMenuItemClick} layoutMode={props.layoutMode}
-					menuActive={props.menuActive} parentMenuItemActive={active}/>
-			</CSSTransition>
+				<CSSTransition classNames="layout-submenu-container" timeout={{ enter: 400, exit: 400 }} in={item.items && (props.root && !((isHorizontal() || isSlim()) && (!isSlim() || (isSlim() && activeIndex !== null))) ? true : active)} unmountOnExit>
+					<AppSubmenu items={item.items} onMenuItemClick={props.onMenuItemClick} layoutMode={props.layoutMode}
+						menuActive={props.menuActive} parentMenuItemActive={active} />
+				</CSSTransition>
+
 		</li>
 	});
 
@@ -137,7 +144,7 @@ const AppMenu = (props) => {
 	return <AppSubmenu items={props.model} className="layout-menu layout-main-menu clearfix"
 		menuActive={props.active} onRootItemClick={props.onRootMenuItemClick}
 		onMenuItemClick={props.onMenuItemClick} root={true} layoutMode={props.layoutMode}
-		parentMenuItemActive={true}/>
+		parentMenuItemActive={true} />
 }
 
 export default AppMenu;

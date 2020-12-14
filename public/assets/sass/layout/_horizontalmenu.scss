@@ -18,6 +18,16 @@
                         display: inline-block;
                         position: relative;
 
+                        &.layout-root-menuitem {
+                            > .layout-menuitem-root-text {
+                                display: none !important;
+                            }
+
+                            > a {
+                                display: block !important;
+                            }
+                        }
+
                         > a {
                             padding: 12px;
                             height: 50px;

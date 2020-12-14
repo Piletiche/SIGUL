@@ -67,7 +67,12 @@ const App = () => {
     let topbarItemClick;
 
     const menu = [
-        { label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' },
+        {
+            label: 'Favorites', icon: 'pi pi-fw pi-home',
+            items: [
+                { label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' }
+            ]
+        },
         {
             label: 'UI Kit', icon: 'pi pi-fw pi-sitemap',
             items: [
@@ -360,7 +365,7 @@ const App = () => {
         'p-input-filled': inputStyle === 'filled'
     });
 
-    const menuContainerClassName = classNames('layout-menu-container', { 'layout-menu-container-inactive': !isMenuVisible()})
+    const menuContainerClassName = classNames('layout-menu-container', { 'layout-menu-container-inactive': !isMenuVisible() })
 
     return (
         <div className={layoutClassName} onClick={onDocumentClick}>
