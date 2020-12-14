@@ -1,5 +1,13 @@
 # Changelog
 
+## 5.0.1
+
+**Migration Guide**
+
+- Update App.js.
+- Update AppMenu.js.
+- Update layout css files.
+
 ## 5.0.0
 ###### * Brings support to PrimeReact 5.x
 
