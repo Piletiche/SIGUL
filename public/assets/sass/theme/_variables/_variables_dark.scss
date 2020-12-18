@@ -731,6 +731,40 @@ $galleriaThumbnailNavigatorBorderRadius:50% !default;
 $galleriaThumbnailNavigatorWidth:2rem !default;
 $galleriaThumbnailNavigatorHeight:2rem !default;
 
+//divider
+$dividerHorizontalMargin:1rem 0;
+$dividerHorizontalPadding:0 1rem;
+$dividerVerticalMargin:0 1rem;
+$dividerVerticalPadding:1rem 0;
+$dividerSize:1px;
+$dividerColor:$shade600;
+
+//avatar
+$avatarBg:$shade600;
+$avatarTextColor:$textColor;
+
+//chip
+$chipBg:$shade600;
+$chipTextColor:$textColor;
+$chipBorderRadius: 16px;
+
+//scrollTop
+$scrollTopBg:$highlightBg;
+$scrollTopHoverBg:scale-color($highlightBg, $alpha: 24%);
+$scrollTopWidth:3rem;
+$scrollTopHeight:3rem;
+$scrollTopBorderRadius:50%;
+$scrollTopFontSize:1.5rem;
+$scrollTopTextColor:$highlightTextColor;
+
+//skeleton
+$skeletonBg:rgba(255,255,255,.06);
+$skeletonAnimationBg:rgba(255,255,255,.04);
+
+//splitter
+$splitterGutterBg:rgba(255,255,255,.03);
+$splitterGutterHandleBg:$shade600;
+
 :root {
 	--surface-a:#{$shade800};
 	--surface-b:#{$shade900};
