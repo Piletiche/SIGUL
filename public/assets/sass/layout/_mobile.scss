@@ -94,6 +94,16 @@
                         }
                     }
 
+                    &.layout-root-menuitem {
+                        > .layout-menuitem-root-text {
+                            display: block !important;
+                        }
+
+                        > a {
+                            display: none !important;
+                        }
+                    }
+
                     &.active-menuitem {
                         > a {
                             background-color: $menuitemActiveBgColor;

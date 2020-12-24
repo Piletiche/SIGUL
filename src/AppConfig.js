@@ -68,7 +68,7 @@ const AppConfig = (props) => {
 	return (
 		<div ref={config} id="layout-config" className={configClassName}>
 			<div className="layout-config-content">
-				<button type="button" className="layout-config-button p-link" onClick={toggleConfigurator}>
+				<button type="button" className="layout-config-button p-link" id="layout-config-button" onClick={toggleConfigurator}>
 					<i className="pi pi-cog" />
 				</button>
 

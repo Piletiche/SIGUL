@@ -16,11 +16,12 @@
 
     &.layout-config-active {
         transform: translate3d(0px, 0px, 0px);
-        overflow: auto;
 
         .layout-config-content {
             .layout-config-button {
-                display: none;
+                i {
+                    transform: rotate(360deg);
+                }
             }
         }
     }
