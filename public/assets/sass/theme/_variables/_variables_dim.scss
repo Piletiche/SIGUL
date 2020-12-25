@@ -593,6 +593,10 @@ $dialogContentPadding:0 1.5rem !default;
 $dialogFooterBorder:0 none !default;
 $dialogFooterPadding:1.5rem !default;
 
+//confirmpopup
+$confirmPopupContentPadding:$panelContentPadding;
+$confirmPopupFooterPadding:0 1rem 1rem 1rem;
+
 //tooltip
 $tooltipBg:$shade600 !default;
 $tooltipTextColor:$shade000 !default;
