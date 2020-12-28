@@ -250,7 +250,7 @@
         flex-wrap: wrap;
         overflow: auto;
     }
-    
+
     p {
 		line-height: 1.5;
 		margin: 0;
@@ -686,6 +686,8 @@
                 }
 
                 .p-datatable-tbody > tr {
+                    border-bottom: 1px solid var(--surface-d);
+
                     > td {
                         text-align: left;
                         display: flex;

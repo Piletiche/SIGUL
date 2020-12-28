@@ -44,6 +44,12 @@
                         border-radius: 50%;
                     }
 
+                    &.rotated-icon {
+                        .layout-menuitem-icon {
+                            transform: rotate(90deg);
+                        }
+                    }
+
                     .layout-menuitem-toggler {
                         transition: transform $transitionDuration;
                     }
@@ -112,21 +118,21 @@
                     &.layout-submenu-container-enter {
                         max-height: 0;
                     }
-    
+
                     &.layout-submenu-container-enter-active {
                         overflow: hidden;
                         max-height: 1000px;
                         transition: max-height 1s ease-in-out;
                     }
-    
+
                     &.layout-submenu-container-enter-done {
                         transform: none;
                     }
-    
+
                     &.layout-submenu-container-exit {
                         max-height: 1000px;
                     }
-    
+
                     &.layout-submenu-container-exit-active {
                         overflow: hidden;
                         max-height: 0;

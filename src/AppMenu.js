@@ -80,7 +80,7 @@ const AppSubmenu = (props) => {
 
 		return (
 			<React.Fragment>
-				<i className={item.icon}></i>
+				<i className={classNames('layout-menuitem-icon', item.icon)}></i>
 				<span>{item.label}</span>
 				{submenuIcon}
 				{badge}
@@ -90,7 +90,7 @@ const AppSubmenu = (props) => {
 
 	const renderLink = (item, i) => {
 		let content = renderLinkContent(item);
-		let linkStyle = classNames(item.styleClass, 'p-ripple');
+		let linkStyle = classNames(item.class, 'p-ripple');
 
 		if (item.to) {
 			return (
