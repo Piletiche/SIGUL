@@ -8,6 +8,10 @@
 - Update AppMenu.js.
 - Update layout css files.
 
+**Implemented New Features and Enhancements:**
+
+- New Menu Design
+
 ## 5.0.0
 ###### * Brings support to PrimeReact 5.x
 
