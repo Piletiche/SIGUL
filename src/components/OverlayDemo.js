@@ -7,6 +7,7 @@ import { Column } from 'primereact/column';
 import { DataTable } from 'primereact/datatable';
 import { OverlayPanel } from 'primereact/overlaypanel';
 import { InputText } from 'primereact/inputtext';
+import { confirmPopup } from 'primereact/confirmpopup';
 import ProductService from '../service/ProductService';
 
 export const OverlayDemo = () => {
@@ -23,6 +24,24 @@ export const OverlayDemo = () => {
     const op = useRef(null);
     const op2 = useRef(null);
     const toast = useRef(null);
+
+    const accept = () => {
+        toast.current.show({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
+    };
+
+    const reject = () => {
+        toast.current.show({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+    };
+
+    const confirm = (event) => {
+        confirmPopup({
+            target: event.currentTarget,
+            message: 'Are you sure you want to proceed?',
+            icon: 'pi pi-exclamation-triangle',
+            accept,
+            reject
+        });
+    };
 
     useEffect(() => {
         const productService = new ProductService();
@@ -152,7 +171,7 @@ export const OverlayDemo = () => {
                     </div>
                 </div>
 
-                <div className="p-col-12">
+                <div className="p-col-12 p-lg-6">
                     <div className="card">
                         <h5>Tooltip</h5>
                         <div className="p-formgroup-inline">
@@ -164,7 +183,17 @@ export const OverlayDemo = () => {
                         </div>
                     </div>
                 </div>
+                <div className="p-col-12 p-lg-6">
+                    <Toast ref={toast} />
+
+                    <div className="card">
+                        <h5>ConfirmPopup</h5>
+                        <Button onClick={confirm} icon="pi pi-check" label="Confirm" className="p-mr-2"></Button>
+                    </div>
+                </div>
             </div>
+
+
         </>
     )
 }

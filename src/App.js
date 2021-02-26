@@ -24,6 +24,7 @@ import { PanelDemo } from './components/PanelDemo';
 import { TableDemo } from './components/TableDemo';
 import { TreeDemo } from './components/TreeDemo';
 import { FloatLabelDemo } from './components/FloatLabelDemo';
+import { InvalidStateDemo } from './components/InvalidStateDemo';
 import { MediaDemo } from './components/MediaDemo';
 import { DisplayDemo } from './utilities/DisplayDemo';
 import { ElevationDemo } from './utilities/ElevationDemo';
@@ -39,8 +40,9 @@ import { EmptyPage } from './pages/EmptyPage';
 import { Invoice } from './pages/Invoice';
 import { Help } from './pages/Help';
 import { CalendarDemo } from './pages/CalendarDemo';
+import { TimelineDemo } from './pages/TimelineDemo';
 
-import PrimeReact from 'primereact/utils';
+import PrimeReact from 'primereact/api';
 
 import { ProgressBar } from 'primereact/progressbar'
 
@@ -79,6 +81,7 @@ const App = () => {
                 { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout' },
                 { label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input' },
                 { label: "Float Label", icon: "pi pi-fw pi-bookmark", to: "/floatlabel" },
+                { label: "Invalid State", icon: "pi pi-exclamation-circle", to: "/invalidstate" },
                 { label: 'Button', icon: 'pi pi-fw pi-mobile', to: '/button', class: 'rotated-icon' },
                 { label: 'Table', icon: 'pi pi-fw pi-table', to: '/table' },
                 { label: 'List', icon: 'pi pi-fw pi-list', to: '/list' },
@@ -112,6 +115,7 @@ const App = () => {
             items: [
                 { label: 'Crud', icon: 'pi pi-fw pi-pencil', to: '/crud' },
                 { label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', to: '/calendar' },
+                { label: 'Timeline', icon: 'pi pi-fw pi-calendar', to: '/timeline' },
                 { label: 'Landing', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank' },
                 { label: 'Login', icon: 'pi pi-fw pi-sign-in', to: '/login' },
                 { label: 'Invoice', icon: 'pi pi-fw pi-dollar', to: '/invoice' },
@@ -412,6 +416,7 @@ const App = () => {
                     <Route path="/documentation" component={Documentation} />
                     <Route path="/formlayout" component={FormLayoutDemo} />
                     <Route path="/floatlabel" component={FloatLabelDemo} />
+                    <Route path="/invalidstate" component={InvalidStateDemo} />
                     <Route path="/input" component={InputDemo} />
                     <Route path="/button" component={ButtonDemo} />
                     <Route path="/table" component={TableDemo} />
@@ -433,6 +438,7 @@ const App = () => {
                     <Route path="/typography" component={TypographyDemo} />
                     <Route path="/text" component={TextDemo} />
                     <Route path="/crud" component={CrudDemo} />
+                    <Route path="/timeline" component={TimelineDemo} />
                     <Route path="/calendar" component={CalendarDemo} />
                     <Route path="/help" component={Help} />
                     <Route path="/invoice" component={Invoice} />
