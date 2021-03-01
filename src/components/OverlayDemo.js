@@ -179,7 +179,7 @@ export const OverlayDemo = () => {
                                 <InputText type="text" placeholder="Username" tooltip="Your username" />
                             </div>
 
-                            <Button className="p-mt-2" type="button" label="Save" icon="pi pi-check" tooltip="Click to proceed" />
+                            <Button type="button" label="Save" icon="pi pi-check" tooltip="Click to proceed" />
                         </div>
                     </div>
                 </div>
