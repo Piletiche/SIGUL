@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Toolbar } from 'primereact/toolbar';
 import { Button } from 'primereact/button';
 import { SplitButton } from 'primereact/splitbutton';
@@ -14,6 +14,7 @@ import { Password } from 'primereact/password';
 
 
 export const PanelDemo = () => {
+    const [passwordVal, setPasswordVal] = useState('');
 
     const toolbarItems = [
         {
@@ -152,9 +153,9 @@ export const PanelDemo = () => {
                                         <label htmlFor="username">Username</label>
                                     </span>
                                 </div>
-                                <div className="p-field">
+                                <div className="p-field p-mt-4">
                                     <span className="p-float-label">
-                                        <Password id="password" type="password" />
+                                        <Password id="password" value={passwordVal} type="password" onChange={(e) => setPasswordVal(e.target.value)} />
                                         <label htmlFor="password">Password</label>
                                     </span>
                                 </div>
