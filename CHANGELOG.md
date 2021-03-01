@@ -4,7 +4,6 @@
 ###### * Brings support to PrimeReact 6.x
 
 **Migration Guide**
-- Update to PrimeReact
 - Update theme and layout css files.
 
 ## 5.0.1
