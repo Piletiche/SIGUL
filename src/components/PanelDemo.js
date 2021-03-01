@@ -155,7 +155,7 @@ export const PanelDemo = () => {
                                 </div>
                                 <div className="p-field p-mt-4">
                                     <span className="p-float-label">
-                                        <Password id="password" value={passwordVal} type="password" onChange={(e) => setPasswordVal(e.target.value)} />
+                                        <Password id="password" value={passwordVal} onChange={(e) => setPasswordVal(e.target.value)} />
                                         <label htmlFor="password">Password</label>
                                     </span>
                                 </div>
