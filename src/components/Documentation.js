@@ -109,13 +109,19 @@ export const Documentation = () => {
 <AppCodeHighlight lang="js">
 {`
 const menu = [
-    { label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' },
     {
-        label: 'UI Kit', icon: 'pi pi-fw pi-sitemap',
+        label: 'Favorites', icon: 'pi pi-fw pi-home',
+        items: [
+            { label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' }
+        ]
+    },
+    {
+        label: 'UI Kit', icon: 'pi pi-fw pi-star',
         items: [
             { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout' },
             { label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input' },
-            { label: 'Float Label', icon: 'pi pi-fw pi-bookmark', to: '/floatlabel' },
+            { label: "Float Label", icon: "pi pi-fw pi-bookmark", to: "/floatlabel" },
+            { label: "Invalid State", icon: "pi pi-exclamation-circle", to: "/invalidstate" },
             { label: 'Button', icon: 'pi pi-fw pi-mobile', to: '/button', class: 'rotated-icon' },
             { label: 'Table', icon: 'pi pi-fw pi-table', to: '/table' },
             { label: 'List', icon: 'pi pi-fw pi-list', to: '/list' },
@@ -131,7 +137,7 @@ const menu = [
         ]
     },
     {
-        label: "Utilities", icon: 'pi pi-fw pi-globe',
+        label: "Utilities", icon: 'pi pi-fw pi-compass',
         items: [
             { label: 'Display', icon: 'pi pi-fw pi-desktop', to: '/display' },
             { label: 'Elevation', icon: 'pi pi-fw pi-external-link', to: '/elevation' },
@@ -145,18 +151,19 @@ const menu = [
         ]
     },
     {
-        label: 'Pages', icon: 'pi pi-fw pi-clone',
+        label: 'Pages', icon: 'pi pi-fw pi-briefcase',
         items: [
             { label: 'Crud', icon: 'pi pi-fw pi-pencil', to: '/crud' },
             { label: 'Calendar', icon: 'pi pi-fw pi-calendar-plus', to: '/calendar' },
-            { label: 'Landing', icon: 'pi pi-fw pi-user-plus', url: 'assets/pages/landing.html', target: '_blank' },
+            { label: 'Timeline', icon: 'pi pi-fw pi-calendar', to: '/timeline' },
+            { label: 'Landing', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank' },
             { label: 'Login', icon: 'pi pi-fw pi-sign-in', to: '/login' },
             { label: 'Invoice', icon: 'pi pi-fw pi-dollar', to: '/invoice' },
             { label: 'Help', icon: 'pi pi-fw pi-question-circle', to: '/help' },
             { label: 'Error', icon: 'pi pi-fw pi-times-circle', to: '/error' },
             { label: 'Not Found', icon: 'pi pi-fw pi-exclamation-circle', to: '/notfound' },
             { label: 'Access Denied', icon: 'pi pi-fw pi-lock', to: '/access' },
-            { label: 'Empty Page', icon: 'pi pi-fw pi-circle-off', to: '/empty' }
+            { label: 'Empty', icon: 'pi pi-fw pi-circle-off', to: '/empty' }
         ]
     },
     {
@@ -204,8 +211,17 @@ const menu = [
             }
         ]
     },
-    { label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', command: () => { window.location = "https://www.primefaces.org/store" } },
-    { label: 'Documentation', icon: 'pi pi-fw pi-info-circle', to: '/documentation' },
+    {
+        label: 'Start', icon: 'pi pi-fw pi-download',
+        items: [
+            {
+                label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', url: ['https://www.primefaces.org/store']
+            },
+            {
+                label: 'Documentation', icon: 'pi pi-fw pi-info-circle', to: '/documentation'
+            }
+        ]
+    }
 ];
 `}
 </AppCodeHighlight>

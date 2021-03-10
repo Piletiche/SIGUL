@@ -182,8 +182,7 @@ const App = () => {
                 }
             ]
         }
-    ]
-
+    ];
 
     const onInputStyleChange = (inputStyle) => {
         setInputStyle(inputStyle);
