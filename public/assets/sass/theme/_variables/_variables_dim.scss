@@ -773,6 +773,29 @@ $skeletonAnimationBg:rgba(255,255,255,.04);
 $splitterGutterBg:rgba(255,255,255,.03);
 $splitterGutterHandleBg:$shade600;
 
+//speeddial
+$speedDialButtonWidth: 4rem;
+$speedDialButtonHeight: 4rem;
+$speedDialButtonIconFontSize: 1.3rem;
+$speedDialActionWidth: 3rem;
+$speedDialActionHeight: 3rem;
+$speedDialActionBg: $shade000;
+$speedDialActionHoverBg: $shade100;
+$speedDialActionTextColor: $shade900;
+$speedDialActionTextHoverColor: $shade900;
+
+//dock
+$dockActionWidth: 4rem;
+$dockActionHeight: 4rem;
+$dockItemPadding: .5rem;
+$dockCurrentItemMargin: 1.5rem;
+$dockFirstItemsMargin: 1.3rem;
+$dockSecondItemsMargin: 0.9rem;
+$dockBg: rgba(255,255,255,.1);
+$dockBorder: 1px solid rgba(255,255,255,0.2);
+$dockPadding: .5rem .5rem;
+$dockBorderRadius: .5rem;
+
 :root {
 	--surface-a:#{$shade800};
 	--surface-b:#{$shade900};

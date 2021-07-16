@@ -19,6 +19,14 @@ export const Documentation = () => {
 "npm install" or "yarn"
 `}
 </AppCodeHighlight>
+                    <p>The following command needs to be run to create the css files in the sample project.
+                        Note: Users can automatically run scss files without using this command by moving the theme file they want to use in their own projects under the src folder.
+                    <a href="https://create-react-app.dev/docs/adding-a-sass-stylesheet/"> Details</a></p>
+<AppCodeHighlight>
+{`
+sass public/assets:public/assets --no-source-map
+`}
+</AppCodeHighlight>
 
                     <p>Next step is running the application using the start script and navigate to <b>http://localhost:3000/</b> to view the application.</p>
 
