@@ -11,7 +11,7 @@ import { Column } from 'primereact/column';
 import { Chart } from 'primereact/chart';
 import { ProgressBar } from 'primereact/progressbar';
 import { Menu } from 'primereact/menu';
-import { FullCalendar } from 'primereact/fullcalendar';
+import FullCalendar from '@fullcalendar/react';
 
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -27,13 +27,15 @@ const chartData = {
             label: 'First Dataset',
             data: [65, 59, 80, 81, 56, 55, 40],
             fill: false,
-            borderColor: '#03A9F4'
+            borderColor: '#03A9F4',
+            tension: .4
         },
         {
             label: 'Second Dataset',
             data: [28, 48, 40, 19, 86, 27, 90],
             fill: false,
-            borderColor: '#FFC107'
+            borderColor: '#FFC107',
+            tension: .4
         }
     ]
 };
@@ -46,17 +48,6 @@ export const Dashboard = () => {
     const [tasks, setTasks] = useState([]);
     const [city, setCity] = useState(null);
     const menu = useRef(null);
-
-    const fullcalendarOptions = {
-        plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-        defaultDate: '2023-01-01',
-        header: {
-            left: 'prev,next',
-            center: 'title',
-            right: ''
-        },
-        editable: true
-    };
 
     let cities = [
         { label: 'New York', value: { id: 1, name: 'New York', code: 'NY' } },
@@ -125,7 +116,7 @@ export const Dashboard = () => {
                         </div>
                         <div className="overview-ratio-value">
                             51%
-					</div>
+                        </div>
                     </div>
                     <img src="assets/layout/images/dashboard/graph-blue.svg" alt="apollo-layout" />
                 </div>
@@ -141,7 +132,7 @@ export const Dashboard = () => {
                         </div>
                         <div className="overview-ratio-value">
                             36%
-					</div>
+                        </div>
                     </div>
                     <img src="assets/layout/images/dashboard/graph-green.svg" alt="apollo-layout" />
                 </div>
@@ -157,7 +148,7 @@ export const Dashboard = () => {
                         </div>
                         <div className="overview-ratio-value">
                             19%
-					</div>
+                        </div>
                     </div>
                     <img src="assets/layout/images/dashboard/graph-yellow.svg" alt="apollo-layout" />
                 </div>
@@ -173,7 +164,7 @@ export const Dashboard = () => {
                         </div>
                         <div className="overview-ratio-value">
                             25%
-					</div>
+                        </div>
                     </div>
                     <img src="assets/layout/images/dashboard/graph-red.svg" alt="apollo-layout" />
                 </div>
@@ -565,7 +556,8 @@ export const Dashboard = () => {
 
             <div className="p-col-12 p-md-8">
                 <Panel header="Calendar" style={{ height: '100%' }}>
-                    <FullCalendar events={events} options={fullcalendarOptions} />
+                    <FullCalendar events={events} plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]} initialDate='2021-02-01'
+                        header={{ left: 'prev,next', center: 'title', right: '' }} editable />
                 </Panel>
             </div>
         </div >

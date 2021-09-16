@@ -9,13 +9,15 @@ const lineData = {
             label: 'First Dataset',
             data: [65, 59, 80, 81, 56, 55, 40],
             fill: false,
-            borderColor: '#03A9F4'
+            borderColor: '#03A9F4',
+            tension: .4
         },
         {
             label: 'Second Dataset',
             data: [28, 48, 40, 19, 86, 27, 90],
             fill: false,
-            borderColor: '#FFC107'
+            borderColor: '#FFC107',
+            tension: .4
         }
     ]
 };
@@ -24,14 +26,14 @@ const pieData = {
     labels: ['A', 'B', 'C'],
     datasets: [
         {
-        data: [540, 325, 702, 421],
-        backgroundColor: [
-            'rgb(54, 162, 235)',
-            'rgb(255, 99, 132)',
-            'rgb(255, 205, 86)',
-            'rgb(75, 192, 192)'
-        ]
-    }]
+            data: [540, 325, 702, 421],
+            backgroundColor: [
+                'rgb(54, 162, 235)',
+                'rgb(255, 99, 132)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)'
+            ]
+        }]
 };
 
 const polarData = {
@@ -127,12 +129,16 @@ export const ChartDemo = () => {
 
                 <div className="card">
                     <h5 className="centerText">Pie Chart</h5>
-                    <Chart type="pie" data={pieData} />
+                    <div className="p-d-flex p-jc-center">
+                        <Chart style={{ position: 'relative', width: '50%' }} type="pie" data={pieData} />
+                    </div>
                 </div>
 
                 <div className="card">
                     <h5 className="centerText">Polar Area Chart</h5>
-                    <Chart type="polarArea" data={polarData} />
+                    <div className="p-d-flex p-jc-center">
+                        <Chart style={{ position: 'relative', width: '50%' }} type="polarArea" data={polarData} />
+                    </div>
                 </div>
             </div>
             <div className="p-col-12 p-lg-6">
@@ -143,12 +149,16 @@ export const ChartDemo = () => {
 
                 <div className="card">
                     <h5 className="centerText">Doughnut Chart</h5>
-                    <Chart type="doughnut" data={doughnutData} />
+                    <div className="p-d-flex p-jc-center">
+                        <Chart style={{ position: 'relative', width: '50%' }} type="doughnut" data={doughnutData} />
+                    </div>
                 </div>
 
                 <div className="card">
                     <h5 className="centerText">Radar Chart</h5>
-                    <Chart type="radar" data={radarData} />
+                    <div className="p-d-flex p-jc-center">
+                        <Chart style={{ position: 'relative', width: '50%' }} type="radar" data={radarData} />
+                    </div>
                 </div>
             </div>
         </div>
