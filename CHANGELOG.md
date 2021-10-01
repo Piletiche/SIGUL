@@ -1,5 +1,14 @@
 # Changelog
 
+## 6.0.1
+
+**Migration Guide**
+- Update theme files and layout files.
+
+**Implemented New Features and Enhancements:**
+
+- Styles of new PrimeReact components
+
 ## 6.0.0
 ###### * Brings support to PrimeReact 6.x
 
