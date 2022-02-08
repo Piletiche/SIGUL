@@ -15,12 +15,14 @@ import { ListBox } from 'primereact/listbox';
 import { Dropdown } from 'primereact/dropdown';
 import { ToggleButton } from 'primereact/togglebutton';
 import { MultiSelect } from 'primereact/multiselect';
+import { TreeSelect } from 'primereact/treeselect';
 import { SelectButton } from 'primereact/selectbutton';
 import { Button } from 'primereact/button';
 import { InputNumber } from 'primereact/inputnumber';
 import CountryService from '../service/CountryService';
+import NodeService from '../service/NodeService';
 
-export const InputDemo = () => {
+const InputDemo = () => {
 
     const [floatValue, setFloatValue] = useState('');
     const [autoValue, setAutoValue] = useState(null);
@@ -43,6 +45,8 @@ export const InputDemo = () => {
     const [selectButtonValue1, setSelectButtonValue1] = useState(null);
     const [selectButtonValue2, setSelectButtonValue2] = useState(null);
     const [inputGroupValue, setInputGroupValue] = useState(false);
+    const [selectedNode, setSelectedNode] = useState(null);
+    const [treeSelectNodes, setTreeSelectNodes] = useState(null);
 
     const listboxValues = [
         { name: 'New York', code: 'NY' },
@@ -87,7 +91,9 @@ export const InputDemo = () => {
 
     useEffect(() => {
         const countryService = new CountryService();
+        const nodeService = new NodeService();
         countryService.getCountries().then(data => setAutoValue(data));
+        nodeService.getTreeNodes().then(data => setTreeSelectNodes(data));
     }, []);
 
     const searchCountry = (event) => {
@@ -115,8 +121,8 @@ export const InputDemo = () => {
 
     const itemTemplate = (option) => {
         return (
-            <div className="country-item">
-                <span className={`flag flag-${option.code.toLowerCase()}`} />
+            <div className="flex align-items-center">
+                <span className={`mr-2 flag flag-${option.code.toLowerCase()}`} style={{ width: '18px', height: '12px' }} />
                 <span>{option.name}</span>
             </div>
         );
@@ -125,8 +131,8 @@ export const InputDemo = () => {
     const selectedItemTemplate = (option) => {
         if (option) {
             return (
-                <div className="country-item country-item-value">
-                    <span className={`flag flag-${option.code.toLowerCase()}`} />
+                <div className="inline-flex align-items-center py-1 px-2 bg-primary text-primary border-round mr-2">
+                    <span className={`mr-2 flag flag-${option.code.toLowerCase()}`} style={{ width: '18px', height: '12px' }} />
                     <span>{option.name}</span>
                 </div>
             );
@@ -136,37 +142,37 @@ export const InputDemo = () => {
     };
 
     return (
-        <div className="p-grid p-fluid input-demo">
-            <div className="p-col-12 p-md-6">
+        <div className="grid p-fluid">
+            <div className="col-12 md:col-6">
                 <div className="card">
                     <h5>InputText</h5>
-                    <div className="p-grid p-formgrid">
-                        <div className="p-col-12 p-mb-2 p-lg-4 p-mb-lg-0">
+                    <div className="grid formgrid">
+                        <div className="col-12 mb-2 lg:col-4 lg:mb-0">
                             <InputText type="text" placeholder="Default"></InputText>
                         </div>
-                        <div className="p-col-12 p-mb-2 p-lg-4 p-mb-lg-0">
+                        <div className="col-12 mb-2 lg:col-4 lg:mb-0">
                             <InputText type="text" placeholder="Disabled" disabled></InputText>
                         </div>
-                        <div className="p-col-12 p-mb-2 p-lg-4 p-mb-lg-0">
-                            <InputText type="text" placeholder="Invalid" className="p-error" />
+                        <div className="col-12 mb-2 lg:col-4 lg:mb-0">
+                            <InputText type="text" placeholder="Invalid" className="p-invalid" />
                         </div>
                     </div>
 
                     <h5>Icons</h5>
-                    <div className="p-grid p-formgrid">
-                        <div className="p-col-12 p-mb-2 p-lg-4 p-mb-lg-0">
+                    <div className="grid formgrid">
+                        <div className="col-12 mb-2 lg:col-4 lg:mb-0">
                             <span className="p-input-icon-left">
                                 <i className="pi pi-user" />
                                 <InputText type="text" placeholder="Username" />
                             </span>
                         </div>
-                        <div className="p-col-12 p-mb-2 p-lg-4 p-mb-lg-0">
+                        <div className="col-12 mb-2 lg:col-4 lg:mb-0">
                             <span className="p-input-icon-right">
                                 <InputText type="text" placeholder="Search" />
                                 <i className="pi pi-search" />
                             </span>
                         </div>
-                        <div className="p-col-12 p-mb-2 p-lg-4 p-mb-lg-0">
+                        <div className="col-12 mb-2 lg:col-4 lg:mb-0">
                             <span className="p-input-icon-left p-input-icon-right">
                                 <i className="pi pi-user" />
                                 <InputText type="text" placeholder="Search" />
@@ -198,21 +204,21 @@ export const InputDemo = () => {
                 </div>
 
                 <div className="card">
-                    <div className="p-grid">
-                        <div className="p-col-12">
+                    <div className="grid">
+                        <div className="col-12">
                             <h5>Slider</h5>
                             <InputText value={sliderValue} onChange={(e) => setSliderValue(parseInt(e.target.value), 10)} />
                             <Slider value={sliderValue} onChange={(e) => setSliderValue(e.value)} />
                         </div>
-                        <div className="p-col-12 p-md-6">
+                        <div className="col-12 md:col-6">
                             <h5>Rating</h5>
                             <Rating value={ratingValue} onChange={(e) => setRatingValue(e.value)} />
                         </div>
-                        <div className="p-col-12 p-md-6">
+                        <div className="col-12 md:col-6">
                             <h5>ColorPicker</h5>
                             <ColorPicker value={colorValue} onChange={(e) => setColorValue(e.value)} style={{ width: '2rem' }} />
                         </div>
-                        <div className="p-col-12">
+                        <div className="col-12">
                             <h5>Knob</h5>
                             <Knob value={knobValue} valueTemplate={"{value}%"} onChange={(e) => setKnobValue(e.value)} step={10} min={-50} max={50} />
                         </div>
@@ -220,53 +226,53 @@ export const InputDemo = () => {
                 </div>
             </div>
 
-            <div className="p-col-12 p-md-6">
+            <div className="col-12 md:col-6">
                 <div className="card">
                     <h5>RadioButton</h5>
-                    <div className="p-grid">
-                        <div className="p-col-12 p-md-4">
-                            <div className="p-field-radiobutton">
+                    <div className="grid">
+                        <div className="col-12 md:col-4">
+                            <div className="field-radiobutton">
                                 <RadioButton inputId="option1" name="option" value="Chicago" checked={radioValue === 'Chicago'} onChange={(e) => setRadioValue(e.value)} />
                                 <label htmlFor="option1">Chicago</label>
                             </div>
                         </div>
-                        <div className="p-col-12 p-md-4">
-                            <div className="p-field-radiobutton">
+                        <div className="col-12 md:col-4">
+                            <div className="field-radiobutton">
                                 <RadioButton inputId="option2" name="option" value="Los Angeles" checked={radioValue === 'Los Angeles'} onChange={(e) => setRadioValue(e.value)} />
                                 <label htmlFor="option2">Los Angeles</label>
                             </div>
                         </div>
-                        <div className="p-col-12 p-md-4">
-                            <div className="p-field-radiobutton">
+                        <div className="col-12 md:col-4">
+                            <div className="field-radiobutton">
                                 <RadioButton inputId="option3" name="option" value="New York" checked={radioValue === 'New York'} onChange={(e) => setRadioValue(e.value)} />
                                 <label htmlFor="option3">New York</label>
                             </div>
                         </div>
                     </div>
 
-                    <h5 style={{ marginTop: 0 }}>Checkbox</h5>
-                    <div className="p-grid">
-                        <div className="p-col-12 p-md-4">
-                            <div className="p-field-checkbox">
+                    <h5>Checkbox</h5>
+                    <div className="grid">
+                        <div className="col-12 md:col-4">
+                            <div className="field-checkbox">
                                 <Checkbox inputId="checkOption1" name="option" value="Chicago" checked={checkboxValue.indexOf('Chicago') !== -1} onChange={onCheckboxChange} />
                                 <label htmlFor="checkOption1">Chicago</label>
                             </div>
                         </div>
-                        <div className="p-col-12 p-md-4">
-                            <div className="p-field-checkbox">
+                        <div className="col-12 md:col-4">
+                            <div className="field-checkbox">
                                 <Checkbox inputId="checkOption2" name="option" value="Los Angeles" checked={checkboxValue.indexOf('Los Angeles') !== -1} onChange={onCheckboxChange} />
                                 <label htmlFor="checkOption2">Los Angeles</label>
                             </div>
                         </div>
-                        <div className="p-col-12 p-md-4">
-                            <div className="p-field-checkbox">
+                        <div className="col-12 md:col-4">
+                            <div className="field-checkbox">
                                 <Checkbox inputId="checkOption3" name="option" value="New York" checked={checkboxValue.indexOf('New York') !== -1} onChange={onCheckboxChange} />
                                 <label htmlFor="checkOption3">New York</label>
                             </div>
                         </div>
                     </div>
 
-                    <h5 style={{ marginTop: 0 }}>Input Switch</h5>
+                    <h5>Input Switch</h5>
                     <InputSwitch checked={switchValue} onChange={(e) => setSwitchValue(e.value)} />
                 </div>
 
@@ -279,7 +285,10 @@ export const InputDemo = () => {
 
                     <h5>MultiSelect</h5>
                     <MultiSelect value={multiselectValue} onChange={(e) => setMultiselectValue(e.value)} options={multiselectValues} optionLabel="name" placeholder="Select Countries" filter
-                        itemTemplate={itemTemplate} selectedItemTemplate={selectedItemTemplate} className="multiselect-custom" />
+                        itemTemplate={itemTemplate} selectedItemTemplate={selectedItemTemplate} />
+
+                    <h5>TreeSelect</h5>
+                    <TreeSelect value={selectedNode} onChange={(e) => setSelectedNode(e.value)} options={treeSelectNodes} placeholder="Select Item"></TreeSelect>
                 </div>
 
                 <div className="card">
@@ -294,11 +303,11 @@ export const InputDemo = () => {
                 </div>
             </div>
 
-            <div className="p-col-12">
+            <div className="col-12">
                 <div className="card">
                     <h5>Input Groups</h5>
-                    <div className="p-grid p-fluid">
-                        <div className="p-col-12 p-md-6">
+                    <div className="grid p-fluid">
+                        <div className="col-12 md:col-6">
                             <div className="p-inputgroup">
                                 <span className="p-inputgroup-addon">
                                     <i className="pi pi-user"></i>
@@ -307,7 +316,7 @@ export const InputDemo = () => {
                             </div>
                         </div>
 
-                        <div className="p-col-12 p-md-6">
+                        <div className="col-12 md:col-6">
                             <div className="p-inputgroup">
                                 <span className="p-inputgroup-addon"><i className="pi pi-shopping-cart"></i></span>
                                 <span className="p-inputgroup-addon"><i className="pi pi-globe"></i></span>
@@ -317,14 +326,14 @@ export const InputDemo = () => {
                             </div>
                         </div>
 
-                        <div className="p-col-12 p-md-6">
+                        <div className="col-12 md:col-6">
                             <div className="p-inputgroup">
                                 <Button label="Search" />
                                 <InputText placeholder="Keyword" />
                             </div>
                         </div>
 
-                        <div className="p-col-12 p-md-6">
+                        <div className="col-12 md:col-6">
                             <div className="p-inputgroup">
                                 <span className="p-inputgroup-addon p-inputgroup-addon-checkbox">
                                     <Checkbox checked={inputGroupValue} onChange={(e) => setInputGroupValue(e.checked)} binary />
@@ -335,6 +344,12 @@ export const InputDemo = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
+
+const comparisonFn = function (prevProps, nextProps) {
+    return prevProps.location.pathname === nextProps.location.pathname;
+};
+
+export default React.memo(InputDemo, comparisonFn);

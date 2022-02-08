@@ -1,5 +1,5 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react';
-import classNames from 'classnames';
+import { classNames } from 'primereact/utils';
 import { RadioButton } from 'primereact/radiobutton';
 import { InputSwitch } from 'primereact/inputswitch';
 
@@ -77,12 +77,12 @@ const AppConfig = (props) => {
 				</button>
 
 				<h5 style={{ marginTop: 0 }}>Input Style</h5>
-				<div className="p-formgroup-inline">
-					<div className="p-field-radiobutton">
+				<div className="formgroup-inline">
+					<div className="field-radiobutton">
 						<RadioButton id="input_outlined" name="inputstyle" value="outlined" checked={props.inputStyle === 'outlined'} onChange={(e) => props.onInputStyleChange(e.value)} />
 						<label htmlFor="input_outlined">Outlined</label>
 					</div>
-					<div className="p-field-radiobutton">
+					<div className="field-radiobutton">
 						<RadioButton id="input_filled" name="inputstyle" value="filled" checked={props.inputStyle === 'filled'} onChange={(e) => props.onInputStyleChange(e.value)} />
 						<label htmlFor="input_filled">Filled</label>
 					</div>
@@ -92,33 +92,33 @@ const AppConfig = (props) => {
 				<InputSwitch checked={props.ripple} onChange={props.onRippleChange}/>
 
 				<h5>Menu Type</h5>
-				<div className="p-field-radiobutton">
+				<div className="field-radiobutton">
 					<RadioButton id="static" name="layoutMode" value="static" checked={props.layoutMode === 'static'} onChange={(e) => props.changeMenuMode({ menuMode: e.value })} />
 					<label htmlFor="static">Static</label>
 				</div>
-				<div className="p-field-radiobutton">
+				<div className="field-radiobutton">
 					<RadioButton id="overlay" name="layoutMode" value="overlay" checked={props.layoutMode === 'overlay'} onChange={(e) => props.changeMenuMode({ menuMode: e.value })} />
 					<label htmlFor="overlay">Overlay</label>
 				</div>
-				<div className="p-field-radiobutton">
+				<div className="field-radiobutton">
 					<RadioButton id="horizontal" name="layoutMode" value="horizontal" checked={props.layoutMode === 'horizontal'} onChange={(e) => props.changeMenuMode({ menuMode: e.value })} />
 					<label htmlFor="horizontal">Horizontal</label>
 				</div>
-				<div className="p-field-radiobutton">
+				<div className="field-radiobutton">
 					<RadioButton id="slim" name="layoutMode" value="slim" checked={props.layoutMode === 'slim'} onChange={(e) => props.changeMenuMode({ menuMode: e.value })} />
 					<label htmlFor="slim">Slim</label>
 				</div>
 
 				<h5>Color Scheme</h5>
-				<div className="p-field-radiobutton">
+				<div className="field-radiobutton">
 					<RadioButton id="light" name="color" value="light" checked={props.scheme === 'light'} onChange={(e) => props.onSchemeChange(e.value)} />
 					<label htmlFor="light">Light</label>
 				</div>
-				<div className="p-field-radiobutton">
+				<div className="field-radiobutton">
 					<RadioButton id="dark" name="color" value="dark" checked={props.scheme === 'dark'} onChange={(e) => props.onSchemeChange(e.value)} />
 					<label htmlFor="dark">Dark</label>
 				</div>
-				<div className="p-field-radiobutton">
+				<div className="field-radiobutton">
 					<RadioButton id="dim" name="color" value="dim" checked={props.scheme === 'dim'} onChange={(e) => props.onSchemeChange(e.value)} />
 					<label htmlFor="dim">Dim</label>
 				</div>

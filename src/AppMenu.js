@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { NavLink } from 'react-router-dom'
-import classNames from 'classnames';
+import { classNames } from 'primereact/utils';
 import { CSSTransition } from 'react-transition-group';
 import { Ripple } from 'primereact/ripple';
 

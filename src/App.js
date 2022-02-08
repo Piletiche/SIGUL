@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import classNames from 'classnames';
-import { Route } from 'react-router-dom';
+import React, { useRef, useState, useEffect } from 'react';
+import { classNames } from 'primereact/utils';
+import { Route, useLocation } from 'react-router-dom';
 
 import AppTopbar from './AppTopbar';
 import AppBreadcrumb from './AppBreadcrumb';
@@ -8,41 +8,35 @@ import AppFooter from './AppFooter';
 import AppMenu from './AppMenu';
 import AppConfig from './AppConfig';
 
-import { Dashboard } from './components/Dashboard';
-import { ButtonDemo } from './components/ButtonDemo';
-import { ChartDemo } from './components/ChartDemo';
-import { MessagesDemo } from './components/MessagesDemo';
-import { Documentation } from './components/Documentation';
-import { FileDemo } from './components/FileDemo';
-import { FormLayoutDemo } from './components/FormLayoutDemo';
-import { InputDemo } from './components/InputDemo';
-import { ListDemo } from './components/ListDemo';
-import { MiscDemo } from './components/MiscDemo';
-import { MenuDemo } from './components/MenuDemo';
-import { OverlayDemo } from './components/OverlayDemo';
-import { PanelDemo } from './components/PanelDemo';
-import { TableDemo } from './components/TableDemo';
-import { TreeDemo } from './components/TreeDemo';
-import { FloatLabelDemo } from './components/FloatLabelDemo';
-import { InvalidStateDemo } from './components/InvalidStateDemo';
-import { MediaDemo } from './components/MediaDemo';
-import { DisplayDemo } from './utilities/DisplayDemo';
-import { ElevationDemo } from './utilities/ElevationDemo';
-import { FlexBoxDemo } from './utilities/FlexboxDemo';
-import { GridDemo } from './utilities/GridDemo';
-import { IconsDemo } from './utilities/IconsDemo';
-import { SpacingDemo } from './utilities/SpacingDemo';
-import { TextDemo } from './utilities/TextDemo';
-import { TypographyDemo } from './utilities/TypographyDemo';
-import { Widgets } from './utilities/Widgets';
-import { CrudDemo } from './pages/CrudDemo';
-import { EmptyPage } from './pages/EmptyPage';
-import { Invoice } from './pages/Invoice';
-import { Help } from './pages/Help';
-import { CalendarDemo } from './pages/CalendarDemo';
-import { TimelineDemo } from './pages/TimelineDemo';
+import Dashboard from './components/Dashboard';
+import ButtonDemo from './components/ButtonDemo';
+import ChartDemo from './components/ChartDemo';
+import MessagesDemo from './components/MessagesDemo';
+import Documentation from './components/Documentation';
+import FileDemo from './components/FileDemo';
+import FormLayoutDemo from './components/FormLayoutDemo';
+import InputDemo from './components/InputDemo';
+import ListDemo from './components/ListDemo';
+import MiscDemo from './components/MiscDemo';
+import MenuDemo from './components/MenuDemo';
+import OverlayDemo from './components/OverlayDemo';
+import PanelDemo from './components/PanelDemo';
+import TableDemo from './components/TableDemo';
+import TreeDemo from './components/TreeDemo';
+import FloatLabelDemo from './components/FloatLabelDemo';
+import InvalidStateDemo from './components/InvalidStateDemo';
+import MediaDemo from './components/MediaDemo';
+import BlocksDemo from './components/BlocksDemo';
+import IconsDemo from './utilities/IconsDemo';
+import CrudDemo from './pages/CrudDemo';
+import EmptyPage from './pages/EmptyPage';
+import Invoice from './pages/Invoice';
+import Help from './pages/Help';
+import CalendarDemo from './pages/CalendarDemo';
+import TimelineDemo from './pages/TimelineDemo';
 
 import PrimeReact from 'primereact/api';
+import { Tooltip } from 'primereact/tooltip';
 
 import { ProgressBar } from 'primereact/progressbar'
 
@@ -64,6 +58,8 @@ const App = () => {
     const [inputStyle, setInputStyle] = useState('outlined');
     const [ripple, setRipple] = useState(false);
     const [scheme, setScheme] = useState('light');
+    const copyTooltipRef = useRef();
+    const location = useLocation();
 
     let menuClick;
     let topbarItemClick;
@@ -76,7 +72,7 @@ const App = () => {
             ]
         },
         {
-            label: 'UI Kit', icon: 'pi pi-fw pi-star',
+            label: 'UI Kit', icon: 'pi pi-fw pi-star-fill',
             items: [
                 { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout' },
                 { label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input' },
@@ -97,17 +93,17 @@ const App = () => {
             ]
         },
         {
-            label: "Utilities", icon: 'pi pi-fw pi-compass',
+            label: "PrimeBlocks", icon: "pi pi-prime",
             items: [
-                { label: 'Display', icon: 'pi pi-fw pi-desktop', to: '/display' },
-                { label: 'Elevation', icon: 'pi pi-fw pi-external-link', to: '/elevation' },
-                { label: 'Flexbox', icon: 'pi pi-fw pi-directions', to: '/flexbox' },
-                { label: 'Icons', icon: 'pi pi-fw pi-search', to: '/icons' },
-                { label: 'Widgets', icon: 'pi pi-fw pi-star-o', to: '/widgets' },
-                { label: 'Grid System', icon: 'pi pi-fw pi-th-large', to: '/grid' },
-                { label: 'Spacing', icon: 'pi pi-fw pi-arrow-right', to: '/spacing' },
-                { label: 'Typography', icon: 'pi pi-fw pi-align-center', to: '/typography' },
-                { label: 'Text', icon: 'pi pi-fw pi-pencil', to: '/text' },
+                { label: "Free Blocks", icon: "pi pi-fw pi-eye", to: "/blocks", badge: "NEW", },
+                { label: "All Blocks", icon: "pi pi-fw pi-globe", url: "https://www.primefaces.org/primeblocks-react", target: "_blank" }
+            ]
+        },
+        {
+            label: 'Utilities', icon: 'pi pi-fw pi-compass',
+            items: [
+                { label: 'Icons', icon: 'pi pi-fw pi-prime', to: '/icons' },
+                { label: "PrimeFlex", icon: "pi pi-fw pi-desktop", url: "https://www.primefaces.org/primeflex", target: "_blank" }
             ]
         },
         {
@@ -183,6 +179,10 @@ const App = () => {
             ]
         }
     ];
+
+    useEffect(() => {
+        copyTooltipRef && copyTooltipRef.current && copyTooltipRef.current.updateTargetEvents();
+    }, [location]);
 
     const onInputStyleChange = (inputStyle) => {
         setInputStyle(inputStyle);
@@ -382,6 +382,8 @@ const App = () => {
 
     return (
         <div className={layoutClassName} onClick={onDocumentClick}>
+            <Tooltip ref={copyTooltipRef} target=".block-action-copy" position="bottom" content="Copied to clipboard" event="focus" />
+
 
             <AppTopbar
                 topbarMenuActive={topbarMenuActive} activeTopbarItem={activeTopbarItem}
@@ -399,7 +401,7 @@ const App = () => {
 
                         <div className="layout-menu-footer-content">
                             <ProgressBar value={50} showValue={false}></ProgressBar>
-                                Today
+                            Today
                             <ProgressBar value={80} showValue={false}></ProgressBar>
                             Overall
                         </div>
@@ -426,23 +428,16 @@ const App = () => {
                     <Route path="/menu" component={MenuDemo} />
                     <Route path="/messages" component={MessagesDemo} />
                     <Route path="/file" component={FileDemo} />
-                    <Route path="/chart" component={ChartDemo} />
+                    <Route path="/chart" render={() => <ChartDemo colorMode={scheme} />} />
                     <Route path="/misc" component={MiscDemo} />
-                    <Route path="/display" component={DisplayDemo} />
-                    <Route path="/elevation" component={ElevationDemo} />
-                    <Route path="/flexbox" component={FlexBoxDemo} />
                     <Route path="/icons" component={IconsDemo} />
-                    <Route path="/grid" component={GridDemo} />
-                    <Route path="/spacing" component={SpacingDemo} />
-                    <Route path="/typography" component={TypographyDemo} />
-                    <Route path="/text" component={TextDemo} />
+                    <Route path="/blocks" component={BlocksDemo} />
                     <Route path="/crud" component={CrudDemo} />
                     <Route path="/timeline" component={TimelineDemo} />
                     <Route path="/calendar" component={CalendarDemo} />
                     <Route path="/help" component={Help} />
                     <Route path="/invoice" component={Invoice} />
                     <Route path="/empty" component={EmptyPage} />
-                    <Route path="/widgets" component={Widgets} />
                     <Route path="/media" component={MediaDemo} />
                 </div>
 

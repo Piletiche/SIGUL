@@ -40,7 +40,7 @@ const chartData = {
     ]
 };
 
-export const Dashboard = () => {
+const Dashboard = () => {
 
     const [products, setProducts] = useState(null);
     const [selectedProduct, setSelectedProduct] = useState(null);
@@ -99,15 +99,15 @@ export const Dashboard = () => {
     };
 
     const actionTemplate = (rowData, column) => {
-        return <div className="p-grid">
-            <Button icon="pi pi-search" type="button" className="p-button-success p-mr-2 p-mb-1"></Button>
-            <Button icon="pi pi-times" type="button" className="p-button-danger p-mb-1"></Button>
+        return <div className="grid">
+            <Button icon="pi pi-search" type="button" className="p-button-success mr-2 mb-1"></Button>
+            <Button icon="pi pi-times" type="button" className="p-button-danger mb-1"></Button>
         </div>
     };
 
     return (
-        <div className="p-grid dashboard">
-            <div className="p-col-12 p-md-3">
+        <div className="grid dashboard">
+            <div className="col-12 md:col-3">
                 <div className="overview-box overview-box-1"><h1>SALES</h1>
                     <div className="overview-value">$25,620</div>
                     <div className="overview-ratio">
@@ -122,7 +122,7 @@ export const Dashboard = () => {
                 </div>
             </div>
 
-            <div className="p-col-12 p-md-3">
+            <div className="col-12 md:col-3">
                 <div className="overview-box overview-box-2">
                     <h1>VIEWS</h1>
                     <div className="overview-value">9521</div>
@@ -138,7 +138,7 @@ export const Dashboard = () => {
                 </div>
             </div>
 
-            <div className="p-col-12 p-md-3">
+            <div className="col-12 md:col-3">
                 <div className="overview-box overview-box-3">
                     <h1>USERS</h1>
                     <div className="overview-value">452</div>
@@ -154,7 +154,7 @@ export const Dashboard = () => {
                 </div>
             </div>
 
-            <div className="p-col-12 p-md-3">
+            <div className="col-12 md:col-3">
                 <div className="overview-box overview-box-4">
                     <h1>SOCIAL</h1>
                     <div className="overview-value">65922</div>
@@ -170,31 +170,31 @@ export const Dashboard = () => {
                 </div>
             </div>
 
-            <div className="p-col-12">
+            <div className="col-12">
                 <Panel header="Status" className="circle-panel">
-                    <div className="p-grid p-nogutter">
-                        <div className="p-col-12 p-lg-3 p-md-6">
+                    <div className="grid grid-nogutter">
+                        <div className="col-12 lg:col-3 md:col-6">
                             <div className="status-title" style={{ color: '#6ebc3b' }}>Users</div>
                             <div className="circle1">
                                 <i className="pi pi-user"></i>
                                 <span>75</span>
                             </div>
                         </div>
-                        <div className="p-col-12 p-lg-3 p-md-6">
+                        <div className="col-12 lg:col-3 md:col-6">
                             <div className="status-title" style={{ color: '#f6a821' }}>Mobile</div>
                             <div className="circle2">
                                 <i className="pi pi-mobile"></i>
                                 <span>25</span>
                             </div>
                         </div>
-                        <div className="p-col-12 p-lg-3 p-md-6">
+                        <div className="col-12 lg:col-3 md:col-6">
                             <div className="status-title" style={{ color: '#039ade' }}>Pageviews</div>
                             <div className="circle3">
                                 <i className="pi pi-eye"></i>
                                 <span>50</span>
                             </div>
                         </div>
-                        <div className="p-col-12 p-lg-3 p-md-6">
+                        <div className="col-12 lg:col-3 md:col-6">
                             <div className="status-title" style={{ color: '#d66351' }}>Sales</div>
                             <div className="circle4">
                                 <i className="pi pi-dollar"></i>
@@ -205,7 +205,7 @@ export const Dashboard = () => {
                 </Panel>
             </div>
 
-            <div className="p-col-12 p-md-6 p-lg-4 task-list">
+            <div className="col-12 md:col-6 lg:col-4 task-list">
                 <Panel header="Tasks">
                     <ul>
                         <li>
@@ -252,32 +252,32 @@ export const Dashboard = () => {
                 </Panel>
             </div>
 
-            <div className="p-col-12 p-md-6 p-lg-4 p-fluid contact-form">
+            <div className="col-12 md:col-6 lg:col-4 p-fluid contact-form">
                 <Panel header="Contact Us">
-                    <div className="p-grid">
-                        <div className="p-col-12">
+                    <div className="grid">
+                        <div className="col-12">
                             <Dropdown value={city} options={cities} placeholder="Select a City" onChange={onCityChange} />
                         </div>
-                        <div className="p-col-12">
+                        <div className="col-12">
                             <InputText type="text" placeholder="Name" />
                         </div>
-                        <div className="p-col-12">
+                        <div className="col-12">
                             <InputText type="text" placeholder="Age" />
                         </div>
-                        <div className="p-col-12">
+                        <div className="col-12">
                             <InputText type="text" placeholder="Email" />
                         </div>
-                        <div className="p-col-12">
+                        <div className="col-12">
                             <InputTextarea placeholder="Messages" />
                         </div>
-                        <div className="p-col-12">
+                        <div className="col-12">
                             <Button type="button" label="Send" icon="pi pi-check" />
                         </div>
                     </div>
                 </Panel>
             </div>
 
-            <div className="p-col-12 p-lg-4 contacts">
+            <div className="col-12 lg:col-4 contacts">
                 <Panel header="Team" style={{ minHeight: '360px' }}>
                     <ul>
                         <li className="clearfix">
@@ -339,7 +339,7 @@ export const Dashboard = () => {
                 </Panel>
             </div>
 
-            <div className="p-col-12 p-lg-8 chat">
+            <div className="col-12 lg:col-8 chat">
                 <Panel header="Chat" className="no-pad">
                     <ul>
                         <li className="clearfix message-from">
@@ -398,14 +398,14 @@ export const Dashboard = () => {
                 </div>
             </div>
 
-            <div className="p-col-12 p-lg-4">
+            <div className="col-12 lg:col-4">
                 <div className="card timeline p-fluid">
-                    <div className="p-grid">
-                        <div className="p-col-3">
+                    <div className="grid">
+                        <div className="col-3">
                             <span className="event-time">just now</span>
                             <i className="pi pi-fw pi-map-marker" style={{ color: '#3984b8' }}></i>
                         </div>
-                        <div className="p-col-9">
+                        <div className="col-9">
                             <span className="event-owner" style={{ color: '#3984b8' }}>Katherine May</span>
                             <span className="event-text">Lorem ipsun dolor amet</span>
                             <div className="event-content">
@@ -413,29 +413,29 @@ export const Dashboard = () => {
                             </div>
                         </div>
 
-                        <div className="p-col-3">
+                        <div className="col-3">
                             <span className="event-time">12h ago</span>
                             <i className="pi pi-fw pi-star" style={{ color: '#f6ac2b' }}></i>
                         </div>
-                        <div className="p-col-9">
+                        <div className="col-9">
                             <span className="event-owner" style={{ color: '#f6ac2b' }}>Brandon Santos</span>
                             <span className="event-text">Ab nobis, magnam sunt eum. Laudantium, repudiandae, similique!.</span>
                         </div>
 
-                        <div className="p-col-3">
+                        <div className="col-3">
                             <span className="event-time">15h ago</span>
                             <i className="pi pi-fw pi-comment" style={{ color: '#7e8dcd' }}></i>
                         </div>
-                        <div className="p-col-9">
+                        <div className="col-9">
                             <span className="event-owner" style={{ color: '#7e8dcd' }}>Stephan Ward</span>
                             <span className="event-text">Omnis veniam quibusdam ratione est repellat qui nam quisquam ab mollitia dolores ullam voluptates, similique, dignissimos.</span>
                         </div>
 
-                        <div className="p-col-3">
+                        <div className="col-3">
                             <span className="event-time">2d ago</span>
                             <i className="pi pi-fw pi-globe" style={{ color: '#e175a0' }}></i>
                         </div>
-                        <div className="p-col-9">
+                        <div className="col-9">
                             <span className="event-owner" style={{ color: '#e175a0' }}>Jason Smith</span>
                             <span className="event-text">Laudantium, repudiandae, similique!</span>
                             <div className="event-content">
@@ -443,25 +443,25 @@ export const Dashboard = () => {
                             </div>
                         </div>
 
-                        <div className="p-col-3">
+                        <div className="col-3">
                             <span className="event-time">1w ago</span>
                             <i className="pi pi-fw pi-heart" style={{ color: '#e175a0' }}></i>
                         </div>
-                        <div className="p-col-9">
+                        <div className="col-9">
                             <span className="event-owner">Kevin Cox</span>
                             <span className="event-text">Quibusdam ratione est repellat qui nam quisquam veniam quibusdam ratione.</span>
                         </div>
 
-                        <div className="p-col-3">
+                        <div className="col-3">
                             <span className="event-time">2w ago</span>
                             <i className="pi pi-fw pi-compass" style={{ color: '#3eb839' }}></i>
                         </div>
-                        <div className="p-col-9">
+                        <div className="col-9">
                             <span className="event-owner" style={{ color: '#3eb839' }}>Walter White</span>
                             <span className="event-text">I am the one who knocks!</span>
                         </div>
 
-                        <div className="p-col-12">
+                        <div className="col-12">
                             <Button label="Refresh" icon="pi pi-refresh"
                                 className="rounded-btn raised-btn"></Button>
                         </div>
@@ -469,13 +469,13 @@ export const Dashboard = () => {
                 </div>
             </div>
 
-            <div className="p-col-12 p-md-6">
+            <div className="col-12 md:col-6">
                 <Panel header="Core 1 Data">
                     <Chart type="line" data={chartData} />
                 </Panel>
             </div>
 
-            <div className="p-col-12 p-md-6">
+            <div className="col-12 md:col-6">
                 <Panel header="Disk Spaces" className="disk-spaces">
                     <span>4.2 TB Used</span>
                     <ProgressBar value={75} showValue={false}></ProgressBar>
@@ -488,7 +488,7 @@ export const Dashboard = () => {
                 </Panel >
             </div >
 
-            <div className="p-col-12 p-lg-4">
+            <div className="col-12 lg:col-4">
                 <div className="user-card card">
                     <div className="user-card-header">
                         <Button icon="pi pi-plus" onClick={(event) => menu.current.toggle(event)} />
@@ -554,7 +554,7 @@ export const Dashboard = () => {
                 </div>
             </div>
 
-            <div className="p-col-12 p-md-8">
+            <div className="col-12 md:col-8">
                 <Panel header="Calendar" style={{ height: '100%' }}>
                     <FullCalendar events={events} plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]} initialDate='2021-02-01'
                         header={{ left: 'prev,next', center: 'title', right: '' }} editable />
@@ -564,3 +564,9 @@ export const Dashboard = () => {
     )
 
 }
+
+const comparisonFn = function (prevProps, nextProps) {
+    return prevProps.location.pathname === nextProps.location.pathname;
+};
+
+export default React.memo(Dashboard, comparisonFn);

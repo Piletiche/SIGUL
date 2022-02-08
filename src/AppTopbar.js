@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import { classNames } from 'primereact/utils';
 import { InputText } from 'primereact/inputtext';
 import { CSSTransition } from 'react-transition-group';
 

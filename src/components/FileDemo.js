@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { FileUpload } from 'primereact/fileupload';
 
-export const FileDemo = () => {
+const FileDemo = () => {
 
     const toast = useRef(null);
 
@@ -10,8 +10,8 @@ export const FileDemo = () => {
     }
 
     return (
-        <div className="p-grid">
-            <div className="p-col-12">
+        <div className="grid">
+            <div className="col-12">
                 <div className="card">
                     <h5>Advanced</h5>
                     <FileUpload name="demo[]" url="./upload.php" onUpload={onUpload} multiple accept="image/*" maxFileSize={1000000} />
@@ -23,3 +23,9 @@ export const FileDemo = () => {
         </div>
     )
 }
+
+const comparisonFn = function (prevProps, nextProps) {
+    return prevProps.location.pathname === nextProps.location.pathname;
+};
+
+export default React.memo(FileDemo, comparisonFn);

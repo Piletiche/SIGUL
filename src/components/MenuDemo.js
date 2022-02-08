@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Menubar } from 'primereact/menubar';
 import { InputText } from 'primereact/inputtext';
 import { BreadCrumb } from 'primereact/breadcrumb';
@@ -10,12 +10,43 @@ import { Button } from 'primereact/button';
 import { ContextMenu } from 'primereact/contextmenu';
 import { MegaMenu } from 'primereact/megamenu';
 import { PanelMenu } from 'primereact/panelmenu';
+import { Route, useHistory, useLocation } from 'react-router-dom';
+import { PersonalDemo } from '../components/menu/PersonalDemo';
+import { ConfirmationDemo } from '../components/menu/ConfirmationDemo';
+import { PaymentDemo } from '../components/menu/PaymentDemo';
+import { SeatDemo } from '../components/menu/SeatDemo';
 
+const MenuDemo = () => {
 
-export const MenuDemo = () => {
+    const [activeIndex, setActiveIndex] = useState(0);
 
     const menu = useRef(null);
     const contextMenu = useRef(null);
+    const history = useHistory();
+    const location = useLocation();
+
+    const checkActiveIndex = useCallback(() => {
+        const paths = location.pathname.split('/');
+        const currentPath = paths[paths.length - 1];
+
+        switch (currentPath) {
+            case 'seat':
+                setActiveIndex(1);
+                break;
+            case 'payment':
+                setActiveIndex(2);
+                break;
+            case 'confirmation':
+                setActiveIndex(3);
+                break;
+            default:
+                break;
+        }
+    },[location])
+
+    useEffect(() => {
+        checkActiveIndex();
+    }, [checkActiveIndex])
 
     const nestedMenuitems = [
         {
@@ -108,10 +139,10 @@ export const MenuDemo = () => {
     ];
 
     const wizardItems = [
-        { label: 'Personal' },
-        { label: 'Seat' },
-        { label: 'Payment' },
-        { label: 'Confirmation' }
+        { label: 'Personal', command: () => history.push('/menu') },
+        { label: 'Seat', command: () => history.push('/menu/seat') },
+        { label: 'Payment', command: () => history.push('/menu/payment') },
+        { label: 'Confirmation', command: () => history.push('/menu/confirmation') }
     ];
 
     const tieredMenuItems = [
@@ -352,7 +383,7 @@ export const MenuDemo = () => {
             ]
         },
         {
-            label: 'Sports', icon: 'pi pi-fw pi-star-o',
+            label: 'Sports', icon: 'pi pi-fw pi-star',
             items: [
                 [
                     {
@@ -468,50 +499,58 @@ export const MenuDemo = () => {
     };
 
     return (
-        <div className="p-grid p-fluid menu-demo">
-            <div className="p-col-12">
+        <div className="grid p-fluid">
+            <div className="col-12">
                 <div className="card card-w-title">
                     <h5>Menubar</h5>
                     <Menubar model={nestedMenuitems} end={menubarEndTemplate}></Menubar>
                 </div>
             </div>
 
-            <div className="p-col-12">
+            <div className="col-12">
                 <div className="card card-w-title">
                     <h5>Breadcrumb</h5>
                     <BreadCrumb home={breadcrumbHome} model={breadcrumbItems} />
                 </div>
             </div>
 
-            <div className="p-col-12 p-md-6">
+            <div className="col-12 md:col-6">
                 <div className="card card-w-title">
                     <h5>Steps</h5>
-                    <Steps model={wizardItems} readonly={false} />
+                    <Steps model={wizardItems} activeIndex={activeIndex} onSelect={(e) => setActiveIndex(e.index)} readOnly={false} />
+                    <Route exact path={'/menu'} component={PersonalDemo} />
+                    <Route path={'/menu/confirmation'} component={ConfirmationDemo} />
+                    <Route path={'/menu/payment'} component={PaymentDemo} />
+                    <Route path={'/menu/seat'} component={SeatDemo} />
                 </div>
             </div>
 
-            <div className="p-col-12 p-md-6">
+            <div className="col-12 md:col-6">
                 <div className="card card-w-title">
                     <h5>TabMenu</h5>
-                    <TabMenu model={wizardItems} />
+                    <TabMenu model={wizardItems} activeIndex={activeIndex} onTabChange={(e) => setActiveIndex(e.index)} />
+                    <Route exact path={'/menu'} component={PersonalDemo} />
+                    <Route path={'/menu/confirmation'} component={ConfirmationDemo} />
+                    <Route path={'/menu/payment'} component={PaymentDemo} />
+                    <Route path={'/menu/seat'} component={SeatDemo} />
                 </div>
             </div>
 
-            <div className="p-col-12 p-md-4">
+            <div className="col-12 md:col-4">
                 <div className="card">
                     <h5>Tiered Menu</h5>
                     <TieredMenu model={tieredMenuItems} />
                 </div>
             </div>
 
-            <div className="p-col-12 p-md-4">
+            <div className="col-12 md:col-4">
                 <div className="card">
                     <h5>Plain Menu</h5>
                     <Menu model={menuitems} />
                 </div>
             </div>
 
-            <div className="p-col-12 p-md-4">
+            <div className="col-12 md:col-4">
                 <div className="card">
                     <h5>Overlay Menu</h5>
 
@@ -526,7 +565,7 @@ export const MenuDemo = () => {
                 </div>
             </div>
 
-            <div className="p-col-12 p-md-6">
+            <div className="col-12 md:col-6">
                 <div className="card">
                     <h5>MegaMenu - Horizontal</h5>
                     <MegaMenu model={megamenuItems} />
@@ -536,7 +575,7 @@ export const MenuDemo = () => {
                 </div>
             </div>
 
-            <div className="p-col-12 p-md-6">
+            <div className="col-12 md:col-6">
                 <div className="card">
                     <h5>PanelMenu</h5>
                     <PanelMenu model={panelMenuitems} />
@@ -545,3 +584,9 @@ export const MenuDemo = () => {
         </div>
     )
 }
+
+const comparisonFn = function (prevProps, nextProps) {
+    return prevProps.location.pathname === nextProps.location.pathname;
+};
+
+export default React.memo(MenuDemo, comparisonFn);

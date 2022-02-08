@@ -4,7 +4,7 @@ import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
 import NodeService from '../service/NodeService';
 
-export const TreeDemo = () => {
+const TreeDemo = () => {
 
     const [treeNodes, setTreeNodes] = useState([]);
     const [selectedTreeNodeKeys, setSelectedTreeNodeKeys] = useState(null);
@@ -18,23 +18,29 @@ export const TreeDemo = () => {
     }, []);
 
     return (
-        <div className="p-grid">
-            <div className="p-col-12">
+        <div className="grid">
+            <div className="col-12">
                 <div className="card">
                     <h5>Tree</h5>
-                    <Tree value={treeNodes} selectionMode="checkbox" selectionKeys={selectedTreeNodeKeys} onSelectionChange={(e) => setSelectedTreeNodeKeys(e.value)}></Tree>
+                    <Tree value={treeNodes} selectionMode="checkbox" selectionKeys={selectedTreeNodeKeys} onSelectionChange={(e) => setSelectedTreeNodeKeys(e.value)} />
                 </div>
             </div>
-            <div className="p-col-12">
+            <div className="col-12">
                 <div className="card">
                     <h5>TreeTable</h5>
                     <TreeTable value={treeTableNodes} header="FileSystem" selectionMode="checkbox" selectionKeys={selectedTreeTableNodeKeys} onSelectionChange={(e) => setSelectedTreeTableNodeKeys(e.value)}>
-                        <Column field="name" header="Name" expander></Column>
-                        <Column field="size" header="Size"></Column>
-                        <Column field="type" header="Type"></Column>
+                        <Column field="name" header="Name" expander />
+                        <Column field="size" header="Size" />
+                        <Column field="type" header="Type" />
                     </TreeTable>
                 </div>
             </div>
         </div>
     )
 }
+
+const comparisonFn = function (prevProps, nextProps) {
+    return prevProps.location.pathname === nextProps.location.pathname;
+};
+
+export default React.memo(TreeDemo, comparisonFn);

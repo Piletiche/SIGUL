@@ -1,3 +1,16 @@
+$colors: (
+    "blue": #2196F3,
+    "green": #4caf50,
+    "yellow": #FBC02D,
+    "cyan": #00BCD4,
+    "pink": #E91E63,
+    "indigo": #3F51B5,
+    "teal": #009688,
+    "orange": #F57C00,
+    "bluegray": #607D8B,
+    "purple": #9C27B0
+);
+
 //reused color variables
 $shade000:#ffffff !default;    //surface
 $shade100:#f8f9fa !default;    //header background
@@ -224,7 +237,7 @@ $radiobuttonActiveHoverBorderColor:$primaryDarkerColor !default;
 $colorPickerPreviewWidth:2rem !default;
 $colorPickerPreviewHeight:2rem !default;
 $colorPickerBg:#323232 !default;
-$colorPickerBorderColor:#191919 !default;
+$colorPickerBorder:1px solid #191919 !default;
 $colorPickerHandleColor:$shade000 !default;
 
 //togglebutton
@@ -812,15 +825,46 @@ $imagePreviewActionIconFontSize:1.5rem !default;
 $imagePreviewActionIconBorderRadius:50% !default;
 
 :root {
-	--surface-a:#{$shade000};
-	--surface-b:#{$shade100};
-	--surface-c:#{$shade200};
-	--surface-d:#{$shade300};
-	--surface-e:#{$shade000};
-	--surface-f:#{$shade000};
-	--text-color:#{$shade700};
-	--text-color-secondary:#{$shade600};
-	--primary-color:#{$primaryColor};
-	--primary-color-text:#{$primaryTextColor};
-	--font-family:#{$fontFamily};
+    --surface-a:#{$shade000};
+    --surface-b:#{$shade100};
+    --surface-c:#{$shade200};
+    --surface-d:#{$shade300};
+    --surface-e:#{$shade000};
+    --surface-f:#{$shade000};
+    --text-color:#{$shade700};
+    --text-color-secondary:#{$shade600};
+    --primary-color:#{$primaryColor};
+    --primary-color-text:#{$primaryTextColor};
+    --font-family:#{$fontFamily};
+    --surface-0: #ffffff;
+    --surface-50: #FAFAFA;
+    --surface-100: #F5F5F5;
+    --surface-200: #EEEEEE;
+    --surface-300: #E0E0E0;
+    --surface-400: #BDBDBD;
+    --surface-500: #9E9E9E;
+    --surface-600: #757575;
+    --surface-700: #616161;
+    --surface-800: #424242;
+    --surface-900: #212121;
+    --gray-50: #FAFAFA;
+    --gray-100: #F5F5F5;
+    --gray-200: #EEEEEE;
+    --gray-300: #E0E0E0;
+    --gray-400: #BDBDBD;
+    --gray-500: #9E9E9E;
+    --gray-600: #757575;
+    --gray-700: #616161;
+    --gray-800: #424242;
+    --gray-900: #212121;
+    --content-padding:#{$panelContentPadding};
+    --inline-spacing:#{$inlineSpacing};
+    --border-radius:#{$borderRadius};
+    --surface-ground:#f8f9fa;
+    --surface-section:#ffffff;
+    --surface-card:#ffffff;
+    --surface-overlay:#ffffff;
+    --surface-border:#dee2e6;
+    --surface-hover: #e9ecef;
+    --maskbg: #{$maskBg};
 }

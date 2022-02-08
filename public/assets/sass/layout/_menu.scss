@@ -32,7 +32,7 @@
 
                     > span.menuitem-badge {
                         background-color: $primaryColor;
-                        width: 18px;
+                        min-width: 2.4rem;
                         height: 18px;
                         text-align: center;
                         color: $primaryTextColor;

@@ -5,7 +5,7 @@ import { Message } from 'primereact/message';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 
-export const MessagesDemo = () => {
+const MessagesDemo = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const toast = useRef();
@@ -44,57 +44,57 @@ export const MessagesDemo = () => {
     };
 
     return (
-        <div className="p-grid messages-demo">
-            <div className="p-col-12 p-lg-6">
+        <div className="grid">
+            <div className="col-12 lg:col-6">
                 <div className="card">
                     <h5>Toast</h5>
 
                     <Toast ref={toast} />
-                    <Button type="button" onClick={showSuccess} label="Success" className="p-button-success p-mr-2" />
-                    <Button type="button" onClick={showInfo} label="Info" className="p-button-info p-mr-2" />
-                    <Button type="button" onClick={showWarn} label="Warn" className="p-button-warning p-mr-2" />
-                    <Button type="button" onClick={showError} label="Error" className="p-button-danger p-mr-2" />
+                    <Button type="button" onClick={showSuccess} label="Success" className="p-button-success mr-2" />
+                    <Button type="button" onClick={showInfo} label="Info" className="p-button-info mr-2" />
+                    <Button type="button" onClick={showWarn} label="Warn" className="p-button-warning mr-2" />
+                    <Button type="button" onClick={showError} label="Error" className="p-button-danger mr-2" />
                 </div>
             </div>
 
-            <div className="p-col-12 p-lg-6">
+            <div className="col-12 lg:col-6">
                 <div className="card">
                     <h5>Messages</h5>
 
-                    <Button label="Success" type="button" onClick={addSuccessMessage} className="p-button-success p-mr-2" />
-                    <Button label="Info" type="button" onClick={addInfoMessage} className="p-button-info p-mr-2" />
-                    <Button label="Warn" type="button" onClick={addWarnMessage} className="p-button-warning p-mr-2" />
-                    <Button label="Error" type="button" onClick={addErrorMessage} className="p-button-danger p-mr-2" />
+                    <Button label="Success" type="button" onClick={addSuccessMessage} className="p-button-success mr-2" />
+                    <Button label="Info" type="button" onClick={addInfoMessage} className="p-button-info mr-2" />
+                    <Button label="Warn" type="button" onClick={addWarnMessage} className="p-button-warning mr-2" />
+                    <Button label="Error" type="button" onClick={addErrorMessage} className="p-button-danger mr-2" />
                     <Messages ref={message} />
                 </div>
             </div>
 
-            <div className="p-col-12 p-lg-8">
+            <div className="col-12 lg:col-8">
                 <div className="card">
                     <h5>Inline</h5>
-                    <div className="p-field p-grid p-align-start">
-                        <label htmlFor="username1" className="p-col-fixed">Username</label>
-                        <div className="p-col">
-                            <InputText id="username1" value={username} onChange={(e) => setUsername(e.target.value)} required className="p-invalid"></InputText>
+                    <div className="field grid">
+                        <label htmlFor="username1" className="col-fixed w-9rem">Username</label>
+                        <div className="col">
+                            <InputText id="username1" value={username} onChange={(e) => setUsername(e.target.value)} required className="p-invalid mr-2"/>
                             <Message severity="error" text="Username is required" />
                         </div>
                     </div>
-                    <div className="p-field p-grid">
-                        <label htmlFor="email" className="p-col-fixed">Email</label>
-                        <div className="p-col">
-                            <InputText id="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="p-invalid"></InputText>
-                            <Message severity="error" />
+                    <div className="field grid">
+                        <label htmlFor="email" className="col-fixed w-9rem">Email</label>
+                        <div className="col">
+                            <InputText id="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="p-invalid mr-2"/>
+                            <Message severity="error"/>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="p-col-12 p-lg-4">
+            <div className="col-12 lg:col-4">
                 <div className="card">
                     <h5>Help Text</h5>
-                    <div className="p-field p-fluid">
+                    <div className="field p-fluid">
                         <label htmlFor="username2">Username</label>
-                        <InputText id="username2" type="text" className="p-error" aria-describedby="username-help" />
+                        <InputText id="username2" type="text" className="p-invalid" aria-describedby="username-help" />
                         <small id="username-help" className="p-error">Enter your username to reset your password.</small>
                     </div>
                 </div>
@@ -102,3 +102,9 @@ export const MessagesDemo = () => {
         </div>
     );
 }
+
+const comparisonFn = function (prevProps, nextProps) {
+    return prevProps.location.pathname === nextProps.location.pathname;
+};
+
+export default React.memo(MessagesDemo, comparisonFn);

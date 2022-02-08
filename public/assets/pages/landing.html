@@ -11,7 +11,7 @@
 
       <link rel="stylesheet" type="text/css" href="../theme/theme-blue-light.css">
       <link rel="stylesheet" type="text/css" href="../layout/css/layout-blue-light.css">
-      <link rel="stylesheet" type="text/css" href="./primeflex.css">
+      <link rel="stylesheet" type="text/css" href="./primeflex.min.css">
       <link rel="stylesheet" type="text/css" href="./primereact.min.css">
     </head>
 
@@ -49,8 +49,8 @@
 
         <div id="landing-feature">
             <div class="landing-container">
-                <div class="p-grid">
-                    <div class="p-col-12 p-md-6 p-lg-3 centerText">
+                <div class="grid">
+                    <div class="col-12 md:col-6 lg:col-3 centerText">
                         <img src="../layout/images/landing/creative.svg" alt="creative"/>
                         <h2>Creative</h2>
                         <p>
@@ -59,7 +59,7 @@
                           accumsan porttitor tincidunt
                         </p>
                     </div>
-                    <div class="p-col-12 p-md-6 p-lg-3 centerText">
+                    <div class="col-12 md:col-6 lg:col-3 centerText">
                         <img src="../layout/images/landing/responsive.svg" alt="creative"/>
                         <h2>Responsive</h2>
                         <p>
@@ -68,7 +68,7 @@
                           accumsan porttitor tincidunt
                         </p>
                     </div>
-                    <div class="p-col-12 p-md-6 p-lg-3 centerText">
+                    <div class="col-12 md:col-6 lg:col-3 centerText">
                         <img src="../layout/images/landing/browser.svg" alt="creative"/>
                         <h2>Cross Browser</h2>
                         <p>
@@ -77,7 +77,7 @@
                           accumsan porttitor tincidunt
                         </p>
                     </div>
-                    <div class="p-col-12 p-md-6 p-lg-3 centerText">
+                    <div class="col-12 md:col-6 lg:col-3 centerText">
                         <img src="../layout/images/landing/organize.svg" alt="creative"/>
                         <h2>Well Organized</h2>
                         <p>
@@ -102,8 +102,8 @@
         </div>
 
         <div id="testimonials">
-            <div class="p-grid">
-                <div class="p-col-12">
+            <div class="grid">
+                <div class="col-12">
                     <div class="testimonials-container">
                         <h1 class="testimonials-title">Testimonials</h1>
                         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
@@ -127,8 +127,8 @@
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
                   doloremque laudantium, totam rem aperiam.</p>
 
-                <div class="p-grid">
-                    <div class="p-col-12 p-md-4">
+                <div class="grid">
+                    <div class="col-12 md:col-4">
                         <div class="pricing-basic pricing-box">
                             <span class="pricing-name">Basic</span>
                             <div class="pricing-fee">1$</div>
@@ -140,7 +140,7 @@
                         </div>
                     </div>
 
-                    <div class="p-col-12 p-md-4">
+                    <div class="col-12 md:col-4">
                         <div class="pricing-standard pricing-box">
                             <span class="pricing-name">Standard</span>
                             <div class="pricing-fee">5$</div>
@@ -152,7 +152,7 @@
                         </div>
                     </div>
 
-                    <div class="p-col-12 p-md-4">
+                    <div class="col-12 md:col-4">
                         <div class="pricing-professional pricing-box">
                             <span class="pricing-name">Professional</span>
                             <div class="pricing-fee">10$</div>
@@ -181,8 +181,8 @@
         <div class="landing-footer">
             <div class="landing-footer-content">
                 <div class="footer-top">
-                    <div class="p-grid">
-                        <div class="p-col-12">
+                    <div class="grid">
+                        <div class="col-12">
                             <img src="../layout/images/landing/landing_logo_footer.png" alt="apollo-layout" class="footer-logo"/>
                             <p>Apollo Premium Application Template</p>
                         </div>
@@ -200,7 +200,7 @@
                     else
                         element.className += ' ' + className;
                 },
-    
+
                 removeClass: function(element, className) {
                     if (element.classList)
                         element.classList.remove(className);

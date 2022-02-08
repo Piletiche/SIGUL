@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useRef} from 'react';
 import { Toolbar } from 'primereact/toolbar';
 import { Button } from 'primereact/button';
 import { SplitButton } from 'primereact/splitbutton';
@@ -11,11 +11,12 @@ import { Divider } from 'primereact/divider';
 import { InputText } from 'primereact/inputtext';
 import { Splitter, SplitterPanel } from 'primereact/splitter';
 import { Password } from 'primereact/password';
+import {Menu} from "primereact/menu";
 
 
-export const PanelDemo = () => {
-    const [passwordVal, setPasswordVal] = useState('');
+const PanelDemo = () => {
 
+    const menu1 = useRef(null);
     const toolbarItems = [
         {
             label: 'Save',
@@ -51,21 +52,22 @@ export const PanelDemo = () => {
     };
     const toolbarRightTemplate = <SplitButton label="Options" icon="pi pi-check" model={toolbarItems} menuStyle={{ width: '12rem' }}></SplitButton>;
     const cardHeader = (
-        <div className="p-card-title">
-            <h5>Card</h5>
-            <Button icon="pi pi-plus" className="p-button-text" />
+        <div className="flex align-items-center justify-content-between mb-0 p-3 pb-0">
+            <h5 className="m-0">Card</h5>
+            <Button icon="pi pi-plus" className="p-button-text" onClick={(event) => menu1.current.toggle(event)}/>
+            <Menu ref={menu1} popup model={[{ label: 'Add New', icon: 'pi pi-fw pi-plus' }, { label: 'Remove', icon: 'pi pi-fw pi-minus' }]}/>
         </div>
     );
 
     return (
-        <div className="p-grid panel-demo">
-            <div className="p-col-12">
+        <div className="grid">
+            <div className="col-12">
                 <div className="card">
                     <h5>Toolbar</h5>
                     <Toolbar left={toolbarLeftTemplate} right={toolbarRightTemplate}></Toolbar>
                 </div>
             </div>
-            <div className="p-col-12 p-md-6">
+            <div className="col-12 md:col-6">
                 <div className="card">
                     <h5>AccordionPanel</h5>
                     <Accordion activeIndex={0}>
@@ -112,7 +114,7 @@ export const PanelDemo = () => {
                     </TabView>
                 </div>
             </div>
-            <div className="p-col-12 p-md-6">
+            <div className="col-12 md:col-6">
                 <div className="card">
                     <h5>Panel</h5>
                     <Panel header="Header" toggleable>
@@ -131,43 +133,41 @@ export const PanelDemo = () => {
 						Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </Fieldset>
                 </div>
-                <div className="card">
-                    <Card header={cardHeader} subTitle="Subtitle">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-							Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </Card>
-                </div>
+                <Card header={cardHeader}>
+                    <p className="line-height-3 m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </Card>
             </div>
 
-            <div className="p-col-12">
+            <div className="col-12">
                 <div className="card">
                     <h5>Divider</h5>
-                    <div className="p-grid">
-                        <div className="p-col-5 p-d-flex p-ai-center p-jc-center">
+                    <div className="grid">
+                        <div className="col-5 flex align-items-center justify-content-center">
                             <div className="p-fluid">
-                                <div className="p-field">
+                                <div className="field">
                                     <span className="p-float-label">
                                         <InputText id="username" type="text" />
                                         <label htmlFor="username">Username</label>
                                     </span>
                                 </div>
-                                <div className="p-field p-mt-4">
+                                <div className="field">
                                     <span className="p-float-label">
-                                        <Password id="password" value={passwordVal} onChange={(e) => setPasswordVal(e.target.value)} />
+                                        <Password id="password" type="password" />
                                         <label htmlFor="password">Password</label>
                                     </span>
                                 </div>
                                 <Button label="Login"></Button>
                             </div>
                         </div>
-                        <div className="p-col-1">
+                        <div className="col-1">
                             <Divider layout="vertical">
                                 <b>OR</b>
                             </Divider>
                         </div>
-                        <div className="p-col-5 p-ai-center p-jc-center">
+                        <div className="col-5 align-items-center justify-content-center">
                             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
                             totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
                             architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
@@ -199,12 +199,12 @@ export const PanelDemo = () => {
                 </div>
             </div>
 
-            <div className="p-col-12">
+            <div className="col-12">
                 <div className="card">
                     <h5>Splitter</h5>
-                    <Splitter style={{ height: '300px' }} className="p-mb-5">
+                    <Splitter style={{ height: '300px' }} className="mb-5">
                         <SplitterPanel size={40} minSize={10} style={{overflow: 'auto'}}>
-                            <div className="p-col p-pt-3">
+                            <div className="col pt-3">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                                 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                                 ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
@@ -216,7 +216,7 @@ export const PanelDemo = () => {
                         <SplitterPanel size={80}>
                             <Splitter layout="vertical">
                                 <SplitterPanel size={30} style={{overflow: 'auto'}}>
-                                    <div className="p-col p-pt-3">
+                                    <div className="col pt-3">
                                         Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
                                         doloremque
                                         laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
@@ -229,7 +229,7 @@ export const PanelDemo = () => {
                                     </div>
                                 </SplitterPanel>
                                 <SplitterPanel size={70} style={{overflow: 'auto'}}>
-                                    <div className="p-col p-pt-3">
+                                    <div className="col pt-3">
                                         At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
                                         praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias
                                         excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui
@@ -246,3 +246,9 @@ export const PanelDemo = () => {
         </div>
     )
 }
+
+const comparisonFn = function (prevProps, nextProps) {
+    return prevProps.location.pathname === nextProps.location.pathname;
+};
+
+export default React.memo(PanelDemo, comparisonFn);

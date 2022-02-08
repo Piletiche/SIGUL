@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Chart } from 'primereact/chart';
 
 
@@ -117,50 +117,279 @@ const doughnutData = {
         }]
 };
 
-export const ChartDemo = () => {
+const ChartDemo = (props) => {
+
+    const [lineOptions, setLineOptions] = useState(null)
+    const [barOptions, setBarOptions] = useState(null)
+    const [pieOptions, setPieOptions] = useState(null)
+    const [polarOptions, setPolarOptions] = useState(null)
+    const [radarOptions, setRadarOptions] = useState(null)
+
+    const applyLightTheme = () => {
+        const lineOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#495057'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#495057'
+                    },
+                    grid: {
+                        color: '#ebedef',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#495057'
+                    },
+                    grid: {
+                        color: '#ebedef',
+                    }
+                },
+            }
+        };
+
+        const barOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#495057'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#495057'
+                    },
+                    grid: {
+                        color: '#ebedef',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#495057'
+                    },
+                    grid: {
+                        color: '#ebedef',
+                    }
+                },
+            }
+        };
+
+        const pieOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#495057'
+                    }
+                }
+            }
+        };
+
+        const polarOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#495057'
+                    }
+                }
+            },
+            scales: {
+                r: {
+                    grid: {
+                        color: '#ebedef'
+                    }
+                }
+            }
+        };
+
+        const radarOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#495057'
+                    }
+                }
+            },
+            scales: {
+                r: {
+                    grid: {
+                        color: '#ebedef'
+                    }
+                }
+            }
+        };
+
+        setLineOptions(lineOptions)
+        setBarOptions(barOptions)
+        setPieOptions(pieOptions)
+        setPolarOptions(polarOptions)
+        setRadarOptions(radarOptions)
+
+    }
+
+    const applyDarkTheme = () => {
+        const lineOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)',
+                    }
+                },
+            }
+        };
+
+        const barOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)',
+                    }
+                },
+            }
+        };
+
+        const pieOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                }
+            }
+        };
+
+        const polarOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                }
+            },
+            scales: {
+                r: {
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)'
+                    }
+                }
+            }
+        };
+
+        const radarOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                }
+            },
+            scales: {
+                r: {
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)'
+                    }
+                }
+            }
+        };
+
+        setLineOptions(lineOptions)
+        setBarOptions(barOptions)
+        setPieOptions(pieOptions)
+        setPolarOptions(polarOptions)
+        setRadarOptions(radarOptions)
+    }
+
+    useEffect(() => {
+        if (props.colorMode === 'light') {
+            applyLightTheme();
+        } else {
+            applyDarkTheme();
+        }
+    }, [props.colorMode]);
 
     return (
-        <div className="p-grid p-fluid">
-            <div className="p-col-12 p-lg-6">
+        <div className="grid p-fluid">
+            <div className="col-12 lg:col-6">
                 <div className="card">
-                    <h5 className="centerText">Linear Chart</h5>
-                    <Chart type="line" data={lineData} />
+                    <h5>Linear Chart</h5>
+                    <Chart type="line" data={lineData} options={lineOptions} />
                 </div>
 
-                <div className="card">
-                    <h5 className="centerText">Pie Chart</h5>
-                    <div className="p-d-flex p-jc-center">
-                        <Chart style={{ position: 'relative', width: '50%' }} type="pie" data={pieData} />
-                    </div>
+                <div className="card flex flex-column align-items-center">
+                    <h5>Pie Chart</h5>
+                    <Chart type="pie" data={pieData} options={pieOptions} style={{ width: '50%' }} />
                 </div>
 
-                <div className="card">
-                    <h5 className="centerText">Polar Area Chart</h5>
-                    <div className="p-d-flex p-jc-center">
-                        <Chart style={{ position: 'relative', width: '50%' }} type="polarArea" data={polarData} />
-                    </div>
+                <div className="card flex flex-column align-items-center">
+                    <h5>Polar Area Chart</h5>
+                    <Chart type="polarArea" data={polarData} options={polarOptions} style={{ width: '50%' }} />
                 </div>
             </div>
-            <div className="p-col-12 p-lg-6">
+            <div className="col-12 lg:col-6">
                 <div className="card">
-                    <h5 className="centerText">Bar Chart</h5>
-                    <Chart type="bar" data={barData} />
+                    <h5>Bar Chart</h5>
+                    <Chart type="bar" data={barData} options={barOptions} />
                 </div>
 
-                <div className="card">
-                    <h5 className="centerText">Doughnut Chart</h5>
-                    <div className="p-d-flex p-jc-center">
-                        <Chart style={{ position: 'relative', width: '50%' }} type="doughnut" data={doughnutData} />
-                    </div>
+                <div className="card flex flex-column align-items-center">
+                    <h5>Doughnut Chart</h5>
+                    <Chart type="doughnut" data={doughnutData} options={pieOptions} style={{ width: '50%' }} />
                 </div>
 
-                <div className="card">
-                    <h5 className="centerText">Radar Chart</h5>
-                    <div className="p-d-flex p-jc-center">
-                        <Chart style={{ position: 'relative', width: '50%' }} type="radar" data={radarData} />
-                    </div>
+                <div className="card flex flex-column align-items-center">
+                    <h5>Radar Chart</h5>
+                    <Chart type="radar" data={radarData} options={radarOptions} style={{ width: '50%' }} />
                 </div>
             </div>
         </div>
     )
 }
+
+const comparisonFn = function (prevProps, nextProps) {
+    return prevProps.location.pathname === nextProps.location.pathname;
+};
+
+export default React.memo(ChartDemo, comparisonFn);
