@@ -413,7 +413,7 @@ const App = () => {
                 <AppBreadcrumb />
 
                 <div className="layout-content-container">
-                    <Route path="/" exact component={Dashboard} />
+                    <Route path="/" exact render={() => <Dashboard colorMode={scheme} location={location} />} />
                     <Route path="/documentation" component={Documentation} />
                     <Route path="/formlayout" component={FormLayoutDemo} />
                     <Route path="/floatlabel" component={FloatLabelDemo} />
@@ -428,7 +428,7 @@ const App = () => {
                     <Route path="/menu" component={MenuDemo} />
                     <Route path="/messages" component={MessagesDemo} />
                     <Route path="/file" component={FileDemo} />
-                    <Route path="/chart" render={() => <ChartDemo colorMode={scheme} />} />
+                    <Route path="/chart" render={() => <ChartDemo colorMode={scheme} location={location} />} />
                     <Route path="/misc" component={MiscDemo} />
                     <Route path="/icons" component={IconsDemo} />
                     <Route path="/blocks" component={BlocksDemo} />

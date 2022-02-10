@@ -40,8 +40,9 @@ const chartData = {
     ]
 };
 
-const Dashboard = () => {
+const Dashboard = (props) => {
 
+    const [chartOptions, setChartOptions] = useState(null)
     const [products, setProducts] = useState(null);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [events, setEvents] = useState(null);
@@ -68,6 +69,78 @@ const Dashboard = () => {
             label: 'Delete', icon: 'pi pi-fw pi-trash'
         }
     ];
+
+    const applyLightTheme = () => {
+        const chartOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#495057'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#495057'
+                    },
+                    grid: {
+                        color: '#ebedef',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#495057'
+                    },
+                    grid: {
+                        color: '#ebedef',
+                    }
+                },
+            }
+        };
+
+        setChartOptions(chartOptions)
+    }
+
+    const applyDarkTheme = () => {
+        const chartOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ebedef'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)',
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#ebedef'
+                    },
+                    grid: {
+                        color: 'rgba(160, 167, 181, .3)',
+                    }
+                },
+            }
+        };
+
+        setChartOptions(chartOptions)
+    }
+
+    useEffect(() => {
+        if (props.colorMode === 'light') {
+            applyLightTheme();
+        } else {
+            applyDarkTheme();
+        }
+    }, [props.colorMode]);
 
     useEffect(() => {
         const productService = new ProductService();
@@ -471,7 +544,7 @@ const Dashboard = () => {
 
             <div className="col-12 md:col-6">
                 <Panel header="Core 1 Data">
-                    <Chart type="line" data={chartData} />
+                    <Chart type="line" data={chartData} options={chartOptions} />
                 </Panel>
             </div>
 
@@ -566,7 +639,7 @@ const Dashboard = () => {
 }
 
 const comparisonFn = function (prevProps, nextProps) {
-    return prevProps.location.pathname === nextProps.location.pathname;
+    return (prevProps.location.pathname === nextProps.location.pathname) && (prevProps.colorMode === nextProps.colorMode);
 };
 
 export default React.memo(Dashboard, comparisonFn);
