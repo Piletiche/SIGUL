@@ -1,6 +1,6 @@
 {
 	"name": "apollo-react",
-	"version": "7.0.1-SNAPSHOT",
+	"version": "7.0.0",
 	"homepage": ".",
 	"private": true,
 	"dependencies": {
