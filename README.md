@@ -1,2 +1,1 @@
-# SIGUL
-Sistema de Gestão Universitária da UniLicungo
+## Apollo React
