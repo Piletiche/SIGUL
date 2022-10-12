@@ -19,13 +19,13 @@ const AppBreadcrumb = () => {
             </ul>
 
             <div className="layout-breadcrumb-options">
-                <button type="button" className="p-link" title="Backup">
+                {/*                 <button type="button" className="p-link" title="Backup">
                     <i className="pi pi-cloud-upload"></i>
                 </button>
                 <button type="button" className="p-link" title="Bookmark">
                     <i className="pi pi-bookmark"></i>
                 </button>
-                <button type="button" className="p-link" title="Logout">
+ */}                <button type="button" className="p-link" title="Sair">
                     <i className="pi pi-power-off"></i>
                 </button>
             </div>

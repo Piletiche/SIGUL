@@ -1,6 +1,8 @@
 @media (min-width: 1025px) {
     .layout-wrapper {
-        &.layout-overlay, &.layout-static {
+
+        &.layout-overlay,
+        &.layout-static {
             .layout-menu-container {
                 padding: 0;
                 width: 230px;
@@ -52,7 +54,7 @@
                                 line-height: 22px;
                             }
 
-                            > span {
+                            >span {
                                 vertical-align: middle;
                                 display: inline-block;
                                 margin-left: 6px;
@@ -65,7 +67,7 @@
                         }
 
                         &.active-menuitem {
-                            > a {
+                            >a {
                                 background-color: $menuitemActiveBgColor;
                                 color: $primaryColor;
 
@@ -77,7 +79,7 @@
                         }
                     }
 
-                    > li {
+                    >li {
                         &:first-child {
                             margin-top: 8px;
                         }

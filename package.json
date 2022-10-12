@@ -1,6 +1,6 @@
 {
-	"name": "apollo-react",
-	"version": "7.0.0",
+	"name": "sigul",
+	"version": "1.0.1",
 	"homepage": ".",
 	"private": true,
 	"dependencies": {

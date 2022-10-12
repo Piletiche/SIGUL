@@ -14,21 +14,21 @@
                 }
 
                 .layout-menu {
-                    > li {
+                    >li {
                         display: inline-block;
                         position: relative;
 
                         &.layout-root-menuitem {
-                            > .layout-menuitem-root-text {
+                            >.layout-menuitem-root-text {
                                 display: none !important;
                             }
 
-                            > a {
+                            >a {
                                 display: block !important;
                             }
                         }
 
-                        > a {
+                        >a {
                             padding: 12px;
                             height: 50px;
                             margin-bottom: -4px;
@@ -42,7 +42,7 @@
                         }
 
                         &.active-menuitem {
-                            > a {
+                            >a {
                                 background-color: $primaryColor;
                                 color: $primaryTextColor;
 
@@ -51,7 +51,7 @@
                                 }
                             }
 
-                            > ul {
+                            >ul {
                                 top: 50px;
                                 left: 0;
                                 position: absolute;
@@ -64,7 +64,7 @@
                             box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.3);
                         }
 
-                        > ul {
+                        >ul {
                             display: none;
                             margin: 0;
                             padding: 0;
@@ -72,7 +72,7 @@
                             list-style-type: none;
                             background-color: $menuBgColor;
 
-                            > li {
+                            >li {
                                 a {
                                     padding: 8px 12px;
                                     display: block;
@@ -99,7 +99,7 @@
                                 }
 
                                 &.active-menuitem {
-                                    > a {
+                                    >a {
                                         color: $primaryColor;
 
                                         &:not(.p-disabled):hover {
@@ -107,7 +107,7 @@
                                         }
                                     }
 
-                                    > ul {
+                                    >ul {
                                         display: block;
                                     }
                                 }
@@ -124,13 +124,13 @@
                                         ul {
                                             li {
                                                 a {
-                                                  padding-left: 36px;
+                                                    padding-left: 36px;
                                                 }
 
                                                 ul {
                                                     li {
                                                         a {
-                                                          padding-left: 48px;
+                                                            padding-left: 48px;
                                                         }
 
                                                         ul {
@@ -159,7 +159,7 @@
                     }
 
                     li {
-                        > a {
+                        >a {
                             span.menuitem-badge {
                                 top: 0px;
                             }

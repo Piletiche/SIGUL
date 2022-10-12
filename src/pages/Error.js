@@ -9,14 +9,14 @@ export const Error = () => {
 	const goDashboard = () => {
 		history.push('/');
 	}
-	
+
 	return <div className="exception-body error-body">
 		<div className="exception-container">
 			<img src="assets/layout/images/logo-dark.png" alt="apollo-layout" />
-			<h1>Error</h1>
+			<h1>Erro</h1>
 			<p>
-				Please contact the system administrator.
-				</p>
+				Por favor contacte o administrador do sistema.
+			</p>
 
 			<Button label="Go To Dashboard" icon="pi pi-arrow-left" onClick={goDashboard} />
 		</div>

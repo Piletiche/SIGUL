@@ -1,7 +1,7 @@
 .loader {
 	min-height: 100%;
 
-	> div {
+	>div {
 
 		&:before {
 			content: '';
@@ -95,9 +95,11 @@
 		-webkit-transform: translateX(-20px);
 		z-index: 200;
 	}
+
 	50% {
 		-webkit-transform: translateX(20px);
 	}
+
 	100% {
 		-webkit-transform: translateX(-20px);
 	}
@@ -108,9 +110,11 @@
 		-moz-transform: translateX(-20px);
 		z-index: 200;
 	}
+
 	50% {
 		-moz-transform: translateX(20px);
 	}
+
 	100% {
 		-moz-transform: translateX(-20px);
 	}
@@ -121,9 +125,11 @@
 		-o-transform: translateX(-20px);
 		z-index: 200;
 	}
+
 	50% {
 		-o-transform: translateX(20px);
 	}
+
 	100% {
 		-o-transform: translateX(-20px);
 	}

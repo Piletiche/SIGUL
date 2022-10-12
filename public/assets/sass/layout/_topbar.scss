@@ -44,6 +44,7 @@
                 .p-inputswitch-slider {
                     background-color: #ffffff;
                     border-color: #d8d8d8;
+
                     &:before {
                         background-color: #d8d8d8;
                     }
@@ -51,8 +52,9 @@
 
                 &.p-inputswitch-checked {
                     .p-inputswitch-slider {
-                        background-color:  #243447;
+                        background-color: #243447;
                         border-color: #243447;
+
                         &:before {
                             background-color: #000000;
                         }
@@ -80,10 +82,33 @@
                 margin: 0px;
                 border-radius: $borderRadius;
 
-                &::-webkit-input-placeholder { color:$primaryTextColor;; opacity: .7; transition: opacity $transitionDuration;}
-                &:-moz-placeholder { color:$primaryTextColor;; opacity: .7; transition: opacity $transitionDuration;}
-                &::-moz-placeholder { color:$primaryTextColor;; opacity: .7; transition: opacity $transitionDuration;}
-                &:-ms-input-placeholder { color:$primaryTextColor;; opacity: .7; transition: opacity $transitionDuration;}
+                &::-webkit-input-placeholder {
+                    color: $primaryTextColor;
+                    ;
+                    opacity: .7;
+                    transition: opacity $transitionDuration;
+                }
+
+                &:-moz-placeholder {
+                    color: $primaryTextColor;
+                    ;
+                    opacity: .7;
+                    transition: opacity $transitionDuration;
+                }
+
+                &::-moz-placeholder {
+                    color: $primaryTextColor;
+                    ;
+                    opacity: .7;
+                    transition: opacity $transitionDuration;
+                }
+
+                &:-ms-input-placeholder {
+                    color: $primaryTextColor;
+                    ;
+                    opacity: .7;
+                    transition: opacity $transitionDuration;
+                }
             }
 
             .pi {
@@ -116,6 +141,7 @@
                 vertical-align: middle;
                 width: 40px;
                 margin-right: 8px;
+                border-radius: 30px;
             }
 
             .username {
@@ -149,7 +175,7 @@
                 display: block;
             }
 
-            > li {
+            >li {
                 button {
                     width: 100%;
                     font-family: $fontFamily;
@@ -205,21 +231,21 @@
                     &.layout-submenu-container-enter {
                         max-height: 0;
                     }
-    
+
                     &.layout-submenu-container-enter-active {
                         overflow: hidden;
                         max-height: 1000px;
                         transition: max-height 1s ease-in-out;
                     }
-    
+
                     &.layout-submenu-container-enter-done {
                         transform: none;
                     }
-    
+
                     &.layout-submenu-container-exit {
                         max-height: 1000px;
                     }
-    
+
                     &.layout-submenu-container-exit-active {
                         overflow: hidden;
                         max-height: 0;
@@ -248,12 +274,13 @@
         }
     }
 
-    &.layout-overlay, &.layout-static {
+    &.layout-overlay,
+    &.layout-static {
         .topbar {
             box-shadow: 0 2px 4px 0px rgba(0, 0, 0, 0.3);
 
             .menu-button {
-              display: inline-block;
+                display: inline-block;
             }
         }
     }

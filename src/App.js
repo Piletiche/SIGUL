@@ -34,6 +34,7 @@ import Invoice from './pages/Invoice';
 import Help from './pages/Help';
 import CalendarDemo from './pages/CalendarDemo';
 import TimelineDemo from './pages/TimelineDemo';
+import NotasFreq from './estudante/NotasFreq';
 
 import PrimeReact from 'primereact/api';
 import { Tooltip } from 'primereact/tooltip';
@@ -66,13 +67,115 @@ const App = () => {
 
     const menu = [
         {
-            label: 'Favorites', icon: 'pi pi-fw pi-home',
+            label: 'Início', icon: 'pi pi-fw pi-home',
+            items: [{
+                label: 'Painel', icon: 'pi pi-fw pi-circle-off', to: '/'
+            }]
+        },
+
+
+        {
+            label: 'Painel do Estudante', icon: 'pi pi-fw pi-id-card',
             items: [
-                { label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' }
+
+                { label: 'Notas de Frequência', icon: 'pi pi-fw pi-circle-off', to: '/notas' },
+                { label: 'Exames', icon: 'pi pi-fw pi-circle-off', to: 'login' },
+                { label: 'Situação Financeira', icon: 'pi pi-fw pi-circle-off', to: '/crud' },
+                { label: 'Avaliação Corpo Docente', icon: 'pi pi-fw pi-circle-off' },
+                { label: 'Inscrição', icon: 'pi pi-fw pi-circle-off' },
+                { label: 'Horários', icon: 'pi pi-fw pi-circle-off' },
+                { label: 'Pagar Emolumentos', icon: 'pi pi-fw pi-circle-off' },
+                { label: 'Dados do Estudante', icon: 'pi pi-fw pi-circle-off' },
+                { label: 'Plano Curricular', icon: 'pi pi-fw pi-circle-off' },
+                { label: 'Documentos Normativos', icon: 'pi pi-fw pi-circle-off' },
+                { label: 'Formulários diversos', icon: 'pi pi-fw pi-circle-off' }
             ]
         },
+
+
         {
-            label: 'UI Kit', icon: 'pi pi-fw pi-star-fill',
+            label: 'Painel do Docente', icon: 'pi pi-fw pi-briefcase',
+            items:
+                [
+                    { label: 'Notas de Frequência', icon: 'pi pi-fw pi-circle-off', to: '/empty' },
+                    { label: 'Formulários diversos', icon: 'pi pi-fw pi-circle-off' }
+                ]
+        },
+
+        {
+            label: 'Gestão Pedagógica', icon: 'pi pi-fw pi-server',
+            items:
+                [
+                    { label: 'Notas de Frequência', icon: 'pi pi-fw pi-circle-off', to: '/empty' },
+                    { label: 'Formulários diversos', icon: 'pi pi-fw pi-circle-off' }
+                ]
+        },
+        {
+            label: 'Gestão Académica', icon: 'pi pi-fw pi-book',
+            items:
+                [
+                    { label: 'Notas de Frequência', icon: 'pi pi-fw pi-circle-off', to: '/empty' },
+                    { label: 'Formulários diversos', icon: 'pi pi-fw pi-circle-off' }
+                ]
+        },
+
+
+        {
+            label: 'Gestão Financeira', icon: 'pi pi-fw pi-wallet',
+            items:
+                [
+                    { label: 'Notas de Frequência', icon: 'pi pi-fw pi-circle-off', to: '/empty' },
+                    { label: 'Formulários diversos', icon: 'pi pi-fw pi-circle-off' }
+                ]
+        },
+
+
+        {
+            label: 'Recursos Humanos', icon: 'pi pi-fw pi-list',
+            items:
+                [
+                    { label: 'Notas de Frequência', icon: 'pi pi-fw pi-circle-off', to: '/empty' },
+                    { label: 'Formulários diversos', icon: 'pi pi-fw pi-circle-off' }
+                ]
+        },
+
+
+        {
+            label: 'Gestão de Bolsas', icon: 'pi pi-fw pi-table',
+            items:
+                [
+                    { label: 'Notas de Frequência', icon: 'pi pi-fw pi-circle-off', to: '/empty' },
+                    { label: 'Formulários diversos', icon: 'pi pi-fw pi-circle-off' }
+                ]
+        },
+
+
+        {
+            label: 'Relatórios', icon: 'pi pi-fw pi-chart-bar',
+            items:
+                [
+                    { label: 'Notas de Frequência', icon: 'pi pi-fw pi-circle-off', to: '/empty' },
+                    { label: 'Formulários diversos', icon: 'pi pi-fw pi-circle-off' }
+                ]
+        },
+
+
+        {
+            label: 'Gestão do Sistema', icon: 'pi pi-fw pi-cog',
+            items:
+                [
+                    { label: 'Notas de Frequência', icon: 'pi pi-fw pi-circle-off', to: '/empty' },
+                    { label: 'Formulários diversos', icon: 'pi pi-fw pi-circle-off' }
+                ]
+        },
+
+
+
+
+
+
+/*         {
+            label: 'UI KIT', icon: 'pi pi-fw pi-star-fill',
             items: [
                 { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', to: '/formlayout' },
                 { label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input' },
@@ -178,7 +281,7 @@ const App = () => {
                 }
             ]
         }
-    ];
+ */    ];
 
     useEffect(() => {
         copyTooltipRef && copyTooltipRef.current && copyTooltipRef.current.updateTargetEvents();
@@ -396,7 +499,8 @@ const App = () => {
                     <AppMenu model={menu} onMenuItemClick={onMenuItemClick}
                         onRootMenuItemClick={onRootMenuItemClick}
                         layoutMode={layoutMode} active={menuActive} />
-                    <div className="layout-menu-footer">
+
+                    {/*                     <div className="layout-menu-footer">
                         <div className="layout-menu-footer-title">TASKS</div>
 
                         <div className="layout-menu-footer-content">
@@ -406,6 +510,7 @@ const App = () => {
                             Overall
                         </div>
                     </div>
+ */}
                 </div>
             </div>
 
@@ -439,6 +544,7 @@ const App = () => {
                     <Route path="/invoice" component={Invoice} />
                     <Route path="/empty" component={EmptyPage} />
                     <Route path="/media" component={MediaDemo} />
+                    <Route path="/notas" component={NotasFreq} />
                 </div>
 
                 <AppFooter />

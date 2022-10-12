@@ -10,15 +10,15 @@ const AppConfig = (props) => {
 	let outsideClickListener = useRef(null);
 
 	let themeColors = [
-		{title: 'Blue', name: 'blue', color: '#39a3f4'},
-		{title: 'Green', name: 'green', color: '#6ebc3b'},
-		{title: 'Cyan', name: 'cyan', color: '#1989AC'},
-		{title: 'Purple', name: 'purple', color: '#7E57C2'},
-		{title: 'Indigo', name: 'indigo', color: '#5C6BC0'},
-		{title: 'Yellow', name: 'yellow', color: '#ffc800'},
-		{title: 'Orange', name: 'orange', color: '#f6a821'},
-		{title: 'Pink', name: 'pink', color: '#EC407A'}
-	]
+		{ title: 'Blue', name: 'blue', color: '#188BCB' },
+		{ title: 'Cyan', name: 'cyan', color: '#1989AC' },
+		{ title: 'Purple', name: 'purple', color: '#7E57C2' },
+		{ title: 'Indigo', name: 'indigo', color: '#5C6BC0' },
+		{ title: 'Cinza', name: 'yellow', color: '#6c757d' }
+/* 		{ title: 'Orange', name: 'orange', color: '#f6a821' },
+		{ title: 'Green', name: 'green', color: '#6ebc3b' },
+		{ title: 'Pink', name: 'pink', color: '#EC407A' }
+ */	]
 
 	const unbindOutsideClickListener = useCallback(() => {
 		if (outsideClickListener.current) {
@@ -76,54 +76,56 @@ const AppConfig = (props) => {
 					<i className="pi pi-times" />
 				</button>
 
-				<h5 style={{ marginTop: 0 }}>Input Style</h5>
+				<h5 style={{ marginTop: 0 }}>Estilo de Formulário</h5>
 				<div className="formgroup-inline">
 					<div className="field-radiobutton">
 						<RadioButton id="input_outlined" name="inputstyle" value="outlined" checked={props.inputStyle === 'outlined'} onChange={(e) => props.onInputStyleChange(e.value)} />
-						<label htmlFor="input_outlined">Outlined</label>
+						<label htmlFor="input_outlined">Delineado</label>
 					</div>
 					<div className="field-radiobutton">
 						<RadioButton id="input_filled" name="inputstyle" value="filled" checked={props.inputStyle === 'filled'} onChange={(e) => props.onInputStyleChange(e.value)} />
-						<label htmlFor="input_filled">Filled</label>
+						<label htmlFor="input_filled">Preenchidas</label>
 					</div>
 				</div>
 
-				<h5>Ripple Effect</h5>
-				<InputSwitch checked={props.ripple} onChange={props.onRippleChange}/>
-
-				<h5>Menu Type</h5>
+				{/* 				<h5>Efeito Cascata</h5>
+				<InputSwitch checked={props.ripple} onChange={props.onRippleChange} />
+ */}
+				<h5>Tipo de Menu</h5>
 				<div className="field-radiobutton">
 					<RadioButton id="static" name="layoutMode" value="static" checked={props.layoutMode === 'static'} onChange={(e) => props.changeMenuMode({ menuMode: e.value })} />
-					<label htmlFor="static">Static</label>
+					<label htmlFor="static">Estático</label>
 				</div>
-				<div className="field-radiobutton">
+
+				{/* <div className="field-radiobutton">
 					<RadioButton id="overlay" name="layoutMode" value="overlay" checked={props.layoutMode === 'overlay'} onChange={(e) => props.changeMenuMode({ menuMode: e.value })} />
-					<label htmlFor="overlay">Overlay</label>
+					<label htmlFor="overlay">Sobreposto</label>
 				</div>
-				<div className="field-radiobutton">
+
+ */}				<div className="field-radiobutton">
 					<RadioButton id="horizontal" name="layoutMode" value="horizontal" checked={props.layoutMode === 'horizontal'} onChange={(e) => props.changeMenuMode({ menuMode: e.value })} />
 					<label htmlFor="horizontal">Horizontal</label>
 				</div>
 				<div className="field-radiobutton">
 					<RadioButton id="slim" name="layoutMode" value="slim" checked={props.layoutMode === 'slim'} onChange={(e) => props.changeMenuMode({ menuMode: e.value })} />
-					<label htmlFor="slim">Slim</label>
+					<label htmlFor="slim">Pequeno</label>
 				</div>
 
-				<h5>Color Scheme</h5>
+				<h5>Esquema de Cores</h5>
 				<div className="field-radiobutton">
 					<RadioButton id="light" name="color" value="light" checked={props.scheme === 'light'} onChange={(e) => props.onSchemeChange(e.value)} />
-					<label htmlFor="light">Light</label>
+					<label htmlFor="light">Leve</label>
 				</div>
 				<div className="field-radiobutton">
 					<RadioButton id="dark" name="color" value="dark" checked={props.scheme === 'dark'} onChange={(e) => props.onSchemeChange(e.value)} />
-					<label htmlFor="dark">Dark</label>
+					<label htmlFor="dark">Escuro</label>
 				</div>
 				<div className="field-radiobutton">
 					<RadioButton id="dim" name="color" value="dim" checked={props.scheme === 'dim'} onChange={(e) => props.onSchemeChange(e.value)} />
-					<label htmlFor="dim">Dim</label>
+					<label htmlFor="dim">Escurecido</label>
 				</div>
 
-				<h5>Themes</h5>
+				<h5>Temas</h5>
 				<div className="layout-themes">
 					{
 						themeColors.map(color => {
