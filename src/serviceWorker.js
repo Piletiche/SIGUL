@@ -69,7 +69,7 @@ function registerValidSW(swUrl, config) {
               // mas o service worker anterior ainda servirá o antigo
               // conteúdo até que todas as guias do cliente sejam fechadas.
               console.log(
-                'Novo conteúdo está disponível e será usado quando todos ' +
+                'Novo conteúdo está disponível e será usado quando todas ' +
                 'as guias desta página estão fechadas. Veja http://bit.ly/CRA-PWA.'
               );
 
